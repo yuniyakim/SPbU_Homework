@@ -187,25 +187,33 @@ int fromTwosComplement(int array[])
 	}
 	else
 	{
-		for (int i = 7; i > 0; --i)
+		if ((help[0] == 1) && (help[1] == 0) && (help[2] == 0) && (help[3] == 0) && (help[4] == 0) && (help[5] == 0) &&
+			(help[6] == 0) && (help[7] == 0))
 		{
-			if (help[i] == 0)
-			{
-				help[i] = 1;
-			}
-			else
-			{
-				help[i] = 0;
-			}
+			return -128;
 		}
-		addOne(help);
-		for (int i = 1; i <= 7; ++i)
+		else
 		{
-			if (help[i] == 1)
+			for (int i = 7; i > 0; --i)
 			{
-				number = number + pow(2, 7 - i);
+				if (help[i] == 0)
+				{
+					help[i] = 1;
+				}
+				else
+				{
+					help[i] = 0;
+				}
 			}
+			addOne(help);
+			for (int i = 1; i <= 7; ++i)
+			{
+				if (help[i] == 1)
+				{
+					number = number + pow(2, 7 - i);
+				}
+			}
+			return -number;
 		}
-		return -number;
 	}
 }
