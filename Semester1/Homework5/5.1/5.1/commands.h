@@ -1,16 +1,16 @@
 #pragma once
 
 // structure of a list
-struct element
+struct Element
 {
 	int value;
-	element *next;
+	Element *next;
 };
 
 // structure with isEmpty element
 struct List
 {
-	element *head;
+	Element *head;
 	bool isEmpty = true;
 };
 
