@@ -1,0 +1,3 @@
+*.cpp diff
+*.h diff
+* encoding=cp1251
