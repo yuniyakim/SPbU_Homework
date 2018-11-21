@@ -4,7 +4,6 @@
 #include <iostream>
 using namespace std;
 
-<<<<<<< HEAD
 struct Element
 {
 	char value;
@@ -15,17 +14,6 @@ struct Stack
 {
 	Element *head;
 };
-=======
-int lengthOfLine(char string[])
-{
-	int i = 0;
-	while (string[i] != '\0')
-	{
-		++i;
-	}
-	return i;
-}
->>>>>>> 4cdc42aecbcc09b17a1336d6df2cd0155eb09127
 
 bool isMultiplicationOrDivision(char symbol)
 {
@@ -79,14 +67,9 @@ void fromInfixIntoPostfix(char input[], char output[])
 {
 	Stack* stack = createStack();
 	int i = 0;
-<<<<<<< HEAD
 	const int length = strlen(input);
 	int outputString = 0;
 	while (i < length)
-=======
-	int outputString = 0;
-	while (i < lengthOfLine(input))
->>>>>>> 4cdc42aecbcc09b17a1336d6df2cd0155eb09127
 	{
 		if (isdigit(input[i]) && isdigit(input[i + 1]))
 		{
@@ -137,9 +120,5 @@ void fromInfixIntoPostfix(char input[], char output[])
 		++outputString;
 	}
 
-<<<<<<< HEAD
 	deleteStack(stack);
-=======
-	delete(stack);
->>>>>>> 4cdc42aecbcc09b17a1336d6df2cd0155eb09127
 }

@@ -3,7 +3,6 @@
 #include <iostream>
 using namespace std;
 
-<<<<<<< HEAD
 struct Element
 {
 	char value;
@@ -15,8 +14,6 @@ struct Stack
 	Element *head;
 };
 
-=======
->>>>>>> 4cdc42aecbcc09b17a1336d6df2cd0155eb09127
 Stack* createStack()
 {
 	return new Stack{ nullptr };
