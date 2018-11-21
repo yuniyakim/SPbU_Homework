@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "postfix.h"
 #include "stack.h"
+#include "arithmetic.h"
 #include <iostream>
 using namespace std;
 
@@ -35,23 +36,23 @@ int postfix(char string[]) // works only with single digits
 				{
 				case '+':
 				{
-					stack->head->value = stack->head->next->value + stack->head->value;
+					addition(stack);
 					break;
 				}
 
 				case '-':
 				{
-					stack->head->value = stack->head->next->value - stack->head->value;
+					subtraction(stack);
 					break;
 				}
 				case '*':
 				{
-					stack->head->value = stack->head->next->value * stack->head->value;
+					multiplication(stack);
 					break;
 				}
 				case '/':
 				{
-					stack->head->value = stack->head->next->value / stack->head->value;
+					division(stack);
 					break;
 				}
 				}
