@@ -3,6 +3,17 @@
 #include <iostream>
 using namespace std;
 
+struct Element
+{
+	char value;
+	Element *next;
+};
+
+struct Stack
+{
+	Element *head;
+};
+
 Stack* createStack()
 {
 	return new Stack{ nullptr };

@@ -4,6 +4,17 @@
 #include <iostream>
 using namespace std;
 
+struct Element
+{
+	char value;
+	Element *next;
+};
+
+struct Stack
+{
+	Element *head;
+};
+
 bool isBrackets(char string[])
 {
 	Stack* stack = createStack();
