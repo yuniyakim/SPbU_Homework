@@ -4,15 +4,16 @@
 #include <iostream>
 using namespace std;
 
-int lengthOfLine(char string[])
+struct Element
 {
-	int i = 0;
-	while (string[i] != '\0')
-	{
-		++i;
-	}
-	return i;
-}
+	char value;
+	Element *next;
+};
+
+struct Stack
+{
+	Element *head;
+};
 
 bool isMultiplicationOrDivision(char symbol)
 {
@@ -66,8 +67,9 @@ void fromInfixIntoPostfix(char input[], char output[])
 {
 	Stack* stack = createStack();
 	int i = 0;
+	const int length = strlen(input);
 	int outputString = 0;
-	while (i < lengthOfLine(input))
+	while (i < length)
 	{
 		if (isdigit(input[i]) && isdigit(input[i + 1]))
 		{
@@ -118,5 +120,5 @@ void fromInfixIntoPostfix(char input[], char output[])
 		++outputString;
 	}
 
-	delete(stack);
+	deleteStack(stack);
 }

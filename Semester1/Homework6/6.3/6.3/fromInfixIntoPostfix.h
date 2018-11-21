@@ -9,9 +9,6 @@ bool isMultiplicationOrDivision(char symbol);
 // defines if an incoming symbol is '+' or '-'
 bool isAdditionOrSubtraction(char symbol);
 
-// returns the length of a string
-int lengthOfLine(char string[]);
-
 // defines if an incoming symbol is '(' 
 bool isAnOpeningBracket(char symbol);
 
