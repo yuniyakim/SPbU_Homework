@@ -1,10 +1,25 @@
 #pragma once
 
+<<<<<<< HEAD
 // an element
 struct Element;
 
 // a stack
 struct Stack;
+=======
+// structure of an element
+struct Element
+{
+	char value;
+	Element *next;
+};
+
+// structure of a stack itself
+struct Stack
+{
+	Element *head;
+};
+>>>>>>> 4cdc42aecbcc09b17a1336d6df2cd0155eb09127
 
 // creates a new stack
 Stack* createStack();
