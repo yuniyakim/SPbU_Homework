@@ -1,5 +1,11 @@
 #pragma once
 
+// an element
+struct Element;
+
+// a stack
+struct Stack;
+
 // creates a new stack
 Stack* createStack();
 
