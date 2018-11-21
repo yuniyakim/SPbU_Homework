@@ -16,7 +16,7 @@ void deleteStack(Stack* stack)
 		delete stack->head;
 		stack->head = temp;
 	}
-	delete(stack);
+	delete stack;
 }
 
 void push(Stack* stack, char value)

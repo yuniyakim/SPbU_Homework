@@ -4,21 +4,12 @@
 #include <iostream>
 using namespace std;
 
-int lengthOfLine(char string[])
-{
-	int i = 0;
-	while (string[i] != '\0') 
-	{
-		++i;
-	}
-	return i;
-}
-
 bool brackets(char string[])
 {
 	Stack* stack = createStack();
+	const int length = strlen(string);
 	int i = 0;
-	while (i < lengthOfLine(string))
+	while (i < length)
 	{
 		if ((string[i] == '(') || (string[i] == '[') || (string[i] == '{'))
 		{
@@ -35,14 +26,5 @@ bool brackets(char string[])
 		else return false;
 		++i;
 	}
-	if (isEmpty(stack))
-	{
-		delete(stack);
-		return true;
-	}
-	else
-	{
-		deleteStack(stack);
-		return false;
-	}
+	deleteStack(stack);
 }
