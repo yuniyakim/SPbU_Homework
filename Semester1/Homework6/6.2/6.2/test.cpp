@@ -15,7 +15,7 @@ void test()
 	char test5[20] = "([])}]";
 	char test6[20] = "{[()]";
 	char test7[10] = "([";
-	if (brackets(test1) && !brackets(test2) && brackets(test3) && brackets(test4) && !brackets(test5) && !brackets(test6) && !brackets(test7))
+	if (isBrackets(test1) && !isBrackets(test2) && isBrackets(test3) && isBrackets(test4) && !isBrackets(test5) && !isBrackets(test6) && !isBrackets(test7))
 	{
 		cout << "Тест пройден.\n" << endl;
 	}

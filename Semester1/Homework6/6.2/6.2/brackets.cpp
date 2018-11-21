@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-bool brackets(char string[])
+bool isBrackets(char string[])
 {
 	Stack* stack = createStack();
 	const int length = strlen(string);
@@ -26,5 +26,14 @@ bool brackets(char string[])
 		else return false;
 		++i;
 	}
-	deleteStack(stack);
+	if (isEmpty(stack))
+	{
+		deleteStack(stack);
+		return true;
+	}
+	else
+	{
+		deleteStack(stack);
+		return false;
+	}
 }
