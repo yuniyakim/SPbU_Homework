@@ -1,18 +1,5 @@
 #pragma once
 
-// structure of an element
-struct Element
-{
-	int value;
-	Element *next;
-};
-
-// structure of a stack itself
-struct Stack
-{
-	Element *head;
-};
-
 // creates a new stack
 Stack* createStack();
 

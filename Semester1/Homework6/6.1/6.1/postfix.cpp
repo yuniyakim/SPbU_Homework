@@ -4,25 +4,27 @@
 #include <iostream>
 using namespace std;
 
-int lengthOfLine(char string[])
+struct Element
 {
-	int i = 0;
-	while ((string[i] != '\0') || (string[i + 1] != '\0'))
-	{
-		++i;
-	}
-	return i;
-}
+	int value;
+	Element *next;
+};
+
+struct Stack
+{
+	Element *head;
+};
 
 int postfix(char string[]) // works only with single digits
 {
 	Stack* stack = createStack();
 	int i = 0;
-	while (i < lengthOfLine(string))
+	const int length = strlen(string);
+	while (i < length)
 	{
 		if ((string[i] != '+') && (string[i] != '-') && (string[i] != '*') && (string[i] != '/') && (string[i] != ' '))
 		{
-			int value = string[i] - 48;
+			const int value = string[i] - '0';
 			push(stack, value);
 		}
 		else

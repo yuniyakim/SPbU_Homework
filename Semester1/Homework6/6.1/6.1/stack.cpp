@@ -3,6 +3,17 @@
 #include <iostream>
 using namespace std;
 
+struct Element
+{
+	int value;
+	Element *next;
+};
+
+struct Stack
+{
+	Element *head;
+};
+
 Stack* createStack()
 {
 	return new Stack{ nullptr };
@@ -21,25 +32,20 @@ void deleteStack(Stack* stack)
 
 void push(Stack* stack, int value)
 {
-	if (isEmpty(stack))
-	{
-		Element *head = new Element{ value, nullptr };
-		stack->head = head;
-	}
-	else
-	{
-		Element *element = new Element{ value, stack->head };
-		stack->head = element;
-	}
-}
+	Element *element = new Element{ value, stack->head };
+	stack->head = element;
+} 
 
 int pop(Stack* stack)
 {
-	int const value = stack->head->value;
-	Element *temp = stack->head->next;
-	delete stack->head;
-	stack->head = temp;
-	return value;
+	if (stack->head != nullptr)
+	{
+		int const value = stack->head->value;
+		Element *temp = stack->head->next;
+		delete stack->head;
+		stack->head = temp;
+		return value;
+	}
 }
 
 bool isEmpty(Stack* stack)
