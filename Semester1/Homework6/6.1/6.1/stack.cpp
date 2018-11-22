@@ -46,6 +46,10 @@ int pop(Stack* stack)
 		stack->head = temp;
 		return value;
 	}
+	else
+	{
+		cout << "Стек пуст. Ошибка." << endl;
+	}
 }
 
 bool isEmpty(Stack* stack)

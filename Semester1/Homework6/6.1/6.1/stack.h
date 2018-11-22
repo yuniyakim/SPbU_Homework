@@ -1,5 +1,4 @@
 #pragma once
-
 // an element
 struct Element;
 

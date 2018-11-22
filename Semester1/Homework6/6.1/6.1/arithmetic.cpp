@@ -4,34 +4,31 @@
 #include <iostream>
 using namespace std;
 
-struct Element
-{
-	int value;
-	Element *next;
-};
-
-struct Stack
-{
-	Element *head;
-};
-
 void addition(Stack * stack)
 {
-	stack->head->value = stack->head->next->value + stack->head->value;
+	int sum = pop(stack) + pop(stack);
+	push(stack, sum);
 };
 
 void subtraction(Stack* stack)
 {
-	stack->head->value = stack->head->next->value - stack->head->value;
+	int number1 = pop(stack);
+	int number2 = pop(stack);
+	int diff = number2 - number1;
+	push(stack, diff);
 };
 
 void multiplication(Stack* stack)
 {
-	stack->head->value = stack->head->next->value * stack->head->value;
+	int prod = pop(stack) * pop(stack);
+	push(stack, prod);
 };
 
 void division(Stack* stack)
 {
-	stack->head->value = stack->head->next->value / stack->head->value;
+	int number1 = pop(stack);
+	int number2 = pop(stack); 
+	int quot = number2 / number1;
+	push(stack, quot);
 };
 

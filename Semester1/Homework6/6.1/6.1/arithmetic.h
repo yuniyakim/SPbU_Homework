@@ -1,10 +1,5 @@
 #pragma once
-
-// an element
-struct Element;
-
-// a stack
-struct Stack;
+#include "stack.h"
 
 // executes addition
 void addition(Stack* stack);

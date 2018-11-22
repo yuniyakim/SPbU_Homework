@@ -5,17 +5,6 @@
 #include <iostream>
 using namespace std;
 
-struct Element
-{
-	int value;
-	Element *next;
-};
-
-struct Stack
-{
-	Element *head;
-};
-
 int postfix(char string[]) // works only with single digits
 {
 	Stack* stack = createStack();
@@ -56,9 +45,9 @@ int postfix(char string[]) // works only with single digits
 					break;
 				}
 				}
-				Element *temp = stack->head->next;
-				stack->head->next = stack->head->next->next;
-				delete temp;
+				//Element *temp = stack->head->next;
+				//stack->head->next = stack->head->next->next;
+				//delete temp;
 			}
 		}
 		++i;
