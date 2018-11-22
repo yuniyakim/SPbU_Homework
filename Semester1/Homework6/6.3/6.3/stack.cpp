@@ -64,3 +64,8 @@ void deleteHead(Stack* stack)
 	delete stack->head;
 	stack->head = temp;
 }
+
+char valueOfHead(Stack* stack)
+{
+	return stack->head->value;
+}

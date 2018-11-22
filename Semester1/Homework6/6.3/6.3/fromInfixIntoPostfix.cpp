@@ -4,27 +4,13 @@
 #include <iostream>
 using namespace std;
 
-struct Element
-{
-	char value;
-	Element *next;
-};
-
-struct Stack
-{
-	Element *head;
-};
-
 bool isMultiplicationOrDivision(char symbol)
 {
 	if ((symbol == '*') || (symbol == '/'))
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	else return false;
 }
 
 bool isAdditionOrSubtraction(char symbol)
@@ -33,10 +19,7 @@ bool isAdditionOrSubtraction(char symbol)
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	else return false;
 }
 
 bool isAnOpeningBracket(char symbol)
@@ -45,10 +28,7 @@ bool isAnOpeningBracket(char symbol)
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	else return false;
 }
 
 bool isAClosingBracket(char symbol)
@@ -57,10 +37,7 @@ bool isAClosingBracket(char symbol)
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	else return false;
 }
 
 void fromInfixIntoPostfix(char input[], char output[])
@@ -85,7 +62,7 @@ void fromInfixIntoPostfix(char input[], char output[])
 		}	
 		else if ((isAdditionOrSubtraction(input[i])) || (isMultiplicationOrDivision(input[i])))
 		{
-			if (isAdditionOrSubtraction(input[i]) && !isEmpty(stack) && isMultiplicationOrDivision(stack->head->value))
+			if (isAdditionOrSubtraction(input[i]) && !isEmpty(stack) && isMultiplicationOrDivision(valueOfHead(stack)))
 			{ 
 				output[outputString] = pop(stack);
 				++outputString;
@@ -100,7 +77,7 @@ void fromInfixIntoPostfix(char input[], char output[])
 		}
 		else if (isAClosingBracket(input[i]))
 		{
-			while (!isAnOpeningBracket(stack->head->value))
+			while (!isAnOpeningBracket(valueOfHead(stack)))
 			{
 				output[outputString] = pop(stack);
 				++outputString;
