@@ -45,9 +45,6 @@ int postfix(char string[]) // works only with single digits
 					break;
 				}
 				}
-				//Element *temp = stack->head->next;
-				//stack->head->next = stack->head->next->next;
-				//delete temp;
 			}
 		}
 		++i;
