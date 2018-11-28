@@ -4,17 +4,6 @@
 #include <iostream>
 using namespace std;
 
-struct Element
-{
-	char value;
-	Element *next;
-};
-
-struct Stack
-{
-	Element *head;
-};
-
 bool isBrackets(char string[])
 {
 	Stack* stack = createStack();
@@ -26,11 +15,11 @@ bool isBrackets(char string[])
 		{
 			push(stack, string[i]);
 		}
-		else if (stack->head == nullptr)
+		else if (isEmpty(stack))
 		{
 			return false;
 		}
-		else if (((string[i] == ')') && (stack->head->value == '(')) || ((string[i] == ']') && (stack->head->value == '[')) || ((string[i] == '}') && (stack->head->value == '{')))
+		else if (((string[i] == ')') && (valueOfHead(stack) == '(')) || ((string[i] == ']') && (valueOfHead(stack) == '[')) || ((string[i] == '}') && (valueOfHead(stack) == '{')))
 		{
 			deleteHead(stack);
 		}

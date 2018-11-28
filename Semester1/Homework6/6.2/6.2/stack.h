@@ -23,3 +23,6 @@ bool isEmpty(Stack* stack);
 
 // deletes an element in the head of a stack
 void deleteHead(Stack* stack);
+
+// returns a value in the head
+char valueOfHead(Stack *stack);

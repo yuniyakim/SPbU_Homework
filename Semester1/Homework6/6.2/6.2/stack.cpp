@@ -32,25 +32,20 @@ void deleteStack(Stack* stack)
 
 void push(Stack* stack, char value)
 {
-	if (isEmpty(stack))
-	{
-		Element *head = new Element{ value, nullptr };
-		stack->head = head;
-	}
-	else
-	{
-		Element *element = new Element{ value, stack->head };
-		stack->head = element;
-	}
+	Element *element = new Element{ value, stack->head };
+	stack->head = element;
 }
 
 char pop(Stack* stack)
 {
-	char const value = stack->head->value;
-	Element *temp = stack->head->next;
-	delete stack->head;
-	stack->head = temp;
-	return value;
+	if (!isEmpty(stack))
+	{
+		char const value = stack->head->value;
+		Element *temp = stack->head->next;
+		delete stack->head;
+		stack->head = temp;
+		return value;
+	}
 }
 
 bool isEmpty(Stack* stack)
@@ -63,4 +58,9 @@ void deleteHead(Stack* stack)
 	Element *temp = stack->head->next;
 	delete stack->head;
 	stack->head = temp;
+}
+
+char valueOfHead(Stack *stack)
+{
+	return stack->head->value;
 }
