@@ -24,3 +24,6 @@ bool isEmpty(List *list);
 
 // finds the amount of elements in the list
 int amountOfElements(List *list);
+
+// deletes the list
+void deleteList(List *list);

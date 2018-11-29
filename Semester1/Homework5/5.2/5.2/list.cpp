@@ -5,7 +5,11 @@ using namespace std;
 
 void addElements(List *list, int const amount)
 {
-	if (amount != 0)
+	if (amount == 0)
+	{
+		return;
+	}
+	else
 	{
 		Node *newElement = new Node{ 1, nullptr };
 		list->head = newElement;
@@ -52,21 +56,30 @@ int amountOfElements(List *list)
 	{
 		return 0;
 	}
-	else
+
+	int amount = 1;
+	Node *temp = list->head;
+	while (temp->next != list->head)
 	{
-		int amount = 1;
-		Node *temp2 = list->head;
-		while (temp2->next != list->head)
-		{
-			temp2 = temp2->next;
-			++amount;
-		}
-		return amount;
-		delete temp2;
+		temp = temp->next;
+		++amount;
 	}
+	return amount;
 };
 
 bool isEmpty(List *list)
 {
-	return (list->head == nullptr ? true : false);
+	return list->head == nullptr;
+}
+
+void deleteList(List *list)
+{
+	while (list->head->next != list->head->next)
+	{
+		Node *temp = list->head->next;
+		list->head->next = temp->next;
+		delete temp;
+	}
+	delete list->head;
+	delete list;
 }

@@ -14,22 +14,17 @@ void test()
 	List *list3 = new List{ nullptr };
 	addElements(list3, 7);
 
-	if (!((amountOfElements(list1) == 10) && (amountOfElements(list2) == 3) && (amountOfElements(list3) == 7) && !isEmpty(list1) && !isEmpty(list3)))
+	if ((amountOfElements(list1) == 10) && (amountOfElements(list2) == 3) && (amountOfElements(list3) == 7) && !isEmpty(list1) && !isEmpty(list3) &&
+		(deleteElements(list1, 3) == 5) && (deleteElements(list2, 5) == 2) && (deleteElements(list3, 2) == 1))
 	{
-		cout << "Test failed.\n" << endl;
-		return;
-	}
-
-	if ((deleteElements(list1, 3) == 5) && (deleteElements(list2, 5) == 2) && (deleteElements(list3, 2) == 1))
-	{
-		cout << "Test passed.\n" << endl;
+		cout << "Тест пройден.\n" << endl;
 	}
 	else
 	{
-		cout << "Test failed.\n" << endl;
+		cout << "Тест провален.\n" << endl;
 	}
 
-	delete list1;
-	delete list2;
-	delete list3;
+	deleteList(list1);
+	deleteList(list2);
+	deleteList(list3);
 }
