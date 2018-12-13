@@ -17,13 +17,18 @@ bool isBrackets(char string[])
 		}
 		else if (isEmpty(stack))
 		{
+			deleteStack(stack);
 			return false;
 		}
 		else if (((string[i] == ')') && (valueOfHead(stack) == '(')) || ((string[i] == ']') && (valueOfHead(stack) == '[')) || ((string[i] == '}') && (valueOfHead(stack) == '{')))
 		{
 			deleteHead(stack);
 		}
-		else return false;
+		else
+		{
+			deleteStack(stack);
+			return false;
+		}
 		++i;
 	}
 	if (isEmpty(stack))
