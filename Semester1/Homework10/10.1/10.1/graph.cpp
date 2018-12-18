@@ -9,9 +9,6 @@ int **createGraph(const int size)
 	for (int i = 0; i < size; i++)
 	{
 		graph[i] = new int[size];
-	}
-	for (int i = 0; i < size; i++) // обнуляем массив
-	{
 		for (int j = 0; j < size; j++)
 		{
 			graph[i][j] = 0;
