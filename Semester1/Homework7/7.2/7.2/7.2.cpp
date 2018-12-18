@@ -25,8 +25,8 @@ int main()
 	cout << treeCalculation(tree) << endl;
 	file.close();
 	deleteTree(tree);
-
-    return 0; 
+	
+	return 0;
 }
 
 // По дереву разбора арифметического выражения вычислить его значение.

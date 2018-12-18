@@ -43,6 +43,7 @@ Node *stringIntoNodes(ifstream &file) // works only with single digits
 	char symbol = file.get();
 	if (symbol == '(')
 	{
+		ignoreSpaces(file);
 		head->data = file.get();
 		ignoreSpaces(file);
 		head->leftChild = stringIntoNodes(file);
@@ -129,26 +130,27 @@ int treeCalculation(Tree *tree)
 
 void printNodes(Node *node)
 {
-	if (node != nullptr)
+	if (node == nullptr)
 	{
-		if (!isdigit(node->data))
-		{
-			cout << "(" << node->data << " ";
-		}
-		else
-		{
-			cout << node->data;
-		}
-		printNodes(node->leftChild);
-		if (node->leftChild != nullptr)
-		{
-			cout << " ";
-		}
-		printNodes(node->rightChild);
-		if (node->rightChild != nullptr)
-		{
-			cout << ")";
-		}
+		return;
+	}
+	if (!isdigit(node->data))
+	{
+		cout << "(" << node->data << " ";
+	}
+	else
+	{
+		cout << node->data;
+	}
+	printNodes(node->leftChild);
+	if (node->leftChild != nullptr)
+	{
+		cout << " ";
+	}
+	printNodes(node->rightChild);
+	if (node->rightChild != nullptr)
+	{
+		cout << ")";
 	}
 }
 
