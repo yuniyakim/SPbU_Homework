@@ -22,12 +22,14 @@ BinaryTree *createTree()
 
 void deleteNodes(Node *&node)
 {
-	if (node != nullptr)
+	if (node == nullptr)
 	{
-		deleteNodes(node->leftChild);
-		deleteNodes(node->rightChild);
-		delete node;
+		return;
 	}
+	
+	deleteNodes(node->leftChild);
+	deleteNodes(node->rightChild);
+	delete node;
 }
 
 void deleteBinaryTree(BinaryTree *tree)
@@ -41,6 +43,11 @@ void deleteBinaryTree(BinaryTree *tree)
 
 void addNode(Node *node, int data)
 {
+	if (node->data == data)
+	{
+		return;
+	}
+
 	if (node->data > data && node->leftChild != nullptr)
 	{
 		addNode(node->leftChild, data);
