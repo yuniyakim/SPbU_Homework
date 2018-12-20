@@ -86,7 +86,7 @@ void deleteValueFromList(List *list, int inputValue)
 	{
 		if (list->head->next == nullptr)
 		{
-			list->isEmpty = 1;
+			list->isEmpty = true;
 			list->head = nullptr;
 		}
 		else
