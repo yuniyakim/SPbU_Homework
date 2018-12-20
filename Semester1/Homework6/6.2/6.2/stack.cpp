@@ -46,6 +46,7 @@ char pop(Stack* stack)
 		stack->head = temp;
 		return value;
 	}
+	return -1;
 }
 
 bool isEmpty(Stack* stack)

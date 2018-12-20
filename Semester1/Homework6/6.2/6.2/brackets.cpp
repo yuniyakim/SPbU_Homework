@@ -31,14 +31,7 @@ bool isBrackets(char string[])
 		}
 		++i;
 	}
-	if (isEmpty(stack))
-	{
-		deleteStack(stack);
-		return true;
-	}
-	else
-	{
-		deleteStack(stack);
-		return false;
-	}
+	bool flag = isEmpty(stack);
+	deleteStack(stack);
+	return flag;
 }
