@@ -14,7 +14,7 @@ struct HashTable
 unsigned int hashFunction(const string &input)
 {
 	const int parameter = 25;
-	int result = 0;
+	unsigned int result = 0;
 	for (int i = 0; i < input.size(); ++i)
 	{
 		result = (result + int(input[i])) % parameter;
