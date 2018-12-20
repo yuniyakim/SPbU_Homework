@@ -11,7 +11,7 @@ struct HashTable
 	List **buckets;
 };
 
-int hashFunction(string input)
+unsigned int hashFunction(string input)
 {
 	int parameter = 25;
 	int result = 0;
@@ -40,10 +40,11 @@ void deleteHashTable(HashTable *table)
 	{
 		deleteList(table->buckets[i]);
 	}
+	delete[] table->buckets;
 	delete table;
 }
 
-bool isContained(HashTable *table, string key)
+bool isContained(HashTable *table, const string &key)
 {
 	List *temp = table->buckets[hashFunction(key) % table->size];
 	while (temp != nullptr)
@@ -57,7 +58,7 @@ bool isContained(HashTable *table, string key)
 	return false;
 }
 
-void increaseAmountOfKey(HashTable *table, string key)
+void increaseAmountOfKey(HashTable *table, const string &key)
 {
 	List *temp = table->buckets[hashFunction(key) % table->size];
 	while (keyOfElement(temp) != key)
@@ -67,11 +68,11 @@ void increaseAmountOfKey(HashTable *table, string key)
 	increaseAmount(temp);
 }
 
-void addIntoHashTable(HashTable *table, string key)
+void addIntoHashTable(HashTable *table, const string &key)
 {
 	if (!isContained(table, key))
 	{
-		int hash = hashFunction(key) % table->size;
+		const int hash = hashFunction(key) % table->size;
 		table->buckets[hash] = addIntoList(table->buckets[hash], key);
 	}
 	else
@@ -80,7 +81,7 @@ void addIntoHashTable(HashTable *table, string key)
 	}
 }
 
-int amountOfKey(HashTable *table, string key)
+int amountOfKey(HashTable *table, const string &key)
 {
 	List *temp = table->buckets[hashFunction(key) % table->size];
 	while (keyOfElement(temp) != key)

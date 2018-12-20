@@ -11,7 +11,7 @@ List *createList();
 void deleteList(List *list);
 
 // adds a new element into the list
-List *addIntoList(List *list, std::string key);
+List *addIntoList(List *list, const std::string &key);
 
 // checks if a list is empty
 bool isEmpty(List *list);

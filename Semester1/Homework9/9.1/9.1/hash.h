@@ -5,7 +5,7 @@
 struct HashTable;
 
 // hash function
-int hashFunction(std::string input);
+unsigned int hashFunction(std::string input);
 
 // creates a new hash table
 HashTable *createHashTable(int size);
@@ -14,16 +14,16 @@ HashTable *createHashTable(int size);
 void deleteHashTable(HashTable *table);
 
 // checks if a key is contained
-bool isContained(HashTable *table, std::string key);
+bool isContained(HashTable *table, const std::string &key);
 
 // increases amount of a key
-void increaseAmountOfKey(HashTable *table, std::string key);
+void increaseAmountOfKey(HashTable *table, const std::string &key);
 
 // adds a new element into the hash table
-void addIntoHashTable(HashTable *table, std::string key);
+void addIntoHashTable(HashTable *table, const std::string &key);
 
 // returns amount of a key in the hash table
-int amountOfKey(HashTable *table, std::string key);
+int amountOfKey(HashTable *table, const std::string &key);
 
 // prints all the elements and its' amount in the hash table
 void printAll(HashTable *table);

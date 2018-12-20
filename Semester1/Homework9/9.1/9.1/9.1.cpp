@@ -37,7 +37,7 @@ int main()
 
 	cout << "\n";
 
-	double rate = amount / buckets;
+	const double rate = amount / buckets;
 	cout << "Коэффициент заполнения хеш-таблицы равен " << rate << endl;
 	cout << "Максимальная длина списка в сегменте таблицы равна " << maximum(table) << endl;
 	cout << "Средняя длина списка в сегменте таблицы равна " << average(table) << endl;

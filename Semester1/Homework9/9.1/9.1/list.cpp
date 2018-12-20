@@ -27,7 +27,7 @@ void deleteList(List *list)
 	}
 }
 
-List *addIntoList(List *list, string key)
+List *addIntoList(List *list, const string &key)
 {
 	List *newList = new List{ key, 1, nullptr };
 	if (list == nullptr)
