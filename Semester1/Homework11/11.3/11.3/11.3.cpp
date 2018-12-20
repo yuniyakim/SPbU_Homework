@@ -20,7 +20,7 @@ int main()
 
 	int size = 0;
 	file >> size;
-	int **MST = createArrayTwo(size);
+	int **MST = createArrayTwo(size - 1);
 	MST = readAndPrim(size, file);
 	file.close();
 	printMST(MST, size - 1);
