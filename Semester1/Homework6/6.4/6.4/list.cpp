@@ -13,8 +13,7 @@ struct List
 
 List *createList()
 {
-	List *temp{ nullptr };
-	return temp;
+	return nullptr;
 }
 
 void deleteList(List *list)
@@ -82,7 +81,7 @@ int numberOfRecords(List *list)
 
 void printList(List *list)
 {
-	int number = numberOfRecords(list);
+	const int number = numberOfRecords(list);
 	List *temp = list;
 	for (int i = 0; i < number; ++i)
 	{

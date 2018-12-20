@@ -26,12 +26,12 @@ void test()
 	test1 = mergeSort(test1, false);
 	test2 = mergeSort(test2, true);
 
-	bool compare1 = (nameOfElement(test1) == "Alison" ? true : false);
-	bool compare2 = (nameOfElement(test2) == "Spenser" ? true : false);
-	bool compare3 = (numberOfElement(nextOfList(test1)) == "7895365" ? true : false);
-	bool compare4 = (nameOfElement(nextOfList(nextOfList(nextOfList(test2)))) == "Alison" ? true : false);
-	bool compare5 = (nameOfElement(nextOfList(nextOfList(nextOfList(nextOfList(test1))))) == "Spenser" ? true : false);
-	bool compare6 = (numberOfElement(nextOfList(nextOfList(nextOfList(nextOfList(test2))))) == "7895365" ? true : false);
+	bool compare1 = nameOfElement(test1) == "Alison";
+	bool compare2 = nameOfElement(test2) == "Spenser";
+	bool compare3 = numberOfElement(nextOfList(test1)) == "7895365";
+	bool compare4 = nameOfElement(nextOfList(nextOfList(nextOfList(test2)))) == "Alison";
+	bool compare5 = nameOfElement(nextOfList(nextOfList(nextOfList(nextOfList(test1))))) == "Spenser";
+	bool compare6 = numberOfElement(nextOfList(nextOfList(nextOfList(nextOfList(test2))))) == "7895365";
 
 	if (compare1 && compare2 && compare3 && compare4 && compare5 && compare6)
 	{
