@@ -18,11 +18,7 @@ bool isElementContained(List *list, int inputValue)
 	{
 		temp = temp->next;
 	}
-	if ((temp == nullptr) || (temp->value != inputValue))
-	{
-		return false;
-	}
-	else return true;
+	return (temp != nullptr) && (temp->value == inputValue);
 }
 
 void addValueIntoList(List *list, int inputValue)
@@ -33,7 +29,7 @@ void addValueIntoList(List *list, int inputValue)
 		{
 			Element *newElement = new Element{ inputValue, nullptr };
 			list->head = newElement;
-			list->isEmpty = 0;
+			list->isEmpty = false;
 		}
 		else
 		{
@@ -113,7 +109,7 @@ void deleteValueFromList(List *list, int inputValue)
 
 void printList(List *list)
 {
-	if (list->isEmpty != 1)
+	if (!list->isEmpty)
 	{
 		Element *temp = list->head;
 		while (temp != nullptr)
@@ -129,4 +125,13 @@ void printList(List *list)
 	}
 }
 
-
+void deleteList(List *list)
+{
+	while (list->head != nullptr)
+	{
+		Element *temp = list->head;
+		list->head = list->head->next;
+		delete temp;
+	}
+	delete list;
+}

@@ -28,3 +28,6 @@ void deleteValueFromList(List *list, int inputValue);
 
 // prints list
 void printList(List *list);
+
+// deletes a list
+void deleteList(List *list);
