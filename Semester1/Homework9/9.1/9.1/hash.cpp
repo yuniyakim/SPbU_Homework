@@ -11,7 +11,7 @@ struct HashTable
 	List **buckets;
 };
 
-unsigned int hashFunction(string input)
+unsigned int hashFunction(const string &input)
 {
 	int parameter = 25;
 	int result = 0;

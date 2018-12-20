@@ -5,7 +5,7 @@
 struct HashTable;
 
 // hash function
-unsigned int hashFunction(std::string input);
+unsigned int hashFunction(const std::string &input);
 
 // creates a new hash table
 HashTable *createHashTable(int size);
