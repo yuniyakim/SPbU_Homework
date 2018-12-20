@@ -6,38 +6,22 @@ using namespace std;
 
 bool isMultiplicationOrDivision(char symbol)
 {
-	if ((symbol == '*') || (symbol == '/'))
-	{
-		return true;
-	}
-	else return false;
+	return ((symbol == '*') || (symbol == '/'));
 }
 
 bool isAdditionOrSubtraction(char symbol)
 {
-	if ((symbol == '+') || (symbol == '-'))
-	{
-		return true;
-	}
-	else return false;
+	return ((symbol == '+') || (symbol == '-'));
 }
 
 bool isAnOpeningBracket(char symbol)
 {
-	if (symbol == '(')
-	{
-		return true;
-	}
-	else return false;
+	return symbol == '(';
 }
 
 bool isAClosingBracket(char symbol)
 {
-	if (symbol == ')')
-	{
-		return true;
-	}
-	else return false;
+	return symbol == ')';
 }
 
 void fromInfixIntoPostfix(char input[], char output[])
@@ -62,8 +46,9 @@ void fromInfixIntoPostfix(char input[], char output[])
 		}	
 		else if ((isAdditionOrSubtraction(input[i])) || (isMultiplicationOrDivision(input[i])))
 		{
-			if (isAdditionOrSubtraction(input[i]) && !isEmpty(stack) && isMultiplicationOrDivision(valueOfHead(stack)))
-			{ 
+			while (!isEmpty(stack) && (isAdditionOrSubtraction(valueOfHead(stack)) || isMultiplicationOrDivision(valueOfHead(stack))) 
+				&& ((isAdditionOrSubtraction(input[i]) || isMultiplicationOrDivision(input[i])) && isMultiplicationOrDivision(valueOfHead(stack))))
+			{
 				output[outputString] = pop(stack);
 				++outputString;
 				output[outputString] = ' ';
