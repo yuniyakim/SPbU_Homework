@@ -57,7 +57,7 @@ int main()
 	delete[] cityToCountry;
 	delete[] capitals;
 
-    return 0; 
+	return 0;
 }
 
 // Есть множество городов и дороги, связывающие эти города. Для каждой дороги задана её длина. 

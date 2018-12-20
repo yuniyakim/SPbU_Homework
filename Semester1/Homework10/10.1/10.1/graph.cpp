@@ -49,7 +49,7 @@ void citiesRoadsCountries(int **graph, int amountOfCities, int *cityToCountry, i
 			{
 				if ((cityToCountry[j] == -1) && (graph[j][capitals[i]] != 0) && (graph[j][capitals[i]] < minimumLength)) // ищем ближайший незанятый связанный со столицей город
 				{
-					minimumLength = graph[j][amountOfCapitals];
+					minimumLength = graph[j][capitals[i]];
 					numberOfClosestCity = j;
 				}
 			}
