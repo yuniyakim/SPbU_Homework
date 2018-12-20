@@ -1,9 +1,6 @@
 #pragma once
 #include <fstream>
 
-// creates an array for MST
-int **createArrayTwo(const int size);
-
 // deletes an array of MST
 void deleteArrayTwo(int **array, const int size);
 
