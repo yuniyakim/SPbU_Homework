@@ -60,7 +60,7 @@ bool *createBoolArray(const int size)
 	return array;
 }
 
-int **createArrayTwo(int size)
+int **createArrayTwo(const int size)
 {
 	int **array = new int*[size];
 	for (int i = 0; i < size; i++)
@@ -72,7 +72,7 @@ int **createArrayTwo(int size)
 	return array;
 }
 
-void deleteArrayTwo(int **array, int size)
+void deleteArrayTwo(int **array, const int size)
 {
 	for (int i = 0; i < size; i++)
 	{
@@ -81,7 +81,7 @@ void deleteArrayTwo(int **array, int size)
 	delete[] array;
 }
 
-void printMST(int **MST, int size)
+void printMST(int **MST, const int size)
 {
 	cout << "Минимальное остовное дерево: " << endl;
 	for (int i = 0; i < size; i++)
@@ -90,7 +90,7 @@ void printMST(int **MST, int size)
 	}
 }
 
-int **readAndPrim(int size, ifstream &file)
+int **readAndPrim(const int size, ifstream &file)
 {
 	int **graph = createGraph(size);
 	bool *included = createBoolArray(size);

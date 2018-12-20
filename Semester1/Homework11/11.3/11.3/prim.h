@@ -2,13 +2,13 @@
 #include <fstream>
 
 // creates an array for MST
-int **createArrayTwo(int size);
+int **createArrayTwo(const int size);
 
 // deletes an array of MST
-void deleteArrayTwo(int **array, int size);
+void deleteArrayTwo(int **array, const int size);
 
 // prints an array of MST
-void printMST(int **MST, int size);
+void printMST(int **MST, const int size);
 
 // reads data from file and executes Prim algorithm
-int **readAndPrim(int size, std::ifstream &file);
+int **readAndPrim(const int size, std::ifstream &file);

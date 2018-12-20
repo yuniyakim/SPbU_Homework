@@ -10,8 +10,7 @@ void test()
 
 	int size = 0;
 	file >> size;
-	int **MST = createArrayTwo(size - 1);
-	MST = readAndPrim(size, file);
+	int **MST = readAndPrim(size, file);
 	file.close();
 	
 	if ((MST[0][0] == 1) && (MST[0][1] == 0) && (MST[1][0] == 3) && (MST[1][1] == 1) && (MST[2][0] == 2) && (MST[2][1] == 3))
