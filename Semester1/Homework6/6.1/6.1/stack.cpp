@@ -49,6 +49,7 @@ int pop(Stack* stack)
 	else
 	{
 		cout << "Стек пуст. Ошибка." << endl;
+		return -1;
 	}
 }
 
