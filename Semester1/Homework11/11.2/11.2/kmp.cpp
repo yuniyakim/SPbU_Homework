@@ -5,7 +5,7 @@
 #include "kmp.h"
 using namespace std;
 
-vector<int> prefixFunction(string input) 
+vector<int> prefixFunction(const string &input) 
 {
 	int length = input.size();
 	vector<int> pi(length);
@@ -25,14 +25,13 @@ vector<int> prefixFunction(string input)
 	return pi;
 }
 
-int kmp(string str, string key)
+int kmp(const string &str, const string &key)
 {
 	int length = key.size();
 	vector<int> pi(length);
 	pi = prefixFunction(key);
 	int k = 0;
-	int i = 0;
-	for (i; i <= str.size(); i++)
+	for (int i = 0; i <= str.size(); i++)
 	{
 		while ((str[i] != key[k]) && (k > 0))
 		{

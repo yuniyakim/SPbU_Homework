@@ -3,7 +3,7 @@
 #include <vector>
 
 // prefix function
-std::vector<int> prefixFunction(std::string input);
+std::vector<int> prefixFunction(const std::string &input);
 
 //Knuth–Morris–Pratt algorithm which returns an index of the first match
-int kmp(std::string S, std::string T);
+int kmp(const std::string &str, const std::string &key);
