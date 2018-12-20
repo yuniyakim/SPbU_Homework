@@ -13,7 +13,7 @@ struct HashTable
 
 unsigned int hashFunction(const string &input)
 {
-	int parameter = 25;
+	const int parameter = 25;
 	int result = 0;
 	for (int i = 0; i < input.size(); ++i)
 	{
