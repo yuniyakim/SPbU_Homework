@@ -41,4 +41,7 @@ void test()
 	{
 		cout << "Тест провален." << endl;
 	}
+
+	deleteList(test1);
+	deleteList(test2);
 }
