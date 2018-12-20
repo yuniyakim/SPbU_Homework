@@ -20,11 +20,11 @@ int main()
 
 	int size = 0;
 	file >> size;
-	int **MST = readAndPrim(size, file);
+	int **mst = readAndPrim(size, file);
 	file.close();
-	printMST(MST, size - 1);
+	printMST(mst, size - 1);
 
-	deleteArrayTwo(MST, size - 1);
+	deleteArrayTwo(mst, size - 1);
 	return 0;
 }
 

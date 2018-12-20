@@ -78,12 +78,12 @@ void deleteArrayTwo(int **array, const int size)
 	delete[] array;
 }
 
-void printMST(int **MST, const int size)
+void printMST(int **mst, const int size)
 {
 	cout << "Минимальное остовное дерево: " << endl;
 	for (int i = 0; i < size; i++)
 	{
-		cout << MST[i][0] << " -> " << MST[i][1] << endl;
+		cout << mst[i][0] << " -> " << mst[i][1] << endl;
 	}
 }
 
@@ -94,7 +94,7 @@ int **readAndPrim(const int size, ifstream &file)
 	int *minimumDistanceToNode = createIntArrayWithInf(size);
 	int *endOfEdge = createIntArray(size);
 	minimumDistanceToNode[0] = 0;
-	int **MST = createArrayTwo(size - 1);
+	int **mst = createArrayTwo(size - 1);
 	int counter = 0;
 	
 	for (int i = 0; i < size; i++)
@@ -131,8 +131,8 @@ int **readAndPrim(const int size, ifstream &file)
 
 		if (endOfEdge[index] != -1) // если существует ребро 
 		{
-			MST[counter][0] = index;
-			MST[counter][1] = endOfEdge[index];
+			mst[counter][0] = index;
+			mst[counter][1] = endOfEdge[index];
 			counter++;
 		}
 
@@ -151,5 +151,5 @@ int **readAndPrim(const int size, ifstream &file)
 	delete[] minimumDistanceToNode;
 	delete[] endOfEdge;
 
-	return MST;
+	return mst;
 }
