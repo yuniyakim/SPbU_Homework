@@ -19,8 +19,6 @@ int main()
 	file >> roads;
 	bool **graph = createGraph(size);
 
-
-	
 	int **matrix = new int*[size];
 	for (int i = 0; i < size; i++)
 	{
@@ -46,7 +44,10 @@ int main()
 				to = row;
 			}
 		}
-		graph[from][to] = true;
+		if (from >= 0 && to >= 0)
+		{
+			graph[from][to] = true;
+		}
 	}
 
 	vector<int> reachable(size);
