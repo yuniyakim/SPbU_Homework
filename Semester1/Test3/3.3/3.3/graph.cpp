@@ -61,7 +61,7 @@ vector<int> vertexes(bool **graph, int size)
 
 		for (int j = 0; j < size; j++)
 		{
-			if (graph[i][j] == true)
+			if (graph[i][j])
 			{
 				push(stackOfNotVisited, j);
 				temp[counter] = j;
@@ -76,7 +76,7 @@ vector<int> vertexes(bool **graph, int size)
 			{
 				for (int k = 0; k < size; k++)
 				{
-					if (graph[current][k] == true)
+					if (graph[current][k])
 					{
 						if (!existsStack(stackOfNotVisited, k))
 						{
