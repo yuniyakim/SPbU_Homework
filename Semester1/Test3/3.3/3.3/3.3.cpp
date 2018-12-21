@@ -25,7 +25,7 @@ int main()
 		matrix[i] = new int[roads];
 		for (int j = 0; j < roads; j++)
 		{
-			file >> graph[i][j];
+			file >> matrix[i][j];
 		}
 	}
 
