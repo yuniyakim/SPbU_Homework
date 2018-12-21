@@ -29,6 +29,8 @@ int main()
 		}
 	}
 
+	file.close();
+
 	for (int column = 0; column < roads; column++)
 	{
 		int from = -1;
