@@ -30,6 +30,12 @@ bool isEmpty(Queue *queue)
 
 Queue *enqueue(Queue *queue, int value, int priority)
 {
+	if (priority < 0)
+	{
+		cout << "Error";
+		return nullptr;
+	}
+
 	Element *newElement = new Element{ value, priority, queue->tail, nullptr };
 	if (isEmpty(queue))
 	{
