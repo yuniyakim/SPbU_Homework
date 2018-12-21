@@ -19,27 +19,29 @@ int main()
 	file >> roads;
 	bool **graph = createGraph(size);
 
+
+	
+	int **matrix = new int*[size];
 	for (int i = 0; i < size; i++)
 	{
+		matrix[i] = new int[roads];
 		for (int j = 0; j < roads; j++)
 		{
-			int input = 0;
-			file >> input;
-			graph[i][j] = input;
+			file >> graph[i][j];
 		}
 	}
-	
+
 	for (int column = 0; column < roads; column++)
 	{
 		int from = -1;
 		int to = -1;
 		for (int row = 0; row < size && (from == -1 || to == -1); row++)
 		{
-			if (graph[row][column] == 1)
+			if (matrix[row][column] == 1)
 			{
 				from = row;
 			}
-			else if (graph[row][column] == -1)
+			else if (matrix[row][column] == -1)
 			{
 				to = row;
 			}
