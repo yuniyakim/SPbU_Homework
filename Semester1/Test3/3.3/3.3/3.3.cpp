@@ -14,27 +14,47 @@ int main()
 	}
 
 	int size = 0;
+	int roads = 0;
 	file >> size;
-	int **graph = createGraph(size);
+	file >> roads;
+	bool **graph = createGraph(size);
 
 	for (int i = 0; i < size; i++)
 	{
-		for (int j = 0; j < size; j++)
+		for (int j = 0; j < roads; j++)
 		{
 			int input = 0;
 			file >> input;
-			if (input != 0)
+			graph[i][j] = input;
+		}
+	}
+	
+	for (int column = 0; column < roads; column++)
+	{
+		int from = -1;
+		int to = -1;
+		for (int row = 0; row < size && (from == -1 || to == -1); row++)
+		{
+			if (graph[row][column] == 1)
 			{
-				graph[i][j] = input;
+				from = row;
+			}
+			else if (graph[row][column] == -1)
+			{
+				to = row;
 			}
 		}
+		graph[from][to] = true;
 	}
 
 	vector<int> reachable(size);
 	reachable = vertexes(graph, size);
 	for (int i = 0; i < reachable.size(); i++)
 	{
-		cout << reachable[i] << endl;
+		if (reachable[i] != -1)
+		{
+			cout << reachable[i] << endl;
+		}
 	}
 
 	deleteGraph(graph, size);

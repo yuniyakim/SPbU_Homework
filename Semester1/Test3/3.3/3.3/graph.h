@@ -2,9 +2,9 @@
 #include <vector>
 
 // creates a graph
-int **createGraph(const int size);
+bool **createGraph(const int size);
 
 // deletes a graph
-void deleteGraph(int **graph, const int size);
+void deleteGraph(bool **graph, const int size);
 
-std::vector<int> vertexes(int **graph, int size);
+std::vector<int> vertexes(bool **graph, int size);

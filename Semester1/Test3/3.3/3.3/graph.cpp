@@ -6,21 +6,21 @@
 #include "list.h"
 using namespace std;
 
-int **createGraph(const int size)
+bool **createGraph(const int size)
 {
-	int **graph = new int*[size];
+	bool **graph = new bool*[size];
 	for (int i = 0; i < size; i++)
 	{
-		graph[i] = new int[size];
+		graph[i] = new bool[size];
 		for (int j = 0; j < size; j++)
 		{
-			graph[i][j] = 0;
+			graph[i][j] = false;
 		}
 	}
 	return graph;
 }
 
-void deleteGraph(int **graph, const int size)
+void deleteGraph(bool **graph, const int size)
 {
 	for (int i = 0; i < size; i++)
 	{
@@ -42,9 +42,13 @@ bool exists(vector<int> vertex, int value)
 	return false;
 }
 
-vector<int> vertexes(int **graph, int size)
+vector<int> vertexes(bool **graph, int size)
 {
 	vector<int> reachable(size);
+	for (int l = 0; l < size; l++)
+	{
+		reachable[l] = -1;
+	}
 	int sizeVector = 0;
 	for (int i = 0; i < size; i++)
 	{
@@ -57,7 +61,7 @@ vector<int> vertexes(int **graph, int size)
 
 		for (int j = 0; j < size; j++)
 		{
-			if (graph[i][j] == 1)
+			if (graph[i][j] == true)
 			{
 				push(stackOfNotVisited, j);
 				temp[counter] = j;
@@ -72,7 +76,7 @@ vector<int> vertexes(int **graph, int size)
 			{
 				for (int k = 0; k < size; k++)
 				{
-					if (graph[current][k] == 1)
+					if (graph[current][k] == true)
 					{
 						if (!existsStack(stackOfNotVisited, k))
 						{
