@@ -39,14 +39,12 @@ Queue *enqueue(Queue *queue, int value, int priority)
 	Element *newElement = new Element{ value, priority, queue->tail, nullptr };
 	if (isEmpty(queue))
 	{
-		// Element *newElement = new Element{ value, priority, nullptr, nullptr };
 		queue->head = newElement;
 		queue->tail = newElement;
 		queue->maxPriority = priority;
 	}
 	else
 	{
-		// Element *newElement = new Element{ value, priority, queue->tail, nullptr };
 		Element *current = queue->head;
 		while (current->previous != nullptr)
 		{
