@@ -10,7 +10,7 @@ int main()
 	queue = enqueue(queue, 8, 3);
 	queue = enqueue(queue, 1, 5);
 	queue = enqueue(queue, 14, 2);
-	queue = enqueue(queue, 4, 4);
+	queue = enqueue(queue, 4, -4);
 	queue = enqueue(queue, 24, 1);
 	queue = enqueue(queue, 16, 2);
 

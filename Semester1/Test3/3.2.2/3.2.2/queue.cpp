@@ -32,8 +32,8 @@ Queue *enqueue(Queue *queue, int value, int priority)
 {
 	if (priority < 0)
 	{
-		cout << "Error";
-		return nullptr;
+		cout << "Error adding value with priority < 0" << endl;
+		return queue;
 	}
 
 	Element *newElement = new Element{ value, priority, queue->tail, nullptr };
