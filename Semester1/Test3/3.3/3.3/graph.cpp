@@ -1,9 +1,6 @@
 #include "pch.h"
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include "stack.h"
-#include "list.h"
 using namespace std;
 
 bool **createGraph(const int size)
@@ -29,99 +26,65 @@ void deleteGraph(bool **graph, const int size)
 	delete[] graph;
 }
 
-bool exists(vector<int> vertex, int value)
+void dfs(bool **graph, int size, bool **visited, int iteration, int number)
 {
-	for (int i = 0; i < vertex.size(); i++)
+	visited[iteration][number] = true;
+	for (int i = 0; i <= size; i++)
 	{
-		if (vertex[i] == value)
+		if ((graph[number][i] != 0) && (!visited[iteration][i]))
 		{
-			return true;
+			dfs(graph, size, visited, iteration, i);
 		}
 	}
-
-	return false;
 }
 
-vector<int> vertexes(bool **graph, int size)
+int **readIncidenceMatrix(ifstream &file, int size, int roads)
 {
-	vector<int> reachable(size);
-	for (int l = 0; l < size; l++)
-	{
-		reachable[l] = -1;
-	}
-	int sizeVector = 0;
+	int **matrix = new int*[size];
 	for (int i = 0; i < size; i++)
 	{
-		vector<int> temp(size); // reachable vertexes
-		Stack *stackOfNotVisited = createStack();
-		List *listOfVisited = createList();
-		int counter = 0;
-
-		listOfVisited = addIntoList(listOfVisited, i);
-
-		for (int j = 0; j < size; j++)
+		matrix[i] = new int[roads];
+		for (int j = 0; j < roads; j++)
 		{
-			if (graph[i][j])
-			{
-				push(stackOfNotVisited, j);
-				if (graph[j][i])
-				{
-					temp[counter] = j;
-					counter++;
-				}
-			}
+			file >> matrix[i][j];
 		}
-
-		while (!isEmptyStack(stackOfNotVisited))
-		{
-			int current = pop(stackOfNotVisited);
-			if (!existsList(listOfVisited, current))
-			{
-				for (int k = 0; k < size; k++)
-				{
-					if (graph[current][k])
-					{
-						if (!existsStack(stackOfNotVisited, k))
-						{
-							push(stackOfNotVisited, k);
-						}
-					}
-					if (!exists(temp, k) && (graph[k][current]))
-					{
-						temp[counter] = k;
-						counter++;
-					}
-					
-				}
-			}
-			listOfVisited = addIntoList(listOfVisited, current);
-		}
-
-		bool flag = true;
-		for (int g = 0; g < size; g++)
-		{
-			if (!exists(temp, g) && g != i)
-			{
-				flag = false;
-			}
-		}
-		if (flag)
-		{
-			reachable[sizeVector] = i;
-			sizeVector++;
-		}
-		deleteList(listOfVisited);
-		deleteStack(stackOfNotVisited);
 	}
-	return reachable;
+	return matrix;
 }
 
-// задать стартовую вершину (аналог корневой вершины при обходе дерева)*
-// обработать стартовую вершину и включить ее во вспомогательный список обработанных вершин*
-// включить в стек все вершины, смежные со стартовой *
-// организовать цикл по условию опустошения стека и внутри цикла выполнить :
-//   извлечь из стека очередную вершину *
-//   проверить по вспомогательному списку обработанность этой вершины*
-//   если вершина уже обработана, то извлечь из стека следующую вершину*
-//   если вершина еще не обработана, то обработать ее и поместить в список обработанных вершин
-//   просмотреть весь список смежных с нею вершин и поместить в стек все еще не обработанные вершины
+void printAdjacencMatrix(bool **graph, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		for (int k = 0; k < size; k++)
+		{
+			cout << graph[i][k] << " ";
+		}
+		cout << "\n";
+	}
+}
+
+bool **fromIncidenceToAdjacenceMatrix(int **incidenceMatrix, int size, int roads, bool **graph)
+{
+	for (int column = 0; column < roads; column++)
+	{
+		int from = -1;
+		int to = -1;
+		for (int row = 0; row < size && (from == -1 || to == -1); row++)
+		{
+			if (incidenceMatrix[row][column] == 1)
+			{
+				from = row;
+			}
+			else if (incidenceMatrix[row][column] == -1)
+			{
+				to = row;
+			}
+		}
+		if (from >= 0 && to >= 0)
+		{
+			graph[from][to] = true;
+		}
+	}
+	return graph;
+}

@@ -17,48 +17,33 @@ int main()
 	int roads = 0;
 	file >> size;
 	file >> roads;
-	bool **graph = createGraph(size);
-
-	int **matrix = new int*[size];
-	for (int i = 0; i < size; i++)
-	{
-		matrix[i] = new int[roads];
-		for (int j = 0; j < roads; j++)
-		{
-			file >> matrix[i][j];
-		}
-	}
+	int **matrix = readIncidenceMatrix(file, size, roads);
 
 	file.close();
 
-	for (int column = 0; column < roads; column++)
+	bool **graph = createGraph(size);
+	graph = fromIncidenceToAdjacenceMatrix(matrix, size, roads, graph);
+	printAdjacencMatrix(graph, size);
+
+	bool **visited = createGraph(size);
+	for (int i = 0; i < size; i++)
 	{
-		int from = -1;
-		int to = -1;
-		for (int row = 0; row < size && (from == -1 || to == -1); row++)
-		{
-			if (matrix[row][column] == 1)
-			{
-				from = row;
-			}
-			else if (matrix[row][column] == -1)
-			{
-				to = row;
-			}
-		}
-		if (from >= 0 && to >= 0)
-		{
-			graph[from][to] = true;
-		}
+		dfs(graph, size, visited, i, i);
 	}
 
-	vector<int> reachable(size);
-	reachable = vertexes(graph, size);
-	for (int i = 0; i < reachable.size(); i++)
+	for (int k = 0; k < size; k++)
 	{
-		if (reachable[i] != -1)
+		bool flag = true;
+		for (int l = 0; l < size; l++)
 		{
-			cout << reachable[i] << endl;
+			if (!visited[l][k])
+			{
+				flag = false;
+			}
+		}
+		if (flag)
+		{
+			cout << k << endl;
 		}
 	}
 
@@ -68,6 +53,7 @@ int main()
 	}
 	delete[] matrix;
 
+	deleteGraph(visited, size);
 	deleteGraph(graph, size);
 	return 0;
 }
