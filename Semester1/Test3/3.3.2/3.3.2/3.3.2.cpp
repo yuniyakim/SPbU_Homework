@@ -17,13 +17,10 @@ int main()
 	}
 
 	int maxHour = readAndSummarize(file);
+	
 	if (maxHour == -2)
 	{
 		cout << "Invalid data" << endl;
-	}
-	else if (maxHour == -1)
-	{
-		cout << "No visitors" << endl;
 	}
 	else
 	{

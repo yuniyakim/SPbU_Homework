@@ -12,6 +12,7 @@ bool validData(int hourStart, int minuteStart, int hourFinish, int minuteFinish)
 int readAndSummarize(ifstream &file)
 {
 	int amountOfVisitorsInHour[24]{};
+
 	while (!file.eof())
 	{
 		int hourStart = 0;
