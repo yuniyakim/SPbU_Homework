@@ -4,7 +4,7 @@
 #include "restaurant.h"
 using namespace std;
 
-bool validData(int hourStart, int minuteStart, int hourFinish, int minuteFinish)
+bool isValidData(int hourStart, int minuteStart, int hourFinish, int minuteFinish)
 {
 	return (hourStart >= 0 && hourStart < 24 && minuteStart >= 0 && minuteStart < 60 && hourFinish >= 0 && hourFinish < 24 && minuteFinish >= 0 && minuteFinish < 60);
 }
@@ -21,7 +21,7 @@ int readAndSummarize(ifstream &file)
 		int minuteFinish = 0;
 		file >> hourStart >> minuteStart >> hourFinish >> minuteFinish;
 
-		if (!validData(hourStart, minuteStart, hourFinish, minuteFinish))
+		if (!isValidData(hourStart, minuteStart, hourFinish, minuteFinish))
 		{
 			return -2;
 		}
