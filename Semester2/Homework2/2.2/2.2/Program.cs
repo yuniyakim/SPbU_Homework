@@ -6,42 +6,42 @@ namespace _2._2
     {
         static void Main()
         {
-            HashTable HashTable = new HashTable(50);
-            HashTable.Push("Water");
-            HashTable.Push("Fire");
-            HashTable.Push("Earth");
-            HashTable.Push("Air");
-            HashTable.Push("Blue");
-            HashTable.Push("Red");
-            HashTable.Push("Green");
-            HashTable.Push("Yellow");
-            HashTable.Push("White");
-            HashTable.Push("Black");
-            if (HashTable.IsContained("Blue"))
+            var hashTable = new HashTable(50);
+            hashTable.Push("Water");
+            hashTable.Push("Fire");
+            hashTable.Push("Earth");
+            hashTable.Push("Air");
+            hashTable.Push("Blue");
+            hashTable.Push("Red");
+            hashTable.Push("Green");
+            hashTable.Push("Yellow");
+            hashTable.Push("White");
+            hashTable.Push("Black");
+            if (hashTable.IsContained("Blue"))
             {
                 Console.WriteLine("Contained");
             }
-            HashTable.Delete("Blue");
-            if (!HashTable.IsContained("Blue"))
+            hashTable.Delete("Blue");
+            if (!hashTable.IsContained("Blue"))
             {
                 Console.WriteLine("Not contained");
             }
-            HashTable.Delete("White");
-            HashTable.Delete("Water");
-            if (!HashTable.IsContained("White"))
+            hashTable.Delete("White");
+            hashTable.Delete("Water");
+            if (!hashTable.IsContained("White"))
             {
                 Console.WriteLine("Not contained");
             }
-            if (HashTable.IsContained("Fire"))
+            if (hashTable.IsContained("Fire"))
             {
                 Console.WriteLine("Contained");
             }
-            HashTable.Push("White");
-            if (HashTable.IsContained("White"))
+            hashTable.Push("White");
+            if (hashTable.IsContained("White"))
             {
                 Console.WriteLine("Contained");
             }
-            if (!HashTable.IsContained("Check"))
+            if (!hashTable.IsContained("Check"))
             {
                 Console.WriteLine("Not contained");
             }

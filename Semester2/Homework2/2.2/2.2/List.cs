@@ -22,7 +22,7 @@ namespace _2._2
 
         public bool IsContainedByValue(string value)
         {
-            Node temp = head;
+            var temp = head;
             for (int i = 1; i <= length; ++i)
             {
                 if (temp.Value == value)
@@ -44,7 +44,7 @@ namespace _2._2
 
         public int PositionByValue(string value)
         {
-            Node temp = head;
+            var temp = head;
             for (int i = 1; i <= length; ++i)
             {
                 if (temp.Value == value)
@@ -64,7 +64,7 @@ namespace _2._2
             }
             else
             {
-                Node temp = head;
+                var temp = head;
                 for (int i = 0; i < length; ++i)
                 {
                     Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
@@ -78,7 +78,7 @@ namespace _2._2
 
         private void Renumbering()
         {
-            Node temp = head;
+            var temp = head;
             for (int i = 1; i <= length; ++i)
             {
                 temp.Position = i;
@@ -102,7 +102,7 @@ namespace _2._2
             }
             else
             {
-                Node newElement = new Node(value, position);
+                var newElement = new Node(value, position);
                 if (position == 1)
                 {
                     newElement.Next = head;
@@ -112,7 +112,7 @@ namespace _2._2
                 }
                 else
                 {
-                    Node temp = head;
+                    var temp = head;
                     for (int i = 1; i < position - 1; ++i)
                     {
                         if (temp.Next != null)
@@ -153,7 +153,7 @@ namespace _2._2
                 }
                 else
                 {
-                    Node temp = head;
+                    var temp = head;
                     for (int i = 1; i < position - 1; ++i)
                     {
                         temp = temp.Next;
@@ -184,7 +184,7 @@ namespace _2._2
             }
             else
             {
-                Node temp = head;
+                var temp = head;
                 for (int i = 1; i < position; ++i)
                 {
                     temp = temp.Next;
@@ -205,7 +205,7 @@ namespace _2._2
             }
             else
             {
-                Node temp = head;
+                var temp = head;
                 for (int i = 1; i < position; ++i)
                 {
                     temp = temp.Next;
