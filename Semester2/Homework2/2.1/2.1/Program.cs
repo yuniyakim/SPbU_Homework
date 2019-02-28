@@ -6,7 +6,7 @@ namespace _2._1
     {
         static void Main()
         {
-            List list = new List();
+            var list = new List();
             if (list.IsEmpty())
             {
                 Console.WriteLine("Empty");

@@ -8,7 +8,7 @@ namespace _2._1
         {
             this.value = value;
             this.position = position;
-            this.next = null;
+            next = null;
         }
 
         public string Value
@@ -31,7 +31,7 @@ namespace _2._1
             }
             set
             {
-                this.position = value;
+                position = value;
             }
         }
 
@@ -43,7 +43,7 @@ namespace _2._1
             }
             set
             {
-                this.next = value;
+                next = value;
             }
         }
 
