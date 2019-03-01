@@ -7,23 +7,20 @@ namespace _2._2
         public List()
         {
             head = null;
-            length = 0;
+            Length = 0;
         }
 
-        public bool IsEmpty()
-        {
-            return length == 0;
-        }
+        public bool IsEmpty { get => Length == 0; }
 
         public bool IsContainedByPosition(int position)
         {
-            return !(IsEmpty() || position > length || position < 1);
+            return !(IsEmpty || position > Length || position < 1);
         }
 
         public bool IsContainedByValue(string value)
         {
             var temp = head;
-            for (int i = 1; i <= length; ++i)
+            for (int i = 1; i <= Length; ++i)
             {
                 if (temp.Value == value)
                 {
@@ -37,15 +34,10 @@ namespace _2._2
             return false;
         }
 
-        public int Length()
-        {
-            return length;
-        }
-
         public int PositionByValue(string value)
         {
             var temp = head;
-            for (int i = 1; i <= length; ++i)
+            for (int i = 1; i <= Length; ++i)
             {
                 if (temp.Value == value)
                 {
@@ -56,16 +48,16 @@ namespace _2._2
             return 0;
         }
 
-        public void print()
+        public void Print()
         {
-            if (IsEmpty())
+            if (IsEmpty)
             {
                 Console.WriteLine("List is empty");
             }
             else
             {
                 var temp = head;
-                for (int i = 0; i < length; ++i)
+                for (int i = 0; i < Length; ++i)
                 {
                     Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
                     if (temp.Next != null)
@@ -79,7 +71,7 @@ namespace _2._2
         private void Renumbering()
         {
             var temp = head;
-            for (int i = 1; i <= length; ++i)
+            for (int i = 1; i <= Length; ++i)
             {
                 temp.Position = i;
                 if (temp.Next != null)
@@ -91,12 +83,12 @@ namespace _2._2
 
         public void Push(string value, int position)
         {
-            if (IsEmpty())
+            if (IsEmpty)
             {
                 head = new Node(value, 1);
-                ++length;
+                ++Length;
             }
-            else if (position > length + 1 || position < 1)
+            else if (position > Length + 1 || position < 1)
             {
                 Console.WriteLine("List overflow");
             }
@@ -107,7 +99,7 @@ namespace _2._2
                 {
                     newElement.Next = head;
                     head = newElement;
-                    ++length;
+                    ++Length;
                     Renumbering();
                 }
                 else
@@ -122,7 +114,7 @@ namespace _2._2
                     }
                     newElement.Next = temp.Next;
                     temp.Next = newElement;
-                    ++length;
+                    ++Length;
                     Renumbering();
                 }
             }
@@ -130,7 +122,7 @@ namespace _2._2
 
         public void Delete(int position)
         {
-            if (IsEmpty())
+            if (IsEmpty)
             {
                 Console.WriteLine("List is empty");
             }
@@ -142,7 +134,7 @@ namespace _2._2
             {
                 if (position == 1)
                 {
-                    if (length == 1)
+                    if (Length == 1)
                     {
                         head = null;
                     }
@@ -158,7 +150,7 @@ namespace _2._2
                     {
                         temp = temp.Next;
                     }
-                    if (position == length)
+                    if (position == Length)
                     {
                         temp.Next = null;
                     }
@@ -167,14 +159,14 @@ namespace _2._2
                         temp.Next = temp.Next.Next;
                     }
                 }
-                --length;
+                --Length;
                 Renumbering();
             }
         }
 
         public void GetValue(int position)
         {
-            if (IsEmpty())
+            if (IsEmpty)
             {
                 Console.WriteLine("List is empty");
             }
@@ -195,7 +187,7 @@ namespace _2._2
 
         public void SetValue(string value, int position)
         {
-            if (IsEmpty())
+            if (IsEmpty)
             {
                 Console.WriteLine("List is empty");
             }
@@ -215,6 +207,6 @@ namespace _2._2
         }
 
         private Node head;
-        private int length;
+        public int Length { get; set; }
     }
 }
