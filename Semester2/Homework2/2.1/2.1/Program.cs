@@ -7,20 +7,20 @@ namespace _2._1
         static void Main()
         {
             var list = new List();
-            if (list.IsEmpty())
+            if (list.IsEmpty)
             {
                 Console.WriteLine("Empty");
             }
             list.Delete(4);
             list.Push("one", 4);
             list.Delete(2);
-            if (!list.IsEmpty())
+            if (!list.IsEmpty)
             {
                 Console.WriteLine("Not empty");
             }
             list.Push("three", 2);
-            list.print();
-            Console.WriteLine($"Length is {list.Length()}");
+            list.Print();
+            Console.WriteLine($"Length is {list.Length}");
             list.Push("four", 1);
             list.Push("five", 3);
             list.Delete(1);
@@ -28,15 +28,15 @@ namespace _2._1
             list.Delete(4);
             list.Push("six", 2);
             list.Push("two", 7);
-            list.print();
+            list.Print();
             list.Push("seven", 5);
-            Console.WriteLine($"Length is {list.Length()}");
+            Console.WriteLine($"Length is {list.Length}");
             list.Delete(4);
             if (list.IsContained(4))
             {
                 Console.WriteLine("Contained");
             }
-            list.print();
+            list.Print();
             list.SetValue("check", 3);
             list.SetValue("one-one", 1);
             list.GetValue(2);
@@ -46,7 +46,7 @@ namespace _2._1
             {
                 Console.WriteLine("Not contained");
             }
-            list.print();
+            list.Print();
         }
     }
 }
