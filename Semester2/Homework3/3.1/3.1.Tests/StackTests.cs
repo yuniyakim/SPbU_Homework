@@ -1,9 +1,8 @@
 using System;
 using NUnit.Framework;
-using _3._1;
 using System.Collections;
 
-namespace StackTests
+namespace _3._1
 {
     [TestFixtureSource(typeof(FixtureDataStack), "FixtureParameters")]
     public class StackTests
@@ -100,13 +99,13 @@ namespace StackTests
 
         private IStack stack;
     }
-}
 
-public class FixtureDataStack
-{
-    public static IEnumerable FixtureParameters()
+    public class FixtureDataStack
     {
-        yield return new StackArray();
-        yield return new StackList();
+        public static IEnumerable FixtureParameters()
+        {
+            yield return new StackArray();
+            yield return new StackList();
+        }
     }
 }
