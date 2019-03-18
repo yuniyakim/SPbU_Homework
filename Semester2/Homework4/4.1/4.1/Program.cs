@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace _4._1
 {
@@ -6,7 +7,18 @@ namespace _4._1
     {
         static void Main()
         {
-
+            var path = Directory.GetCurrentDirectory() + "../../../../4.1.txt";
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    Console.WriteLine(sr.ReadLine());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

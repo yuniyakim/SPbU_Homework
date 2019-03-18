@@ -31,12 +31,21 @@ namespace _4._1
             private Node leftChild { get; set; }
             private Node rightChild { get; set; }
         }
-
+        /*
+        /// <summary>
+        /// Tree constructor
+        /// </summary>
         public Tree()
         {
             head = null;
-        }
+        }*/
 
-        private Node head;
+        /// <summary>
+        /// Checks if the tree is empty
+        /// </summary>
+        /// <returns>True if the tree is empty and false if it's not</returns>
+        public bool IsEmpty() => head == null;
+
+        private Node head = null;
     }
 }
