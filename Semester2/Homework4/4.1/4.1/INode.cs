@@ -5,7 +5,7 @@ namespace _4._1
     /// <summary>
     /// Interface of a node in a tree
     /// </summary>
-    interface INode
+    public interface INode
     {
         /// <summary>
         /// Prints node's value

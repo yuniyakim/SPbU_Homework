@@ -8,17 +8,20 @@ namespace _4._1
         static void Main()
         {
             var path = Directory.GetCurrentDirectory() + "../../../../4.1.txt";
+            var str = "";
             try
             {
                 using (StreamReader sr = new StreamReader(path))
                 {
-                    Console.WriteLine(sr.ReadLine());
+                    str = sr.ReadLine();
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+            var tree = new Tree(str);
+            Console.WriteLine($"{tree.Calculate()}");
         }
     }
 }
