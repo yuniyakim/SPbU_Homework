@@ -22,6 +22,7 @@ namespace _4._1
             }
             var tree = new Tree(str);
             Console.WriteLine($"{tree.Calculate()}");
+            tree.Print();
         }
     }
 }

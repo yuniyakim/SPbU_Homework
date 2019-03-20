@@ -8,7 +8,7 @@ namespace _4._1
         [SetUp]
         public void Setup()
         {
-            tree = new Tree();
+            tree = new Tree(" ");
         }
 
         [Test]

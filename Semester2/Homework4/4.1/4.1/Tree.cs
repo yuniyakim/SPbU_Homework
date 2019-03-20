@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace _4._1
 {
@@ -58,14 +56,55 @@ namespace _4._1
             head = FillTree(expression);
         }
 
+        /// <summary>
+        /// Arithmetic expression string's class
+        /// </summary>
         private class String
         {
-            public String(string str)
+            /// <summary>
+            /// String's constructor
+            /// </summary>
+            /// <param name="str">Given string</param>
+            internal String(string str)
             {
                 this.str = str;
             }
-            private string str { get; set; }
-            private int iteration { get; set; } = 0;
+
+            /// <summary>
+            /// Current symbol
+            /// </summary>
+            /// <returns>Current symbol</returns>
+            internal char Current()
+            {
+                return str[iteration];
+            }
+
+            /// <summary>
+            /// Next symbol
+            /// </summary>
+            /// <returns>Next symbol</returns>
+            internal char Next()
+            {
+                return str[iteration + 1];
+            }
+
+            /// <summary>
+            /// String's length
+            /// </summary>
+            /// <returns>String's length</returns>
+            internal int Length()
+            {
+                return str.Length;
+            }
+
+            /// <summary>
+            /// String itself
+            /// </summary>
+            internal string str;
+            /// <summary>
+            /// Current iteration's number
+            /// </summary>
+            internal int iteration = 0;
         }
 
         /// <summary>
@@ -75,65 +114,78 @@ namespace _4._1
         /// <returns>Filled tree</returns>
         private INode FillTree(String str)
         {
-            if (str[iteration] == '(')
+            if (str.Current() == '(')
             {
-                iteration = IgnoreSpaces(str, iteration);
-                var node = DefineOperation(str[iteration]);
-                iteration = IgnoreSpaces(str, iteration);
-                node.leftChild = FillTree(str, iteration);
-                iteration = IgnoreSpaces(str, iteration);
-                node.rigthChild = FillTree(str, iteration);
+                ++str.iteration;
+                str.iteration = IgnoreSpaces(str);
+                var node = DefineOperation(str.Current());
+                ++str.iteration;
+                str.iteration = IgnoreSpaces(str);
+                node.leftChild = FillTree(str);
+                str.iteration = IgnoreSpaces(str);
+                node.rigthChild = FillTree(str);
                 return node;
             }
-            else if (Char.IsDigit(str[iteration]) && Char.IsDigit(str[iteration + 1]))
+            else if (Char.IsDigit(str.Current()) && Char.IsDigit(str.Next()))
             {
-                var number = (int)Char.GetNumericValue(str[iteration]);
-                while (Char.IsDigit(str[iteration + 1]))
+                var number = (int)Char.GetNumericValue(str.Current());
+                ++str.iteration;
+                while (Char.IsDigit(str.Current()))
                 {
-                    number = number * 10 + (int)Char.GetNumericValue(str[iteration + 1]);
-                    ++iteration;
+                    number = number * 10 + (int)Char.GetNumericValue(str.Current());
+                    ++str.iteration;
                 }
-                iteration = IgnoreSpaces(str, iteration);
+                str.iteration = IgnoreSpaces(str);
                 var node = new Number(number);
-                if (str[iteration] == ')')
+                if (str.Current() == ')')
                 {
-                    iteration = IgnoreBrackets(str, iteration);
+                    str.iteration = IgnoreBrackets(str);
                 }
-                iteration = IgnoreSpaces(str, iteration);
                 return node;
             }
-            else if (Char.IsDigit(str[iteration]) && str[iteration + 1] == ')')
+            else if (Char.IsDigit(str.Current()) && str.Next() == ')')
             {
-                var node = new Number((int)Char.GetNumericValue(str[iteration]));
-                iteration = IgnoreBrackets(str, iteration);
+                var node = new Number((int)Char.GetNumericValue(str.Current()));
+                ++str.iteration;
+                str.iteration = IgnoreBrackets(str);
                 return node;
             }
-            else if (Char.IsDigit(str[iteration]))
+            else if (Char.IsDigit(str.Current()))
             {
-                var node = new Number((int)Char.GetNumericValue(str[iteration]));
-                iteration = IgnoreSpaces(str, iteration);
+                var node = new Number((int)Char.GetNumericValue(str.Current()));
+                ++str.iteration;
+                str.iteration = IgnoreSpaces(str);
                 return node;
             }
             else throw new InvalidInputException("Invalid input");
         }
 
-        private int IgnoreBrackets(string str, int iteration)
+        /// <summary>
+        /// Ignores closing brackets
+        /// </summary>
+        /// <param name="str">Given string</param>
+        /// <returns>The number of next symbol that's not a closing bracket</returns>
+        private int IgnoreBrackets(String str)
         {
-            while (str[iteration] == ')')
+            while (str.iteration < str.Length() && str.Current() == ')')
             {
-                ++iteration;
+                ++str.iteration;
             }
-            return iteration;
+            return str.iteration;
         }
 
-        private int IgnoreSpaces(string str, int iteration)
+        /// <summary>
+        /// Ignores spaces
+        /// </summary>
+        /// <param name="str">Given string</param>
+        /// <returns>The number of next symbol that's not a space</returns>
+        private int IgnoreSpaces(String str)
         {
-            ++iteration;
-            while (str[iteration] == ' ')
+            while (str.Current() == ' ')
             {
-                ++iteration;
+                ++str.iteration;
             }
-            return iteration;
+            return str.iteration;
         }
 
         /// <summary>
