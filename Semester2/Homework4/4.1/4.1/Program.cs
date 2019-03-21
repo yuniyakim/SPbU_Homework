@@ -20,8 +20,8 @@ namespace _4._1
             {
                 Console.WriteLine(e.Message);
             }
-            var tree = new Tree(str);
-            Console.WriteLine($"{tree.Calculate()}");
+            var tree = new Tree();
+            Console.WriteLine($"{tree.FillAndCalculate(str)}");
             tree.Print();
         }
     }

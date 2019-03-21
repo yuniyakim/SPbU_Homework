@@ -25,6 +25,17 @@ namespace _4._1
         public int Calculate() => head.Calculate();
 
         /// <summary>
+        /// Fills the tree and calculates the result
+        /// </summary>
+        /// <param name="str">Arithmetic expression</param>
+        /// <returns>The result of arihmetic expression</returns>
+        public int FillAndCalculate(string str)
+        {
+            FilledTree(str);
+            return Calculate();
+        }
+
+        /// <summary>
         /// Defines an operation
         /// </summary>
         /// <param name="operation">Given operation</param>
@@ -50,10 +61,9 @@ namespace _4._1
         /// Creates the filled tree
         /// </summary>
         /// <param name="expression">Arithmetic expression</param>
-        public Tree(string str)
+        public void FilledTree(string str)
         {
-            var expression = new String(str);
-            head = FillTree(expression);
+            head = FillTree(new String(str));
         }
 
         /// <summary>
