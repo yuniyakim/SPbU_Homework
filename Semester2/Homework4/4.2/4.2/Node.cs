@@ -1,9 +1,16 @@
 ﻿using System;
 
 namespace _4._2
-{
+{ /// <summary>
+  /// Node of the list
+  /// </summary>
     class Node
     {
+        /// <summary>
+        /// Node's constructor
+        /// </summary>
+        /// <param name="value">Element to add into the node</param>
+        /// <param name="position">Position on which to add the element</param>
         public Node(string value, int position)
         {
             this.value = value;
@@ -11,6 +18,9 @@ namespace _4._2
             next = null;
         }
 
+        /// <summary>
+        /// Get/set of the value of the node
+        /// </summary>
         public string Value
         {
             get
@@ -23,6 +33,9 @@ namespace _4._2
             }
         }
 
+        /// <summary>
+        /// Get/set of the position of the node
+        /// </summary>
         public int Position
         {
             get
@@ -35,6 +48,9 @@ namespace _4._2
             }
         }
 
+        /// <summary>
+        /// Get/set of the next of the node
+        /// </summary>
         public Node Next
         {
             get

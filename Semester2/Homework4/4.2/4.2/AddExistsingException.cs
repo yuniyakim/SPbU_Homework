@@ -5,7 +5,7 @@ namespace _4._2
     /// <summary>
     /// Exception for adding existing element
     /// </summary>
-    class AddExistingException : Exception
+    public class AddExistingException : Exception
     {
         public AddExistingException() { }
         public AddExistingException(string message) : base(message) { }

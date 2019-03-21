@@ -5,7 +5,7 @@ namespace _4._2
     /// <summary>
     /// Exception for deletion unexisting element
     /// </summary>
-    class DeleteUnexistingException : Exception
+    public class DeleteUnexistingException : Exception
     {
         public DeleteUnexistingException() { }
         public DeleteUnexistingException(string message) : base(message) { }
