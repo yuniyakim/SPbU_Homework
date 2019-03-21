@@ -47,6 +47,15 @@ namespace _4._1
             Assert.AreEqual(6, tree.FillAndCalculate("(/(* 12 (-86 84))(+30(- 1 27)))"));
         }
 
+        [Test]
+        public void InvalidInputTest()
+        {
+            Assert.Throws<InvalidInputException>(delegate ()
+            {
+                tree.FillAndCalculate("(/(* 13 (-422 ) ) 0)");
+            });
+        }
+
         private Tree tree;
     }
 }
