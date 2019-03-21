@@ -6,7 +6,6 @@ namespace _4._2
     {
         static void Main()
         {
-
         }
     }
 }
