@@ -5,7 +5,7 @@ namespace _4._1
     /// <summary>
     /// Multiplication's class
     /// </summary>
-    class Multiplication : Operation
+    public class Multiplication : Operation
     {
         /// <summary>
         /// Prints multiplication's expression

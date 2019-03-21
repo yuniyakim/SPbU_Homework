@@ -5,7 +5,7 @@ namespace _4._1
     /// <summary>
     /// Division's class
     /// </summary>
-    class Division : Operation
+    public class Division : Operation
     {
         /// <summary>
         /// Prints division's expression

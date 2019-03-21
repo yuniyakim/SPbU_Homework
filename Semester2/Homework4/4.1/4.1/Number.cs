@@ -5,7 +5,7 @@ namespace _4._1
     /// <summary>
     /// Number's class
     /// </summary>
-    class Number : INode
+    public class Number : INode
     {
         /// <summary>
         /// Number's constructor
@@ -30,6 +30,6 @@ namespace _4._1
         /// <returns>Number's value</returns>
         public int Calculate() => number;
 
-        private int number;
+        public int number { get; set; }
     }
 }

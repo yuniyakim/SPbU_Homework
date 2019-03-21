@@ -5,7 +5,7 @@ namespace _4._1
     /// <summary>
     /// Substraction's class
     /// </summary>
-    class Substraction : Operation
+    public class Substraction : Operation
     {
         /// <summary>
         /// Prints substraction's expression

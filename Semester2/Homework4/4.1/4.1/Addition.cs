@@ -5,7 +5,7 @@ namespace _4._1
     /// <summary>
     /// Addition's class
     /// </summary>
-    class Addition : Operation
+    public class Addition : Operation
     {
         /// <summary>
         /// Prints addition's expression

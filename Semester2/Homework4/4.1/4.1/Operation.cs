@@ -5,7 +5,7 @@ namespace _4._1
     /// <summary>
     /// Arithmetic operation's class
     /// </summary>
-    abstract class Operation : INode
+    public abstract class Operation : INode
     {
         /// <summary>
         /// Prints the operation
