@@ -2,8 +2,11 @@
 
 namespace _2._2
 {
-    class HashTable
+    public class HashTable
     {
+        private int length;
+        private List[] buckets;
+
         public HashTable(int length)
         {
             this.length = length;
@@ -14,24 +17,12 @@ namespace _2._2
             }
         }
 
-        public bool IsContained(string value)
-        {
-            return buckets[Math.Abs(value.GetHashCode() % length)].IsContainedByValue(value);
-        }
+        private int Key(string value) => Math.Abs(value.GetHashCode() % length);
 
-        public void Push(string value)
-        {
-            buckets[Math.Abs(value.GetHashCode() % length)].Push(value, 1);
-        }
+        public bool IsContained(string value) => buckets[Key(value)].IsContainedByValue(value);
 
-        public void Delete(string value)
-        {
-            buckets[Math.Abs(value.GetHashCode() % length)].Delete(buckets[Math.Abs(value.GetHashCode() % length)].PositionByValue(value));
-        }
+        public void Add(string value) => buckets[Key(value)].Add(value, 1);
 
-        private int length;
-        private List[] buckets;
+        public void Delete(string value) => buckets[Key(value)].Delete(buckets[Key(value)].PositionByValue(value));
     }
 }
-
-// Написать хеш-таблицу в виде класса с использованием класса-списка из первой задачи.Должно быть можно добавлять значение в хеш-таблицу, удалять и проверять на принадлежность

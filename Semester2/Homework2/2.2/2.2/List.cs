@@ -2,50 +2,46 @@
 
 namespace _2._2
 {
-    class List
-    {
+    public class List
+    { 
+        private Node head = null;
+        public int length { get; set; }
+
+        private class Node
+        {
+            public Node(string value)
+            {
+                this.value = value;
+                next = null;
+            }
+
+            public string value { get; set; }
+            public Node next { get; set; }
+        }
+
         public List()
         {
-            head = null;
-            Length = 0;
         }
 
-        public bool IsEmpty { get => Length == 0; }
+        public bool IsEmpty { get => length == 0; }
 
-        public bool IsContainedByPosition(int position)
-        {
-            return !(IsEmpty || position > Length || position < 1);
-        }
+        private bool IsContained(int position) => !(IsEmpty || position > length || position < 1);
 
         public bool IsContainedByValue(string value)
         {
             var temp = head;
-            for (int i = 1; i <= Length; ++i)
+            for (int i = 1; i <= length; ++i)
             {
-                if (temp.Value == value)
+                if (temp.value == value)
                 {
                     return true;
                 }
-                if (temp.Next != null)
+                if (temp.next != null)
                 {
-                    temp = temp.Next;
+                    temp = temp.next;
                 }
             }
             return false;
-        }
-
-        public int PositionByValue(string value)
-        {
-            var temp = head;
-            for (int i = 1; i <= Length; ++i)
-            {
-                if (temp.Value == value)
-                {
-                    return i;
-                }
-                temp = temp.Next;
-            }
-            return 0;
         }
 
         public void Print()
@@ -57,65 +53,63 @@ namespace _2._2
             else
             {
                 var temp = head;
-                for (int i = 0; i < Length; ++i)
+                for (int i = 0; i < length; ++i)
                 {
-                    Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
-                    if (temp.Next != null)
+                    Console.WriteLine($"Value: {temp.value}, position: {i}");
+                    if (temp.next != null)
                     {
-                        temp = temp.Next;
+                        temp = temp.next;
                     }
                 }
             }
         }
-
-        private void Renumbering()
+        public int PositionByValue(string value)
         {
             var temp = head;
-            for (int i = 1; i <= Length; ++i)
+            for (int i = 1; i <= length; ++i)
             {
-                temp.Position = i;
-                if (temp.Next != null)
+                if (temp.value == value)
                 {
-                    temp = temp.Next;
+                    return i;
                 }
+                temp = temp.next;
             }
+            return 0;
         }
 
-        public void Push(string value, int position)
+        public void Add(string value, int position)
         {
             if (IsEmpty)
             {
-                head = new Node(value, 1);
-                ++Length;
+                head = new Node(value);
+                ++length;
             }
-            else if (position > Length + 1 || position < 1)
+            else if (position > length + 1 || position < 1)
             {
-                Console.WriteLine("List overflow");
+                Console.WriteLine("Invalid position");
             }
             else
             {
-                var newElement = new Node(value, position);
+                var newElement = new Node(value);
                 if (position == 1)
                 {
-                    newElement.Next = head;
+                    newElement.next = head;
                     head = newElement;
-                    ++Length;
-                    Renumbering();
+                    ++length;
                 }
                 else
                 {
                     var temp = head;
                     for (int i = 1; i < position - 1; ++i)
                     {
-                        if (temp.Next != null)
+                        if (temp.next != null)
                         {
-                            temp = temp.Next;
+                            temp = temp.next;
                         }
                     }
-                    newElement.Next = temp.Next;
-                    temp.Next = newElement;
-                    ++Length;
-                    Renumbering();
+                    newElement.next = temp.next;
+                    temp.next = newElement;
+                    ++length;
                 }
             }
         }
@@ -126,21 +120,21 @@ namespace _2._2
             {
                 Console.WriteLine("List is empty");
             }
-            else if (!IsContainedByPosition(position))
+            else if (!IsContained(position))
             {
-                Console.WriteLine("List overflow");
+                Console.WriteLine("Invalid position");
             }
             else
             {
                 if (position == 1)
                 {
-                    if (Length == 1)
+                    if (length == 1)
                     {
                         head = null;
                     }
                     else
                     {
-                        head = head.Next;
+                        head = head.next;
                     }
                 }
                 else
@@ -148,40 +142,40 @@ namespace _2._2
                     var temp = head;
                     for (int i = 1; i < position - 1; ++i)
                     {
-                        temp = temp.Next;
+                        temp = temp.next;
                     }
-                    if (position == Length)
+                    if (position == length)
                     {
-                        temp.Next = null;
+                        temp.next = null;
                     }
                     else
                     {
-                        temp.Next = temp.Next.Next;
+                        temp.next = temp.next.next;
                     }
                 }
-                --Length;
-                Renumbering();
+                --length;
             }
         }
 
-        public void GetValue(int position)
+        public void PrintValueByPosition(int position)
         {
             if (IsEmpty)
             {
                 Console.WriteLine("List is empty");
             }
-            else if (!IsContainedByPosition(position))
+            else if (!IsContained(position))
             {
                 Console.WriteLine("List overflow");
             }
             else
             {
                 var temp = head;
-                for (int i = 1; i < position; ++i)
+                int currentPosition;
+                for (currentPosition = 1; currentPosition < position; ++currentPosition)
                 {
-                    temp = temp.Next;
+                    temp = temp.next;
                 }
-                Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
+                Console.WriteLine($"Value: {temp.value}, position: {currentPosition}");
             }
         }
 
@@ -191,7 +185,7 @@ namespace _2._2
             {
                 Console.WriteLine("List is empty");
             }
-            else if (!IsContainedByPosition(position))
+            else if (!IsContained(position))
             {
                 Console.WriteLine("List overflow");
             }
@@ -200,13 +194,10 @@ namespace _2._2
                 var temp = head;
                 for (int i = 1; i < position; ++i)
                 {
-                    temp = temp.Next;
+                    temp = temp.next;
                 }
-                temp.Value = value;
+                temp.value = value;
             }
         }
-
-        private Node head;
-        public int Length { get; set; }
     }
 }

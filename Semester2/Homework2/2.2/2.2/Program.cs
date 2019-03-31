@@ -7,16 +7,16 @@ namespace _2._2
         static void Main()
         {
             var hashTable = new HashTable(50);
-            hashTable.Push("Water");
-            hashTable.Push("Fire");
-            hashTable.Push("Earth");
-            hashTable.Push("Air");
-            hashTable.Push("Blue");
-            hashTable.Push("Red");
-            hashTable.Push("Green");
-            hashTable.Push("Yellow");
-            hashTable.Push("White");
-            hashTable.Push("Black");
+            hashTable.Add("Water");
+            hashTable.Add("Fire");
+            hashTable.Add("Earth");
+            hashTable.Add("Air");
+            hashTable.Add("Blue");
+            hashTable.Add("Red");
+            hashTable.Add("Green");
+            hashTable.Add("Yellow");
+            hashTable.Add("White");
+            hashTable.Add("Black");
             if (hashTable.IsContained("Blue"))
             {
                 Console.WriteLine("Contained");
@@ -36,7 +36,7 @@ namespace _2._2
             {
                 Console.WriteLine("Contained");
             }
-            hashTable.Push("White");
+            hashTable.Add("White");
             if (hashTable.IsContained("White"))
             {
                 Console.WriteLine("Contained");
