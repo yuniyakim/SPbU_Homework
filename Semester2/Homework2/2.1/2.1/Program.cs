@@ -32,20 +32,12 @@ namespace _2._1
             list.Push("seven", 5);
             Console.WriteLine($"Length is {list.Length}");
             list.Delete(4);
-            if (list.IsContained(4))
-            {
-                Console.WriteLine("Contained");
-            }
             list.Print();
             list.SetValue("check", 3);
             list.SetValue("one-one", 1);
-            list.GetValue(2);
-            list.GetValue(1);
-            list.GetValue(4);
-            if (!list.IsContained(7))
-            {
-                Console.WriteLine("Not contained");
-            }
+            list.PrintValueByPosition(2);
+            list.PrintValueByPosition(1);
+            list.PrintValueByPosition(4);
             list.Print();
         }
     }

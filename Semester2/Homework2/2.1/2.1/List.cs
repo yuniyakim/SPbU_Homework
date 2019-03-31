@@ -2,8 +2,58 @@
 
 namespace _2._1
 {
-    class List
+    public class List
     {
+        private class Node
+        {
+            public Node(string value, int position)
+            {
+                this.value = value;
+                this.position = position;
+                next = null;
+            }
+
+            public string Value
+            {
+                get
+                {
+                    return value;
+                }
+                set
+                {
+                    this.value = value;
+                }
+            }
+
+            public int Position
+            {
+                get
+                {
+                    return position;
+                }
+                set
+                {
+                    position = value;
+                }
+            }
+
+            public Node Next
+            {
+                get
+                {
+                    return next;
+                }
+                set
+                {
+                    next = value;
+                }
+            }
+
+            private string value;
+            private int position;
+            private Node next;
+        }
+
         public List()
         {
             head = null;
@@ -12,10 +62,7 @@ namespace _2._1
 
         public bool IsEmpty { get => Length == 0; }
 
-        public bool IsContained(int position)
-        {
-            return !(IsEmpty || position > Length || position < 1);
-        }
+        private bool IsContained(int position) => !(IsEmpty || position > Length || position < 1);
 
         public void Print()
         {
@@ -59,7 +106,7 @@ namespace _2._1
             }
             else if (position > Length + 1 || position < 1)
             {
-                Console.WriteLine("List overflow");
+                Console.WriteLine("Invalid position");
             }
             else
             {
@@ -97,7 +144,7 @@ namespace _2._1
             }
             else if (!IsContained(position))
             {
-                Console.WriteLine("List overflow");
+                Console.WriteLine("Invalid position");
             }
             else
             {
@@ -129,11 +176,11 @@ namespace _2._1
                     }
                 }
                 --Length;
-                Renumbering();
             }
+            Renumbering();
         }
 
-        public void GetValue(int position)
+        public void PrintValueByPosition(int position)
         {
             if (IsEmpty)
             {
