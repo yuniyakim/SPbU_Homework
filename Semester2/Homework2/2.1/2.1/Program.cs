@@ -12,24 +12,24 @@ namespace _2._1
                 Console.WriteLine("Empty");
             }
             list.Delete(4);
-            list.Insert("one", 4);
+            list.Add("one", 4);
             list.Delete(2);
             if (!list.IsEmpty)
             {
                 Console.WriteLine("Not empty");
             }
-            list.Insert("three", 2);
+            list.Add("three", 2);
             list.Print();
             Console.WriteLine($"Length is {list.length}");
-            list.Insert("four", 1);
-            list.Insert("five", 3);
+            list.Add("four", 1);
+            list.Add("five", 3);
             list.Delete(1);
-            list.Insert("one", 3);
+            list.Add("one", 3);
             list.Delete(4);
-            list.Insert("six", 2);
-            list.Insert("two", 7);
+            list.Add("six", 2);
+            list.Add("two", 7);
             list.Print();
-            list.Insert("seven", 5);
+            list.Add("seven", 5);
             Console.WriteLine($"Length is {list.length}");
             list.Delete(4);
             list.Print();

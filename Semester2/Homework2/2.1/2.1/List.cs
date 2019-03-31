@@ -47,7 +47,7 @@ namespace _2._1
             }
         }
 
-        public void Insert(string value, int position)
+        public void Add(string value, int position)
         {
             if (IsEmpty)
             {
