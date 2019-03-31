@@ -4,25 +4,28 @@ namespace _2._1
 {
     public class List
     {
+        private Node head = null;
+        public int length { get; set; }
+
         private class Node
         {
             public Node(string value)
             {
-                this.Value = value;
-                Next = null;
+                this.value = value;
+                next = null;
             }
 
-            public string Value { get; set; }
-            public Node Next { get; set; }
+            public string value { get; set; }
+            public Node next { get; set; }
         }
 
         public List()
         {
         }
 
-        public bool IsEmpty { get => Length == 0; }
+        public bool IsEmpty => length == 0;
 
-        private bool IsContained(int position) => !(IsEmpty || position > Length || position < 1);
+        private bool IsContained(int position) => !(IsEmpty || position > length || position < 1);
 
         public void Print()
         {
@@ -33,12 +36,12 @@ namespace _2._1
             else
             {
                 var temp = head;
-                for (int i = 0; i < Length; ++i)
+                for (int i = 0; i < length; ++i)
                 {
-                    Console.WriteLine($"Value: {temp.Value}, position: {i}");
-                    if (temp.Next != null)
+                    Console.WriteLine($"Value: {temp.value}, position: {i}");
+                    if (temp.next != null)
                     {
-                        temp = temp.Next;
+                        temp = temp.next;
                     }
                 }
             }
@@ -49,9 +52,9 @@ namespace _2._1
             if (IsEmpty)
             {
                 head = new Node(value);
-                ++Length;
+                ++length;
             }
-            else if (position > Length + 1 || position < 1)
+            else if (position > length + 1 || position < 1)
             {
                 Console.WriteLine("Invalid position");
             }
@@ -60,23 +63,23 @@ namespace _2._1
                 var newElement = new Node(value);
                 if (position == 1)
                 {
-                    newElement.Next = head;
+                    newElement.next = head;
                     head = newElement;
-                    ++Length;
+                    ++length;
                 }
                 else
                 {
                     var temp = head;
                     for (int i = 1; i < position - 1; ++i)
                     {
-                        if (temp.Next != null)
+                        if (temp.next != null)
                         {
-                            temp = temp.Next;
+                            temp = temp.next;
                         }
                     }
-                    newElement.Next = temp.Next;
-                    temp.Next = newElement;
-                    ++Length;
+                    newElement.next = temp.next;
+                    temp.next = newElement;
+                    ++length;
                 }
             }
         }
@@ -95,13 +98,13 @@ namespace _2._1
             {
                 if (position == 1)
                 {
-                    if (Length == 1)
+                    if (length == 1)
                     {
                         head = null;
                     }
                     else
                     {
-                        head = head.Next;
+                        head = head.next;
                     }
                 }
                 else
@@ -109,18 +112,18 @@ namespace _2._1
                     var temp = head;
                     for (int i = 1; i < position - 1; ++i)
                     {
-                        temp = temp.Next;
+                        temp = temp.next;
                     }
-                    if (position == Length)
+                    if (position == length)
                     {
-                        temp.Next = null;
+                        temp.next = null;
                     }
                     else
                     {
-                        temp.Next = temp.Next.Next;
+                        temp.next = temp.next.next;
                     }
                 }
-                --Length;
+                --length;
             }
         }
 
@@ -140,9 +143,9 @@ namespace _2._1
                 int currentPosition;
                 for (currentPosition = 1; currentPosition < position; ++currentPosition)
                 {
-                    temp = temp.Next;
+                    temp = temp.next;
                 }
-                Console.WriteLine($"Value: {temp.Value}, position: {currentPosition}");
+                Console.WriteLine($"Value: {temp.value}, position: {currentPosition}");
             }
         }
 
@@ -161,13 +164,10 @@ namespace _2._1
                 var temp = head;
                 for (int i = 1; i < position; ++i)
                 {
-                    temp = temp.Next;
+                    temp = temp.next;
                 }
-                temp.Value = value;
+                temp.value = value;
             }
         }
-
-        private Node head = null;
-        public int Length { get; set; }
     }
 }

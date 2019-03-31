@@ -20,7 +20,7 @@ namespace _2._1
             }
             list.Insert("three", 2);
             list.Print();
-            Console.WriteLine($"Length is {list.Length}");
+            Console.WriteLine($"Length is {list.length}");
             list.Insert("four", 1);
             list.Insert("five", 3);
             list.Delete(1);
@@ -30,7 +30,7 @@ namespace _2._1
             list.Insert("two", 7);
             list.Print();
             list.Insert("seven", 5);
-            Console.WriteLine($"Length is {list.Length}");
+            Console.WriteLine($"Length is {list.length}");
             list.Delete(4);
             list.Print();
             list.SetValue("check", 3);
