@@ -23,7 +23,7 @@ namespace _2._2
         {
         }
 
-        public bool IsEmpty { get => length == 0; }
+        public bool IsEmpty => length == 0;
 
         private bool IsContained(int position) => !(IsEmpty || position > length || position < 1);
 
@@ -165,7 +165,7 @@ namespace _2._2
             }
             else if (!IsContained(position))
             {
-                Console.WriteLine("List overflow");
+                Console.WriteLine("Invalid position");
             }
             else
             {
@@ -187,7 +187,7 @@ namespace _2._2
             }
             else if (!IsContained(position))
             {
-                Console.WriteLine("List overflow");
+                Console.WriteLine("Invalid position");
             }
             else
             {
