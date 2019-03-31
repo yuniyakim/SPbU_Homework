@@ -4,20 +4,8 @@ namespace _2._2
 {
     public class List
     { 
-        private Node head = null;
+        public Node head { get; set; }
         public int length { get; set; }
-
-        private class Node
-        {
-            public Node(string value)
-            {
-                this.value = value;
-                next = null;
-            }
-
-            public string value { get; set; }
-            public Node next { get; set; }
-        }
 
         public List()
         {

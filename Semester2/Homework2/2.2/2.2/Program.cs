@@ -6,7 +6,7 @@ namespace _2._2
     {
         static void Main()
         {
-            var hashTable = new HashTable(50);
+            var hashTable = new HashTable(3);
             hashTable.Add("Water");
             hashTable.Add("Fire");
             hashTable.Add("Earth");
