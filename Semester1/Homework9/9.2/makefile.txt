@@ -1,0 +1,17 @@
+CC = cl
+CFLAGS = -c -Wall
+TARGET = brackets
+
+SOURCES = 6.2.cpp brackets.cpp pch.cpp stack.cpp test.cpp
+OBJECTS = $(SOURCES:.cpp=.obj)
+
+all: $(TARGET) 
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@
+
+.cpp.obj:
+	$(CC) $(CFLAGS) $< -o $@
+
+clean: 
+	del *.obj *.exe $(TARGET)
