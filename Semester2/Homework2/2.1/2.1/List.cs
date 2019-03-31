@@ -135,7 +135,7 @@ namespace _2._1
             }
             else if (!IsContained(position))
             {
-                Console.WriteLine("List overflow");
+                Console.WriteLine("Invalid position");
             }
             else
             {
@@ -157,7 +157,7 @@ namespace _2._1
             }
             else if (!IsContained(position))
             {
-                Console.WriteLine("List overflow");
+                Console.WriteLine("Invalid position");
             }
             else
             {
