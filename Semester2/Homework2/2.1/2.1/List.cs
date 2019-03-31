@@ -6,58 +6,18 @@ namespace _2._1
     {
         private class Node
         {
-            public Node(string value, int position)
+            public Node(string value)
             {
-                this.value = value;
-                this.position = position;
-                next = null;
+                this.Value = value;
+                Next = null;
             }
 
-            public string Value
-            {
-                get
-                {
-                    return value;
-                }
-                set
-                {
-                    this.value = value;
-                }
-            }
-
-            public int Position
-            {
-                get
-                {
-                    return position;
-                }
-                set
-                {
-                    position = value;
-                }
-            }
-
-            public Node Next
-            {
-                get
-                {
-                    return next;
-                }
-                set
-                {
-                    next = value;
-                }
-            }
-
-            private string value;
-            private int position;
-            private Node next;
+            public string Value { get; set; }
+            public Node Next { get; set; }
         }
 
         public List()
         {
-            head = null;
-            Length = 0;
         }
 
         public bool IsEmpty { get => Length == 0; }
@@ -75,7 +35,7 @@ namespace _2._1
                 var temp = head;
                 for (int i = 0; i < Length; ++i)
                 {
-                    Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
+                    Console.WriteLine($"Value: {temp.Value}, position: {i}");
                     if (temp.Next != null)
                     {
                         temp = temp.Next;
@@ -84,24 +44,11 @@ namespace _2._1
             }
         }
 
-        private void Renumbering()
-        {
-            var temp = head;
-            for (int i = 1; i <= Length; ++i)
-            {
-                temp.Position = i;
-                if (temp.Next != null)
-                {
-                    temp = temp.Next;
-                }
-            }
-        }
-
-        public void Push(string value, int position)
+        public void Insert(string value, int position)
         {
             if (IsEmpty)
             {
-                head = new Node(value, 1);
+                head = new Node(value);
                 ++Length;
             }
             else if (position > Length + 1 || position < 1)
@@ -110,13 +57,12 @@ namespace _2._1
             }
             else
             {
-                var newElement = new Node(value, position);
+                var newElement = new Node(value);
                 if (position == 1)
                 {
                     newElement.Next = head;
                     head = newElement;
                     ++Length;
-                    Renumbering();
                 }
                 else
                 {
@@ -131,7 +77,6 @@ namespace _2._1
                     newElement.Next = temp.Next;
                     temp.Next = newElement;
                     ++Length;
-                    Renumbering();
                 }
             }
         }
@@ -177,7 +122,6 @@ namespace _2._1
                 }
                 --Length;
             }
-            Renumbering();
         }
 
         public void PrintValueByPosition(int position)
@@ -193,11 +137,12 @@ namespace _2._1
             else
             {
                 var temp = head;
-                for (int i = 1; i < position; ++i)
+                int currentPosition;
+                for (currentPosition = 1; currentPosition < position; ++currentPosition)
                 {
                     temp = temp.Next;
                 }
-                Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
+                Console.WriteLine($"Value: {temp.Value}, position: {currentPosition}");
             }
         }
 
@@ -222,12 +167,7 @@ namespace _2._1
             }
         }
 
-        private Node head;
+        private Node head = null;
         public int Length { get; set; }
     }
 }
-
-/* Написать связный список в виде класса. От списка хочется:
-- Добавлять/удалять элемент по произвольной позиции, задаваемой целым числом
-- Узнавать размер, проверять на пустоту
-- Получать или устанавливать значение элемента по позиции, задаваемой целым числом */
