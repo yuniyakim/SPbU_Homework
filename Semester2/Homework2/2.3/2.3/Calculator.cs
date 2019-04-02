@@ -4,8 +4,11 @@ namespace _2._3
 {
     public class Calculator
     {
+        private IStack stack;
+
         public Calculator(IStack stack)
         {
+            this.stack = stack;
         }
 
         private int OparationResult(char operation, int value1, int value2)
@@ -39,7 +42,7 @@ namespace _2._3
             }
         }
 
-        public int Calculate(IStack stack, string str)
+        public int Calculate(string str)
         {
             var number = 0;
             for (int i = 0; i < str.Length; ++i)

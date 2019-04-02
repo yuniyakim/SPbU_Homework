@@ -22,12 +22,12 @@ namespace _2._3
             if (input == 1)
             {
                 var calculator = new Calculator(stackList);
-                result = calculator.Calculate(stackList, str);
+                result = calculator.Calculate(str);
             }
             else
             {
                 var calculator = new Calculator(stackArray);
-                result = calculator.Calculate(stackArray, str);
+                result = calculator.Calculate(str);
             }
             Console.WriteLine($"Result: {result}");
         }
