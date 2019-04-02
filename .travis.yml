@@ -5,5 +5,5 @@ mono: none
 dotnet: 2.1
 
 script:
-  - nuget restore Semester2/Homework2/2.3/2.3.sln
+  - dotnet restore Semester2/Homework2/2.3/2.3.sln
   - dotnet build Semester2/Homework2/2.3/2.3.sln
