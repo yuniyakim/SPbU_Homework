@@ -2,10 +2,41 @@
 
 namespace _2._3
 {
-    class Calculator
+    public class Calculator
     {
         public Calculator(IStack stack)
         {
+        }
+
+        private int OparationResult(char operation, int value1, int value2)
+        {
+            switch (operation)
+            {
+                case '+':
+                    {
+                        return value1 + value2;
+                    }
+                case '-':
+                    {
+                        return value2 - value1;
+                    }
+                case '*':
+                    {
+                        return value1 * value2;
+                    }
+                case '/':
+                    {
+                        if (value1 == 0)
+                        {
+                            throw new InvalidOperationException("Division by zero");
+                        }
+                        return value2 / value1;
+                    }
+                default:
+                    {
+                        throw new InvalidOperationException("Invalid Operation");
+                    }
+            }
         }
 
         public int Calculate(IStack stack, string str)
@@ -21,33 +52,7 @@ namespace _2._3
                 {
                     var value1 = stack.Pop();
                     var value2 = stack.Pop();
-                    switch (str[i])
-                    {
-                        case '+':
-                            {
-                                stack.Push(value1 + value2);
-                                break;
-                            }
-                        case '-':
-                            {
-                                stack.Push(value2 - value1);
-                                break;
-                            }
-                        case '*':
-                            {
-                                stack.Push(value1 * value2);
-                                break;
-                            }
-                        case '/':
-                            {
-                                if (value1 == 0)
-                                {
-                                    throw new Exception("Division by zero");
-                                }
-                                stack.Push(value2 / value1);
-                                break;
-                            }
-                    }
+                    stack.Push(OparationResult(str[i], value1, value2));
                 }
                 else if (i < str.Length - 1 && Char.IsNumber(str[i]) && Char.IsNumber(str[i + 1]))
                 {

@@ -4,6 +4,20 @@ namespace _2._3
 {
     class StackList : IStack
     {
+        private int length;
+        private Node stackHead;
+
+        private class Node
+        {
+            public int value { get; set; }
+            public Node next { get; set; }
+
+            public Node(int value)
+            {
+                this.value = value;
+                next = null;
+            }
+        }
         public StackList()
         {
             stackHead = null;
@@ -13,7 +27,7 @@ namespace _2._3
         public void Push(int value)
         {
             var newNode = new Node(value);
-            newNode.Next = stackHead;
+            newNode.next = stackHead;
             stackHead = newNode;
             ++length;
         }
@@ -22,10 +36,10 @@ namespace _2._3
         {
             if (IsEmpty())
             {
-                throw new Exception("Stack is empty");
+                throw new InvalidOperationException("Stack is empty");
             }
-            var pop = stackHead.Value;
-            stackHead = stackHead.Next;
+            var pop = stackHead.value;
+            stackHead = stackHead.next;
             --length;
             return pop;
         }
@@ -34,12 +48,5 @@ namespace _2._3
         {
             return length == 0;
         }
-
-        private int length;
-        private Node stackHead;
     }
 }
-
-// Реализовать стековый калькулятор(класс, реализующий выполнение операций +, -, *, / над арифметическим выражением в виде строки в постфиксной записи). 
-// Стек реализовать двумя способами(например, массивом или списком) в двух разных классах на основе одного интерфейса.
-// Стековый калькулятор должен знать только про интерфейс стека.
