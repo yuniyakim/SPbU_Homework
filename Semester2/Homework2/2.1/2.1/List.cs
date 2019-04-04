@@ -19,10 +19,6 @@ namespace _2._1
             public Node next { get; set; }
         }
 
-        public List()
-        {
-        }
-
         public bool IsEmpty => length == 0;
 
         private bool IsContained(int position) => !(IsEmpty || position > length || position < 1);
@@ -32,17 +28,15 @@ namespace _2._1
             if (IsEmpty)
             {
                 Console.WriteLine("List is empty");
+                return;
             }
-            else
+            var temp = head;
+            for (int i = 1; i <= length; ++i)
             {
-                var temp = head;
-                for (int i = 0; i < length; ++i)
+                Console.WriteLine($"Value: {temp.value}, position: {i}");
+                if (temp.next != null)
                 {
-                    Console.WriteLine($"Value: {temp.value}, position: {i}");
-                    if (temp.next != null)
-                    {
-                        temp = temp.next;
-                    }
+                    temp = temp.next;
                 }
             }
         }
@@ -53,34 +47,32 @@ namespace _2._1
             {
                 head = new Node(value);
                 ++length;
+                return;
             }
-            else if (position > length + 1 || position < 1)
+            if (position > length + 1 || position < 1)
             {
-                Console.WriteLine("Invalid position");
+                throw new InvalidOperationException("Invalid position");
+            }
+            var newElement = new Node(value);
+            if (position == 1)
+            {
+                newElement.next = head;
+                head = newElement;
+                ++length;
             }
             else
             {
-                var newElement = new Node(value);
-                if (position == 1)
+                var temp = head;
+                for (int i = 1; i < position - 1; ++i)
                 {
-                    newElement.next = head;
-                    head = newElement;
-                    ++length;
-                }
-                else
-                {
-                    var temp = head;
-                    for (int i = 1; i < position - 1; ++i)
+                    if (temp.next != null)
                     {
-                        if (temp.next != null)
-                        {
-                            temp = temp.next;
-                        }
+                        temp = temp.next;
                     }
-                    newElement.next = temp.next;
-                    temp.next = newElement;
-                    ++length;
                 }
+                newElement.next = temp.next;
+                temp.next = newElement;
+                ++length;
             }
         }
 
@@ -88,86 +80,77 @@ namespace _2._1
         {
             if (IsEmpty)
             {
-                Console.WriteLine("List is empty");
+                throw new InvalidOperationException("List is empty");
             }
-            else if (!IsContained(position))
+            if (!IsContained(position))
             {
-                Console.WriteLine("Invalid position");
+                throw new InvalidOperationException("Invalid position");
             }
-            else
+            if (position == 1)
             {
-                if (position == 1)
+                if (length == 1)
                 {
-                    if (length == 1)
-                    {
-                        head = null;
-                    }
-                    else
-                    {
-                        head = head.next;
-                    }
+                    head = null;
                 }
                 else
                 {
-                    var temp = head;
-                    for (int i = 1; i < position - 1; ++i)
-                    {
-                        temp = temp.next;
-                    }
-                    if (position == length)
-                    {
-                        temp.next = null;
-                    }
-                    else
-                    {
-                        temp.next = temp.next.next;
-                    }
+                    head = head.next;
                 }
-                --length;
-            }
-        }
-
-        public void PrintValueByPosition(int position)
-        {
-            if (IsEmpty)
-            {
-                Console.WriteLine("List is empty");
-            }
-            else if (!IsContained(position))
-            {
-                Console.WriteLine("Invalid position");
             }
             else
             {
                 var temp = head;
-                int currentPosition;
-                for (currentPosition = 1; currentPosition < position; ++currentPosition)
+                for (int i = 1; i < position - 1; ++i)
                 {
                     temp = temp.next;
                 }
-                Console.WriteLine($"Value: {temp.value}, position: {currentPosition}");
+                if (position == length)
+                {
+                    temp.next = null;
+                }
+                else
+                {
+                    temp.next = temp.next.next;
+                }
             }
+            --length;
+        }
+
+        public string GetValue(int position)
+        {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("List is empty");
+            }
+            if (!IsContained(position))
+            {
+                throw new InvalidOperationException("Invalid position");
+            }
+            var temp = head;
+            int currentPosition;
+            for (currentPosition = 1; currentPosition < position; ++currentPosition)
+            {
+                temp = temp.next;
+            }
+            return temp.value;
         }
 
         public void SetValue(string value, int position)
         {
             if (IsEmpty)
             {
-                Console.WriteLine("List is empty");
+                throw new InvalidOperationException("List is empty");
             }
-            else if (!IsContained(position))
+            if (!IsContained(position))
             {
-                Console.WriteLine("Invalid position");
+                throw new InvalidOperationException("Invalid position");
             }
-            else
+            var temp = head;
+            for (int i = 1; i < position; ++i)
             {
-                var temp = head;
-                for (int i = 1; i < position; ++i)
-                {
-                    temp = temp.next;
-                }
-                temp.value = value;
+                temp = temp.next;
             }
+            temp.value = value;
         }
     }
 }

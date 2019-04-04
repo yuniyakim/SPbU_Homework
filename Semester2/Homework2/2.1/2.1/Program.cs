@@ -11,9 +11,7 @@ namespace _2._1
             {
                 Console.WriteLine("Empty");
             }
-            list.Delete(4);
             list.Add("one", 4);
-            list.Delete(2);
             if (!list.IsEmpty)
             {
                 Console.WriteLine("Not empty");
@@ -27,17 +25,16 @@ namespace _2._1
             list.Add("one", 3);
             list.Delete(4);
             list.Add("six", 2);
-            list.Add("two", 7);
-            list.Print();
             list.Add("seven", 5);
+            list.Print();
             Console.WriteLine($"Length is {list.length}");
             list.Delete(4);
             list.Print();
             list.SetValue("check", 3);
             list.SetValue("one-one", 1);
-            list.PrintValueByPosition(2);
-            list.PrintValueByPosition(1);
-            list.PrintValueByPosition(4);
+            Console.WriteLine($"Value of element wiith position 2 is {list.GetValue(2)}");
+            Console.WriteLine($"Value of element wiith position 1 is {list.GetValue(1)}");
+            Console.WriteLine($"Value of element wiith position 4 is {list.GetValue(4)}");
             list.Print();
         }
     }
