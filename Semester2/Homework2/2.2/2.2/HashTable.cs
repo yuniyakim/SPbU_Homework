@@ -58,6 +58,7 @@ namespace _2._2
                 buckets[Key(value)].Add(value, buckets[Key(value)].Length + 1);
                 ++numberOfElements;
             }
+            Resize();
         }
 
         public void Delete(string value)
@@ -67,7 +68,6 @@ namespace _2._2
                 buckets[Key(value)].Delete(buckets[Key(value)].PositionByValue(value));
                 --numberOfElements;
             }
-            Resize();
         }
     }
 }
