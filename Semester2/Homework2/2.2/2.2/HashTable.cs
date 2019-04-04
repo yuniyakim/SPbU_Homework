@@ -6,7 +6,7 @@ namespace _2._2
     {
         private int length;
         private List[] buckets;
-        public int numberOfElements = 0;
+        private int numberOfElements = 0;
 
         public HashTable(int length)
         {
@@ -20,15 +20,8 @@ namespace _2._2
 
         private int Key(string value) => Math.Abs(value.GetHashCode() % length);
 
-        public bool IsContained(string value) => buckets[Key(value)].IsContainedByValue(value);
-
-        public void Add(string value)
+        private void Resize()
         {
-            if (!buckets[Key(value)].IsContainedByValue(value))
-            {
-                buckets[Key(value)].Add(value, buckets[Key(value)].Length + 1);
-                ++numberOfElements;
-            }
             if (numberOfElements == 2 * buckets.Length)
             {
                 length *= 2;
@@ -56,6 +49,17 @@ namespace _2._2
             }
         }
 
+        public bool IsContained(string value) => buckets[Key(value)].IsContainedByValue(value);
+
+        public void Add(string value)
+        {
+            if (!buckets[Key(value)].IsContainedByValue(value))
+            {
+                buckets[Key(value)].Add(value, buckets[Key(value)].Length + 1);
+                ++numberOfElements;
+            }
+        }
+
         public void Delete(string value)
         {
             if (buckets[Key(value)].IsContainedByValue(value))
@@ -63,6 +67,7 @@ namespace _2._2
                 buckets[Key(value)].Delete(buckets[Key(value)].PositionByValue(value));
                 --numberOfElements;
             }
+            Resize();
         }
     }
 }
