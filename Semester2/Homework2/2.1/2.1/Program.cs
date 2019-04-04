@@ -18,7 +18,7 @@ namespace _2._1
             }
             list.Add("three", 2);
             list.Print();
-            Console.WriteLine($"Length is {list.length}");
+            Console.WriteLine($"Length is {list.Length}");
             list.Add("four", 1);
             list.Add("five", 3);
             list.Delete(1);
@@ -27,7 +27,7 @@ namespace _2._1
             list.Add("six", 2);
             list.Add("seven", 5);
             list.Print();
-            Console.WriteLine($"Length is {list.length}");
+            Console.WriteLine($"Length is {list.Length}");
             list.Delete(4);
             list.Print();
             list.SetValue("check", 3);

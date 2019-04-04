@@ -5,23 +5,23 @@ namespace _2._1
     public class List
     {
         private Node head = null;
-        public int length { get; set; }
+        public int Length { get; set; }
 
         private class Node
         {
             public Node(string value)
             {
-                this.value = value;
-                next = null;
+                this.Value = value;
+                Next = null;
             }
 
-            public string value { get; set; }
-            public Node next { get; set; }
+            public string Value { get; set; }
+            public Node Next { get; set; }
         }
 
-        public bool IsEmpty => length == 0;
+        public bool IsEmpty => Length == 0;
 
-        private bool IsContained(int position) => !(IsEmpty || position > length || position < 1);
+        private bool IsContained(int position) => !(IsEmpty || position > Length || position < 1);
 
         public void Print()
         {
@@ -31,12 +31,12 @@ namespace _2._1
                 return;
             }
             var temp = head;
-            for (int i = 1; i <= length; ++i)
+            for (int i = 1; i <= Length; ++i)
             {
-                Console.WriteLine($"Value: {temp.value}, position: {i}");
-                if (temp.next != null)
+                Console.WriteLine($"Value: {temp.Value}, position: {i}");
+                if (temp.Next != null)
                 {
-                    temp = temp.next;
+                    temp = temp.Next;
                 }
             }
         }
@@ -46,33 +46,33 @@ namespace _2._1
             if (IsEmpty)
             {
                 head = new Node(value);
-                ++length;
+                ++Length;
                 return;
             }
-            if (position > length + 1 || position < 1)
+            if (position > Length + 1 || position < 1)
             {
                 throw new InvalidOperationException("Invalid position");
             }
             var newElement = new Node(value);
             if (position == 1)
             {
-                newElement.next = head;
+                newElement.Next = head;
                 head = newElement;
-                ++length;
+                ++Length;
             }
             else
             {
                 var temp = head;
                 for (int i = 1; i < position - 1; ++i)
                 {
-                    if (temp.next != null)
+                    if (temp.Next != null)
                     {
-                        temp = temp.next;
+                        temp = temp.Next;
                     }
                 }
-                newElement.next = temp.next;
-                temp.next = newElement;
-                ++length;
+                newElement.Next = temp.Next;
+                temp.Next = newElement;
+                ++Length;
             }
         }
 
@@ -88,13 +88,13 @@ namespace _2._1
             }
             if (position == 1)
             {
-                if (length == 1)
+                if (Length == 1)
                 {
                     head = null;
                 }
                 else
                 {
-                    head = head.next;
+                    head = head.Next;
                 }
             }
             else
@@ -102,18 +102,18 @@ namespace _2._1
                 var temp = head;
                 for (int i = 1; i < position - 1; ++i)
                 {
-                    temp = temp.next;
+                    temp = temp.Next;
                 }
-                if (position == length)
+                if (position == Length)
                 {
-                    temp.next = null;
+                    temp.Next = null;
                 }
                 else
                 {
-                    temp.next = temp.next.next;
+                    temp.Next = temp.Next.Next;
                 }
             }
-            --length;
+            --Length;
         }
 
         public string GetValue(int position)
@@ -130,9 +130,9 @@ namespace _2._1
             int currentPosition;
             for (currentPosition = 1; currentPosition < position; ++currentPosition)
             {
-                temp = temp.next;
+                temp = temp.Next;
             }
-            return temp.value;
+            return temp.Value;
         }
 
         public void SetValue(string value, int position)
@@ -148,9 +148,9 @@ namespace _2._1
             var temp = head;
             for (int i = 1; i < position; ++i)
             {
-                temp = temp.next;
+                temp = temp.Next;
             }
-            temp.value = value;
+            temp.Value = value;
         }
     }
 }
