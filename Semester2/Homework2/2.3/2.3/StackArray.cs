@@ -18,7 +18,7 @@ namespace _2._3
         {
             if (length == size)
             {
-                int[] newStack = new int[size * 2];
+                var newStack = new int[size * 2];
                 size *= 2;
                 stackArray.CopyTo(newStack, 0);
                 stackArray = newStack;
@@ -39,9 +39,8 @@ namespace _2._3
             return pop;
         }
 
-        public bool IsEmpty()
-        {
-            return length == 0;
-        }
+        public bool IsEmpty() => length == 0;
+
+        public int Length() => length;
     }
 }

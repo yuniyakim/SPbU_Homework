@@ -72,7 +72,14 @@ namespace _2._3
                     stack.Push((int)Char.GetNumericValue(str[i]));
                 }
             }
-            return stack.Pop();
+            if (stack.Length() == 1)
+            {
+                return stack.Pop();
+            }
+            else
+            {
+                throw new InvalidOperationException("Invalid string");
+            }
         }
     }
 }

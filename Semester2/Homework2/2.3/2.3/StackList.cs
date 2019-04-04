@@ -9,15 +9,16 @@ namespace _2._3
 
         private class Node
         {
-            public int value { get; set; }
-            public Node next { get; set; }
+            public int Value { get; set; }
+            public Node Next { get; set; }
 
             public Node(int value)
             {
-                this.value = value;
-                next = null;
+                this.Value = value;
+                Next = null;
             }
         }
+
         public StackList()
         {
             stackHead = null;
@@ -27,7 +28,7 @@ namespace _2._3
         public void Push(int value)
         {
             var newNode = new Node(value);
-            newNode.next = stackHead;
+            newNode.Next = stackHead;
             stackHead = newNode;
             ++length;
         }
@@ -38,15 +39,14 @@ namespace _2._3
             {
                 throw new InvalidOperationException("Stack is empty");
             }
-            var pop = stackHead.value;
-            stackHead = stackHead.next;
+            var pop = stackHead.Value;
+            stackHead = stackHead.Next;
             --length;
             return pop;
         }
 
-        public bool IsEmpty()
-        {
-            return length == 0;
-        }
+        public bool IsEmpty() => length == 0;
+
+        public int Length() => length;
     }
 }
