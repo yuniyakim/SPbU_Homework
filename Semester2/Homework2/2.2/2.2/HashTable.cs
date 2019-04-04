@@ -44,10 +44,10 @@ namespace _2._2
                         var current = buckets[i].Head;
                         for (int j = 0; j < buckets[i].Length; ++j)
                         {
-                            newBuckets[Key(current.value)].Add(current.value, newBuckets[Key(current.value)].Length + 1);
-                            if (current.next != null)
+                            newBuckets[Key(current.Value)].Add(current.Value, newBuckets[Key(current.Value)].Length + 1);
+                            if (current.Next != null)
                             {
-                                current = current.next;
+                                current = current.Next;
                             }
                         }
                     }

@@ -4,12 +4,12 @@ namespace _2._2
 {
     public class Node
     {
-        public string value { get; set; }
-        public Node next { get; set; }
+        public string Value { get; set; }
+        public Node Next { get; set; }
         public Node(string value)
         {
-            this.value = value;
-            next = null;
+            this.Value = value;
+            Next = null;
         }
     }
 }
