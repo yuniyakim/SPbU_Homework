@@ -4,21 +4,17 @@ namespace _2._2
 {
     public class List
     { 
-        public Node head { get; set; }
-        public int length { get; set; }
+        public Node Head { get; set; }
+        public int Length { get; set; }
 
-        public List()
-        {
-        }
+        public bool IsEmpty => Length == 0;
 
-        public bool IsEmpty => length == 0;
-
-        private bool IsContained(int position) => !(IsEmpty || position > length || position < 1);
+        private bool IsContained(int position) => !(IsEmpty || position > Length || position < 1);
 
         public bool IsContainedByValue(string value)
         {
-            var temp = head;
-            for (int i = 1; i <= length; ++i)
+            var temp = Head;
+            for (int i = 1; i <= Length; ++i)
             {
                 if (temp.value == value)
                 {
@@ -40,8 +36,8 @@ namespace _2._2
             }
             else
             {
-                var temp = head;
-                for (int i = 0; i < length; ++i)
+                var temp = Head;
+                for (int i = 0; i < Length; ++i)
                 {
                     Console.WriteLine($"Value: {temp.value}, position: {i}");
                     if (temp.next != null)
@@ -53,8 +49,8 @@ namespace _2._2
         }
         public int PositionByValue(string value)
         {
-            var temp = head;
-            for (int i = 1; i <= length; ++i)
+            var temp = Head;
+            for (int i = 1; i <= Length; ++i)
             {
                 if (temp.value == value)
                 {
@@ -69,36 +65,34 @@ namespace _2._2
         {
             if (IsEmpty)
             {
-                head = new Node(value);
-                ++length;
+                Head = new Node(value);
+                ++Length;
+                return;
             }
-            else if (position > length + 1 || position < 1)
+            if (position > Length + 1 || position < 1)
             {
-                Console.WriteLine("Invalid position");
+                throw new InvalidOperationException("Invalid position");
+            }
+            var newElement = new Node(value);
+            if (position == 1)
+            {
+                newElement.next = Head;
+                Head = newElement;
+                ++Length;
             }
             else
             {
-                var newElement = new Node(value);
-                if (position == 1)
+                var temp = Head;
+                for (int i = 1; i < position - 1; ++i)
                 {
-                    newElement.next = head;
-                    head = newElement;
-                    ++length;
-                }
-                else
-                {
-                    var temp = head;
-                    for (int i = 1; i < position - 1; ++i)
+                    if (temp.next != null)
                     {
-                        if (temp.next != null)
-                        {
-                            temp = temp.next;
-                        }
+                        temp = temp.next;
                     }
-                    newElement.next = temp.next;
-                    temp.next = newElement;
-                    ++length;
                 }
+                newElement.next = temp.next;
+                temp.next = newElement;
+                ++Length;
             }
         }
 
@@ -116,23 +110,23 @@ namespace _2._2
             {
                 if (position == 1)
                 {
-                    if (length == 1)
+                    if (Length == 1)
                     {
-                        head = null;
+                        Head = null;
                     }
                     else
                     {
-                        head = head.next;
+                        Head = Head.next;
                     }
                 }
                 else
                 {
-                    var temp = head;
+                    var temp = Head;
                     for (int i = 1; i < position - 1; ++i)
                     {
                         temp = temp.next;
                     }
-                    if (position == length)
+                    if (position == Length)
                     {
                         temp.next = null;
                     }
@@ -141,7 +135,7 @@ namespace _2._2
                         temp.next = temp.next.next;
                     }
                 }
-                --length;
+                --Length;
             }
         }
 
@@ -157,7 +151,7 @@ namespace _2._2
             }
             else
             {
-                var temp = head;
+                var temp = Head;
                 int currentPosition;
                 for (currentPosition = 1; currentPosition < position; ++currentPosition)
                 {
@@ -179,7 +173,7 @@ namespace _2._2
             }
             else
             {
-                var temp = head;
+                var temp = Head;
                 for (int i = 1; i < position; ++i)
                 {
                     temp = temp.next;

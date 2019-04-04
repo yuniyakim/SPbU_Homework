@@ -26,7 +26,7 @@ namespace _2._2
         {
             if (!buckets[Key(value)].IsContainedByValue(value))
             {
-                buckets[Key(value)].Add(value, buckets[Key(value)].length + 1);
+                buckets[Key(value)].Add(value, buckets[Key(value)].Length + 1);
                 ++numberOfElements;
             }
             if (numberOfElements == 2 * buckets.Length)
@@ -41,10 +41,10 @@ namespace _2._2
                 {
                     if (!buckets[i].IsEmpty)
                     {
-                        var current = buckets[i].head;
-                        for (int j = 0; j < buckets[i].length; ++j)
+                        var current = buckets[i].Head;
+                        for (int j = 0; j < buckets[i].Length; ++j)
                         {
-                            newBuckets[Key(current.value)].Add(current.value, newBuckets[Key(current.value)].length + 1);
+                            newBuckets[Key(current.value)].Add(current.value, newBuckets[Key(current.value)].Length + 1);
                             if (current.next != null)
                             {
                                 current = current.next;
