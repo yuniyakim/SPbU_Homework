@@ -1,10 +1,9 @@
 language: csharp
-solution: Semester2/Homework1/1.1/1.1.sln
+solution: Semester2/Homework2/2.1/2.1.sln 
 mono: none
 
-dotnet: 2.1
+dotnet: 2.1 
 
 script:
-  - dotnet restore Semester2/Homework1/1.1/1.1.sln
-  - dotnet build Semester2/Homework1/1.1/1.1.sln
-  - dotnet test Semester2/Homework1/1.1/1.1.sln
+  - dotnet restore Semester2/Homework2/2.1/2.1.sln
+  - dotnet build Semester2/Homework2/2.1/2.1.sln
