@@ -2,7 +2,7 @@
 
 namespace _3._1
 {
-    class StackArray : IStack
+    public class StackArray : IStack
     {
         private int size = 10;
         private int length;

@@ -7,6 +7,8 @@ namespace _3._1
     [TestFixtureSource(typeof(FixtureDataStack), "FixtureParameters")]
     public class StackTests
     {
+        private IStack stack;
+
         public StackTests(IStack stack)
         {
             this.stack = stack;
@@ -97,7 +99,15 @@ namespace _3._1
             Assert.IsTrue(stack.IsEmpty());
         }
 
-        private IStack stack;
+        [Test]
+        public void LengthTest()
+        {
+            for (int i = 0; i < 10; ++i)
+            {
+                stack.Push(5);
+            }
+            Assert.AreEqual(10, stack.Length());
+        }
     }
 
     public class FixtureDataStack

@@ -8,6 +8,7 @@ namespace _3._1
         int Pop();
         bool IsEmpty();
         int Length();
+        void Clear();
     }
 }
 

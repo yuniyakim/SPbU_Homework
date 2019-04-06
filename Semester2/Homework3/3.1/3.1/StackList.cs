@@ -2,7 +2,7 @@
 
 namespace _3._1
 {
-    class StackList : IStack
+    public class StackList : IStack
     {
         private int length;
         private Node stackHead;
