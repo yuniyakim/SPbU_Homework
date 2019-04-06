@@ -13,21 +13,21 @@ namespace _3._1
                 Console.WriteLine("Enter 2 for stack on array");
                 input = int.Parse(Console.ReadLine());
             }
-            while (input  != 1 && input != 2);
+            while (input != 1 && input != 2);
             var stackList = new StackList();
             var stackArray = new StackArray();
-            Console.WriteLine("Enter postfix expression");
+            Console.WriteLine("Enter string");
             var str = Console.ReadLine();
             int result = 0;
             if (input == 1)
             {
                 var calculator = new Calculator(stackList);
-                result = calculator.Calculate(stackList, str);
+                result = calculator.Calculate(str);
             }
             else
             {
                 var calculator = new Calculator(stackArray);
-                result = calculator.Calculate(stackArray, str);
+                result = calculator.Calculate(str);
             }
             Console.WriteLine($"Result: {result}");
         }

@@ -7,7 +7,7 @@ namespace _3._1
         void Push(int value);
         int Pop();
         bool IsEmpty();
-        void Clear();
+        int Length();
     }
 }
 

@@ -2,18 +2,23 @@
 
 namespace _3._1
 {
-    public class StackArray : IStack
+    class StackArray : IStack
     {
+        private int size = 10;
+        private int length;
+        private int[] stackArray;
+
         public StackArray()
         {
             length = 0;
             stackArray = new int[size];
         }
+
         public void Push(int value)
         {
             if (length == size)
             {
-                int[] newStack = new int[size * 2];
+                var newStack = new int[size * 2];
                 size *= 2;
                 stackArray.CopyTo(newStack, 0);
                 stackArray = newStack;
@@ -34,10 +39,9 @@ namespace _3._1
             return pop;
         }
 
-        public bool IsEmpty()
-        {
-            return length == 0;
-        }
+        public bool IsEmpty() => length == 0;
+
+        public int Length() => length;
 
         public void Clear()
         {
@@ -47,10 +51,6 @@ namespace _3._1
             }
             length = 0;
         }
-
-        private int size = 10;
-        private int length;
-        private int[] stackArray;
     }
 }
 
