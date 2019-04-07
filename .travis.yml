@@ -2,7 +2,7 @@ language: csharp
 solution: Semester2/Homework2/2.2/2.2.sln 
 mono: none
 
-dotnet: 2.1
+dotnet: 2.1 
 
 script:
   - dotnet restore Semester2/Homework2/2.2/2.2.sln
