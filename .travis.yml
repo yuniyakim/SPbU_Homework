@@ -1,5 +1,6 @@
 language: csharp
 solution: Semester2/Homework2/2.3/2.3.sln
+mono: none
 dotnet: 2.1 
 
 script:
