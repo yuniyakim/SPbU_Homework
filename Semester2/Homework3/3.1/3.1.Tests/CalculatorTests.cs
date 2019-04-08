@@ -150,10 +150,7 @@ namespace _3._1
         public void InvalidInputTest()
         {
             str = "12 + 58";
-            Assert.Throws<InvalidOperationException>(delegate()
-            {
-                calculator.Calculate(str);
-            });
+            Assert.Throws<InvalidOperationException>(() => calculator.Calculate(str));
         }
     }
 

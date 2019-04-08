@@ -46,10 +46,7 @@ namespace _3._1
         [Test]
         public void PopFromEmptyStackTest()
         {
-            Assert.Throws<InvalidOperationException>(delegate()
-            {
-                stack.Pop();
-            });
+            Assert.Throws<InvalidOperationException>(() => stack.Pop());
         }
 
         [Test]
