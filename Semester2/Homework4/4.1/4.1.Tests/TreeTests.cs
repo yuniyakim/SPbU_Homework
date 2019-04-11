@@ -5,6 +5,8 @@ namespace _4._1
 {
     public class TreeTests
     {
+        private Tree tree;
+
         [SetUp]
         public void Initialize()
         {
@@ -50,12 +52,7 @@ namespace _4._1
         [Test]
         public void InvalidInputTest()
         {
-            Assert.Throws<InvalidInputException>(delegate ()
-            {
-                tree.FillAndCalculate("(/(* 13 (-422 ) ) 0)");
-            });
+            Assert.Throws<InvalidInputException>(() => tree.FillAndCalculate("(/(* 13 (-422 ) ) 0)"));
         }
-
-        private Tree tree;
     }
 }

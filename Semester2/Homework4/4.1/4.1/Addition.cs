@@ -13,8 +13,8 @@ namespace _4._1
         public override void Print()
         {
             Console.Write("( + ");
-            leftChild.Print();
-            rigthChild.Print();
+            LeftChild.Print();
+            RightChild.Print();
             Console.Write(") ");
         }
 
@@ -22,6 +22,6 @@ namespace _4._1
         /// Calculates the result of children's addition
         /// </summary>
         /// <returns>Addition's result</returns>
-        public override int Calculate() => leftChild.Calculate() + rigthChild.Calculate();
+        public override int Calculate() => LeftChild.Calculate() + RightChild.Calculate();
     }
 }

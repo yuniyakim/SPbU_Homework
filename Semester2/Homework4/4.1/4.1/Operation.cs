@@ -7,6 +7,9 @@ namespace _4._1
     /// </summary>
     public abstract class Operation : INode
     {
+        public INode LeftChild { get; set; }
+        public INode RightChild { get; set; }
+
         /// <summary>
         /// Prints the operation
         /// </summary>
@@ -17,8 +20,5 @@ namespace _4._1
         /// </summary>
         /// <returns>The result of calculation</returns>
         public abstract int Calculate();
-
-        public INode leftChild { get; set; }
-        public INode rigthChild { get; set; }
     }
 }

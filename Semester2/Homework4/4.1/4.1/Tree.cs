@@ -8,6 +8,11 @@ namespace _4._1
     public class Tree
     {
         /// <summary>
+        /// The head of a tree
+        /// </summary>
+        private INode head = null;
+
+        /// <summary>
         /// Checks if the tree is empty
         /// </summary>
         /// <returns>True if the tree is empty and false if it's not</returns>
@@ -47,7 +52,7 @@ namespace _4._1
                 case '+':
                     return new Addition();
                 case '-':
-                    return new Substraction();
+                    return new Subtraction();
                 case '*':
                     return new Multiplication();
                 case '/':
@@ -71,6 +76,16 @@ namespace _4._1
         /// </summary>
         private class String
         {
+            /// <summary>
+            /// String itself
+            /// </summary>
+            internal string str;
+
+            /// <summary>
+            /// Current iteration's number
+            /// </summary>
+            internal int iteration = 0;
+
             /// <summary>
             /// String's constructor
             /// </summary>
@@ -108,13 +123,32 @@ namespace _4._1
             }
 
             /// <summary>
-            /// String itself
+            /// Ignores closing brackets
             /// </summary>
-            internal string str;
+            /// <param name="str">Given string</param>
+            /// <returns>The number of next symbol that's not a closing bracket</returns>
+            internal void IgnoreBrackets()
+            {
+                while (iteration < Length() && Current() == ')')
+                {
+                    ++iteration;
+                }
+                ///return str.iteration;
+            }
+
             /// <summary>
-            /// Current iteration's number
+            /// Ignores spaces
             /// </summary>
-            internal int iteration = 0;
+            /// <param name="str">Given string</param>
+            /// <returns>The number of next symbol that's not a space</returns>
+            internal void IgnoreSpaces()
+            {
+                while (Current() == ' ')
+                {
+                    ++iteration;
+                }
+                ///return str.iteration;
+            }
         }
 
         /// <summary>
@@ -127,16 +161,16 @@ namespace _4._1
             if (str.Current() == '(')
             {
                 ++str.iteration;
-                str.iteration = IgnoreSpaces(str);
+                str.IgnoreSpaces();
                 var node = DefineOperation(str.Current());
                 ++str.iteration;
-                str.iteration = IgnoreSpaces(str);
-                node.leftChild = FillTree(str);
-                str.iteration = IgnoreSpaces(str);
-                node.rigthChild = FillTree(str);
+                str.IgnoreSpaces();
+                node.LeftChild = FillTree(str);
+                str.IgnoreSpaces();
+                node.RightChild = FillTree(str);
                 return node;
             }
-            else if (Char.IsDigit(str.Current()) && Char.IsDigit(str.Next()))
+            if (Char.IsDigit(str.Current()) && Char.IsDigit(str.Next()))
             {
                 var number = (int)Char.GetNumericValue(str.Current());
                 ++str.iteration;
@@ -145,11 +179,11 @@ namespace _4._1
                     number = number * 10 + (int)Char.GetNumericValue(str.Current());
                     ++str.iteration;
                 }
-                str.iteration = IgnoreSpaces(str);
+                str.IgnoreSpaces();
                 var node = new Number(number);
                 if (str.Current() == ')')
                 {
-                    str.iteration = IgnoreBrackets(str);
+                    str.IgnoreBrackets();
                 }
                 return node;
             }
@@ -157,50 +191,20 @@ namespace _4._1
             {
                 var node = new Number((int)Char.GetNumericValue(str.Current()));
                 ++str.iteration;
-                str.iteration = IgnoreBrackets(str);
+                str.IgnoreBrackets();
                 return node;
             }
             else if (Char.IsDigit(str.Current()))
             {
                 var node = new Number((int)Char.GetNumericValue(str.Current()));
                 ++str.iteration;
-                str.iteration = IgnoreSpaces(str);
+                str.IgnoreSpaces();
                 return node;
             }
-            else throw new InvalidInputException("Invalid input");
-        }
-
-        /// <summary>
-        /// Ignores closing brackets
-        /// </summary>
-        /// <param name="str">Given string</param>
-        /// <returns>The number of next symbol that's not a closing bracket</returns>
-        private int IgnoreBrackets(String str)
-        {
-            while (str.iteration < str.Length() && str.Current() == ')')
+            else
             {
-                ++str.iteration;
+                throw new InvalidInputException("Invalid input");
             }
-            return str.iteration;
         }
-
-        /// <summary>
-        /// Ignores spaces
-        /// </summary>
-        /// <param name="str">Given string</param>
-        /// <returns>The number of next symbol that's not a space</returns>
-        private int IgnoreSpaces(String str)
-        {
-            while (str.Current() == ' ')
-            {
-                ++str.iteration;
-            }
-            return str.iteration;
-        }
-
-        /// <summary>
-        /// The head of a tree
-        /// </summary>
-        private INode head = null;
     }
 }

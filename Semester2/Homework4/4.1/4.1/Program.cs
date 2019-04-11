@@ -11,18 +11,18 @@ namespace _4._1
             var str = "";
             try
             {
-                using (StreamReader sr = new StreamReader(path))
+                using (var sr = new StreamReader(path))
                 {
                     str = sr.ReadLine();
                 }
+                var tree = new Tree();
+                Console.WriteLine($"{tree.FillAndCalculate(str)}");
+                tree.Print();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            var tree = new Tree();
-            Console.WriteLine($"{tree.FillAndCalculate(str)}");
-            tree.Print();
         }
     }
 }
