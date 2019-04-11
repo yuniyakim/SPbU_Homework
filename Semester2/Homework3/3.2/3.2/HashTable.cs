@@ -7,6 +7,10 @@ namespace _3._2
     /// </summary>
     public class HashTable
     {
+        private int length;
+        private List[] buckets;
+        private IHash hash;
+
         /// <summary>
         /// Constructor of hash table
         /// </summary>
@@ -30,7 +34,7 @@ namespace _3._2
         /// <returns>True if the element is contained and false if it's not</returns>
         public bool IsContained(string value)
         {
-            return buckets[hash.HashFunction(value, length)].IsContainedByValue(value);
+            return buckets[(uint)hash.HashFunction(value, length)].IsContainedByValue(value);
         }
 
         /// <summary>
@@ -39,7 +43,7 @@ namespace _3._2
         /// <param name="value">Value to add</param>
         public void Push(string value)
         {
-            buckets[hash.HashFunction(value, length)].Push(value, 1);
+            buckets[(uint)hash.HashFunction(value, length)].Add(value, 1);
         }
 
         /// <summary>
@@ -48,12 +52,9 @@ namespace _3._2
         /// <param name="value">Value to delete</param>
         public void Delete(string value)
         {
-            buckets[hash.HashFunction(value, length)].Delete(buckets[hash.HashFunction(value, length)].PositionByValue(value));
+            var key = (uint)hash.HashFunction(value, length);
+            buckets[key].Delete(buckets[key].PositionByValue(value));
         }
-
-        private int length;
-        private List[] buckets;
-        private IHash hash;
     }
 }
 

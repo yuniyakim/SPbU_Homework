@@ -37,6 +37,9 @@ namespace _3._2
             for (int i = 0; i < 50000; ++i)
             {
                 hashTable.Push(i.ToString());
+            }
+            for (int i = 0; i < 50000; ++i)
+            {
                 Assert.IsTrue(hashTable.IsContained(i.ToString()));
             }
         }
@@ -52,10 +55,7 @@ namespace _3._2
         [Test]
         public void DeleteFromEmptyHashTableTest()
         {
-            Assert.Throws<InvalidOperationException>(delegate ()
-            {
-                hashTable.Delete("Delete from empty hash table test");
-            });
+            Assert.Throws<InvalidOperationException>(() => hashTable.Delete("Delete from empty hash table test"));
         }
 
         [Test]

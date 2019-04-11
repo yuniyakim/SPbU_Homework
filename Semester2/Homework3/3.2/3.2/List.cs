@@ -7,30 +7,21 @@ namespace _3._2
     /// </summary>
     public class List
     {
-        /// <summary>
-        /// Constructor of the list
-        /// </summary>
-        public List()
-        {
-            head = null;
-            Length = 0;
-        }
+        private Node Head { get; set; }
+        private int Length { get; set; }
 
         /// <summary>
         /// Checks if the list is empty
         /// </summary>
         /// <returns>True if the list is empty and false if it's not</returns>
-        public bool IsEmpty { get => Length == 0; }
+        public bool IsEmpty => Length == 0;
 
         /// <summary>
         /// Checks if the element with given position is contained in the list
         /// </summary>
         /// <param name="position">Position on which containment is checked</param>
         /// <returns>True if the element is contained and false if it's not</returns>
-        public bool IsContainedByPosition(int position)
-        {
-            return !(IsEmpty || position > Length || position < 1);
-        }
+        public bool IsContained(int position) => !(IsEmpty || position > Length || position < 1);
 
         /// <summary>
         /// Checks if the element with given value is contained in the list
@@ -39,7 +30,7 @@ namespace _3._2
         /// <returns>True if the element is contained and false if it's not</returns>
         public bool IsContainedByValue(string value)
         {
-            var temp = head;
+            var temp = Head;
             for (int i = 1; i <= Length; ++i)
             {
                 if (temp.Value == value)
@@ -61,7 +52,7 @@ namespace _3._2
         /// <returns>The position of the element</returns>
         public int PositionByValue(string value)
         {
-            var temp = head;
+            var temp = Head;
             for (int i = 1; i <= Length; ++i)
             {
                 if (temp.Value == value)
@@ -84,10 +75,10 @@ namespace _3._2
             }
             else
             {
-                var temp = head;
+                var temp = Head;
                 for (int i = 0; i < Length; ++i)
                 {
-                    Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
+                    Console.WriteLine($"Value: {temp.Value}, position: {i}");
                     if (temp.Next != null)
                     {
                         temp = temp.Next;
@@ -97,62 +88,42 @@ namespace _3._2
         }
 
         /// <summary>
-        /// Renumbers positions of elements in the list
-        /// </summary>
-        private void Renumbering()
-        {
-            var temp = head;
-            for (int i = 1; i <= Length; ++i)
-            {
-                temp.Position = i;
-                if (temp.Next != null)
-                {
-                    temp = temp.Next;
-                }
-            }
-        }
-
-        /// <summary>
         /// Adds the element into the list
         /// </summary>
         /// <param name="value">Value to add</param>
         /// <param name="position">Position on which the element must be added</param>
-        public void Push(string value, int position)
+        public void Add(string value, int position)
         {
             if (IsEmpty)
             {
-                head = new Node(value, 1);
+                Head = new Node(value);
                 ++Length;
+                return;
             }
-            else if (position > Length + 1 || position < 1)
+            if (position > Length + 1 || position < 1)
             {
-                throw new InvalidOperationException("List overflow");
+                throw new InvalidOperationException("Invalid position");
+            }
+            var newElement = new Node(value);
+            if (position == 1)
+            {
+                newElement.Next = Head;
+                Head = newElement;
+                ++Length;
             }
             else
             {
-                var newElement = new Node(value, position);
-                if (position == 1)
+                var temp = Head;
+                for (int i = 1; i < position - 1; ++i)
                 {
-                    newElement.Next = head;
-                    head = newElement;
-                    ++Length;
-                    Renumbering();
-                }
-                else
-                {
-                    var temp = head;
-                    for (int i = 1; i < position - 1; ++i)
+                    if (temp.Next != null)
                     {
-                        if (temp.Next != null)
-                        {
-                            temp = temp.Next;
-                        }
+                        temp = temp.Next;
                     }
-                    newElement.Next = temp.Next;
-                    temp.Next = newElement;
-                    ++Length;
-                    Renumbering();
                 }
+                newElement.Next = temp.Next;
+                temp.Next = newElement;
+                ++Length;
             }
         }
 
@@ -166,67 +137,61 @@ namespace _3._2
             {
                 throw new InvalidOperationException("List is empty");
             }
-            else if (!IsContainedByPosition(position))
+            if (!IsContained(position))
             {
-                throw new InvalidOperationException("List overflow");
+                throw new InvalidOperationException("Invalid position");
             }
-            else
+            if (position == 1)
             {
-                if (position == 1)
+                if (Length == 1)
                 {
-                    if (Length == 1)
-                    {
-                        head = null;
-                    }
-                    else
-                    {
-                        head = head.Next;
-                    }
+                    Head = null;
                 }
                 else
                 {
-                    var temp = head;
-                    for (int i = 1; i < position - 1; ++i)
-                    {
-                        temp = temp.Next;
-                    }
-                    if (position == Length)
-                    {
-                        temp.Next = null;
-                    }
-                    else
-                    {
-                        temp.Next = temp.Next.Next;
-                    }
+                    Head = Head.Next;
                 }
-                --Length;
-                Renumbering();
             }
+            else
+            {
+                var temp = Head;
+                for (int i = 1; i < position - 1; ++i)
+                {
+                    temp = temp.Next;
+                }
+                if (position == Length)
+                {
+                    temp.Next = null;
+                }
+                else
+                {
+                    temp.Next = temp.Next.Next;
+                }
+            }
+            --Length;
         }
 
         /// <summary>
         /// Gets the value of the element in the list by its' position
         /// </summary>
         /// <param name="position">Position by which value is searched</param>
-        public void GetValue(int position)
+        public string GetValue(int position)
         {
             if (IsEmpty)
             {
                 throw new InvalidOperationException("List is empty");
             }
-            else if (!IsContainedByPosition(position))
+            if (!IsContained(position))
             {
-                throw new InvalidOperationException("List overflow");
+                throw new InvalidOperationException("Invalid position");
             }
-            else
+            var temp = Head;
+            int currentPosition;
+            for (currentPosition = 1; currentPosition < position; ++currentPosition)
             {
-                var temp = head;
-                for (int i = 1; i < position; ++i)
-                {
-                    temp = temp.Next;
-                }
-                Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
+                temp = temp.Next;
             }
+            return temp.Value;
         }
 
         /// <summary>
@@ -240,22 +205,16 @@ namespace _3._2
             {
                 throw new InvalidOperationException("List is empty");
             }
-            else if (!IsContainedByPosition(position))
+            if (!IsContained(position))
             {
-                throw new InvalidOperationException("List overflow");
+                throw new InvalidOperationException("Invalid position");
             }
-            else
+            var temp = Head;
+            for (int i = 1; i < position; ++i)
             {
-                var temp = head;
-                for (int i = 1; i < position; ++i)
-                {
-                    temp = temp.Next;
-                }
-                temp.Value = value;
+                temp = temp.Next;
             }
+            temp.Value = value;
         }
-
-        private Node head;
-        public int Length { get; set; }
     }
 }
