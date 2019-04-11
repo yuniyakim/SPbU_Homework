@@ -56,7 +56,7 @@ namespace _6._1
         }
 
         [Test]
-        public void SubstractionTest()
+        public void SubtractionTest()
         {
             for (int i = 0; i <= 10; ++i)
             {
@@ -70,7 +70,7 @@ namespace _6._1
         }
 
         [Test]
-        public void SubstractionOfZeroTest()
+        public void SubtractionOfZeroTest()
         {
             for (int i = 0; i <= 10; ++i)
             {
@@ -84,7 +84,7 @@ namespace _6._1
         }
 
         [Test]
-        public void ManySubstractionTest()
+        public void ManySubtractionTest()
         {
             for (int i = -50000; i <= 42000; ++i)
             {
