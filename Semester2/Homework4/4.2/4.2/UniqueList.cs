@@ -12,13 +12,13 @@ namespace _4._2
         /// </summary>
         /// <param name="value">Value to add</param>
         /// <param name="position">Position on which the element must be added</param>
-        public override void Push(string value, int position)
+        public override void Add(string value, int position)
         {
             if (IsContainedByValue(value))
             {
                 throw new AddExistingException($"Element {value} already exists in the list");
             }
-            base.Push(value, position);
+            base.Add(value, position);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace _4._2
         /// <param name="position">Position by which deletion completes</param>
         public override void Delete(int position)
         {
-            if (!IsContainedByPosition(position))
+            if (!IsContained(position))
             {
                 throw new DeleteUnexistingException($"Element with position {position} doesn't exist in the list");
             }

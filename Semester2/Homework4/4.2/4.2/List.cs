@@ -7,30 +7,40 @@ namespace _4._2
     /// </summary>
     public class List
     {
+        private Node head = null;
+        private int Length { get; set; }
+
         /// <summary>
-        /// List's constructor
+        /// Node of the list
         /// </summary>
-        public List()
+        private class Node
         {
-            head = null;
-            Length = 0;
+            public string Value { get; set; }
+            public Node Next { get; set; }
+
+            /// <summary>
+            /// Node's constructor
+            /// </summary>
+            /// <param name="value">Node's value</param>
+            public Node(string value)
+            {
+                this.Value = value;
+                Next = null;
+            }
         }
 
         /// <summary>
         /// Checks if the list is empty
         /// </summary>
         /// <returns>True if the list is empty and false if it's not</returns>
-        public bool IsEmpty { get => Length == 0; }
+        public bool IsEmpty => Length == 0;
 
         /// <summary>
         /// Checks if the element with given position is contained in the list
         /// </summary>
         /// <param name="position">Position on which containment is checked</param>
         /// <returns>True if the element is contained and false if it's not</returns>
-        public bool IsContainedByPosition(int position)
-        {
-            return !(IsEmpty || position > Length || position < 1);
-        }
+        public bool IsContained(int position) => !(IsEmpty || position > Length || position < 1);
 
         /// <summary>
         /// Checks if the element with given value is contained in the list
@@ -87,7 +97,7 @@ namespace _4._2
                 var temp = head;
                 for (int i = 0; i < Length; ++i)
                 {
-                    Console.WriteLine($"Value: {temp.Value}, position: {temp.Position}");
+                    Console.WriteLine($"Value: {temp.Value}, position: {i}");
                     if (temp.Next != null)
                     {
                         temp = temp.Next;
@@ -97,62 +107,42 @@ namespace _4._2
         }
 
         /// <summary>
-        /// Renumbers positions of elements in the list
-        /// </summary>
-        private void Renumbering()
-        {
-            var temp = head;
-            for (int i = 1; i <= Length; ++i)
-            {
-                temp.Position = i;
-                if (temp.Next != null)
-                {
-                    temp = temp.Next;
-                }
-            }
-        }
-
-        /// <summary>
         /// Adds the element into the list
         /// </summary>
         /// <param name="value">Value to add</param>
         /// <param name="position">Position on which the element must be added</param>
-        public virtual void Push(string value, int position)
+        public virtual void Add(string value, int position)
         {
             if (IsEmpty)
             {
-                head = new Node(value, 1);
+                head = new Node(value);
                 ++Length;
+                return;
             }
-            else if (position > Length + 1 || position < 1)
+            if (position > Length + 1 || position < 1)
             {
-                throw new InvalidOperationException("List overflow");
+                throw new InvalidOperationException("Invalid position");
+            }
+            var newElement = new Node(value);
+            if (position == 1)
+            {
+                newElement.Next = head;
+                head = newElement;
+                ++Length;
             }
             else
             {
-                var newElement = new Node(value, position);
-                if (position == 1)
+                var temp = head;
+                for (int i = 1; i < position - 1; ++i)
                 {
-                    newElement.Next = head;
-                    head = newElement;
-                    ++Length;
-                    Renumbering();
-                }
-                else
-                {
-                    var temp = head;
-                    for (int i = 1; i < position - 1; ++i)
+                    if (temp.Next != null)
                     {
-                        if (temp.Next != null)
-                        {
-                            temp = temp.Next;
-                        }
+                        temp = temp.Next;
                     }
-                    newElement.Next = temp.Next;
-                    temp.Next = newElement;
-                    ++Length;
-                    Renumbering();
                 }
+                newElement.Next = temp.Next;
+                temp.Next = newElement;
+                ++Length;
             }
         }
 
@@ -166,46 +156,85 @@ namespace _4._2
             {
                 throw new InvalidOperationException("List is empty");
             }
-            else if (!IsContainedByPosition(position))
+            if (!IsContained(position))
             {
-                throw new InvalidOperationException("List overflow");
+                throw new InvalidOperationException("Invalid position");
             }
-            else
+            if (position == 1)
             {
-                if (position == 1)
+                if (Length == 1)
                 {
-                    if (Length == 1)
-                    {
-                        head = null;
-                    }
-                    else
-                    {
-                        head = head.Next;
-                    }
+                    head = null;
                 }
                 else
                 {
-                    var temp = head;
-                    for (int i = 1; i < position - 1; ++i)
-                    {
-                        temp = temp.Next;
-                    }
-                    if (position == Length)
-                    {
-                        temp.Next = null;
-                    }
-                    else
-                    {
-                        temp.Next = temp.Next.Next;
-                    }
+                    head = head.Next;
                 }
-                --Length;
-                Renumbering();
             }
+            else
+            {
+                var temp = head;
+                for (int i = 1; i < position - 1; ++i)
+                {
+                    temp = temp.Next;
+                }
+                if (position == Length)
+                {
+                    temp.Next = null;
+                }
+                else
+                {
+                    temp.Next = temp.Next.Next;
+                }
+            }
+            --Length;
         }
 
-        private Node head;
-        public int Length { get; set; }
+        /// <summary>
+        /// Gets the value of the element in the list by its' position
+        /// </summary>
+        /// <param name="position">Position by which value is searched</param>
+        public string GetValue(int position)
+        {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("List is empty");
+            }
+            if (!IsContained(position))
+            {
+                throw new InvalidOperationException("Invalid position");
+            }
+            var temp = head;
+            int currentPosition;
+            for (currentPosition = 1; currentPosition < position; ++currentPosition)
+            {
+                temp = temp.Next;
+            }
+            return temp.Value;
+        }
+
+        /// <summary>
+        /// Sets the element's value to given in the list by its' position
+        /// </summary>
+        /// <param name="value">Value that must replace the current</param>
+        /// <param name="position">Position by which the needed element is searched</param>
+        public void SetValue(string value, int position)
+        {
+            if (IsEmpty)
+            {
+                throw new InvalidOperationException("List is empty");
+            }
+            if (!IsContained(position))
+            {
+                throw new InvalidOperationException("Invalid position");
+            }
+            var temp = head;
+            for (int i = 1; i < position; ++i)
+            {
+                temp = temp.Next;
+            }
+            temp.Value = value;
+        }
     }
 }
 

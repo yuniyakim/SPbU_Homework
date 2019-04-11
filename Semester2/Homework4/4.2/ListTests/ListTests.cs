@@ -5,6 +5,8 @@ namespace _4._2
 {
     public class ListTests
     {
+        private List list;
+
         [SetUp]
         public void Initialize()
         {
@@ -18,35 +20,35 @@ namespace _4._2
         }
 
         [Test]
-        public void PushTest()
+        public void AddTest()
         {
-            list.Push("A very looooooooooooong string with many words and letters", 1245);
+            list.Add("A very looooooooooooong string with many words and letters", 1245);
             Assert.IsFalse(list.IsEmpty);
         }
 
         [Test]
         public void DeleteTest()
         {
-            list.Push("Delete test string", -3012);
+            list.Add("Delete test string", -3012);
             list.Delete(1);
             Assert.IsTrue(list.IsEmpty);
         }
 
         [Test]
-        public void ManyElementsPushTest()
+        public void ManyElementsAddTest()
         {
             for (int i = -10000; i < 10000; ++i)
             {
-                list.Push("Many elements push test", 1);
+                list.Add("Many elements Add test", 1);
             }
         }
 
         [Test]
-        public void ManyPushAndDeleteTest()
+        public void ManyAddAndDeleteTest()
         {
             for (int i = -10000; i < 10000; ++i)
             {
-                list.Push(i.ToString(), i + 10000);
+                list.Add(i.ToString(), i + 10000);
             }
             for (int i = 10000; i > 10000; --i)
             {
@@ -55,138 +57,115 @@ namespace _4._2
         }
 
         [Test]
-        public void PushOverflowListTest()
+        public void AddOverflowListTest()
         {
-            list.Push("Number1", 1);
-            Assert.Throws<InvalidOperationException>(delegate ()
-            {
-                list.Push("Number3", 3);
-            });
+            list.Add("Number1", 1);
+            Assert.Throws<InvalidOperationException>(() => list.Add("Number3", 3));
         }
 
         [Test]
         public void DeleteFromEmptyListTest()
         {
-            Assert.Throws<InvalidOperationException>(delegate ()
-            {
-                list.Delete(542);
-            });
+            Assert.Throws<InvalidOperationException>(() => list.Delete(542));
         }
 
         [Test]
         public void DeleteOverflowListTest()
         {
-            list.Push("Number1", 1);
-            list.Push("Number3", 2);
-            list.Push("Number2", 2);
-            Assert.Throws<InvalidOperationException>(delegate ()
-            {
-                list.Delete(-8);
-            });
+            list.Add("Number1", 1);
+            list.Add("Number3", 2);
+            list.Add("Number2", 2);
+            Assert.Throws<InvalidOperationException>(() => list.Delete(-8));
         }
 
         [Test]
         public void IsContainedByPositionListTest()
         {
-            list.Push("One", 1);
-            list.Push("Two", 1);
-            list.Push("Three", 2);
-            list.Push("Four", 4);
-            Assert.IsTrue(list.IsContainedByPosition(3));
+            list.Add("One", 1);
+            list.Add("Two", 1);
+            list.Add("Three", 2);
+            list.Add("Four", 4);
+            Assert.IsTrue(list.IsContained(3));
         }
 
         [Test]
         public void IsNotContainedByPositionListTest()
         {
-            list.Push("One", 1);
-            list.Push("Two", 1);
-            list.Push("Three", 1);
-            list.Push("Four", 2);
-            Assert.IsFalse(list.IsContainedByPosition(-8));
+            list.Add("One", 1);
+            list.Add("Two", 1);
+            list.Add("Three", 1);
+            list.Add("Four", 2);
+            Assert.IsFalse(list.IsContained(-8));
         }
 
         [Test]
         public void IsContainedByValueListTest()
         {
-            list.Push("One", 1);
-            list.Push("Two", 2);
-            list.Push("Three", 1);
-            list.Push("Four", 1);
+            list.Add("One", 1);
+            list.Add("Two", 2);
+            list.Add("Three", 1);
+            list.Add("Four", 1);
             Assert.IsTrue(list.IsContainedByValue("Four"));
         }
 
         [Test]
         public void IsNotContainedByValueListTest()
         {
-            list.Push("One", 1);
-            list.Push("Two", 1);
-            list.Push("Three", 3);
-            list.Push("Four", 1);
+            list.Add("One", 1);
+            list.Add("Two", 1);
+            list.Add("Three", 3);
+            list.Add("Four", 1);
             Assert.IsFalse(list.IsContainedByValue("Five"));
         }
 
         [Test]
         public void PositionByValueTest()
         {
-            list.Push("2", 1);
-            list.Push("3", 2);
-            list.Push("1", 1);
-            list.Push("0", 1);
+            list.Add("2", 1);
+            list.Add("3", 2);
+            list.Add("1", 1);
+            list.Add("0", 1);
             Assert.AreEqual(3, list.PositionByValue("2"));
         }
 
         [Test]
         public void ZeroPositionByValueTest()
         {
-            list.Push("2", 1);
-            list.Push("3", 2);
-            list.Push("1", 1);
-            list.Push("0", 1);
+            list.Add("2", 1);
+            list.Add("3", 2);
+            list.Add("1", 1);
+            list.Add("0", 1);
             Assert.AreEqual(0, list.PositionByValue("5"));
         }
 
         [Test]
         public void GetValueFromEmptyListTest()
         {
-            Assert.Throws<InvalidOperationException>(delegate ()
-            {
-                list.GetValue(0);
-            });
+            Assert.Throws<InvalidOperationException>(() => list.GetValue(0));
         }
 
         [Test]
         public void GetValueOverflowListTest()
         {
-            list.Push("Number2", 1);
-            list.Push("Number3", 2);
-            list.Push("Number1", 1);
-            Assert.Throws<InvalidOperationException>(delegate ()
-            {
-                list.GetValue(-1356);
-            });
+            list.Add("Number2", 1);
+            list.Add("Number3", 2);
+            list.Add("Number1", 1);
+            Assert.Throws<InvalidOperationException>(() => list.GetValue(-1356));
         }
 
         [Test]
         public void SetValueInEmptyListTest()
         {
-            Assert.Throws<InvalidOperationException>(delegate ()
-            {
-                list.SetValue("Set value in empty list test", 1);
-            });
+            Assert.Throws<InvalidOperationException>(() => list.SetValue("Set value in empty list test", 1));
         }
 
         [Test]
         public void SetValueOverflowListTest()
         {
-            list.Push("22222", 1);
-            list.Push("33333", 2);
-            list.Push("11111", 1);
-            Assert.Throws<InvalidOperationException>(delegate ()
-            {
-                list.SetValue("Set value overflow list test", 0);
-            });
+            list.Add("22222", 1);
+            list.Add("33333", 2);
+            list.Add("11111", 1);
+            Assert.Throws<InvalidOperationException>(() => list.SetValue("Set value overflow list test", 0));
         }
-
-        private List list;
     }
 }

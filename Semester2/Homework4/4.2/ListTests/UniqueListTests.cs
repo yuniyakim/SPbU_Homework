@@ -5,6 +5,8 @@ namespace _4._2
 {
     public class UniqueListTests
     {
+        private UniqueList list;
+
         [SetUp]
         public void Initialize()
         {
@@ -20,47 +22,36 @@ namespace _4._2
         [Test]
         public void PushTest()
         {
-            list.Push("A very looooooooooooong string with many words and letters", 12345);
+            list.Add("A very looooooooooooong string with many words and letters", 12345);
             Assert.IsFalse(list.IsEmpty);
         }
 
         [Test]
         public void DeleteTest()
         {
-            list.Push("Delete test string", -3012);
+            list.Add("Delete test string", -3012);
             list.Delete(1);
             Assert.IsTrue(list.IsEmpty);
         }
 
         [Test]
-        public void PushExistingElementTest()
+        public void AddExistingElementTest()
         {
-            list.Push("Push existing element test string", 1);
-            Assert.Throws<AddExistingException>(delegate ()
-            {
-                list.Push("Push existing element test string", 2);
-            });
+            list.Add("Add existing element test string", 1);
+            Assert.Throws<AddExistingException>(() => list.Add("Add existing element test string", 2));
         }
 
         [Test]
         public void DeleteUnexistingElementFromEmptyListTest()
         {
-            Assert.Throws<DeleteUnexistingException>(delegate ()
-            {
-                list.Delete(48);
-            });
+            Assert.Throws<DeleteUnexistingException>(() => list.Delete(48));
         }
 
         [Test]
         public void DeleteUnexistingElementTest()
         {
-            list.Push("Delete unexisting element test string", 1);
-            Assert.Throws<DeleteUnexistingException>(delegate ()
-            {
-                list.Delete(2);
-            });
+            list.Add("Delete unexisting element test string", 1);
+            Assert.Throws<DeleteUnexistingException>(() => list.Delete(2));
         }
-
-        private UniqueList list;
     }
 }
