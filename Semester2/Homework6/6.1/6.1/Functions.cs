@@ -35,7 +35,7 @@ namespace _6._1
             var newList = new List<int>();
             foreach (var element in list)
             {
-                if(func(element))
+                if (func(element))
                 {
                     newList.Add(element);
                 }
