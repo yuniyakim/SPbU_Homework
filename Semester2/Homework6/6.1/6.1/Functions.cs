@@ -13,7 +13,7 @@ namespace _6._1
         /// </summary>
         /// <param name="list">Given list</param>
         /// <param name="func">Given function</param>
-        /// <returns>A list with elements made with given function</returns>
+        /// <returns>A list with elements calculated` with given function</returns>
         public static List<int> Map(List<int> list, Func<int, int> func)
         {
             var newList = new List<int>();
