@@ -1,0 +1,13 @@
+image: Visual Studio 2017
+
+before_build:
+  - nuget restore Semester2/Homework6/6.1/6.1.sln
+  - choco install opencover.portable
+  - choco install codecov
+
+build:
+  project: Semester2/Homework6/6.1/6.1.sln
+  verbosity: minimal
+
+test_script:
+  - dotnet test Semester2/Homework6/6.1/6.1.sln
