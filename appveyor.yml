@@ -2,6 +2,8 @@ image: Visual Studio 2017
 
 before_build:
   - nuget restore Semester2/Homework3/3.2/3.2.sln
+  - choco install opencover.portable
+  - choco install codecov
 
 build:
   project: Semester2/Homework3/3.2/3.2.sln
