@@ -11,3 +11,5 @@ build:
 
 test_script:
   - dotnet test Semester2/Homework3/3.2/3.2.sln
+  - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\3.2Tests\bin\Debug\3.2.Tests.dll -noshadow" -filter:"+[3.2*]* -[3.2.Tests*]*" -output:".\MyProject_coverage.xml"
+  - codecov -f "Project_coverage.xml
