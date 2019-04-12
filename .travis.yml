@@ -16,5 +16,5 @@ script:
   - dotnet test Semester2/Homework3/3.2/3.2.Tests/3.2.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
 after_script:
-  - make coverage
+  - make 3.2
   - bash <(curl -s https://codecov.io/bash)
