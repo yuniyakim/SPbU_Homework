@@ -12,7 +12,7 @@ env:
 
 script:
   - dotnet build Semester2/Homework3/3.2/3.2.sln
-  - dotnet test -c Release --no-build Semester2/Homework3/3.2/3.2.Tests/3.2.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  - dotnet test Semester2/Homework3/3.2/3.2.Tests/3.2.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
 after_script:
   - make coverage
