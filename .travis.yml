@@ -1,5 +1,6 @@
 language: csharp
 solution: Semester2/Homework3/3.2/3.2.sln 
+mono: none
 sudo: false
 dotnet: 2.1
 
