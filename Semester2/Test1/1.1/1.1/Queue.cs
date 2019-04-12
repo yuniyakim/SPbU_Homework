@@ -135,7 +135,6 @@ namespace _1._1
             current.Next = current.Next.Next;
             return value;
         }
-
     }
 }
 
