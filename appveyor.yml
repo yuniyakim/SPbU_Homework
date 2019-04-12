@@ -2,14 +2,11 @@ image: Visual Studio 2017
 
 before_build:
   - nuget restore Semester2/Homework3/3.2/3.2.sln
-  - choco install opencover.portable
-  - choco install codecov
-
 build:
   project: Semester2/Homework3/3.2/3.2.sln
   verbosity: minimal
 
 test_script:
   - dotnet test Semester2/Homework3/3.2/3.2.sln
-  - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\3.2Tests\bin\Debug\3.2.Tests.dll -noshadow" -filter:"+[3.2*]* -[3.2.Tests*]*" -output:".\MyProject_coverage.xml"
-  - codecov -f "Project_coverage.xml
+  - .\packages\<Semester2/Homework3/3.2/3.2.sln>\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\MyUnitTests\bin\Debug\3.2.Tests.dll -noshadow" -filter:"+[3.2*]* -[*]*" -output:".\Project_coverage.xml"
+  - .\packages\<Semester2/Homework3/3.2/3.2.sln>\codecov.exe -f "Project_coverage.xml"
