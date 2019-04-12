@@ -1,21 +1,18 @@
 language: csharp
 solution: Semester2/Homework3/3.2/3.2.sln 
-sudo: required
+sudo: false
 dotnet: 2.1
 
 before_build:
   - nuget restore Semester2/Homework3/3.2/3.2.sln
-  - wget --no-check-certificate https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
-install:
-  - mono ./nuget.exe install NUnit.Runners -Version 3.0.1 -OutputDirectory testrunner
-
-build:
-  - dotnet build Semester2/Homework3/3.2/3.2.sln
+env:
+    global:
+        - DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
 script:
-  - dotnet test Semester2/Homework3/3.2/3.2.sln
-  - make compile test
+  - dotnet build Semester2/Homework3/3.2/3.2.sln
+  - dotnet test -c Release --no-build Semester2/Homework3/3.2/3.2.Tests/3.2.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
 after_script:
   - make coverage
