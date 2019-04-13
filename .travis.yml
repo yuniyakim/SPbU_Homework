@@ -1,6 +1,5 @@
 language: csharp
-solution: Semester2/Homework3/3.2/3.2.sln 
-mono: none
+solution: Semester2/Homework3/3.2/3.2.sln
 sudo: false
 dotnet: 2.1
 
@@ -16,5 +15,5 @@ script:
   - dotnet test Semester2/Homework3/3.2/3.2.Tests/3.2.Tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
 after_script:
-  - make 3.2
-  - bash <(curl -s https://codecov.io/bash)
+  - mono ./tools/SharpCover/SharpCover.exe check
+  - bash <(curl -s https://codecov.io/bash) -t 790fed63-e3aa-4964-a215-c9baec799df1
