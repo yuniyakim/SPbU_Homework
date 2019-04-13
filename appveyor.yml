@@ -11,5 +11,5 @@ build:
 
 test_script:
   - dotnet test Semester2/Homework3/3.2/3.2.sln
-  - OpenCover.Console.exe -register:administrator -target:"c:\Program Files\dotnet\dotnet.exe" -targetargs:"Semester2/Homework3/3.2/3.2.Tests/bin/Debug/netcoreapp2.1/3.2.Tests.dll -noshadow" -filter:"+[3.2*]* -[3.2.Tests*]*" -output:"Semester2/Homework3/3.2/3.2_coverage.xml"
+  - OpenCover.Console.exe -register:administrator -target:"c:\Program Files\dotnet\dotnet.exe" -targetargs:"Semester2/Homework3/3.2/3.2.Tests/bin/Debug/netcoreapp2.1/3.2.Tests.dll -output:"Semester2/Homework3/3.2/3.2_coverage.xml" -oldStyle
   - codecov -f "3.2_coverage.xml" -t 790fed63-e3aa-4964-a215-c9baec799df1
