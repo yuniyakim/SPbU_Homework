@@ -6,11 +6,11 @@ namespace _6._2
     /// <summary>
     /// Map's class
     /// </summary>
-    public class Map
+    public class GameMap
     {
-        private int height = 0;
-        private int width = 0;
-        private char[,] map = { };
+        public int Height { get; private set; } = 0;
+        public int Width { get; private set; } = 0;
+        public char[,] Map { get; private set; } = { };
 
         /// <summary>
         /// Reads a map from a file and fills it with data
@@ -34,26 +34,26 @@ namespace _6._2
 
             foreach (var symbol in str)
             {
-                ++width;
+                ++Width;
                 if (symbol == '\n')
                 {
                     break;
                 }
             }
-            width -= 2;
-            height = (str.Length + 2) / (width + 2);
+            Width -= 2;
+            Height = (str.Length + 2) / (Width + 2);
 
             var current = 0;
-            map = new char[height, width];
-            for (int i = 0; i < height; ++i)
+            Map = new char[Height, Width];
+            for (int i = 0; i < Height; ++i)
             {
-                for (int j = 0; j < width; ++j)
+                for (int j = 0; j < Width; ++j)
                 {
                     if (str[current] != '#' && str[current] != '.')
                     {
                         throw new InvalidInputSymbolException("Invalid symbol in input file");
                     }
-                    map[i, j] = str[current];
+                    Map[i, j] = str[current];
                     ++current;
                 }
                 current += 2;

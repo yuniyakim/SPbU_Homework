@@ -13,7 +13,7 @@ namespace _6._2
             eventLoop.RightHandler += game.Right;
             eventLoop.LeftHandler += game.Left;
             eventLoop.Move();
-            var map = new Map();
+            var map = new GameMap();
             map.ReadAndFill();
         }
     }
