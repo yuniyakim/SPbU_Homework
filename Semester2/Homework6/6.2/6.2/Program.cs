@@ -7,14 +7,23 @@ namespace _6._2
         static void Main()
         {
             var eventLoop = new EventLoop();
-            var game = new Game();
+            var map = new GameMap();
+            map.ReadAndFill();
+            Console.WriteLine("Enter starting coordinates of your player");
+            Console.WriteLine("x = ");
+            var x = int.Parse(Console.ReadLine());
+            Console.WriteLine("y = ");
+            var y = int.Parse(Console.ReadLine());
+            if (x < 0 || y < 0 || map.Map[x, y] == '#')
+            {
+                throw new InvalidInitialCoordinatesException("Ivalid coordinates were entered");
+            }
+            var game = new Game(x, y, map);
             eventLoop.UpHandler += game.Up;
             eventLoop.DownHandler += game.Down;
             eventLoop.RightHandler += game.Right;
             eventLoop.LeftHandler += game.Left;
             eventLoop.Move();
-            var map = new GameMap();
-            map.ReadAndFill();
         }
     }
 }

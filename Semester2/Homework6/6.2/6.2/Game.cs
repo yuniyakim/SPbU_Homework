@@ -11,6 +11,19 @@ namespace _6._2
         private GameMap map;
 
         /// <summary>
+        /// Game's constructor
+        /// </summary>
+        /// <param name="initialX">Initial x coordinate</param>
+        /// <param name="initialY">Initial y coordinate</param>
+        /// <param name="map">Game's map</param>
+        public Game(int initialX, int initialY, GameMap map)
+        {
+            this.map = map;
+            player.X = initialX;
+            player.Y = initialY;
+        }
+
+        /// <summary>
         /// Player's class
         /// </summary>
         private class Player
@@ -18,6 +31,8 @@ namespace _6._2
             public int X { get; set; }
             public int Y { get; set; }
         }
+
+
 
         public void Up(object sender, EventArgs args)
         {
