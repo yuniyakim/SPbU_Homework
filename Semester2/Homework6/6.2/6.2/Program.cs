@@ -9,6 +9,7 @@ namespace _6._2
             var eventLoop = new EventLoop();
             var map = new GameMap();
             map.ReadAndFill();
+            var game = new Game(map);
             Console.WriteLine("Enter starting coordinates of your player");
             Console.WriteLine("x = ");
             var x = int.Parse(Console.ReadLine());
@@ -18,7 +19,7 @@ namespace _6._2
             {
                 throw new InvalidInitialCoordinatesException("Ivalid coordinates were entered");
             }
-            var game = new Game(x, y, map);
+            game.SetInitialCoordinates(x, y);
             eventLoop.UpHandler += game.Up;
             eventLoop.DownHandler += game.Down;
             eventLoop.RightHandler += game.Right;

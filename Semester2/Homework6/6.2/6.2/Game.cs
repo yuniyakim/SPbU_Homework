@@ -13,12 +13,19 @@ namespace _6._2
         /// <summary>
         /// Game's constructor
         /// </summary>
-        /// <param name="initialX">Initial x coordinate</param>
-        /// <param name="initialY">Initial y coordinate</param>
         /// <param name="map">Game's map</param>
-        public Game(int initialX, int initialY, GameMap map)
+        public Game(GameMap map)
         {
             this.map = map;
+        }
+
+        /// <summary>
+        /// Sets starting coordinates of a player
+        /// </summary>
+        /// <param name="initialX">Initial x coordinate</param>
+        /// <param name="initialY">Initial y coordinate</param>
+        public void SetInitialCoordinates(int initialX, int initialY)
+        {
             player.X = initialX;
             player.Y = initialY;
         }
