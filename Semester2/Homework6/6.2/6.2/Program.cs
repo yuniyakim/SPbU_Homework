@@ -16,17 +16,13 @@ namespace _6._2
             Console.WriteLine("x = ");
             if (!int.TryParse(Console.ReadLine(), out int x))
             {
-                throw new InvalidInitialCoordinatesException("Ivalid coordinates were entered");
+                throw new InvalidInitialCoordinatesException("Ivalid coordinates");
             }
             Console.WriteLine("");
             Console.Write("y = ");
             if (!int.TryParse(Console.ReadLine(), out int y))
             {
-                throw new InvalidInitialCoordinatesException("Ivalid coordinates were entered");
-            }
-            if (x < 0 || y < 0 || map.Field[x, y] == '#')
-            {
-                throw new InvalidInitialCoordinatesException("Ivalid coordinates were entered");
+                throw new InvalidInitialCoordinatesException("Ivalid coordinates");
             }
             game.SetInitialCoordinates(x, y);
             eventLoop.UpHandler += game.Up;

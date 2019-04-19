@@ -20,12 +20,16 @@ namespace _6._2
         }
 
         /// <summary>
-        /// Sets starting coordinates of a player
+        /// Sets initial coordinates of a player
         /// </summary>
         /// <param name="initialX">Initial x coordinate</param>
         /// <param name="initialY">Initial y coordinate</param>
         public void SetInitialCoordinates(int initialX, int initialY)
         {
+            if (initialX < 0 || initialY < 0 || initialY < map.Height || initialX < map.Width || map.Field[initialX, initialY] == '#')
+            {
+                throw new InvalidInitialCoordinatesException("Ivalid coordinates");
+            }
             player.X = initialX;
             player.Y = initialY;
         }
@@ -38,8 +42,6 @@ namespace _6._2
             public int X { get; set; }
             public int Y { get; set; }
         }
-
-
 
         public void Up(object sender, EventArgs args)
         {
