@@ -8,13 +8,13 @@ namespace _6._2
     public class Game
     {
         private Player player;
-        private GameMap map;
+        private Map map;
 
         /// <summary>
         /// Game's constructor
         /// </summary>
         /// <param name="map">Game's map</param>
-        public Game(GameMap map)
+        public Game(Map map)
         {
             this.map = map;
         }

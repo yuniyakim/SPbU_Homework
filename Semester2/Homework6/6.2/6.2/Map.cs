@@ -6,18 +6,18 @@ namespace _6._2
     /// <summary>
     /// Map's class
     /// </summary>
-    public class GameMap
+    public class Map
     {
         public int Height { get; private set; } = 0;
         public int Width { get; private set; } = 0;
-        public char[,] Map { get; private set; } = { };
+        public char[,] Field { get; private set; } = { };
 
         /// <summary>
         /// Reads a map from a file and fills it with data
         /// </summary>
-        public void ReadAndFill()
+        /// <param name="path">Path to the file</param>
+        public void ReadAndFill(string path)
         {
-            var path = Directory.GetCurrentDirectory() + "../../../../6.2.txt";
             var str = "";
 
             try
@@ -44,7 +44,7 @@ namespace _6._2
             Height = (str.Length + 2) / (Width + 2);
 
             var current = 0;
-            Map = new char[Height, Width];
+            Field = new char[Height, Width];
             for (int i = 0; i < Height; ++i)
             {
                 for (int j = 0; j < Width; ++j)
@@ -53,7 +53,7 @@ namespace _6._2
                     {
                         throw new InvalidInputSymbolException("Invalid symbol in input file");
                     }
-                    Map[i, j] = str[current];
+                    Field[i, j] = str[current];
                     ++current;
                 }
                 current += 2;

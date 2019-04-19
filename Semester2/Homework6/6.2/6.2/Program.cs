@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace _6._2
 {
@@ -6,16 +7,24 @@ namespace _6._2
     {
         static void Main()
         {
+            var path = Directory.GetCurrentDirectory() + "../../../../6.2.txt";
             var eventLoop = new EventLoop();
-            var map = new GameMap();
-            map.ReadAndFill();
+            var map = new Map();
+            map.ReadAndFill(path);
             var game = new Game(map);
             Console.WriteLine("Enter starting coordinates of your player");
             Console.WriteLine("x = ");
-            var x = int.Parse(Console.ReadLine());
-            Console.WriteLine("y = ");
-            var y = int.Parse(Console.ReadLine());
-            if (x < 0 || y < 0 || map.Map[x, y] == '#')
+            if (!int.TryParse(Console.ReadLine(), out int x))
+            {
+                throw new InvalidInitialCoordinatesException("Ivalid coordinates were entered");
+            }
+            Console.WriteLine("");
+            Console.Write("y = ");
+            if (!int.TryParse(Console.ReadLine(), out int y))
+            {
+                throw new InvalidInitialCoordinatesException("Ivalid coordinates were entered");
+            }
+            if (x < 0 || y < 0 || map.Field[x, y] == '#')
             {
                 throw new InvalidInitialCoordinatesException("Ivalid coordinates were entered");
             }
