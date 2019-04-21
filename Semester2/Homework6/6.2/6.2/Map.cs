@@ -59,5 +59,17 @@ namespace _6._2
                 current += 2;
             }
         }
+
+        public void Print()
+        {
+            for (int i = 0; i < Height; ++i)
+            {
+                for (int j = 0; j < Width; ++j)
+                {
+                    Console.Write(Field[i, j]);
+                }
+                Console.Write("\n");
+            }
+        }
     }
 }

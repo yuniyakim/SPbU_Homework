@@ -12,19 +12,19 @@ namespace _6._2
             var map = new Map();
             map.ReadAndFill(path);
             var game = new Game(map);
+            Console.WriteLine("Press ctrl + C to exit");
             Console.WriteLine("Enter starting coordinates of your player");
-            Console.WriteLine("x = ");
+            Console.Write("x = ");
             if (!int.TryParse(Console.ReadLine(), out int x))
             {
-                throw new InvalidInitialCoordinatesException("Ivalid coordinates");
+                throw new InvalidInputException("Ivalid input");
             }
-            Console.WriteLine("");
             Console.Write("y = ");
             if (!int.TryParse(Console.ReadLine(), out int y))
             {
-                throw new InvalidInitialCoordinatesException("Ivalid coordinates");
+                throw new InvalidInputException("Ivalid input");
             }
-            game.SetInitialCoordinates(x, y);
+            game.SetInitialCoordinates(x - 1, y - 1);
             eventLoop.UpHandler += game.Up;
             eventLoop.DownHandler += game.Down;
             eventLoop.RightHandler += game.Right;
