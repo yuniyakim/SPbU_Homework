@@ -26,7 +26,7 @@ namespace _6._2
         /// <param name="initialY">Initial y coordinate</param>
         public void SetInitialCoordinates(int initialX, int initialY)
         {
-            if (initialX < 0 || initialY < 0 || initialY > Field.Height || initialX > Field.Width || Field.Field[initialX, initialY] == '#')
+            if (initialX < 0 || initialY < 0 || initialY > Field.Height || initialX > Field.Width || Field.Field[initialY, initialX] == '#')
             {
                 throw new InvalidInitialCoordinatesException("Ivalid coordinates");
             }
@@ -70,24 +70,45 @@ namespace _6._2
                 throw new InvalidMoveException();
             }
             Field.Field[player.Y, player.X] = '.';
-            player.SetY(player.Y + 1, Field);
+            player.SetY(player.Y - 1, Field);
             Field.Field[player.Y, player.X] = '@';
             Console.SetCursorPosition(player.X, player.Y);
         }
 
         public void Down(object sender, EventArgs args)
         {
-
+            if (Field.Field[player.Y - 1, player.X] == '#')
+            {
+                throw new InvalidMoveException();
+            }
+            Field.Field[player.Y, player.X] = '.';
+            player.SetY(player.Y + 1, Field);
+            Field.Field[player.Y, player.X] = '@';
+            Console.SetCursorPosition(player.X, player.Y);
         }
 
         public void Right(object sender, EventArgs args)
         {
-
+            if (Field.Field[player.Y, player.X + 1] == '#')
+            {
+                throw new InvalidMoveException();
+            }
+            Field.Field[player.Y, player.X] = '.';
+            player.SetX(player.X + 1, Field);
+            Field.Field[player.Y, player.X] = '@';
+            Console.SetCursorPosition(player.X, player.Y);
         }
 
         public void Left(object sender, EventArgs args)
         {
-
+            if (Field.Field[player.Y, player.X - 1] == '#')
+            {
+                throw new InvalidMoveException();
+            }
+            Field.Field[player.Y, player.X] = '.';
+            player.SetX(player.X - 1, Field);
+            Field.Field[player.Y, player.X] = '@';
+            Console.SetCursorPosition(player.X, player.Y);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace _6._2
             var map = new Map();
             map.ReadAndFill(path);
             var game = new Game(map);
+            map.Print();
             Console.WriteLine("Press ctrl + C to exit");
             Console.WriteLine("Enter starting coordinates of your player");
             Console.Write("x = ");
@@ -30,6 +31,7 @@ namespace _6._2
             eventLoop.RightHandler += game.Right;
             eventLoop.LeftHandler += game.Left;
             eventLoop.Move();
+            map.Print();
         }
     }
 }
