@@ -18,12 +18,12 @@ namespace _6._2
             Console.Write("x = ");
             if (!int.TryParse(Console.ReadLine(), out int x))
             {
-                throw new InvalidInputException("Ivalid input");
+                throw new InvalidInputException();
             }
             Console.Write("y = ");
             if (!int.TryParse(Console.ReadLine(), out int y))
             {
-                throw new InvalidInputException("Ivalid input");
+                throw new InvalidInputException();
             }
             game.SetInitialCoordinates(x - 1, y - 1);
             eventLoop.UpHandler += game.Up;
@@ -31,7 +31,6 @@ namespace _6._2
             eventLoop.RightHandler += game.Right;
             eventLoop.LeftHandler += game.Left;
             eventLoop.Move();
-            map.Print();
         }
     }
 }

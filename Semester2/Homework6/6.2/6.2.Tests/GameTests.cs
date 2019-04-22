@@ -34,12 +34,5 @@ namespace _6._2
         {
             Assert.Throws<InvalidInitialCoordinatesException>(() => game.SetInitialCoordinates(4, 5));
         }
-
-        [Test]
-        public void SetInitialCoordinatesTest()
-        {
-            game.SetInitialCoordinates(2, 4);
-            Assert.AreEqual(map.Field[4, 2], '@');
-        }
     }
 }

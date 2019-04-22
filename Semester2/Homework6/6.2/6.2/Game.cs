@@ -28,12 +28,13 @@ namespace _6._2
         {
             if (initialX < 0 || initialY < 0 || initialY > Field.Height || initialX > Field.Width || Field.Field[initialY, initialX] == '#')
             {
-                throw new InvalidInitialCoordinatesException("Ivalid coordinates");
+                throw new InvalidInitialCoordinatesException();
             }
             player = new Player();
             player.SetX(initialX, Field);
             player.SetY(initialY, Field);
-            Field.Field[initialY, initialX] = '@';
+            Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('@');
         }
 
         /// <summary>
@@ -44,71 +45,97 @@ namespace _6._2
             public int X { get; private set; }
             public int Y { get; private set; }
 
+            /// <summary>
+            /// Sets player's x coordiate
+            /// </summary>
+            /// <param name="x">X coordinate</param>
+            /// <param name="field">Player's map</param>
             public void SetX(int x, Map field)
             {
                 if (x < 0 || x > field.Width)
                 {
-                    throw new InvalidInitialCoordinatesException("Ivalid coordinates");
+                    throw new InvalidInitialCoordinatesException();
                 }
                 X = x;
             }
 
+            /// <summary>
+            /// Sets player's y coordiate
+            /// </summary>
+            /// <param name="y">Y coordinate</param>
+            /// <param name="field">Player's map</param>
             public void SetY(int y, Map field)
             {
                 if (y < 0 || y > field.Width)
                 {
-                    throw new InvalidInitialCoordinatesException("Ivalid coordinates");
+                    throw new InvalidInitialCoordinatesException();
                 }
                 Y = y;
             }
         }
 
+        /// <summary>
+        /// Going up
+        /// </summary>
         public void Up(object sender, EventArgs args)
-        {
-            if (Field.Field[player.Y + 1, player.X] == '#')
-            {
-                throw new InvalidMoveException();
-            }
-            Field.Field[player.Y, player.X] = '.';
-            player.SetY(player.Y - 1, Field);
-            Field.Field[player.Y, player.X] = '@';
-            Console.SetCursorPosition(player.X, player.Y);
-        }
-
-        public void Down(object sender, EventArgs args)
         {
             if (Field.Field[player.Y - 1, player.X] == '#')
             {
                 throw new InvalidMoveException();
             }
-            Field.Field[player.Y, player.X] = '.';
-            player.SetY(player.Y + 1, Field);
-            Field.Field[player.Y, player.X] = '@';
             Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('.');
+            player.SetY(player.Y - 1, Field);
+            Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('@');
         }
 
+        /// <summary>
+        /// Going down
+        /// </summary>
+        public void Down(object sender, EventArgs args)
+        {
+            if (Field.Field[player.Y + 1, player.X] == '#')
+            {
+                throw new InvalidMoveException();
+            }
+            Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('.');
+            player.SetY(player.Y + 1, Field);
+            Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('@');
+        }
+
+        /// <summary>
+        /// Going right
+        /// </summary>
         public void Right(object sender, EventArgs args)
         {
             if (Field.Field[player.Y, player.X + 1] == '#')
             {
                 throw new InvalidMoveException();
             }
-            Field.Field[player.Y, player.X] = '.';
-            player.SetX(player.X + 1, Field);
-            Field.Field[player.Y, player.X] = '@';
             Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('.');
+            player.SetX(player.X + 1, Field);
+            Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('@');
         }
 
+        /// <summary>
+        /// Going left
+        /// </summary>
         public void Left(object sender, EventArgs args)
         {
             if (Field.Field[player.Y, player.X - 1] == '#')
             {
                 throw new InvalidMoveException();
             }
-            Field.Field[player.Y, player.X] = '.';
-            player.SetX(player.X - 1, Field);
-            Field.Field[player.Y, player.X] = '@';
             Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('.');
+            player.SetX(player.X - 1, Field);
+            Console.SetCursorPosition(player.X, player.Y);
+            Console.Write('@');
         }
     }
 }

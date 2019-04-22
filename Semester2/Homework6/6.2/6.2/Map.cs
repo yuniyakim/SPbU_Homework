@@ -51,7 +51,7 @@ namespace _6._2
                 {
                     if (str[current] != '#' && str[current] != '.')
                     {
-                        throw new InvalidInputSymbolException("Invalid symbol in input file");
+                        throw new InvalidInputSymbolException();
                     }
                     Field[i, j] = str[current];
                     ++current;
@@ -60,6 +60,9 @@ namespace _6._2
             }
         }
 
+        /// <summary>
+        /// Prints a map
+        /// </summary>
         public void Print()
         {
             for (int i = 0; i < Height; ++i)
