@@ -8,6 +8,7 @@ namespace _6._2
     {
         private Map map;
         private Game game;
+        private EventLoop eventLoop;
 
         [SetUp]
         public void Initialize()
@@ -15,6 +16,7 @@ namespace _6._2
             map = new Map();
             map.ReadAndFill(Directory.GetCurrentDirectory() + "../../../../6.2.Test.txt");
             game = new Game(map);
+            eventLoop = new EventLoop();
         }
 
         [Test]
@@ -34,5 +36,15 @@ namespace _6._2
         {
             Assert.Throws<InvalidInitialCoordinatesException>(() => game.SetInitialCoordinates(4, 5));
         }
+
+        /*[Test]
+        public void UpTest()
+        {
+            game.SetInitialCoordinates(4, 3);
+            eventLoop.UpHandler += game.Up;
+            
+            Assert.AreEqual(2, game.Y);
+            Assert.AreEqual(4, game.X);
+        }*/
     }
 }
