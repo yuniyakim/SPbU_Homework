@@ -8,8 +8,7 @@ namespace _6._2
     public class Game
     {
         public Map Field { get; private set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public Player Character { get; private set; }
 
         /// <summary>
         /// Game's constructor
@@ -31,9 +30,8 @@ namespace _6._2
             {
                 throw new InvalidInitialCoordinatesException();
             }
-            X = initialX;
-            Y = initialY;
-            Console.SetCursorPosition(X, Y);
+            Character = new Player(initialX, initialY);
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }
 
@@ -42,14 +40,14 @@ namespace _6._2
         /// </summary>
         public void Up(object sender, EventArgs args)
         {
-            if (Field.Field[Y - 1, X] == '#')
+            if (Field.Field[Character.Y - 1, Character.X] == '#')
             {
                 throw new InvalidMoveException();
             }
-            Console.SetCursorPosition(X, Y);
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('.');
-            --Y;
-            Console.SetCursorPosition(X, Y);
+            Character.Up();
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }
 
@@ -58,14 +56,14 @@ namespace _6._2
         /// </summary>
         public void Down(object sender, EventArgs args)
         {
-            if (Field.Field[Y + 1, X] == '#')
+            if (Field.Field[Character.Y + 1, Character.X] == '#')
             {
                 throw new InvalidMoveException();
             }
-            Console.SetCursorPosition(X, Y);
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('.');
-            ++Y;
-            Console.SetCursorPosition(X, Y);
+            Character.Down();
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }
 
@@ -74,14 +72,14 @@ namespace _6._2
         /// </summary>
         public void Right(object sender, EventArgs args)
         {
-            if (Field.Field[Y, X + 1] == '#')
+            if (Field.Field[Character.Y, Character.X + 1] == '#')
             {
                 throw new InvalidMoveException();
             }
-            Console.SetCursorPosition(X, Y);
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('.');
-            ++X;
-            Console.SetCursorPosition(X, Y);
+            Character.Right();
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }
 
@@ -90,14 +88,14 @@ namespace _6._2
         /// </summary>
         public void Left(object sender, EventArgs args)
         {
-            if (Field.Field[Y, X - 1] == '#')
+            if (Field.Field[Character.Y, Character.X - 1] == '#')
             {
                 throw new InvalidMoveException();
             }
-            Console.SetCursorPosition(X, Y);
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('.');
-            --X;
-            Console.SetCursorPosition(X, Y);
+            Character.Left();
+            Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }
     }

@@ -37,14 +37,14 @@ namespace _6._2
             Assert.Throws<InvalidInitialCoordinatesException>(() => game.SetInitialCoordinates(4, 5));
         }
 
-        /*[Test]
+        [Test]
         public void UpTest()
         {
             game.SetInitialCoordinates(4, 3);
             eventLoop.UpHandler += game.Up;
             
-            Assert.AreEqual(2, game.Y);
-            Assert.AreEqual(4, game.X);
-        }*/
+            Assert.AreEqual(2, game.Character.Y);
+            Assert.AreEqual(4, game.Character.X);
+        }
     }
 }
