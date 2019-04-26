@@ -33,8 +33,9 @@
             // 
             // clickOnMeButton
             // 
+            this.clickOnMeButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.clickOnMeButton.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.clickOnMeButton.Font = new System.Drawing.Font("Calibri", 9F);
+            this.clickOnMeButton.Font = new System.Drawing.Font("Calibri", 8F);
             this.clickOnMeButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.clickOnMeButton.Location = new System.Drawing.Point(336, 198);
             this.clickOnMeButton.Name = "clickOnMeButton";
@@ -45,13 +46,14 @@
             this.clickOnMeButton.Click += new System.EventHandler(this.ClickOnMeButton_Click);
             this.clickOnMeButton.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClickOnMeButton_MouseMove);
             // 
-            // Form
+            // FormWithClickOnMeButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.clickOnMeButton);
-            this.Name = "Form";
+            this.MinimumSize = new System.Drawing.Size(150, 100);
+            this.Name = "FormWithClickOnMeButton";
             this.Text = "Form";
             this.ResumeLayout(false);
 
