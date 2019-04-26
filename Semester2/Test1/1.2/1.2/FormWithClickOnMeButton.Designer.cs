@@ -59,7 +59,7 @@
             this.MaximumSize = new System.Drawing.Size(820, 500);
             this.MinimumSize = new System.Drawing.Size(820, 500);
             this.Name = "FormWithClickOnMeButton";
-            this.Text = "Form";
+            this.Text = "FormWithClickOnMeButton";
             this.ResumeLayout(false);
 
         }
