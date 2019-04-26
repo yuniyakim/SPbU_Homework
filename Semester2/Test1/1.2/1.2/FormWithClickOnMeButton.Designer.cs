@@ -33,11 +33,15 @@
             // 
             // clickOnMeButton
             // 
-            this.clickOnMeButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.clickOnMeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.clickOnMeButton.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.clickOnMeButton.Font = new System.Drawing.Font("Calibri", 8F);
+            this.clickOnMeButton.Font = new System.Drawing.Font("Calibri", 9F);
             this.clickOnMeButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.clickOnMeButton.Location = new System.Drawing.Point(336, 198);
+            this.clickOnMeButton.MaximumSize = new System.Drawing.Size(75, 50);
+            this.clickOnMeButton.MinimumSize = new System.Drawing.Size(75, 50);
             this.clickOnMeButton.Name = "clickOnMeButton";
             this.clickOnMeButton.Size = new System.Drawing.Size(75, 50);
             this.clickOnMeButton.TabIndex = 0;
@@ -50,9 +54,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 453);
             this.Controls.Add(this.clickOnMeButton);
-            this.MinimumSize = new System.Drawing.Size(150, 100);
+            this.MaximumSize = new System.Drawing.Size(820, 500);
+            this.MinimumSize = new System.Drawing.Size(820, 500);
             this.Name = "FormWithClickOnMeButton";
             this.Text = "Form";
             this.ResumeLayout(false);
