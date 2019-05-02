@@ -22,35 +22,36 @@ namespace _6._2
         }
 
         /// <summary>
-        /// Going up
+        /// Going in some direction
         /// </summary>
-        public void Up()
+        /// <param name="direction">Direction of movement</param>
+        public void Move(string direction)
         {
-            --Y;
-        }
+            switch (direction.ToLower())
+            {
+                case "up":
+                    {
+                        --Y;
+                        break;
+                    }
+                case "down":
+                    {
+                        ++Y;
+                        break;
+                    }
 
-        /// <summary>
-        /// Going down
-        /// </summary>
-        public void Down()
-        {
-            ++Y;
-        }
+                case "right":
+                    {
+                        ++X;
+                        break;
+                    }
 
-        /// <summary>
-        /// Going right
-        /// </summary>
-        public void Right()
-        {
-            ++X;
-        }
-
-        /// <summary>
-        /// Goint left
-        /// </summary>
-        public void Left()
-        {
-            --X;
+                case "left":
+                    {
+                        --X;
+                        break;
+                    }
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace _6._2
             }
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('.');
-            Character.Up();
+            Character.Move("up");
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }
@@ -62,7 +62,7 @@ namespace _6._2
             }
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('.');
-            Character.Down();
+            Character.Move("down");
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }
@@ -78,7 +78,7 @@ namespace _6._2
             }
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('.');
-            Character.Right();
+            Character.Move("right");
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }
@@ -94,7 +94,7 @@ namespace _6._2
             }
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('.');
-            Character.Left();
+            Character.Move("left");
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
         }

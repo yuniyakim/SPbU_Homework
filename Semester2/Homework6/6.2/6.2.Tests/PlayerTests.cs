@@ -16,7 +16,7 @@ namespace _6._2
         [Test]
         public void UpTest()
         {
-            player.Up();
+            player.Move("up");
             Assert.AreEqual(6, player.Y);
             Assert.AreEqual(2, player.X);
         }
@@ -24,8 +24,8 @@ namespace _6._2
         [Test]
         public void DownTest()
         {
-            player.Down();
-            player.Down();
+            player.Move("down");
+            player.Move("down");
             Assert.AreEqual(9, player.Y);
             Assert.AreEqual(2, player.X);
         }
@@ -35,7 +35,7 @@ namespace _6._2
         {
             for (int i = 0; i < 4; ++i)
             {
-                player.Right();
+                player.Move("right");
             }
             Assert.AreEqual(7, player.Y);
             Assert.AreEqual(6, player.X);
@@ -44,8 +44,8 @@ namespace _6._2
         [Test]
         public void LeftTest()
         {
-            player.Left();
-            player.Left();
+            player.Move("left");
+            player.Move("left");
             Assert.AreEqual(7, player.Y);
             Assert.AreEqual(0, player.X);
         }
