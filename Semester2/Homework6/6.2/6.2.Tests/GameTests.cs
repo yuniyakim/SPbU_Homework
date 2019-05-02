@@ -8,7 +8,6 @@ namespace _6._2
     {
         private Map map;
         private Game game;
-        private EventLoop eventLoop;
 
         [SetUp]
         public void Initialize()
@@ -16,7 +15,6 @@ namespace _6._2
             map = new Map();
             map.ReadAndFill(Directory.GetCurrentDirectory() + "../../../../6.2.Test.txt");
             game = new Game(map);
-            eventLoop = new EventLoop();
         }
 
         [Test]
@@ -41,8 +39,7 @@ namespace _6._2
         public void UpTest()
         {
             game.SetInitialCoordinates(4, 3);
-            eventLoop.UpHandler += game.Up;
-            
+            game.Up(this, new EventArgs());
             Assert.AreEqual(2, game.Character.Y);
             Assert.AreEqual(4, game.Character.X);
         }
