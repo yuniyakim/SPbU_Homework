@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <DebugType>full</DebugType>
     <RootNamespace>_6._2</RootNamespace>
+    <AssemblyName>pp</AssemblyName>
   </PropertyGroup>
 
 </Project>
