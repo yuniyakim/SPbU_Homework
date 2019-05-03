@@ -10,4 +10,4 @@ build:
   - dotnet build Semester2/Test1/1.1/1.1.sln 
 
 script:
-  - dotnet test Semester2/Test1/1.1/1.1.sln 
+  - dotnet test Semester2/Test1/1.1/1.1.sln
