@@ -3,18 +3,18 @@
 namespace _6._2
 {
     /// <summary>
-    /// Game's class
+    /// Game for test's class
     /// </summary>
-    public class Game : IGame
+    public class GameForTest : IGame
     {
         public Map Field { get; private set; }
         public Player Character { get; private set; }
 
         /// <summary>
-        /// Game's constructor
+        /// Game for test's constructor
         /// </summary>
         /// <param name="map">Game's map</param>
-        public Game(Map map)
+        public GameForTest(Map map)
         {
             this.Field = map;
         }
@@ -31,8 +31,6 @@ namespace _6._2
                 throw new InvalidInitialCoordinatesException();
             }
             Character = new Player(initialX, initialY);
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('@');
         }
 
         /// <summary>
@@ -44,11 +42,7 @@ namespace _6._2
             {
                 throw new InvalidMoveException();
             }
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('.');
             Character.Move("up");
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('@');
         }
 
         /// <summary>
@@ -60,11 +54,7 @@ namespace _6._2
             {
                 throw new InvalidMoveException();
             }
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('.');
             Character.Move("down");
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('@');
         }
 
         /// <summary>
@@ -76,11 +66,7 @@ namespace _6._2
             {
                 throw new InvalidMoveException();
             }
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('.');
             Character.Move("right");
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('@');
         }
 
         /// <summary>
@@ -92,11 +78,7 @@ namespace _6._2
             {
                 throw new InvalidMoveException();
             }
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('.');
             Character.Move("left");
-            Console.SetCursorPosition(Character.X, Character.Y);
-            Console.Write('@');
         }
     }
 }

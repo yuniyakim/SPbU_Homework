@@ -26,11 +26,10 @@ namespace _6._2
                 throw new InvalidInputException();
             }
             game.SetInitialCoordinates(x - 1, y - 1);
-            var move = new Move(game);
-            eventLoop.UpHandler += move.Up;
-            eventLoop.DownHandler += move.Down;
-            eventLoop.RightHandler += move.Right;
-            eventLoop.LeftHandler += move.Left;
+            eventLoop.UpHandler += game.Up;
+            eventLoop.DownHandler += game.Down;
+            eventLoop.RightHandler += game.Right;
+            eventLoop.LeftHandler += game.Left;
             eventLoop.Move();
         }
     }
