@@ -9,7 +9,7 @@ env:
     global:
         - DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-install:
+before_install:
   - git config --global core.autocrlf true
 
 script:
