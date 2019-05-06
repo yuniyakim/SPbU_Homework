@@ -1,5 +1,6 @@
 language: csharp
 solution: Semester2/Homework7/7.2/7.2.sln
+sudo: required
 mono: none
 dotnet: 2.2
 
