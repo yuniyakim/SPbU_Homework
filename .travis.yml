@@ -13,7 +13,7 @@ script:
   - dotnet restore Semester2/Homework6/6.2/6.2.sln
   - dotnet build Semester2/Homework6/6.2/6.2.sln
   - dotnet test Semester2/Homework6/6.2/6.2.sln
-  - dotnet test Semester2/Homework6/6.2/6.2.Tests/6.2.Tests.csproj/p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
 after_script:
   - make coverage
