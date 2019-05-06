@@ -1,8 +1,6 @@
 language: csharp
 solution: Semester2/Homework6/6.2/6.2.sln
 sudo: required
-dist: xenial
-mono: none
 dotnet: 2.2
 
 env:
