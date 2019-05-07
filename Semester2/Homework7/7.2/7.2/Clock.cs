@@ -3,15 +3,24 @@ using System.Windows.Forms;
 
 namespace _7._2
 {
+    /// <summary>
+    /// Clock's form
+    /// </summary>
     public partial class Clock : Form
     {
-
         private Timer timer = new Timer();
+
+        /// <summary>
+        /// Clock's constructor
+        /// </summary>
         public Clock()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Clock's loading
+        /// </summary>
         private void Clock_Load(object sender, EventArgs e)
         {
             timer.Interval = 1000;
@@ -19,6 +28,9 @@ namespace _7._2
             timer.Start();
         }
 
+        /// <summary>
+        /// Clock's tick
+        /// </summary>
         private void Clock_Tick(object sender, EventArgs e)
         {
             string currentTime = "";
