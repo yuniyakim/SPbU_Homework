@@ -68,6 +68,29 @@ namespace _8._1
         }
 
         [Test]
+        public void RemoveAtTest()
+        {
+            list.Add(2);
+            list.Insert(1, 1);
+            list.Add(4);
+            list.Insert(3, 3);
+            list.Add(5);
+            list.RemoveAt(2);
+            Assert.AreEqual(4, list.IndexOf(5));
+            Assert.AreEqual(3, list.IndexOf(4));
+            Assert.AreEqual(2, list.IndexOf(3));
+            Assert.AreEqual(4, list.Count);
+        }
+
+        [Test]
+        public void RemoveAtInvalidPositionTest()
+        {
+            list.Insert(1, 200);
+            list.Add(-232);
+            Assert.Throws<InvalidPositionException>(() => list.RemoveAt(3));
+        }
+
+        [Test]
         public void ClearTest()
         {
             list.Add(777);
