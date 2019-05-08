@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace _8._1
 {
+    /// <summary>
+    /// Generic list's class with specified type of values
+    /// </summary>
+    /// <typeparam name="T">Type of values</typeparam>
     public class GenericList<T> : IList<T>
     {
         private Node head = null;
@@ -26,12 +30,6 @@ namespace _8._1
                 Next = null;
             }
         }
-
-        /*/// <summary>
-        /// Checks if the list is empty
-        /// </summary>
-        /// <returns></returns>
-        private bool IsEmpty() => Count == 0;*/
 
         /// <summary>
         /// Checks if the list is read-only
@@ -163,7 +161,36 @@ namespace _8._1
             {
                 return true;
             }
+
             return false;
+        }
+
+        /// <summary>
+        /// Removes the element on the specified position
+        /// </summary>
+        /// <param name="position">Specified position</param>
+        public void RemoveAt(int position)
+        {
+            if (position > Count || position <= 0)
+            {
+                throw new InvalidPositionException();
+            }
+
+            if (position == 1)
+            {
+                head = head.Next;
+            }
+            else
+            {
+                var temp = head;
+                for (int i = 1; i < position - 1; ++i)
+                {
+                    temp = temp.Next;
+                }
+                temp.Next = temp.Next.Next; // if not null???
+            }
+
+            --Count;
         }
 
         /// <summary>
