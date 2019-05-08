@@ -218,6 +218,21 @@ namespace _8._1
             head = null;
             Count = 0;
         }
+
+        /// <summary>
+        /// Copies list's elements to the specified array, starting at a particular array's position
+        /// </summary>
+        /// <param name="array">Specified array</param>
+        /// <param name="position">Starting position</param>
+        public void CopyTo(T[] array, int position)
+        {
+            var temp = head;
+            for (int i = position; i < Count; ++i)
+            {
+                array[i] = temp.Value;
+                temp = temp.Next;
+            }
+        }
     }
 }
 

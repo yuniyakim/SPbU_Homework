@@ -115,5 +115,21 @@ namespace _8._1
             Assert.AreEqual(0, list.Count);
             Assert.IsFalse(list.Contains(0));
         }
+
+        [Test]
+        public void CopyToTest()
+        {
+            var array = new int[5];
+            list.Add(11);
+            list.Add(444);
+            list.Insert(2, -3333);
+            list.Insert(2, -2);
+            list.CopyTo(array, 1);
+            Assert.AreEqual(-3333, array[3]);
+            Assert.AreEqual(11, array[1]);
+            Assert.AreEqual(444, array[4]);
+            Assert.AreEqual(-2, array[2]);
+            Assert.AreEqual(0, array[0]);
+        }
     }
 }
