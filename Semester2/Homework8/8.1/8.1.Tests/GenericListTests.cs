@@ -17,7 +17,7 @@ namespace _8._1
         [Test]
         public void IsReadOnlyTest()
         {
-            Assert.IsFalse(list.IsReadOnly());
+            Assert.IsFalse(list.IsReadOnly);
         }
 
         [Test]
@@ -33,6 +33,19 @@ namespace _8._1
             list.Add(5);
             list.Add(-103);
             Assert.AreEqual(2, list.Count);
+        }
+
+        [Test]
+        public void InsertTest()
+        {
+            list.Insert(1, 0);
+            Assert.AreEqual(1, list.Count);
+        }
+
+        [Test]
+        public void InsertInvalidPositionTest()
+        {
+            Assert.Throws<InvalidPositionException>(() => list.Insert(0, 9826));
         }
     }
 }

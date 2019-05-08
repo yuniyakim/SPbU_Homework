@@ -13,8 +13,8 @@ namespace _8._1
         /// </summary>
         private class Node
         {
-            public T value;
-            public Node next;
+            public T Value { get; set; }
+            public Node Next { get; set; }
 
             /// <summary>
             /// Node's constructor
@@ -22,8 +22,8 @@ namespace _8._1
             /// <param name="value">Node's value</param>
             public Node(T value)
             {
-                this.value = value;
-                next = null;
+                Value = value;
+                Next = null;
             }
         }
 
@@ -37,7 +37,7 @@ namespace _8._1
         /// Checks if the list is read-only
         /// </summary>
         /// <returns></returns>
-        public bool IsReadOnly() => false;
+        public bool IsReadOnly => false;
 
         /// <summary>
         /// Gets or sets the element at the specified position
@@ -56,9 +56,9 @@ namespace _8._1
                 var temp = head;
                 for (int i = 1; i < position; ++i)
                 {
-                    temp = temp.next;
+                    temp = temp.Next;
                 }
-                return temp.value;
+                return temp.Value;
             }
             set
             {
@@ -70,9 +70,9 @@ namespace _8._1
                 var temp = head;
                 for (int i = 1; i < position; ++i)
                 {
-                    temp = temp.next;
+                    temp = temp.Next;
                 }
-                temp.value = value;
+                temp.Value = value;
             }
         }
 
@@ -91,34 +91,88 @@ namespace _8._1
                 var temp = head;
                 for (int i = 1; i < Count; ++i)
                 {
-                    temp = temp.next;
+                    temp = temp.Next;
                 }
-                temp.next = new Node(value);
+                temp.Next = new Node(value);
             }
             ++Count;
         }
 
         /// <summary>
-        /// Returns the index of a specified value
+        /// Inserts an element with given value to the specified position
         /// </summary>
-        /// <param name="value">Specified value</param>
-        /// <returns>Index of a specified value</returns>
+        /// <param name="position">Specified position</param>
+        /// <param name="value">Given value</param>
+        public void Insert(int position, T value)
+        {
+            if (position > Count || position <= 0)
+            {
+                throw new InvalidPositionException();
+            }
+
+            var newNode = new Node(value);
+            if (position == 1)
+            {
+                newNode.Next = head;
+                head = newNode;
+            }
+            else
+            {
+                var temp = head;
+                for (int i = 1; i < position - 1; ++i)
+                {
+                    temp = temp.Next;
+                }
+                newNode.Next = temp.Next;
+                temp.Next = newNode;
+            }
+            ++Count;
+        }
+
+        /// <summary>
+        /// Returns the index of a specific value
+        /// </summary>
+        /// <param name="value">Specific value</param>
+        /// <returns>Index of a specific value</returns>
         public int IndexOf(T value)
         {
             var temp = head;
             for (int i = 1; i <= Count; ++i)
             {
-                if (temp.value.Equals(value))
+                if (temp.Value.Equals(value))
                 {
                     return i;
                 }
-                if (temp != null)
+                /*if (temp != null)
                 {
-                    temp = temp.next;
-                }
+                    temp = temp.Next;
+                }*/
             }
 
-            throw new UnexistingElementException();
+            return -1;
+        }
+
+        /// <summary>
+        /// Checks if the specific value is contained in the list
+        /// </summary>
+        /// <param name="value">Specific value</param>
+        /// <returns>True if it's contained, false otherwise</returns>
+        public bool Contains(T value)
+        {
+            if (IndexOf(value) != -1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Clears the list
+        /// </summary>
+        public void Clear()
+        {
+            head = null;
+            Count = 0;
         }
     }
 }
