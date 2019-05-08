@@ -154,15 +154,15 @@ namespace _8._1
         /// Checks if the specific value is contained in the list
         /// </summary>
         /// <param name="value">Specific value</param>
-        /// <returns>True if it's contained, false otherwise</returns>
+        /// <returns>True if contained, false otherwise</returns>
         public bool Contains(T value)
         {
-            if (IndexOf(value) != -1)
+            if (IndexOf(value) == -1)
             {
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -191,6 +191,23 @@ namespace _8._1
             }
 
             --Count;
+        }
+
+        /// <summary>
+        /// Removes the element with the specific value
+        /// </summary>
+        /// <param name="value">Specific value</param>
+        /// <returns>True if succeeded, false otherwise</returns>
+        public bool Remove(T value)
+        {
+            var position = IndexOf(value);
+            if (position == -1)
+            {
+                return false;
+            }
+
+            RemoveAt(position);
+            return true;
         }
 
         /// <summary>

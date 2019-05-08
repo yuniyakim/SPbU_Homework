@@ -76,6 +76,7 @@ namespace _8._1
             list.Insert(3, 3);
             list.Add(5);
             list.RemoveAt(2);
+            Assert.IsFalse(list.Contains(2));
             Assert.AreEqual(4, list.IndexOf(5));
             Assert.AreEqual(3, list.IndexOf(4));
             Assert.AreEqual(2, list.IndexOf(3));
@@ -88,6 +89,18 @@ namespace _8._1
             list.Insert(1, 200);
             list.Add(-232);
             Assert.Throws<InvalidPositionException>(() => list.RemoveAt(3));
+        }
+
+        [Test]
+        public void RemoveTest()
+        {
+            list.Insert(1, 999);
+            list.Add(0);
+            list.Add(-3);
+            list.Remove(0);
+            Assert.IsFalse(list.Contains(0));
+            Assert.AreEqual(2, list.Count);
+            Assert.AreEqual(2, list.IndexOf(-3));
         }
 
         [Test]
