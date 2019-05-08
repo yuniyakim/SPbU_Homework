@@ -47,5 +47,37 @@ namespace _8._1
         {
             Assert.Throws<InvalidPositionException>(() => list.Insert(0, 9826));
         }
+
+        [Test]
+        public void IndexOfTest()
+        {
+            list.Add(29);
+            list.Add(0);
+            list.Insert(3, -894);
+            list.Insert(2, 2130);
+            Assert.AreEqual(3, list.IndexOf(0));
+        }
+
+        [Test]
+        public void ContainsTest()
+        {
+            list.Insert(1, 291);
+            list.Insert(1, -91);
+            Assert.IsTrue(list.Contains(291));
+            Assert.IsFalse(list.Contains(0));
+        }
+
+        [Test]
+        public void ClearTest()
+        {
+            list.Add(777);
+            list.Insert(1, -91);
+            list.Add(777);
+            list.Add(0);
+            list.Insert(4, 0);
+            list.Clear();
+            Assert.AreEqual(0, list.Count);
+            Assert.IsFalse(list.Contains(0));
+        }
     }
 }
