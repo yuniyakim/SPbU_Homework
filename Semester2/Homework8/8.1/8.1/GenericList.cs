@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace _8._1
 {
@@ -77,11 +76,19 @@ namespace _8._1
             }
         }
 
-        /*public int IndexOf(T value)
+        public int IndexOf(T value)
         {
             var temp = head;
-            while (temp != null || temp.next != null)
-        }*/
+            for (int i = 1; i <= Count; ++i)
+            {
+                if (temp.value.Equals(value))
+                {
+                    return i;
+                }
+                temp = temp.next;
+            }
+            return 0;
+        }
     }
 }
 
