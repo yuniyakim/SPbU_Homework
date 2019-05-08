@@ -76,6 +76,33 @@ namespace _8._1
             }
         }
 
+        /// <summary>
+        /// Adds the value into the list
+        /// </summary>
+        /// <param name="value">Given value</param>
+        public void Add(T value)
+        {
+            if (head == null)
+            {
+                head = new Node(value);
+            }
+            else
+            {
+                var temp = head;
+                for (int i = 1; i < Count; ++i)
+                {
+                    temp = temp.next;
+                }
+                temp.next = new Node(value);
+            }
+            ++Count;
+        }
+
+        /// <summary>
+        /// Returns the index of a specified value
+        /// </summary>
+        /// <param name="value">Specified value</param>
+        /// <returns>Index of a specified value</returns>
         public int IndexOf(T value)
         {
             var temp = head;
@@ -85,9 +112,13 @@ namespace _8._1
                 {
                     return i;
                 }
-                temp = temp.next;
+                if (temp != null)
+                {
+                    temp = temp.next;
+                }
             }
-            return 0;
+
+            throw new UnexistingElementException();
         }
     }
 }

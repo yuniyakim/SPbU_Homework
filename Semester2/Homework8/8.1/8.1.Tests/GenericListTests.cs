@@ -19,5 +19,20 @@ namespace _8._1
         {
             Assert.IsFalse(list.IsReadOnly());
         }
+
+        [Test]
+        public void AddTest()
+        {
+            list.Add(5);
+            Assert.AreEqual(1, list.Count);
+        }
+
+        [Test]
+        public void AddTwiceTest()
+        {
+            list.Add(5);
+            list.Add(-103);
+            Assert.AreEqual(2, list.Count);
+        }
     }
 }
