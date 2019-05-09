@@ -1,8 +1,8 @@
 language: csharp
 solution: Semester2/Homework8/8.1/8.1.sln 
 sudo: required
-mono: none
-dotnet: 2.1
+dist: xenial
+dotnet: 2.2
 
 before_build:
   - nuget restore Semester2/Homework8/8.1/8.1.sln
@@ -12,3 +12,7 @@ build:
 
 script:
   - dotnet test Semester2/Homework8/8.1/8.1.sln
+
+global:
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
+    - DOTNET_CLI_TELEMETRY_OPTOUT=1 
