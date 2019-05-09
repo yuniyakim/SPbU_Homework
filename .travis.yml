@@ -1,13 +1,14 @@
 language: csharp
-solution: Semester2/Test1/1.1/1.1.sln 
-mono: none
-dotnet: 2.1
+solution: Semester2/Homework8/8.2/8.2.sln
+sudo: required
+dist: xenial
+dotnet: 2.2
 
 before_build:
-  - nuget restore Semester2/Test1/1.1/1.1.sln 
+  - nuget restore Semester2/Homework8/8.2/8.2.sln
 
 build:
-  - dotnet build Semester2/Test1/1.1/1.1.sln 
+  - dotnet build Semester2/Homework8/8.2/8.2.sln
 
 script:
-  - dotnet test Semester2/Test1/1.1/1.1.sln
+  - dotnet test Semester2/Homework8/8.2/8.2.sln
