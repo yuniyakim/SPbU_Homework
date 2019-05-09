@@ -98,10 +98,12 @@ namespace _8._1
             list.Insert(1, 999);
             list.Add(0);
             list.Add(-3);
-            list.Remove(0);
-            Assert.IsFalse(list.Contains(0));
+            list.Remove(999);
+            Assert.IsFalse(list.Contains(999));
             Assert.AreEqual(2, list.Count);
-            Assert.AreEqual(2, list.IndexOf(-3));
+            Assert.IsTrue(list.Remove(0));
+            Assert.IsFalse(list.Contains(0));
+            Assert.AreEqual(1, list.IndexOf(-3));
         }
 
         [Test]
@@ -131,6 +133,21 @@ namespace _8._1
             Assert.AreEqual(444, array[4]);
             Assert.AreEqual(-2, array[2]);
             Assert.AreEqual(0, array[0]);
+        }
+
+        [Test]
+        public void ListEnumeratorTest()
+        {
+            for (int i = -5; i < 5; ++i)
+            {
+                list.Add(i - 1);
+            }
+            var number = -6;
+            foreach (var value in list)
+            {
+                 Assert.AreEqual(number, value);
+                ++number;
+            }
         }
     }
 }
