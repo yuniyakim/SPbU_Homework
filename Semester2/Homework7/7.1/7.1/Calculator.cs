@@ -142,10 +142,153 @@ namespace _7._1
             }
         }*/
 
-        private int firstNumber = 0;
-        private int secondNumber = 0;
+        private string firstNumber = "";
+        private bool minusBeforeFirst = false;
+        private string secondNumber = "";
+        private bool minusBeforeSecond = false;
         private string operation = "";
+        private string str = "0";
 
-        public 
+        public void Calculate()
+        {
+            var result = 0.0;
+            var first = (firstNumber == "" ? 0 : Convert.ToDouble(firstNumber));
+            if (minusBeforeFirst)
+            {
+                first = -first;
+            }
+            var second = (secondNumber == "" ? 0 : Convert.ToDouble(secondNumber));
+            if (minusBeforeSecond)
+            {
+                second = -second;
+            }
+            switch (operation)
+            {
+                case "+":
+                    {
+                        result = first + second;
+                        break;
+                    }
+                case "-":
+                    {
+                        result = first - second;
+                        break;
+                    }
+                case "*":
+                    {
+                        result = first * second;
+                        break;
+                    }
+                case "/":
+                    {
+                        if (second == 0)
+                        {
+                            throw new DivideByZeroException();
+                        }
+
+                        result = first / second;
+                        break;
+                    }
+            }
+            firstNumber = Convert.ToString(result);
+            minusBeforeFirst = false;
+            secondNumber = "";
+            minusBeforeSecond = false;
+            operation = "";
+        }
+
+        public void Number(string number)
+        {
+            if (operation != "" && firstNumber != "") // maybe debug
+            {
+                secondNumber += number;
+            }
+            else
+            {
+                firstNumber += number;
+            }
+        }
+
+        public void Operation(string operation)
+        {
+            this.operation = operation;
+            if (secondNumber == "")
+            {
+                str = (minusBeforeFirst ? str + " " + "-" + firstNumber + " " + operation : str + " " + firstNumber + " " + operation);
+            }
+            else
+            {
+                str = (minusBeforeSecond ? str + " " + "-" + secondNumber + " " + operation : str + " " + secondNumber + " " + operation);
+                Calculate();
+            }
+        }
+
+        public void Clear()
+        {
+            firstNumber = "";
+            secondNumber = "";
+            operation = "";
+            str = "0";
+        }
+
+        public void ClearEntry()
+        {
+            if (operation != "" && firstNumber != "")
+            {
+                secondNumber = "";
+            }
+            else
+            {
+                firstNumber = "";
+            }
+        }
+
+        public void Backspace()
+        {
+            if (operation != "" && firstNumber != "") // maybe debug
+            {
+                if (secondNumber != "")
+                {
+                    secondNumber = secondNumber.Remove(secondNumber.Length - 1);
+                }
+            }
+            else
+            {
+                if (firstNumber != "")
+                {
+                    firstNumber = firstNumber.Remove(firstNumber.Length - 1);
+                }
+            }
+        }
+
+        public void Dot()
+        {
+            if (operation != "" && firstNumber != "")
+            {
+                secondNumber += ".";
+            }
+            else
+            {
+                firstNumber += ".";
+            }
+        }
+
+        public void PlusMinus()
+        {
+            if (operation != "" && firstNumber != "")
+            {
+                minusBeforeSecond = !minusBeforeSecond;
+            }
+            else
+            {
+                minusBeforeFirst = !minusBeforeFirst;
+            }
+        }
+
+        public void Equality()
+        {
+            Calculate();
+
+        }
     }
 }

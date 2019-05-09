@@ -48,7 +48,7 @@
             this.Addition = new System.Windows.Forms.Button();
             this.Equality = new System.Windows.Forms.Button();
             this.PlusMinus = new System.Windows.Forms.Button();
-            this.Comma = new System.Windows.Forms.Button();
+            this.Dot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Input
@@ -211,12 +211,12 @@
             // 
             // Subtraction
             // 
-            this.Subtraction.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Subtraction.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Subtraction.Location = new System.Drawing.Point(219, 278);
             this.Subtraction.Name = "Subtraction";
             this.Subtraction.Size = new System.Drawing.Size(63, 50);
             this.Subtraction.TabIndex = 12;
-            this.Subtraction.Text = "-";
+            this.Subtraction.Text = "–";
             this.Subtraction.UseVisualStyleBackColor = true;
             // 
             // Addition
@@ -249,22 +249,22 @@
             this.PlusMinus.Text = "±";
             this.PlusMinus.UseVisualStyleBackColor = true;
             // 
-            // Comma
+            // Dot
             // 
-            this.Comma.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Comma.Location = new System.Drawing.Point(150, 391);
-            this.Comma.Name = "Comma";
-            this.Comma.Size = new System.Drawing.Size(63, 50);
-            this.Comma.TabIndex = 15;
-            this.Comma.Text = ",";
-            this.Comma.UseVisualStyleBackColor = true;
+            this.Dot.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Dot.Location = new System.Drawing.Point(150, 391);
+            this.Dot.Name = "Dot";
+            this.Dot.Size = new System.Drawing.Size(63, 50);
+            this.Dot.TabIndex = 15;
+            this.Dot.Text = ".";
+            this.Dot.UseVisualStyleBackColor = true;
             // 
             // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(294, 450);
-            this.Controls.Add(this.Comma);
+            this.Controls.Add(this.Dot);
             this.Controls.Add(this.PlusMinus);
             this.Controls.Add(this.Equality);
             this.Controls.Add(this.Addition);
@@ -317,7 +317,7 @@
         private System.Windows.Forms.Button Addition;
         private System.Windows.Forms.Button Equality;
         private System.Windows.Forms.Button PlusMinus;
-        private System.Windows.Forms.Button Comma;
+        private System.Windows.Forms.Button Dot;
     }
 }
 
