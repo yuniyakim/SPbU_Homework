@@ -10,16 +10,15 @@ using System.Windows.Forms;
 
 namespace _7._1
 {
-    public partial class Form1 : Form
+    public partial class Calculator : Form
     {
-        public Form1()
+        public Calculator()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Calculator_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
