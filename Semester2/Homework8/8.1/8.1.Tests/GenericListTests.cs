@@ -56,6 +56,7 @@ namespace _8._1
             list.Insert(3, -894);
             list.Insert(2, 2130);
             Assert.AreEqual(3, list.IndexOf(0));
+            Assert.AreEqual(-1, list.IndexOf(94));
         }
 
         [Test]

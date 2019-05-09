@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace _8._1
@@ -103,7 +104,7 @@ namespace _8._1
         /// <param name="value">Given value</param>
         public void Insert(int position, T value)
         {
-            if (position > Count || position <= 0)
+            if (position > Count + 1 || position <= 0)
             {
                 throw new InvalidPositionException();
             }
@@ -141,10 +142,7 @@ namespace _8._1
                 {
                     return i;
                 }
-                /*if (temp != null)
-                {
-                    temp = temp.Next;
-                }*/
+                temp = temp.Next;
             }
 
             return -1;
@@ -187,7 +185,7 @@ namespace _8._1
                 {
                     temp = temp.Next;
                 }
-                temp.Next = temp.Next.Next; // if not null???
+                temp.Next = temp.Next.Next;
             }
 
             --Count;
@@ -227,10 +225,88 @@ namespace _8._1
         public void CopyTo(T[] array, int position)
         {
             var temp = head;
-            for (int i = position; i < Count; ++i)
+            for (int i = position; i <= Count; ++i)
             {
                 array[i] = temp.Value;
                 temp = temp.Next;
+            }
+        }
+
+        /// <summary>
+        /// Gets enumerator
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<T> GetEnumerator() => new ListEnumerator(this);
+
+        /// <summary>
+        /// Gets object-enumerator
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        /// <summary>
+        /// List enumerator
+        /// </summary>
+        private class ListEnumerator : IEnumerator<T>
+        {
+            private GenericList<T> list;
+            private Node current = null;
+
+            /// <summary>
+            /// List enumerator's constructor
+            /// </summary>
+            /// <param name="list"></param>
+            public ListEnumerator(GenericList<T> list)
+            {
+                this.list = list;
+            }
+
+            /// <summary>
+            /// Gets the current element
+            /// </summary>
+            object IEnumerator.Current => current;
+
+            /// <summary>
+            /// Gets the value of the current element
+            /// </summary>
+            public T Current => current.Value;
+
+            /// <summary>
+            /// Moves to the next element in the list
+            /// </summary>
+            /// <returns>True if succeeded, false otherwise</returns>
+            public bool MoveNext()
+            {
+                if (current == null)
+                {
+                    if (list.head == null)
+                    {
+                        return false;
+                    }
+
+                    current = list.head;
+                    return true;
+                }
+
+                if (current.Next == null)
+                {
+                    return false;
+                }
+
+                current = current.Next;
+                return true;
+            }
+
+            /// <summary>
+            /// Sets enumerator to its initial position
+            /// </summary>
+            public void Reset() => current = null;
+
+            /// <summary>
+            /// Disposes
+            /// </summary>
+            public void Dispose()
+            {
             }
         }
     }
