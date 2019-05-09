@@ -3,7 +3,7 @@ solution: Semester2/Homework6/6.2/6.2.sln
 mono: none
 sudo: required
 dist: xenial
-dotnet: 2.1
+dotnet: 2.2
 
 before_build:
   - nuget restore Semester2/Homework6/6.2/6.2.sln
