@@ -65,7 +65,11 @@ namespace _2._1
         {
             for (int i = 0; i < amount; ++i)
             {
-                array[i].ForEach(Console.Write);
+                foreach (var str in array[i])
+                {
+                    Console.Write(str);
+                    Console.Write(" ");
+                }
                 Console.WriteLine("");
             }
         }
