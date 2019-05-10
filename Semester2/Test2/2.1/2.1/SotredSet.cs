@@ -38,13 +38,13 @@ namespace _2._1
         {
             var comparer = new Comparer<string>();
             var index = 0;
-            for (int i = 0; i < array.Length; ++i)
+            for (int i = 0; i < array.Length * array.Length; ++i)
             {
                 if (comparer.Compare(array[index], array[index + 1]) > 1)
                 {
                     Swap(array[index], array[index + 1]);
+                    ++index;
                 }
-                ++index;
                 if (index == array.Length)
                 {
                     break;
