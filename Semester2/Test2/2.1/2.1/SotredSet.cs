@@ -4,11 +4,18 @@ using System.Text;
 
 namespace _2._1
 {
+    /// <summary>
+    /// Sorted set
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SortedSet<T>
     {
         private List<string>[] array = new List<string>[50];
         int amount = 0;
 
+        /// <summary>
+        /// Sorted set's constructor
+        /// </summary>
         public SortedSet()
         {
             for (int i = 0; i < 50; ++i)
@@ -17,7 +24,11 @@ namespace _2._1
             }
         }
 
-        public void ReadAndInsert(string[] str)
+        /// <summary>
+        /// Fills array from input array
+        /// </summary>
+        /// <param name="str">Input array</param>
+        public void Fill(string[] str)
         {
             for (int i = 0; i < str.Length; ++i)
             {
@@ -26,7 +37,7 @@ namespace _2._1
                     string[] split = str[i].Split(' ');
                     foreach (string s in split)
                     {
-                        if (s != null)
+                        if (s != null && s != "")
                         {
                             array[i].Add(s);
                         }
@@ -36,15 +47,18 @@ namespace _2._1
             }
         }
 
+        /// <summary>
+        /// Sorts lists in array
+        /// </summary>
         public void Sort()
         {
             var comparer = new Comparer<string>();
             var index = 0;
             for (int i = 0; i < amount * amount; ++i)
             {
-                if (comparer.Compare(array[index], array[index + 1]) > 1)
+                if (comparer.Compare(array[index], array[index + 1]) < 0)
                 {
-                    Swap(array[index], array[index + 1]);
+                    Swap(index, index + 1);
                 }
                 ++index;
                 if (index == amount)
@@ -54,13 +68,21 @@ namespace _2._1
             }
         }
 
-        private void Swap(List<string> list1, List<string> list2)
+        /// <summary>
+        /// Swaps two lists
+        /// </summary>
+        /// <param name="number1">First list's number in array</param>
+        /// <param name="number2">Second list's number in array</param>
+        private void Swap(int number1, int number2)
         {
-            var temp = list1;
-            list1 = list2;
-            list2 = temp;
+            var temp = array[number1];
+            array[number1] = array[number2];
+            array[number2] = temp;
         }
 
+        /// <summary>
+        /// Prints sorted set
+        /// </summary>
         public void Print()
         {
             for (int i = 0; i < amount; ++i)
