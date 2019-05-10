@@ -63,11 +63,11 @@ namespace _2._1
 
         public void Print()
         {
-            for (int i = 0; i < array.Length; ++i)
+            for (int i = 0; i < amount; ++i)
             {
                 array[i].ForEach(Console.Write);
+                Console.WriteLine("");
             }
-            Console.WriteLine();
         }
     }
 }
