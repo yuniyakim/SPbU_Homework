@@ -10,8 +10,8 @@ namespace _2._1
     /// <typeparam name="T"></typeparam>
     public class SortedSet<T>
     {
-        private List<string>[] array = new List<string>[50];
-        int amount = 0;
+        public List<string>[] Array { get; private set; } = new List<string>[50];
+        private int amount = 0;
 
         /// <summary>
         /// Sorted set's constructor
@@ -20,7 +20,7 @@ namespace _2._1
         {
             for (int i = 0; i < 50; ++i)
             {
-                array[i] = new List<string>();
+                Array[i] = new List<string>();
             }
         }
 
@@ -39,7 +39,7 @@ namespace _2._1
                     {
                         if (s != null && s != "")
                         {
-                            array[i].Add(s);
+                            Array[i].Add(s);
                         }
                     }
                     ++amount;
@@ -56,7 +56,7 @@ namespace _2._1
             var index = 0;
             for (int i = 0; i < amount * amount; ++i)
             {
-                if (comparer.Compare(array[index], array[index + 1]) < 0)
+                if (comparer.Compare(Array[index], Array[index + 1]) < 0)
                 {
                     Swap(index, index + 1);
                 }
@@ -75,9 +75,9 @@ namespace _2._1
         /// <param name="number2">Second list's number in array</param>
         private void Swap(int number1, int number2)
         {
-            var temp = array[number1];
-            array[number1] = array[number2];
-            array[number2] = temp;
+            var temp = Array[number1];
+            Array[number1] = Array[number2];
+            Array[number2] = temp;
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace _2._1
         {
             for (int i = 0; i < amount; ++i)
             {
-                foreach (var str in array[i])
+                foreach (var str in Array[i])
                 {
                     Console.Write(str);
                     Console.Write(" ");
