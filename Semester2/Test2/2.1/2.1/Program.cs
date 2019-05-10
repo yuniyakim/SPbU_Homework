@@ -25,7 +25,6 @@ namespace _2._1
                 sortedSet.ReadAndInsert(str);
                 sortedSet.Sort();
                 sortedSet.Print();
-                // code here
             }
             catch (Exception e)
             {
