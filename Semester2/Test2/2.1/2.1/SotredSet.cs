@@ -6,10 +6,51 @@ namespace _2._1
 {
     public class SortedSet<T>
     {
-        private List<T>[] array;
+        private List<string>[] array = new List<string>[50];
 
-        public void Sort(Comparer<T> comparer)
+        public void ReadAndInsert(string[] str)
         {
+            for (int i = 0; i < str.Length; ++i)
+            {
+                string[] split = str[i].Split(' ');
+                foreach (string s in split)
+                {
+                    //if (s.Trim() != "")
+                    //{
+                        array[i].Add(s);
+                    //}
+                }
+            }
+        }
+
+        public void Sort()
+        {
+            var comparer = new Comparer<string>();
+            var index = 0;
+            for (int i = 0; i < array.Length; ++i)
+            {
+                if (comparer.Compare(array[index], array[index + 1]) > 1)
+                {
+                    Swap(array[index], array[index + 1]);
+                }
+            }
+        }
+
+        private void Swap(List<string> list1, List<string> list2)
+        {
+            var temp = list1;
+            list1 = list2;
+            list2 = temp;
+        }
+
+        public void Print()
+        {
+            for (int i = 0; i < array.Length; ++i)
+            {
+                array[i].ForEach(Console.Write);
+                Console.Write(" "); // needed?
+            }
+            Console.WriteLine();
         }
     }
 }
