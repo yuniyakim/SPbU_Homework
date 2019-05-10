@@ -43,11 +43,11 @@ namespace _2._1
                 if (comparer.Compare(array[index], array[index + 1]) > 1)
                 {
                     Swap(array[index], array[index + 1]);
-                    ++index;
                 }
+                ++index;
                 if (index == array.Length)
                 {
-                    break;
+                    index = 0;
                 }
             }
         }
