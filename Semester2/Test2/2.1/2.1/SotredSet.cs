@@ -7,6 +7,7 @@ namespace _2._1
     public class SortedSet<T>
     {
         private List<string>[] array = new List<string>[50];
+        int amount = 0;
 
         public SortedSet()
         {
@@ -30,6 +31,7 @@ namespace _2._1
                             array[i].Add(s);
                         }
                     }
+                    ++amount;
                 }
             }
         }
@@ -38,14 +40,14 @@ namespace _2._1
         {
             var comparer = new Comparer<string>();
             var index = 0;
-            for (int i = 0; i < array.Length * array.Length; ++i)
+            for (int i = 0; i < amount * amount; ++i)
             {
                 if (comparer.Compare(array[index], array[index + 1]) > 1)
                 {
                     Swap(array[index], array[index + 1]);
                 }
                 ++index;
-                if (index == array.Length)
+                if (index == amount)
                 {
                     index = 0;
                 }
@@ -64,7 +66,6 @@ namespace _2._1
             for (int i = 0; i < array.Length; ++i)
             {
                 array[i].ForEach(Console.Write);
-                Console.Write(" "); // needed?
             }
             Console.WriteLine();
         }
