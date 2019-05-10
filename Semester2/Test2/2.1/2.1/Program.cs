@@ -23,7 +23,8 @@ namespace _2._1
                 }
                 var sortedSet = new SortedSet<string>();
                 sortedSet.ReadAndInsert(str);
-
+                sortedSet.Sort();
+                sortedSet.Print();
                 // code here
             }
             catch (Exception e)

@@ -8,17 +8,28 @@ namespace _2._1
     {
         private List<string>[] array = new List<string>[50];
 
+        public SortedSet()
+        {
+            for (int i = 0; i < 50; ++i)
+            {
+                array[i] = new List<string>();
+            }
+        }
+
         public void ReadAndInsert(string[] str)
         {
             for (int i = 0; i < str.Length; ++i)
             {
-                string[] split = str[i].Split(' ');
-                foreach (string s in split)
+                if (str[i] != null)
                 {
-                    //if (s.Trim() != "")
-                    //{
-                        array[i].Add(s);
-                    //}
+                    string[] split = str[i].Split(' ');
+                    foreach (string s in split)
+                    {
+                        if (s != null)
+                        {
+                            array[i].Add(s);
+                        }
+                    }
                 }
             }
         }
@@ -32,6 +43,11 @@ namespace _2._1
                 if (comparer.Compare(array[index], array[index + 1]) > 1)
                 {
                     Swap(array[index], array[index + 1]);
+                }
+                ++index;
+                if (index == array.Length)
+                {
+                    break;
                 }
             }
         }
