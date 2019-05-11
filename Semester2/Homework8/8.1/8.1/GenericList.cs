@@ -35,7 +35,7 @@ namespace _8._1
         /// <summary>
         /// Checks if the list is read-only
         /// </summary>
-        /// <returns></returns>
+        /// <returns>False</returns>
         public bool IsReadOnly => false;
 
         /// <summary>
@@ -235,13 +235,13 @@ namespace _8._1
         /// <summary>
         /// Gets enumerator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List enumerator</returns>
         public IEnumerator<T> GetEnumerator() => new ListEnumerator(this);
 
         /// <summary>
         /// Gets object-enumerator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Object-enumerator</returns>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         /// <summary>
