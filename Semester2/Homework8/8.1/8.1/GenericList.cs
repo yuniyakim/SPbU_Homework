@@ -255,7 +255,7 @@ namespace _8._1
             /// <summary>
             /// List enumerator's constructor
             /// </summary>
-            /// <param name="list"></param>
+            /// <param name="list">Given list</param>
             public ListEnumerator(GenericList<T> list)
             {
                 this.list = list;
