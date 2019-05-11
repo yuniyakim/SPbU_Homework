@@ -23,7 +23,7 @@ namespace _8._2
         /// <summary>
         /// Checks if the list is read-only
         /// </summary>
-        /// <returns>False always</returns>
+        /// <returns>False</returns>
         public bool IsReadOnly => false;
 
         /// <summary>
@@ -133,13 +133,13 @@ namespace _8._2
         /// <summary>
         /// Gets enumerator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Tree enumerator</returns>
         public IEnumerator<T> GetEnumerator() => new TreeEnumerator(this);
 
         /// <summary>
         /// Gets object-enumerator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Object-enumerator</returns>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         /// <summary>
@@ -147,16 +147,16 @@ namespace _8._2
         /// </summary>
         private class TreeEnumerator : IEnumerator<T>
         {
-            private GenericBinaryTree<T> list;
+            private GenericBinaryTree<T> tree;
             private Node current = null;
 
             /// <summary>
             /// List enumerator's constructor
             /// </summary>
-            /// <param name="list"></param>
-            public TreeEnumerator(GenericBinaryTree<T> list)
+            /// <param name="tree">Given tree</param>
+            public TreeEnumerator(GenericBinaryTree<T> tree)
             {
-                this.list = list;
+                this.tree = tree;
             }
 
             /// <summary>
@@ -177,12 +177,12 @@ namespace _8._2
             {
                 if (current == null)
                 {
-                    if (list.head == null)
+                    if (tree.head == null)
                     {
                         return false;
                     }
 
-                    current = list.head;
+                    current = tree.head;
                     return true;
                 }
 
