@@ -15,13 +15,13 @@ namespace _8._2
         /// </summary>
         private class Node
         {
-            public T Value { get; private set; }
-            public Node Right { get; private set; } = null;
-            public Node Left { get; private set; } = null;
+            public T Value { get; set; }
+            public Node Right { get; set; } = null;
+            public Node Left { get; set; } = null;
         }
 
         /// <summary>
-        /// Checks if the list is read-only
+        /// Checks if the tree is read-only
         /// </summary>
         /// <returns>False</returns>
         public bool IsReadOnly => false;
@@ -30,9 +30,13 @@ namespace _8._2
         /// Adds the value into the tree
         /// </summary>
         /// <param name="value">Given value</param>
+        /// <returns>True if succeeded, false otherwise</returns>
         public bool Add(T value)
         {
-            throw new NotImplementedException();
+            if (Count == 0)
+            {
+
+            }
         }
 
         /// <summary>
@@ -151,7 +155,7 @@ namespace _8._2
             private Node current = null;
 
             /// <summary>
-            /// List enumerator's constructor
+            /// Tree enumerator's constructor
             /// </summary>
             /// <param name="tree">Given tree</param>
             public TreeEnumerator(GenericBinaryTree<T> tree)
