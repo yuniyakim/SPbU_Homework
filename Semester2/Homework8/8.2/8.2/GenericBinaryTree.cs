@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace _8._2
 {
@@ -16,8 +15,19 @@ namespace _8._2
         private class Node
         {
             public T Value { get; set; }
-            public Node Right { get; set; } = null;
-            public Node Left { get; set; } = null;
+            public Node Right { get; set; }
+            public Node Left { get; set; }
+
+            /// <summary>
+            /// Node's constructor
+            /// </summary>
+            /// <param name="value">Given value</param>
+            public Node(T value)
+            {
+                Value = value;
+                Right = null;
+                Left = null;
+            }
         }
 
         /// <summary>
@@ -33,9 +43,43 @@ namespace _8._2
         /// <returns>True if succeeded, false otherwise</returns>
         public bool Add(T value)
         {
+            if (Contains(value))
+            {
+                return false;
+            }
+
             if (Count == 0)
             {
+                head = new Node(value);
+            }
+            else
+            {
+                AddNode(head, value);
+            }
+            ++Count;
+            return true;
+        }
 
+        private void AddNode(Node head, T value)
+        {
+            if (value < head.Value && head.Left != null)
+            {
+                AddNode(head.Left, value);
+            }
+            else if (value > head.Value && head.Right != null)
+            {
+                AddNode(head.Right, value);
+            }
+            else
+            {
+                if (value < head.Value)
+                {
+                    head.Left = new Node(value);
+                }
+                else
+                {
+                    head.Right = new Node(value);
+                }
             }
         }
 
