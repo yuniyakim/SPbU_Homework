@@ -19,11 +19,11 @@ namespace _2._2
         {
             for (int i = 0; i < list.Count; ++i)
             {
-                for (int j = 1; j < list.Count - 1; ++j)
+                for (int j = 0; j < list.Count - 1; ++j)
                 {
-                    if (comparer.Compare(list[j], list[j - 1]) < 0)
+                    if (comparer.Compare(list[j], list[j + 1]) > 0)
                     {
-                        Swap(list[j], list[j - 1]);
+                        Swap(list, j, j + 1);
                     }
                 }
             }
@@ -34,13 +34,13 @@ namespace _2._2
         /// <summary>
         /// Swaps two elements
         /// </summary>
-        /// <param name="element1">First element</param>
-        /// <param name="element2">Second element</param>
-        private void Swap<T>(T element1, T element2)
+        /// <param name="index1">First element's index</param>
+        /// <param name="index2">Second element's index</param>
+        private void Swap<T>(List<T> list, int index1, int index2)
         {
-            var temp = element1;
-            element1 = element2;
-            element2 = temp;
+            var temp = list[index1];
+            list[index1] = list[index2];
+            list[index2] = temp;
         }
     }
 }
