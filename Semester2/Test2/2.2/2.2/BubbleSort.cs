@@ -16,9 +16,9 @@ namespace _2._2
         /// <returns>Sorted list</returns>
         public List<T> Sort<T>(List<T> list, IComparer<T> comparer)
         {
-            for (int i = 0; i < list.Count; ++i)
+            for (int i = 0; i < list.Count - 1; ++i)
             {
-                for (int j = 0; j < list.Count - 1; ++j)
+                for (int j = 0; j < list.Count - i - 1; ++j)
                 {
                     if (comparer.Compare(list[j], list[j + 1]) > 0)
                     {
