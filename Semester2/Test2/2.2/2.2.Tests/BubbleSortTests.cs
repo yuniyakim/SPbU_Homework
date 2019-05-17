@@ -3,11 +3,12 @@ using NUnit.Framework;
 
 namespace _2._2
 {
-    public class Tests
+    public class BubbleSortTests
     {
         [SetUp]
         public void Setup()
         {
+
         }
 
         [Test]

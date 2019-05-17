@@ -4,8 +4,17 @@ using System.Text;
 
 namespace _2._2
 {
+    /// <summary>
+    /// Bubble sort
+    /// </summary>
     public class BubbleSort
     {
+        /// <summary>
+        /// Sorts the list
+        /// </summary>
+        /// <param name="list">List to be sorted</param>
+        /// <param name="comparer">Given comparer</param>
+        /// <returns>Sorted list</returns>
         public List<T> Sort<T>(List<T> list, IComparer<T> comparer)
         {
             for (int i = 0; i < list.Count; ++i)
@@ -22,6 +31,11 @@ namespace _2._2
             return list;
         }
 
+        /// <summary>
+        /// Swaps two elements
+        /// </summary>
+        /// <param name="element1">First element</param>
+        /// <param name="element2">Second element</param>
         private void Swap<T>(T element1, T element2)
         {
             var temp = element1;
