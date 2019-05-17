@@ -2,7 +2,7 @@
 
 namespace _2._2
 {
-    class Program
+    public class Program
     {
         static void Main()
         {
