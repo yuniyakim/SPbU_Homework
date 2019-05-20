@@ -12,12 +12,28 @@ namespace _8._2
         [SetUp]
         public void Setup()
         {
+            tree = new GenericTree<string>();
         }
 
         [Test]
-        public void Test1()
+        public void AddTest()
         {
-            Assert.Pass();
+            tree.Add("one");
+            Assert.AreEqual(1, tree.Count);
+        }
+
+        [Test]
+        public void AddTwiceTest()
+        {
+            tree.Add("one");
+            tree.Add("four");
+            Assert.AreEqual(2, tree.Count);
+        }
+
+        [Test]
+        public void IsReadOnlyTest()
+        {
+            Assert.IsFalse(tree.IsReadOnly);
         }
     }
 }
