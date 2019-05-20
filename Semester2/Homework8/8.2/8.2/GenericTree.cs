@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 namespace _8._2
 {
-    public class GenericBinaryTree<T> : ISet<T>
+    /// <summary>
+    /// Generic tree
+    /// </summary>
+    public class GenericTree<T> : ISet<T> where T : IComparable
     {
         private Node head = null;
         public int Count { get; private set; }
@@ -14,7 +17,7 @@ namespace _8._2
         /// </summary>
         private class Node
         {
-            public T Value { get; set; }
+            public T Value { get; set; } 
             public Node Right { get; set; }
             public Node Left { get; set; }
 
@@ -60,19 +63,24 @@ namespace _8._2
             return true;
         }
 
+        /// <summary>
+        /// Adds the value into the subtree
+        /// </summary>
+        /// <param name="head">Subtree's head</param>
+        /// <param name="value">Given value</param>
         private void AddNode(Node head, T value)
         {
-            if (value < head.Value && head.Left != null)
+            if (value.CompareTo(head.Value) < 0 && head.Left != null)
             {
                 AddNode(head.Left, value);
             }
-            else if (value > head.Value && head.Right != null)
+            else if (value.CompareTo(head.Value) >= 0 && head.Right != null)
             {
                 AddNode(head.Right, value);
             }
             else
             {
-                if (value < head.Value)
+                if (value.CompareTo(head.Value) < 0)
                 {
                     head.Left = new Node(value);
                 }
@@ -99,7 +107,35 @@ namespace _8._2
         /// <returns>True if contained, false otherwise</returns>
         public bool Contains(T value)
         {
-            throw new NotImplementedException();
+            if (head == null)
+            {
+                return false;
+            }
+
+            var temp = head;
+            while (true)
+            {
+                if (value.CompareTo(temp.Value) == 0)
+                {
+                    return true;
+                }
+                else if (value.CompareTo(temp.Value) < 0)
+                {
+                    if (temp.Left == null)
+                    {
+                        return false;
+                    }
+                    temp = temp.Left;
+                }
+                else
+                {
+                    if (temp.Right == null)
+                    {
+                        return false;
+                    }
+                    temp = temp.Right;
+                }
+            }
         }
 
         /// <summary>
@@ -147,7 +183,6 @@ namespace _8._2
             throw new NotImplementedException();
         }
 
-
         /// <summary>
         /// Removes the element with the specific value
         /// </summary>
@@ -155,7 +190,66 @@ namespace _8._2
         /// <returns>True if succeeded, false otherwise</returns>
         public bool Remove(T value)
         {
-            throw new NotImplementedException();
+            if (!Contains(value))
+            {
+                return false;
+            }
+            RemoveNode(head, value);
+            return true;
+        }
+
+        /// <summary>
+        /// Removes a node with spicific value
+        /// </summary>
+        /// <param name="head">Subtree's head</param>
+        /// <param name="value">Spicific value</param>
+        private void RemoveNode(Node head, T value)
+        {
+            if (head.Value.CompareTo(value) > 0)
+            {
+                RemoveNode(head.Left, value);
+            }
+            else if (head.Value.CompareTo(value) < 0)
+            {
+                RemoveNode(head.Right, value);
+            }
+            else
+            {
+                if (head.Left == null && head.Right == null)
+                {
+                    head = null;
+                    // head.Value = 0;
+                }
+                else if (head.Left == null && head.Right != null)
+                {
+                    head = head.Right;
+                }
+                else if (head.Left != null && head.Right == null)
+                {
+                    head = head.Left;
+                }
+                else
+                {
+                    head.Value = Maximum(head);
+                    RemoveNode(head.Left, head.Value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Searches for the maximum value
+        /// </summary>
+        /// <param name="head">Subtree's head</param>
+        /// <returns>Subtree's maximum value</returns>
+        private T Maximum(Node head)
+        {
+            var temp = head;
+            temp = temp.Left;
+            while (temp.Right != null)
+            {
+                temp = temp.Right;
+            }
+            return temp.Value;
         }
 
         public bool SetEquals(IEnumerable<T> other)
@@ -195,14 +289,14 @@ namespace _8._2
         /// </summary>
         private class TreeEnumerator : IEnumerator<T>
         {
-            private GenericBinaryTree<T> tree;
+            private GenericTree<T> tree;
             private Node current = null;
 
             /// <summary>
             /// Tree enumerator's constructor
             /// </summary>
             /// <param name="tree">Given tree</param>
-            public TreeEnumerator(GenericBinaryTree<T> tree)
+            public TreeEnumerator(GenericTree<T> tree)
             {
                 this.tree = tree;
             }
