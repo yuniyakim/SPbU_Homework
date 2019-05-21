@@ -74,7 +74,7 @@ namespace _8._2
             {
                 AddNode(head.Left, value);
             }
-            else if (value.CompareTo(head.Value) >= 0 && head.Right != null)
+            else if (value.CompareTo(head.Value) > 0 && head.Right != null)
             {
                 AddNode(head.Right, value);
             }
@@ -195,6 +195,7 @@ namespace _8._2
                 return false;
             }
             RemoveNode(head, value);
+            --Count;
             return true;
         }
 
