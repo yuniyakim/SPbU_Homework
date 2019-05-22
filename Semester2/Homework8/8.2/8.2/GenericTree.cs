@@ -194,7 +194,7 @@ namespace _8._2
             {
                 return false;
             }
-            RemoveNode(head, value);
+            head = RemoveNode(head, value);
             --Count;
             return true;
         }
@@ -204,37 +204,37 @@ namespace _8._2
         /// </summary>
         /// <param name="head">Subtree's head</param>
         /// <param name="value">Spicific value</param>
-        private void RemoveNode(Node head, T value)
+        private Node RemoveNode(Node head, T value)
         {
             if (head.Value.CompareTo(value) > 0)
             {
-                RemoveNode(head.Left, value);
+                head.Left = RemoveNode(head.Left, value);
             }
             else if (head.Value.CompareTo(value) < 0)
             {
-                RemoveNode(head.Right, value);
+                head.Right = RemoveNode(head.Right, value);
             }
             else
             {
                 if (head.Left == null && head.Right == null)
                 {
-                    head = null;
-                    // head.Value = 0;
+                    return null;
                 }
                 else if (head.Left == null && head.Right != null)
                 {
-                    head = head.Right;
+                    return head.Right;
                 }
                 else if (head.Left != null && head.Right == null)
                 {
-                    head = head.Left;
+                    return  head.Left;
                 }
                 else
                 {
                     head.Value = Maximum(head);
-                    RemoveNode(head.Left, head.Value);
+                    head.Left = RemoveNode(head.Left, head.Value);
                 }
             }
+            return head;
         }
 
         /// <summary>

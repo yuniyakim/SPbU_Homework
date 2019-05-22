@@ -94,6 +94,7 @@ namespace _8._2
             tree.Remove(1);
             Assert.AreEqual(5, tree.Count);
             Assert.IsFalse(tree.Contains(1));
+            Assert.IsTrue(tree.Contains(-13));
         }
     }
 }

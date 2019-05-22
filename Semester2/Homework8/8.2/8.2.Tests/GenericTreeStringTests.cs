@@ -92,6 +92,7 @@ namespace _8._2
             tree.Remove("oneone");
             Assert.AreEqual(4, tree.Count);
             Assert.IsFalse(tree.Contains("oneone"));
+            Assert.IsTrue(tree.Contains("hey you"));
         }
     }
 }
