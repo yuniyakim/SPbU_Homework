@@ -145,7 +145,12 @@ namespace _8._2
         /// <param name="position">Starting position</param>
         public void CopyTo(T[] array, int position)
         {
-
+            var index = position;
+            foreach (var node in this)
+            {
+                array[index] = node;
+                ++index;
+            }
         }
 
         public void ExceptWith(IEnumerable<T> other)
