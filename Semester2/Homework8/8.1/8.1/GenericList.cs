@@ -224,11 +224,11 @@ namespace _8._1
         /// <param name="position">Starting position</param>
         public void CopyTo(T[] array, int position)
         {
-            var temp = head;
-            for (int i = position; i <= Count; ++i)
+            var index = position;
+            foreach (var node in this)
             {
-                array[i] = temp.Value;
-                temp = temp.Next;
+                array[index] = node;
+                ++index;
             }
         }
 
