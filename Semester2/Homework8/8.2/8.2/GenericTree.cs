@@ -145,7 +145,7 @@ namespace _8._2
         /// <param name="position">Starting position</param>
         public void CopyTo(T[] array, int position)
         {
-            throw new NotImplementedException();
+
         }
 
         public void ExceptWith(IEnumerable<T> other)
@@ -230,7 +230,7 @@ namespace _8._2
                 }
                 else
                 {
-                    head.Value = Maximum(head);
+                    head.Value = Maximum(head.Left);
                     head.Left = RemoveNode(head.Left, head.Value);
                 }
             }
@@ -245,7 +245,6 @@ namespace _8._2
         private T Maximum(Node head)
         {
             var temp = head;
-            temp = temp.Left;
             while (temp.Right != null)
             {
                 temp = temp.Right;
@@ -277,78 +276,58 @@ namespace _8._2
         /// Gets enumerator
         /// </summary>
         /// <returns>Tree enumerator</returns>
-        public IEnumerator<T> GetEnumerator() => new TreeEnumerator(this);
+        public IEnumerator<T> GetEnumerator() => Traverse(head);
+
+        /// <summary>
+        /// Traverses the subtree
+        /// </summary>
+        /// <param name="head">Subtree's head</param>
+        private IEnumerator<T> Traverse(Node head)
+        {
+            if (head == null)
+            {
+                yield break;
+            }
+
+            yield return head.Value;
+            if (head.Left != null)
+            {
+                Traverse(head.Left);
+            }
+            if (head.Right != null)
+            {
+                Traverse(head.Right);
+            }
+        }
+
+        /*public IEnumerator<T> Preorder()
+        {
+            if (head == null)
+            {
+                yield break;
+            }
+            var stack = new Stack<Node>();
+            stack.Push(head);
+
+            while (stack.Count > 0)
+            {
+                var node = stack.Pop();
+                yield return node.Value;
+                if (node.Right != null)
+                {
+                    stack.Push(node.Right);
+                }
+                if (node.Left != null)
+                {
+                    stack.Push(node.Left);
+                }
+            }
+        }*/
 
         /// <summary>
         /// Gets object-enumerator
         /// </summary>
         /// <returns>Object-enumerator</returns>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-        /// <summary>
-        /// Tree enumerator
-        /// </summary>
-        private class TreeEnumerator : IEnumerator<T>
-        {
-            private GenericTree<T> tree;
-            private Node current = null;
-
-            /// <summary>
-            /// Tree enumerator's constructor
-            /// </summary>
-            /// <param name="tree">Given tree</param>
-            public TreeEnumerator(GenericTree<T> tree)
-            {
-                this.tree = tree;
-            }
-
-            /// <summary>
-            /// Gets the current element
-            /// </summary>
-            object IEnumerator.Current => current;
-
-            /// <summary>
-            /// Gets the value of the current element
-            /// </summary>
-            public T Current => current.Value;
-
-            /// <summary>
-            /// Moves to the next element in the tree
-            /// </summary>
-            /// <returns>True if succeeded, false otherwise</returns>
-            public bool MoveNext()
-            {
-                if (current == null)
-                {
-                    if (tree.head == null)
-                    {
-                        return false;
-                    }
-
-                    current = tree.head;
-                    return true;
-                }
-
-                //if (current.Next == null)
-                //{
-                    return false;
-                //}
-
-                //current = current.Next;
-                //return true;
-            }
-
-            /// <summary>
-            /// Sets enumerator to its initial position
-            /// </summary>
-            public void Reset() => current = null;
-
-            /// <summary>
-            /// Disposes
-            /// </summary>
-            public void Dispose()
-            {
-            }
-        }
     }
 }
