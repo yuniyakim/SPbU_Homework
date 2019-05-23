@@ -356,7 +356,21 @@ namespace _8._2
         /// <returns></returns>
         public bool SetEquals(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in collection)
+            {
+                if (!Contains(element))
+                {
+                    return false;
+                }
+            }
+            foreach (var element in this)
+            {
+                if (!collection.Contains(element))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -365,7 +379,17 @@ namespace _8._2
         /// <param name="collection">Specified collection</param>
         public void SymmetricExceptWith(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in collection)
+            {
+                if (Contains(element))
+                {
+                    Remove(element);
+                }
+                else
+                {
+                    Add(element);
+                }
+            }
         }
 
         /// <summary>
@@ -374,22 +398,25 @@ namespace _8._2
         /// <param name="collection">Specified collection</param>
         public void UnionWith(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in collection)
+            {
+                if (!Contains(element))
+                {
+                    Add(element);
+                }
+            }
         }
 
         /// <summary>
-        /// 
+        /// Adds the value into the collection
         /// </summary>
-        /// <param name="item"></param>
-        void ICollection<T>.Add(T item)
-        {
-            throw new NotImplementedException();
-        }
+        /// <param name="value">Specific value</param>
+        void ICollection<T>.Add(T value) => Add(value);
 
         /// <summary>
         /// Gets enumerator
         /// </summary>
-        /// <returns>Tree enumerator</returns>
+        /// <returns>Tree traverse</returns>
         public IEnumerator<T> GetEnumerator() => Traverse(head);
 
         /// <summary>
