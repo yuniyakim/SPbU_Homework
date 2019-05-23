@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _8._2
 {
@@ -153,39 +154,130 @@ namespace _8._2
             }
         }
 
-        public void ExceptWith(IEnumerable<T> other)
+        /// <summary>
+        /// Removes all elements in the specified collection from the current set
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        public void ExceptWith(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in collection)
+            {
+                Remove(element);
+            }
         }
 
-        public void IntersectWith(IEnumerable<T> other)
+        /// <summary>
+        /// Modifies the current set so that it contains only elements that are also in a specified collection
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        public void IntersectWith(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in this)
+            {
+                if (!collection.Contains(element))
+                {
+                    Remove(element);
+                }
+            }
         }
 
-        public bool IsProperSubsetOf(IEnumerable<T> other)
+        /// <summary>
+        /// Determines whether the current set is a proper (strict) subset of a specified collection
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        /// <returns>True if it's a proper subset, false otherwise</returns>
+        public bool IsProperSubsetOf(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in this)
+            {
+                if (!collection.Contains(element))
+                {
+                    return false;
+                }
+            }
+            foreach (var element in collection)
+            {
+                if (!Contains(element))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public bool IsProperSupersetOf(IEnumerable<T> other)
+        /// <summary>
+        /// Determines whether the current set is a proper (strict) superset of a specified collection
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        /// <returns>True if it's a proper superset, false otherwise</returns>
+        public bool IsProperSupersetOf(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in collection)
+            {
+                if (!Contains(element))
+                {
+                    return false;
+                }
+            }
+            foreach (var element in this)
+            {
+                if (!collection.Contains(element))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public bool IsSubsetOf(IEnumerable<T> other)
+        /// <summary>
+        /// Determines whether a set is a subset of a specified collection
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        /// <returns>True if it's a subset, false otherwise</returns>
+        public bool IsSubsetOf(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in this)
+            {
+                if (!collection.Contains(element))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
-        public bool IsSupersetOf(IEnumerable<T> other)
+        /// <summary>
+        /// Determines whether the current set is a superset of a specified collection
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        /// <returns>True if it's a superset, false otherwise</returns>
+        public bool IsSupersetOf(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in collection)
+            {
+                if (!Contains(element))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
-        public bool Overlaps(IEnumerable<T> other)
+        /// <summary>
+        /// Determines whether the current set overlaps with the specified collection.
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        /// <returns>True if the current set and specified collection share at least one common element, false otherwise</returns>
+        public bool Overlaps(IEnumerable<T> collection)
         {
-            throw new NotImplementedException();
+            foreach (var element in collection)
+            {
+                if (Contains(element))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -257,21 +349,38 @@ namespace _8._2
             return temp.Value;
         }
 
-        public bool SetEquals(IEnumerable<T> other)
+        /// <summary>
+        /// Determines whether the current set and the specified collection contain the same elements
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        /// <returns></returns>
+        public bool SetEquals(IEnumerable<T> collection)
         {
             throw new NotImplementedException();
         }
 
-        public void SymmetricExceptWith(IEnumerable<T> other)
+        /// <summary>
+        /// Modifies the current set so that it contains only elements that are present either in the current set or in the specified collection, but not both
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        public void SymmetricExceptWith(IEnumerable<T> collection)
         {
             throw new NotImplementedException();
         }
 
-        public void UnionWith(IEnumerable<T> other)
+        /// <summary>
+        /// Modifies the current set so that it contains all elements that are present in the current set, in the specified collection, or in both
+        /// </summary>
+        /// <param name="collection">Specified collection</param>
+        public void UnionWith(IEnumerable<T> collection)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
         void ICollection<T>.Add(T item)
         {
             throw new NotImplementedException();
