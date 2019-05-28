@@ -15,7 +15,6 @@ namespace _6._2
         /// Game's constructor
         /// </summary>
         /// <param name="map">Game's map</param>
-        /// /// <param name="cursor">Set cursor</param>
         public Game(Map map)
         {
             this.Field = map;
