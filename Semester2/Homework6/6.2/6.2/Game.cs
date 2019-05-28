@@ -21,6 +21,9 @@ namespace _6._2
             this.Field = map;
         }
 
+        /// <summary>
+        /// Cursor's class
+        /// </summary>
         private class Cursor : ISetCursor
         {
             /// <summary>
