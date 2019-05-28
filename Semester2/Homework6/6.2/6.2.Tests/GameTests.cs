@@ -21,7 +21,8 @@ namespace _6._2
         {
             map = new Map();
             map.ReadAndFill(Directory.GetCurrentDirectory() + "../../../../6.2.Test.txt");
-            game = new Game (map, new Cursor());
+            game = new Game (map);
+            game.cursor = new Cursor();
         }
 
         [Test]

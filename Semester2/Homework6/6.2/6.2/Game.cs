@@ -9,17 +9,24 @@ namespace _6._2
     {
         public Map Field { get; private set; }
         public Player Character { get; private set; }
-        private ISetCursor cursor;
+        public ISetCursor cursor { get; set; } = new Cursor();
 
         /// <summary>
         /// Game's constructor
         /// </summary>
         /// <param name="map">Game's map</param>
         /// /// <param name="cursor">Set cursor</param>
-        public Game(Map map, ISetCursor cursor)
+        public Game(Map map)
         {
             this.Field = map;
-            this.cursor = cursor;
+        }
+
+        private class Cursor : ISetCursor
+        {
+            /// <summary>
+            /// Sets cursor according to player's position
+            /// </summary>
+            public void SetCursor(int x, int y) => Console.SetCursorPosition(x, y);
         }
 
         /// <summary>

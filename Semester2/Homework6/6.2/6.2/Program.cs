@@ -5,21 +5,13 @@ namespace _6._2
 {
     public class Program
     {
-        private class Cursor : ISetCursor
-        {
-            /// <summary>
-            /// Sets cursor according to player's position
-            /// </summary>
-            public void SetCursor(int x, int y) => Console.SetCursorPosition(x, y);
-        }
-
         static void Main()
         {
             var path = Directory.GetCurrentDirectory() + "../../../../6.2.txt";
             var eventLoop = new EventLoop();
             var map = new Map();
             map.ReadAndFill(path);
-            var game = new Game(map, new Cursor());
+            var game = new Game(map);
             map.Print();
             Console.WriteLine("Press ctrl + C to exit");
             Console.WriteLine("Enter starting coordinates of your player");
