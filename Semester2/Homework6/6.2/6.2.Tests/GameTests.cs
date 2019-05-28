@@ -21,8 +21,7 @@ namespace _6._2
         {
             map = new Map();
             map.ReadAndFill(Directory.GetCurrentDirectory() + "../../../../6.2.Test.txt");
-            game = new Game (map);
-            game.cursor = new Cursor();
+            game = new Game (map, new Cursor());
         }
 
         [Test]
@@ -56,7 +55,8 @@ namespace _6._2
         public void UpToTakenCellTest()
         {
             game.SetInitialCoordinates(6, 4);
-            Assert.Throws<InvalidMoveException>(() => game.Up(this, new EventArgs()));
+            game.Up(this, new EventArgs());
+            Assert.AreEqual(4, game.Character.Y);
         }
 
         [Test]
@@ -65,7 +65,8 @@ namespace _6._2
             game.SetInitialCoordinates(6, 2);
             game.Up(this, new EventArgs());
             game.Up(this, new EventArgs());
-            Assert.Throws<InvalidMoveException>(() => game.Up(this, new EventArgs()));
+            game.Up(this, new EventArgs());
+            Assert.AreEqual(0, game.Character.Y);
         }
 
         [Test]
@@ -81,7 +82,8 @@ namespace _6._2
         public void DownToTakenCellTest()
         {
             game.SetInitialCoordinates(7, 1);
-            Assert.Throws<InvalidMoveException>(() => game.Down(this, new EventArgs()));
+            game.Down(this, new EventArgs());
+            Assert.AreEqual(1, game.Character.Y);
         }
 
         [Test]
@@ -89,7 +91,8 @@ namespace _6._2
         {
             game.SetInitialCoordinates(2, 5);
             game.Down(this, new EventArgs());
-            Assert.Throws<InvalidMoveException>(() => game.Down(this, new EventArgs()));
+            game.Down(this, new EventArgs());
+            Assert.AreEqual(6, game.Character.Y);
         }
 
         [Test]
@@ -106,7 +109,8 @@ namespace _6._2
         public void RightToTakenCellTest()
         {
             game.SetInitialCoordinates(7, 5);
-            Assert.Throws<InvalidMoveException>(() => game.Right(this, new EventArgs()));
+            game.Right(this, new EventArgs());
+            Assert.AreEqual(7, game.Character.X);
         }
 
         [Test]
@@ -116,7 +120,8 @@ namespace _6._2
             game.Right(this, new EventArgs());
             game.Right(this, new EventArgs());
             game.Right(this, new EventArgs());
-            Assert.Throws<InvalidMoveException>(() => game.Right(this, new EventArgs()));
+            game.Right(this, new EventArgs());
+            Assert.AreEqual(9, game.Character.X);
         }
 
         [Test]
@@ -134,7 +139,8 @@ namespace _6._2
         public void LeftToTakenCellTest()
         {
             game.SetInitialCoordinates(2, 5);
-            Assert.Throws<InvalidMoveException>(() => game.Left(this, new EventArgs()));
+            game.Left(this, new EventArgs());
+            Assert.AreEqual(2, game.Character.X);
         }
 
         [Test]
@@ -142,7 +148,8 @@ namespace _6._2
         {
             game.SetInitialCoordinates(1, 1);
             game.Left(this, new EventArgs());
-            Assert.Throws<InvalidMoveException>(() => game.Left(this, new EventArgs()));
+            game.Left(this, new EventArgs());
+            Assert.AreEqual(0, game.Character.X);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace _6._2
     {
         public Map Field { get; private set; }
         public Player Character { get; private set; }
-        public ISetCursor cursor { get; set; } = new Cursor();
+        private ISetCursor cursor;
 
         /// <summary>
         /// Game's constructor
@@ -19,6 +19,18 @@ namespace _6._2
         public Game(Map map)
         {
             this.Field = map;
+            cursor = new Cursor();
+        }
+
+        /// <summary>
+        /// Game's constructor
+        /// </summary>
+        /// <param name="map">Game's map</param>
+        /// /// <param name="cursor">Set cursor</param>
+        public Game(Map map, ISetCursor cursor)
+        {
+            this.Field = map;
+            this.cursor = cursor;
         }
 
         /// <summary>
@@ -54,16 +66,15 @@ namespace _6._2
         /// </summary>
         public void Up(object sender, EventArgs args)
         {
-            if (Character.Y - 1 < 0 || Field.Field[Character.Y - 1, Character.X] == '#')
+            if (!(Character.Y - 1 < 0 || Field.Field[Character.Y - 1, Character.X] == '#'))
             {
-                throw new InvalidMoveException();
+                cursor.SetCursor(Character.X, Character.Y);
+                Console.Write('.');
+                Character.Move("up");
+                cursor.SetCursor(Character.X, Character.Y);
+                Console.Write('@');
+                cursor.SetCursor(Character.X, Character.Y);
             }
-            cursor.SetCursor(Character.X, Character.Y);
-            Console.Write('.');
-            Character.Move("up");
-            cursor.SetCursor(Character.X, Character.Y);
-            Console.Write('@');
-            cursor.SetCursor(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -71,16 +82,15 @@ namespace _6._2
         /// </summary>
         public void Down(object sender, EventArgs args)
         {
-            if (Character.Y + 1 >= Field.Height || Field.Field[Character.Y + 1, Character.X] == '#')
+            if (!(Character.Y + 1 >= Field.Height || Field.Field[Character.Y + 1, Character.X] == '#'))
             {
-                throw new InvalidMoveException();
+                cursor.SetCursor(Character.X, Character.Y);
+                Console.Write('.');
+                Character.Move("down");
+                cursor.SetCursor(Character.X, Character.Y);
+                Console.Write('@');
+                cursor.SetCursor(Character.X, Character.Y);
             }
-            cursor.SetCursor(Character.X, Character.Y);
-            Console.Write('.');
-            Character.Move("down");
-            cursor.SetCursor(Character.X, Character.Y);
-            Console.Write('@');
-            cursor.SetCursor(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -88,16 +98,15 @@ namespace _6._2
         /// </summary>
         public void Right(object sender, EventArgs args)
         {
-            if (Character.X + 1 >= Field.Width || Field.Field[Character.Y, Character.X + 1] == '#')
+            if (!(Character.X + 1 >= Field.Width || Field.Field[Character.Y, Character.X + 1] == '#'))
             {
-                throw new InvalidMoveException();
+                cursor.SetCursor(Character.X, Character.Y);
+                Console.Write('.');
+                Character.Move("right");
+                cursor.SetCursor(Character.X, Character.Y);
+                Console.Write('@');
+                cursor.SetCursor(Character.X, Character.Y);
             }
-            cursor.SetCursor(Character.X, Character.Y);
-            Console.Write('.');
-            Character.Move("right");
-            cursor.SetCursor(Character.X, Character.Y);
-            Console.Write('@');
-            cursor.SetCursor(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -105,16 +114,15 @@ namespace _6._2
         /// </summary>
         public void Left(object sender, EventArgs args)
         {
-            if (Character.X - 1 < 0 || Field.Field[Character.Y, Character.X - 1] == '#')
+            if (!(Character.X - 1 < 0 || Field.Field[Character.Y, Character.X - 1] == '#'))
             {
-                throw new InvalidMoveException();
+                cursor.SetCursor(Character.X, Character.Y);
+                Console.Write('.');
+                Character.Move("left");
+                cursor.SetCursor(Character.X, Character.Y);
+                Console.Write('@');
+                cursor.SetCursor(Character.X, Character.Y);
             }
-            cursor.SetCursor(Character.X, Character.Y);
-            Console.Write('.');
-            Character.Move("left");
-            cursor.SetCursor(Character.X, Character.Y);
-            Console.Write('@');
-            cursor.SetCursor(Character.X, Character.Y);
         }
     }
 }
