@@ -7,14 +7,16 @@ namespace _6._2
     public class GameTests
     {
         private Map map;
-        private GameForTest game;
+        private Game game;
+        private bool isTest = true;
 
         [SetUp]
         public void Initialize()
         {
             map = new Map();
             map.ReadAndFill(Directory.GetCurrentDirectory() + "../../../../6.2.Test.txt");
-            game = new GameForTest(map);
+            game = new Game(map);
+            game.IsTest = true;
         }
 
         [Test]
