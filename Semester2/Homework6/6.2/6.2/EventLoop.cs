@@ -24,22 +24,22 @@ namespace _6._2
                 {
                     case ConsoleKey.LeftArrow:
                         {
-                            LeftHandler(this, new EventArgs());
+                            LeftHandler?.Invoke(this, new EventArgs());
                             break;
                         }
                     case ConsoleKey.RightArrow:
                         {
-                            RightHandler(this, new EventArgs());
+                            RightHandler?.Invoke(this, new EventArgs());
                             break;
                         }
                     case ConsoleKey.UpArrow:
                         {
-                            UpHandler(this, new EventArgs());
+                            UpHandler?.Invoke(this, new EventArgs());
                             break;
                         }
                     case ConsoleKey.DownArrow:
                         {
-                            DownHandler(this, new EventArgs());
+                            DownHandler?.Invoke(this, new EventArgs());
                             break;
                         }
                     default:

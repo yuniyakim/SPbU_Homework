@@ -33,6 +33,7 @@ namespace _6._2
             Character = new Player(initialX, initialY);
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
+            Console.SetCursorPosition(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -49,6 +50,7 @@ namespace _6._2
             Character.Move("up");
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
+            Console.SetCursorPosition(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -65,6 +67,7 @@ namespace _6._2
             Character.Move("down");
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
+            Console.SetCursorPosition(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -81,6 +84,7 @@ namespace _6._2
             Character.Move("right");
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
+            Console.SetCursorPosition(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -97,6 +101,7 @@ namespace _6._2
             Character.Move("left");
             Console.SetCursorPosition(Character.X, Character.Y);
             Console.Write('@');
+            Console.SetCursorPosition(Character.X, Character.Y);
         }
     }
 }
