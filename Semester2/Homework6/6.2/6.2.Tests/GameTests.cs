@@ -8,7 +8,6 @@ namespace _6._2
     {
         private Map map;
         private Game game;
-        private bool isTest = true;
 
         [SetUp]
         public void Initialize()
