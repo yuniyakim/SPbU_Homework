@@ -100,7 +100,13 @@ namespace _8._2
         [Test]
         public void ExceptWithTest()
         {
-
+            var testTree = new GenericTree<int>();
+            tree.Add(1);
+            tree.Add(2);
+            tree.Add(3);
+            tree.Add(4);
+            tree.Add(5);
+            testTree.Add(1);
         }
 
         [Test]
