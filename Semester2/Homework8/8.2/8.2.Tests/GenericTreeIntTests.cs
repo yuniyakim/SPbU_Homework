@@ -81,6 +81,29 @@ namespace _8._2
         }
 
         [Test]
+        public void CopyToTest()
+        {
+            tree.Add(1);
+            tree.Add(22);
+            tree.Add(333);
+            tree.Add(4444);
+            tree.Add(55555);
+            var array = new int[5];
+            tree.CopyTo(array, 0);
+            Assert.AreEqual(4444, array[3]);
+            Assert.AreEqual(22, array[1]);
+            Assert.AreEqual(55555, array[4]);
+            Assert.AreEqual(333, array[2]);
+            Assert.AreEqual(1, array[0]);
+        }
+
+        [Test]
+        public void ExceptWithTest()
+        {
+
+        }
+
+        [Test]
         public void RemoveTest()
         {
             tree.Add(10);
