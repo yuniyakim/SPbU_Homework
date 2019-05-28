@@ -5,19 +5,21 @@ namespace _6._2
     /// <summary>
     /// Game's class
     /// </summary>
-    public class Game : IGame
+    public class Game
     {
         public Map Field { get; private set; }
         public Player Character { get; private set; }
-        public bool IsTest { get; set; } = false;
+        private ISetCursor cursor;
 
         /// <summary>
         /// Game's constructor
         /// </summary>
         /// <param name="map">Game's map</param>
-        public Game(Map map)
+        /// /// <param name="cursor">Set cursor</param>
+        public Game(Map map, ISetCursor cursor)
         {
             this.Field = map;
+            this.cursor = cursor;
         }
 
         /// <summary>
@@ -32,12 +34,9 @@ namespace _6._2
                 throw new InvalidInitialCoordinatesException();
             }
             Character = new Player(initialX, initialY);
-            if (!IsTest)
-            {
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('@');
-                Console.SetCursorPosition(Character.X, Character.Y);
-            }
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('@');
+            cursor.SetCursor(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -49,19 +48,12 @@ namespace _6._2
             {
                 throw new InvalidMoveException();
             }
-            if (!IsTest)
-            {
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('.');
-                Character.Move("up");
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('@');
-                Console.SetCursorPosition(Character.X, Character.Y);
-            }
-            else
-            {
-                Character.Move("up");
-            }
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('.');
+            Character.Move("up");
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('@');
+            cursor.SetCursor(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -73,19 +65,12 @@ namespace _6._2
             {
                 throw new InvalidMoveException();
             }
-            if (!IsTest)
-            {
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('.');
-                Character.Move("down");
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('@');
-                Console.SetCursorPosition(Character.X, Character.Y);
-            }
-            else
-            {
-                Character.Move("down");
-            }
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('.');
+            Character.Move("down");
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('@');
+            cursor.SetCursor(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -97,19 +82,12 @@ namespace _6._2
             {
                 throw new InvalidMoveException();
             }
-            if (!IsTest)
-            {
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('.');
-                Character.Move("right");
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('@');
-                Console.SetCursorPosition(Character.X, Character.Y);
-            }
-            else
-            {
-                Character.Move("right");
-            }
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('.');
+            Character.Move("right");
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('@');
+            cursor.SetCursor(Character.X, Character.Y);
         }
 
         /// <summary>
@@ -121,19 +99,12 @@ namespace _6._2
             {
                 throw new InvalidMoveException();
             }
-            if (!IsTest)
-            {
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('.');
-                Character.Move("left");
-                Console.SetCursorPosition(Character.X, Character.Y);
-                Console.Write('@');
-                Console.SetCursorPosition(Character.X, Character.Y);
-            }
-            else
-            {
-                Character.Move("left");
-            }
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('.');
+            Character.Move("left");
+            cursor.SetCursor(Character.X, Character.Y);
+            Console.Write('@');
+            cursor.SetCursor(Character.X, Character.Y);
         }
     }
 }

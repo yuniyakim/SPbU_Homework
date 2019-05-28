@@ -9,13 +9,19 @@ namespace _6._2
         private Map map;
         private Game game;
 
+        private class Cursor : ISetCursor
+        {
+            public void SetCursor(int x, int y)
+            {
+            }
+        }
+
         [SetUp]
         public void Initialize()
         {
             map = new Map();
             map.ReadAndFill(Directory.GetCurrentDirectory() + "../../../../6.2.Test.txt");
-            game = new Game(map);
-            game.IsTest = true;
+            game = new Game (map, new Cursor());
         }
 
         [Test]
