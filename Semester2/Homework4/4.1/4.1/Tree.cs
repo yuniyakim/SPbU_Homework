@@ -79,61 +79,50 @@ namespace _4._1
             /// <summary>
             /// String itself
             /// </summary>
-            internal string str;
+            public string Str { get; private set; }
 
             /// <summary>
             /// Current iteration's number
             /// </summary>
-            internal int iteration = 0;
+            public int Iteration { get; set; } = 0;
 
             /// <summary>
             /// String's constructor
             /// </summary>
             /// <param name="str">Given string</param>
-            internal String(string str)
+            public String(string str)
             {
-                this.str = str;
+                this.Str = str;
             }
 
             /// <summary>
             /// Current symbol
             /// </summary>
-            /// <returns>Current symbol</returns>
-            internal char Current()
-            {
-                return str[iteration];
-            }
+            public char Current() => Str[Iteration];
 
             /// <summary>
             /// Next symbol
             /// </summary>
             /// <returns>Next symbol</returns>
-            internal char Next()
-            {
-                return str[iteration + 1];
-            }
+            public char Next() => Str[Iteration + 1];
 
             /// <summary>
             /// String's length
             /// </summary>
             /// <returns>String's length</returns>
-            internal int Length()
-            {
-                return str.Length;
-            }
+            public int Length() => Str.Length;
 
             /// <summary>
             /// Ignores closing brackets
             /// </summary>
             /// <param name="str">Given string</param>
             /// <returns>The number of next symbol that's not a closing bracket</returns>
-            internal void IgnoreBrackets()
+            public void IgnoreBrackets()
             {
-                while (iteration < Length() && Current() == ')')
+                while (Iteration < Length() && Current() == ')')
                 {
-                    ++iteration;
+                    ++Iteration;
                 }
-                ///return str.iteration;
             }
 
             /// <summary>
@@ -141,13 +130,12 @@ namespace _4._1
             /// </summary>
             /// <param name="str">Given string</param>
             /// <returns>The number of next symbol that's not a space</returns>
-            internal void IgnoreSpaces()
+            public void IgnoreSpaces()
             {
                 while (Current() == ' ')
                 {
-                    ++iteration;
+                    ++Iteration;
                 }
-                ///return str.iteration;
             }
         }
 
@@ -160,10 +148,10 @@ namespace _4._1
         {
             if (str.Current() == '(')
             {
-                ++str.iteration;
+                ++str.Iteration;
                 str.IgnoreSpaces();
                 var node = DefineOperation(str.Current());
-                ++str.iteration;
+                ++str.Iteration;
                 str.IgnoreSpaces();
                 node.LeftChild = FillTree(str);
                 str.IgnoreSpaces();
@@ -173,11 +161,11 @@ namespace _4._1
             if (Char.IsDigit(str.Current()) && Char.IsDigit(str.Next()))
             {
                 var number = (int)Char.GetNumericValue(str.Current());
-                ++str.iteration;
+                ++str.Iteration;
                 while (Char.IsDigit(str.Current()))
                 {
                     number = number * 10 + (int)Char.GetNumericValue(str.Current());
-                    ++str.iteration;
+                    ++str.Iteration;
                 }
                 str.IgnoreSpaces();
                 var node = new Number(number);
@@ -190,14 +178,14 @@ namespace _4._1
             else if (Char.IsDigit(str.Current()) && str.Next() == ')')
             {
                 var node = new Number((int)Char.GetNumericValue(str.Current()));
-                ++str.iteration;
+                ++str.Iteration;
                 str.IgnoreBrackets();
                 return node;
             }
             else if (Char.IsDigit(str.Current()))
             {
                 var node = new Number((int)Char.GetNumericValue(str.Current()));
-                ++str.iteration;
+                ++str.Iteration;
                 str.IgnoreSpaces();
                 return node;
             }

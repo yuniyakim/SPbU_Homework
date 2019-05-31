@@ -7,6 +7,9 @@ namespace _4._1
     /// </summary>
     public class Number : INode
     {
+        /// <summary>
+        /// Number's value
+        /// </summary>
         public int Value { get; set; }
 
         /// <summary>
