@@ -39,6 +39,19 @@ namespace _8._1
         public bool IsReadOnly => false;
 
         /// <summary>
+        /// Goes to the node's next
+        /// </summary>
+        /// <param name="node">Node to start with</param>
+        /// <param name="position">Last node's position</param>
+        private void GoNext(ref Node node, int position)
+        {
+            for (int i = 1; i < position; ++i)
+            {
+                node = node.Next;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the element at the specified position
         /// </summary>
         /// <param name="position">Specified position</param>
@@ -53,10 +66,7 @@ namespace _8._1
                 }
 
                 var temp = head;
-                for (int i = 1; i < position; ++i)
-                {
-                    temp = temp.Next;
-                }
+                GoNext(ref temp, position);
                 return temp.Value;
             }
             set
@@ -67,10 +77,7 @@ namespace _8._1
                 }
 
                 var temp = head;
-                for (int i = 1; i < position; ++i)
-                {
-                    temp = temp.Next;
-                }
+                GoNext(ref temp, position);
                 temp.Value = value;
             }
         }
@@ -88,10 +95,7 @@ namespace _8._1
             else
             {
                 var temp = head;
-                for (int i = 1; i < Count; ++i)
-                {
-                    temp = temp.Next;
-                }
+                GoNext(ref temp, Count);
                 temp.Next = new Node(value);
             }
             ++Count;
@@ -118,10 +122,7 @@ namespace _8._1
             else
             {
                 var temp = head;
-                for (int i = 1; i < position - 1; ++i)
-                {
-                    temp = temp.Next;
-                }
+                GoNext(ref temp, position - 1);
                 newNode.Next = temp.Next;
                 temp.Next = newNode;
             }
@@ -153,15 +154,7 @@ namespace _8._1
         /// </summary>
         /// <param name="value">Specific value</param>
         /// <returns>True if contained, false otherwise</returns>
-        public bool Contains(T value)
-        {
-            if (IndexOf(value) == -1)
-            {
-                return false;
-            }
-
-            return true;
-        }
+        public bool Contains(T value) => (IndexOf(value) == -1) ? false : true;
 
         /// <summary>
         /// Removes the element on the specified position
@@ -181,10 +174,7 @@ namespace _8._1
             else
             {
                 var temp = head;
-                for (int i = 1; i < position - 1; ++i)
-                {
-                    temp = temp.Next;
-                }
+                GoNext(ref temp, position - 1);
                 temp.Next = temp.Next.Next;
             }
 
