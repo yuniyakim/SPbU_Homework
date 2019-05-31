@@ -1,13 +1,10 @@
-image: Visual Studio 2017
+image: Visual Studio 2019 Preview
 
 before_build:
-  - nuget restore Semester2/Homework3/3.1/3.1.sln
-  - choco install opencover.portable
-  - choco install codecov
+  - nuget restore Semester2/Test1/1.1/1.1.sln
 
 build:
-  project: Semester2/Homework3/3.1/3.1.sln
-  verbosity: minimal
+  project: Semester2/Test1/1.1/1.1.sln
 
 test_script:
-  - dotnet test Semester2/Homework3/3.1/3.1.sln
+  - dotnet test Semester2/Test1/1.1/1.1.sln
