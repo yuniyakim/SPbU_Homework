@@ -21,7 +21,7 @@ namespace _6._2
         {
             map = new Map();
             map.ReadAndFill(Directory.GetCurrentDirectory() + "../../../../6.2.Test.txt");
-            game = new Game (map, new Cursor());
+            game = new Game(map, new Cursor());
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace _6._2
         public void UpTest()
         {
             game.SetInitialCoordinates(4, 3);
-            game.Up(this, new EventArgs());
+            game.Up(this, EventArgs.Empty);
             Assert.AreEqual(2, game.Character.Y);
             Assert.AreEqual(4, game.Character.X);
         }
@@ -55,7 +55,7 @@ namespace _6._2
         public void UpToTakenCellTest()
         {
             game.SetInitialCoordinates(6, 4);
-            game.Up(this, new EventArgs());
+            game.Up(this, EventArgs.Empty);
             Assert.AreEqual(4, game.Character.Y);
         }
 
@@ -63,9 +63,9 @@ namespace _6._2
         public void UpOutOfMapTest()
         {
             game.SetInitialCoordinates(6, 2);
-            game.Up(this, new EventArgs());
-            game.Up(this, new EventArgs());
-            game.Up(this, new EventArgs());
+            game.Up(this, EventArgs.Empty);
+            game.Up(this, EventArgs.Empty);
+            game.Up(this, EventArgs.Empty);
             Assert.AreEqual(0, game.Character.Y);
         }
 
@@ -73,7 +73,7 @@ namespace _6._2
         public void DownTest()
         {
             game.SetInitialCoordinates(8, 3);
-            game.Down(this, new EventArgs());
+            game.Down(this, EventArgs.Empty);
             Assert.AreEqual(4, game.Character.Y);
             Assert.AreEqual(8, game.Character.X);
         }
@@ -82,7 +82,7 @@ namespace _6._2
         public void DownToTakenCellTest()
         {
             game.SetInitialCoordinates(7, 1);
-            game.Down(this, new EventArgs());
+            game.Down(this, EventArgs.Empty);
             Assert.AreEqual(1, game.Character.Y);
         }
 
@@ -90,8 +90,8 @@ namespace _6._2
         public void DownOutOfMapTest()
         {
             game.SetInitialCoordinates(2, 5);
-            game.Down(this, new EventArgs());
-            game.Down(this, new EventArgs());
+            game.Down(this, EventArgs.Empty);
+            game.Down(this, EventArgs.Empty);
             Assert.AreEqual(6, game.Character.Y);
         }
 
@@ -99,8 +99,8 @@ namespace _6._2
         public void RightTest()
         {
             game.SetInitialCoordinates(2, 4);
-            game.Right(this, new EventArgs());
-            game.Right(this, new EventArgs());
+            game.Right(this, EventArgs.Empty);
+            game.Right(this, EventArgs.Empty);
             Assert.AreEqual(4, game.Character.Y);
             Assert.AreEqual(4, game.Character.X);
         }
@@ -109,7 +109,7 @@ namespace _6._2
         public void RightToTakenCellTest()
         {
             game.SetInitialCoordinates(7, 5);
-            game.Right(this, new EventArgs());
+            game.Right(this, EventArgs.Empty);
             Assert.AreEqual(7, game.Character.X);
         }
 
@@ -117,10 +117,10 @@ namespace _6._2
         public void RightOutOfMapTest()
         {
             game.SetInitialCoordinates(6, 4);
-            game.Right(this, new EventArgs());
-            game.Right(this, new EventArgs());
-            game.Right(this, new EventArgs());
-            game.Right(this, new EventArgs());
+            game.Right(this, EventArgs.Empty);
+            game.Right(this, EventArgs.Empty);
+            game.Right(this, EventArgs.Empty);
+            game.Right(this, EventArgs.Empty);
             Assert.AreEqual(9, game.Character.X);
         }
 
@@ -128,9 +128,9 @@ namespace _6._2
         public void LeftTest()
         {
             game.SetInitialCoordinates(6, 2);
-            game.Left(this, new EventArgs());
-            game.Left(this, new EventArgs());
-            game.Left(this, new EventArgs());
+            game.Left(this, EventArgs.Empty);
+            game.Left(this, EventArgs.Empty);
+            game.Left(this, EventArgs.Empty);
             Assert.AreEqual(2, game.Character.Y);
             Assert.AreEqual(3, game.Character.X);
         }
@@ -139,7 +139,7 @@ namespace _6._2
         public void LeftToTakenCellTest()
         {
             game.SetInitialCoordinates(2, 5);
-            game.Left(this, new EventArgs());
+            game.Left(this, EventArgs.Empty);
             Assert.AreEqual(2, game.Character.X);
         }
 
@@ -147,8 +147,8 @@ namespace _6._2
         public void LeftOutOfMapTest()
         {
             game.SetInitialCoordinates(1, 1);
-            game.Left(this, new EventArgs());
-            game.Left(this, new EventArgs());
+            game.Left(this, EventArgs.Empty);
+            game.Left(this, EventArgs.Empty);
             Assert.AreEqual(0, game.Character.X);
         }
     }

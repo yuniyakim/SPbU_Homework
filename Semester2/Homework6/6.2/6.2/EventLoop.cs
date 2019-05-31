@@ -7,9 +7,21 @@ namespace _6._2
     /// </summary>
     public class EventLoop
     {
+        /// <summary>
+        /// Event handler for going up
+        /// </summary>
         public event EventHandler<EventArgs> UpHandler;
+        /// <summary>
+        /// Event handler for going down
+        /// </summary>
         public event EventHandler<EventArgs> DownHandler;
+        /// <summary>
+        /// Event handler for going right
+        /// </summary>
         public event EventHandler<EventArgs> RightHandler;
+        /// <summary>
+        /// Event handler for going left
+        /// </summary>
         public event EventHandler<EventArgs> LeftHandler;
 
         /// <summary>
@@ -24,22 +36,22 @@ namespace _6._2
                 {
                     case ConsoleKey.LeftArrow:
                         {
-                            LeftHandler?.Invoke(this, new EventArgs());
+                            LeftHandler?.Invoke(this, EventArgs.Empty);
                             break;
                         }
                     case ConsoleKey.RightArrow:
                         {
-                            RightHandler?.Invoke(this, new EventArgs());
+                            RightHandler?.Invoke(this, EventArgs.Empty);
                             break;
                         }
                     case ConsoleKey.UpArrow:
                         {
-                            UpHandler?.Invoke(this, new EventArgs());
+                            UpHandler?.Invoke(this, EventArgs.Empty);
                             break;
                         }
                     case ConsoleKey.DownArrow:
                         {
-                            DownHandler?.Invoke(this, new EventArgs());
+                            DownHandler?.Invoke(this, EventArgs.Empty);
                             break;
                         }
                     default:

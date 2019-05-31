@@ -32,27 +32,27 @@ namespace _6._2
                 Console.WriteLine(e.Message);
             }
 
-            var flagN = false;
-            var flagR = false;
+            var flagForNewline = false;
+            var flagForCarriageReturn = false;
             foreach (var symbol in str)
             {
                 ++Width;
                 if (symbol == '\r')
                 {
-                    flagR = true;
+                    flagForCarriageReturn = true;
                 }
                 else if (symbol == '\n')
                 {
-                    flagN = true;
+                    flagForNewline = true;
                 }
-                else if (flagR || flagN && symbol != '\n' && symbol != '\r')
+                else if (flagForCarriageReturn || flagForNewline && symbol != '\n' && symbol != '\r')
                 {
                     --Width;
                     break;
                 }
             }
-            Width = flagR && flagN ? Width - 2 : Width - 1;
-            Height = flagR && flagN ? (str.Length + 2) / (Width + 2) : (str.Length + 1) / (Width + 1);
+            Width = flagForCarriageReturn && flagForNewline ? Width - 2 : Width - 1;
+            Height = flagForCarriageReturn && flagForNewline ? (str.Length + 2) / (Width + 2) : (str.Length + 1) / (Width + 1);
 
             var current = 0;
             Field = new char[Height, Width];
@@ -67,7 +67,7 @@ namespace _6._2
                     Field[i, j] = str[current];
                     ++current;
                 }
-                current = flagR && flagN ? current + 2 : current + 1;
+                current = flagForCarriageReturn && flagForNewline ? current + 2 : current + 1;
             }
         }
 
