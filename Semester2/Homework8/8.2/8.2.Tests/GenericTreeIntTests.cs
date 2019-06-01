@@ -107,6 +107,14 @@ namespace _8._2
             tree.Add(4);
             tree.Add(5);
             testTree.Add(1);
+            testTree.Add(4);
+            testTree.Add(-6);
+            testTree.Add(5);
+            testTree.ExceptWith(tree);
+            Assert.IsFalse(testTree.Contains(1));
+            Assert.IsFalse(testTree.Contains(4));
+            Assert.IsFalse(testTree.Contains(5));
+            Assert.IsTrue(testTree.Contains(-6));
         }
 
         [Test]

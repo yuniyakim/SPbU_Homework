@@ -2,7 +2,7 @@
 
 namespace _8._2
 {
-    public class Program
+    public static class Program
     {
         static void Main()
         {

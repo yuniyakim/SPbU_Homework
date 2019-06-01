@@ -147,9 +147,9 @@ namespace _8._2
         public void CopyTo(T[] array, int position)
         {
             var index = position;
-            foreach (var node in this)
+            foreach (var element in this)
             {
-                array[index] = node;
+                array[index] = element;
                 ++index;
             }
         }
@@ -417,39 +417,20 @@ namespace _8._2
         /// Gets enumerator
         /// </summary>
         /// <returns>Tree traverse</returns>
-        public IEnumerator<T> GetEnumerator() => Traverse(head);
+        public IEnumerator<T> GetEnumerator() => Traverse();
 
         /// <summary>
-        /// Traverses the subtree
+        /// Traverses the tree
         /// </summary>
-        /// <param name="head">Subtree's head</param>
-        private IEnumerator<T> Traverse(Node head)
+        public IEnumerator<T> Traverse()
         {
             if (head == null)
             {
                 yield break;
             }
 
-            yield return head.Value;
-            if (head.Left != null)
-            {
-                Traverse(head.Left);
-            }
-            if (head.Right != null)
-            {
-                Traverse(head.Right);
-            }
-        }
-
-        /*public IEnumerator<T> Preorder()
-        {
-            if (head == null)
-            {
-                yield break;
-            }
             var stack = new Stack<Node>();
             stack.Push(head);
-
             while (stack.Count > 0)
             {
                 var node = stack.Pop();
@@ -463,7 +444,7 @@ namespace _8._2
                     stack.Push(node.Left);
                 }
             }
-        }*/
+        }
 
         /// <summary>
         /// Gets object-enumerator

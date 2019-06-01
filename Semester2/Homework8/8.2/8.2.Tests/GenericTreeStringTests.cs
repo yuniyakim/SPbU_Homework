@@ -89,10 +89,10 @@ namespace _8._2
             tree.Add("five");
             var array = new string[5];
             tree.CopyTo(array, 0);
-            Assert.AreEqual("four", array[3]);
-            Assert.AreEqual("two", array[1]);
-            Assert.AreEqual("five", array[4]);
-            Assert.AreEqual("three", array[2]);
+            Assert.AreEqual("four", array[1]);
+            Assert.AreEqual("two", array[3]);
+            Assert.AreEqual("five", array[2]);
+            Assert.AreEqual("three", array[4]);
             Assert.AreEqual("one", array[0]);
         }
 
