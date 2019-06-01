@@ -3,7 +3,7 @@ using System.IO;
 
 namespace _6._2
 {
-    public class Program
+    public static class Program
     {
         static void Main()
         {

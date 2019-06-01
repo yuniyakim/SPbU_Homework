@@ -8,8 +8,8 @@ namespace _6._2
     /// </summary>
     public class Map
     {
-        public int Height { get; private set; } = 0;
-        public int Width { get; private set; } = 0;
+        public int Height { get; private set; }
+        public int Width { get; private set; }
         public char[,] Field { get; private set; } = { };
 
         /// <summary>
@@ -49,6 +49,10 @@ namespace _6._2
                 {
                     --Width;
                     break;
+                }
+                else
+                {
+                    continue;
                 }
             }
             Width = flagForCarriageReturn && flagForNewline ? Width - 2 : Width - 1;

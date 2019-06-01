@@ -6,7 +6,6 @@ namespace _6._2
 {
     public class GameTests
     {
-        private Map map;
         private Game game;
 
         private class Cursor : ISetCursor
@@ -19,7 +18,7 @@ namespace _6._2
         [SetUp]
         public void Initialize()
         {
-            map = new Map();
+            var map = new Map();
             map.ReadAndFill(Directory.GetCurrentDirectory() + "../../../../6.2.Test.txt");
             game = new Game(map, new Cursor());
         }

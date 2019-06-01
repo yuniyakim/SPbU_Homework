@@ -27,7 +27,7 @@ namespace _6._2
         /// <param name="direction">Direction of movement</param>
         public void Move(string direction)
         {
-            switch (direction.ToLower())
+            switch (direction)
             {
                 case "up":
                     {
@@ -50,6 +50,10 @@ namespace _6._2
                     {
                         --X;
                         break;
+                    }
+                default:
+                    {
+                        throw new InvalidOperationException();
                     }
             }
         }
