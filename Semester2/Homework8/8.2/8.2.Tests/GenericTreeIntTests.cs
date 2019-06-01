@@ -102,10 +102,10 @@ namespace _8._2
         {
             var testTree = new GenericTree<int>();
             tree.Add(1);
-            tree.Add(2);
             tree.Add(3);
-            tree.Add(4);
             tree.Add(5);
+            tree.Add(4);
+            tree.Add(2);
             testTree.Add(1);
             testTree.Add(4);
             testTree.Add(-6);
@@ -115,6 +115,164 @@ namespace _8._2
             Assert.IsFalse(testTree.Contains(4));
             Assert.IsFalse(testTree.Contains(5));
             Assert.IsTrue(testTree.Contains(-6));
+            Assert.AreEqual(1, testTree.Count);
+        }
+
+        [Test]
+        public void IntersectWithTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(6);
+            tree.Add(2);
+            tree.Add(8);
+            tree.Add(-11);
+            tree.Add(3);
+            testTree.Add(1);
+            testTree.Add(3);
+            testTree.Add(-6);
+            testTree.Add(8);
+            testTree.Add(2);
+            testTree.IntersectWith(tree);
+            Assert.IsFalse(testTree.Contains(1));
+            Assert.IsFalse(testTree.Contains(-6));
+            Assert.IsTrue(testTree.Contains(2));
+            Assert.IsTrue(testTree.Contains(8));
+            Assert.IsTrue(testTree.Contains(3));
+            Assert.AreEqual(3, testTree.Count);
+        }
+
+        [Test]
+        public void IsProperSubsetOfTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(11);
+            tree.Add(2);
+            tree.Add(33);
+            tree.Add(0);
+            testTree.Add(33);
+            testTree.Add(2);
+            testTree.Add(0);
+            testTree.Add(11);
+            Assert.IsFalse(testTree.IsProperSubsetOf(tree));
+        }
+
+        [Test]
+        public void IsProperSupersetOfTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(11);
+            tree.Add(2);
+            tree.Add(33);
+            testTree.Add(33);
+            testTree.Add(2);
+            testTree.Add(44);
+            testTree.Add(-12);
+            testTree.Add(0);
+            testTree.Add(11);
+            Assert.IsTrue(testTree.IsProperSupersetOf(tree));
+        }
+
+        [Test]
+        public void IsSubsetOfTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(11);
+            tree.Add(2);
+            tree.Add(33);
+            testTree.Add(33);
+            testTree.Add(2);
+            testTree.Add(11);
+            Assert.IsTrue(testTree.IsSubsetOf(tree));
+        }
+
+        [Test]
+        public void IsSupersetOfTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(11);
+            tree.Add(2);
+            tree.Add(33);
+            testTree.Add(33);
+            testTree.Add(2);
+            testTree.Add(44);
+            testTree.Add(-12);
+            testTree.Add(0);
+            testTree.Add(11);
+            Assert.IsTrue(testTree.IsSupersetOf(tree));
+        }
+
+        [Test]
+        public void OverlapsTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(31);
+            tree.Add(27);
+            tree.Add(-99);
+            testTree.Add(33);
+            testTree.Add(2);
+            testTree.Add(44);
+            testTree.Add(-12);
+            testTree.Add(0);
+            testTree.Add(11);
+            Assert.IsFalse(testTree.Overlaps(tree));
+        }
+
+        [Test]
+        public void SetEqualsTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(-1);
+            tree.Add(82);
+            tree.Add(-44);
+            tree.Add(2000);
+            testTree.Add(-44);
+            testTree.Add(82);
+            testTree.Add(2000);
+            testTree.Add(-1);
+            Assert.IsTrue(testTree.SetEquals(tree));
+        }
+
+        [Test]
+        public void SymmetricExceptWithTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(1);
+            tree.Add(2);
+            tree.Add(0);
+            tree.Add(4);
+            testTree.Add(5);
+            testTree.Add(2);
+            testTree.Add(0);
+            testTree.Add(-1);
+            testTree.Add(-4);
+            testTree.SymmetricExceptWith(tree);
+            Assert.IsFalse(testTree.Contains(2));
+            Assert.IsFalse(testTree.Contains(0));
+            Assert.IsTrue(testTree.Contains(1));
+            Assert.IsTrue(testTree.Contains(-1));
+            Assert.IsTrue(testTree.Contains(4));
+            Assert.IsTrue(testTree.Contains(-4));
+            Assert.IsTrue(testTree.Contains(5));
+            Assert.AreEqual(5, testTree.Count);
+        }
+
+        [Test]
+        public void UnionWithTest()
+        {
+            var testTree = new GenericTree<int>();
+            tree.Add(1);
+            tree.Add(2);
+            tree.Add(0);
+            testTree.Add(0);
+            testTree.Add(-1);
+            testTree.Add(-4);
+            testTree.UnionWith(tree);
+            Assert.IsTrue(testTree.Contains(-4));
+            Assert.IsTrue(testTree.Contains(2));
+            Assert.IsTrue(testTree.Contains(0));
+            Assert.IsTrue(testTree.Contains(-4));
+            Assert.IsTrue(testTree.Contains(-1));
+            Assert.AreEqual(5, testTree.Count);
         }
 
         [Test]

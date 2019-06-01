@@ -434,7 +434,6 @@ namespace _8._2
             while (stack.Count > 0)
             {
                 var node = stack.Pop();
-                yield return node.Value;
                 if (node.Right != null)
                 {
                     stack.Push(node.Right);
@@ -443,6 +442,7 @@ namespace _8._2
                 {
                     stack.Push(node.Left);
                 }
+                yield return node.Value;
             }
         }
 
