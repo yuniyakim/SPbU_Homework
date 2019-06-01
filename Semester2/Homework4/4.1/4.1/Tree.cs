@@ -84,7 +84,7 @@ namespace _4._1
             /// <summary>
             /// Current iteration's number
             /// </summary>
-            public int Iteration { get; set; } = 0;
+            public int Iteration { get; set; }
 
             /// <summary>
             /// String's constructor
