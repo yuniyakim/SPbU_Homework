@@ -10,8 +10,8 @@ namespace _8._1
     /// <typeparam name="T">Type of values</typeparam>
     public class GenericList<T> : IList<T>
     {
-        private Node head = null;
-        public int Count { get; private set; } = 0;
+        private Node head;
+        public int Count { get; private set; }
 
         /// <summary>
         /// Node of the list
@@ -43,7 +43,7 @@ namespace _8._1
         /// </summary>
         /// <param name="node">Node to start with</param>
         /// <param name="position">Last node's position</param>
-        private void GoNext(ref Node node, int position)
+        private static void GoNext(ref Node node, int position)
         {
             for (int i = 1; i < position; ++i)
             {
@@ -240,7 +240,7 @@ namespace _8._1
         private class ListEnumerator : IEnumerator<T>
         {
             private GenericList<T> list;
-            private Node current = null;
+            private Node current;
 
             /// <summary>
             /// List enumerator's constructor
