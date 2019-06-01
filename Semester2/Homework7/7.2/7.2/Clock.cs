@@ -23,7 +23,6 @@ namespace _7._2
         /// </summary>
         private void Clock_Load(object sender, EventArgs e)
         {
-            timer.Interval = 1000;
             timer.Tick += new EventHandler(Clock_Tick);
             timer.Start();
         }

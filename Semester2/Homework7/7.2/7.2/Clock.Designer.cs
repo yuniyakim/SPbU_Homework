@@ -37,9 +37,8 @@
             this.time.Font = new System.Drawing.Font("Calibri", 46.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.time.Location = new System.Drawing.Point(12, 9);
             this.time.Name = "time";
-            this.time.Size = new System.Drawing.Size(322, 95);
+            this.time.Size = new System.Drawing.Size(0, 95);
             this.time.TabIndex = 0;
-            this.time.Text = "00:00:00";
             // 
             // Clock
             // 
