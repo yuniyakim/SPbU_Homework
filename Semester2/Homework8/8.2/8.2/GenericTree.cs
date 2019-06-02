@@ -10,7 +10,7 @@ namespace _8._2
     /// </summary>
     public class GenericTree<T> : ISet<T> where T : IComparable
     {
-        private Node head = null;
+        private Node head;
         public int Count { get; private set; }
 
         /// <summary>
