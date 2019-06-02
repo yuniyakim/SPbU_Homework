@@ -49,6 +49,7 @@
             this.Equality = new System.Windows.Forms.Button();
             this.PlusMinus = new System.Windows.Forms.Button();
             this.Dot = new System.Windows.Forms.Button();
+            this.InputStringText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Input
@@ -282,11 +283,23 @@
             this.Dot.UseVisualStyleBackColor = true;
             this.Dot.Click += new System.EventHandler(this.Dot_Click);
             // 
+            // InputStringText
+            // 
+            this.InputStringText.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.InputStringText.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.InputStringText.Location = new System.Drawing.Point(12, 25);
+            this.InputStringText.Name = "InputStringText";
+            this.InputStringText.Size = new System.Drawing.Size(269, 22);
+            this.InputStringText.TabIndex = 16;
+            this.InputStringText.Text = " ";
+            this.InputStringText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(294, 450);
+            this.Controls.Add(this.InputStringText);
             this.Controls.Add(this.Dot);
             this.Controls.Add(this.PlusMinus);
             this.Controls.Add(this.Equality);
@@ -315,6 +328,7 @@
             this.Text = "Calculator";
             this.Load += new System.EventHandler(this.Calculator_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -341,6 +355,7 @@
         private System.Windows.Forms.Button Equality;
         private System.Windows.Forms.Button PlusMinus;
         private System.Windows.Forms.Button Dot;
+        private System.Windows.Forms.TextBox InputStringText;
     }
 }
 
