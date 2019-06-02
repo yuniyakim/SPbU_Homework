@@ -149,7 +149,9 @@ namespace _7._1
         private string operation = "";
         private string str = "0";
 
-        public void Calculate()
+        public string Current() => secondNumber == "" ? firstNumber : secondNumber;
+
+        private void Calculate()
         {
             var result = 0.0;
             var first = (firstNumber == "" ? 0 : Convert.ToDouble(firstNumber));
@@ -288,7 +290,6 @@ namespace _7._1
         public void Equality()
         {
             Calculate();
-
         }
     }
 }
