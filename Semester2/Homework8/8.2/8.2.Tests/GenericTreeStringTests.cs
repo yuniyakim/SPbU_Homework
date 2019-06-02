@@ -240,11 +240,11 @@ namespace _8._2
             tree.Add("three");
             tree.Add("four");
             tree.Add("five");
-            testTree.Add("five");
-            testTree.Add("four");
-            testTree.Add("three");
-            testTree.Add("two");
             testTree.Add("one");
+            testTree.Add("two");
+            testTree.Add("three");
+            testTree.Add("four");
+            testTree.Add("five");
             testTree.SymmetricExceptWith(tree);
             Assert.IsFalse(testTree.Contains("three"));
             Assert.IsFalse(testTree.Contains("one"));

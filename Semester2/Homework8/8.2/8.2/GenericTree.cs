@@ -160,7 +160,12 @@ namespace _8._2
         /// <param name="collection">Specified collection</param>
         public void ExceptWith(IEnumerable<T> collection)
         {
+            var list = new List<T>();
             foreach (var element in collection)
+            {
+                list.Add(element);
+            }
+            foreach (var element in list)
             {
                 Remove(element);
             }
@@ -172,12 +177,17 @@ namespace _8._2
         /// <param name="collection">Specified collection</param>
         public void IntersectWith(IEnumerable<T> collection)
         {
+            var list = new List<T>();
             foreach (var element in this)
             {
                 if (!collection.Contains(element))
                 {
-                    Remove(element);
+                    list.Add(element);
                 }
+            }
+            foreach (var element in list)
+            {
+                Remove(element);
             }
         }
 
@@ -379,16 +389,21 @@ namespace _8._2
         /// <param name="collection">Specified collection</param>
         public void SymmetricExceptWith(IEnumerable<T> collection)
         {
+            var list = new List<T>();
             foreach (var element in collection)
             {
                 if (Contains(element))
                 {
-                    Remove(element);
+                    list.Add(element);
                 }
                 else
                 {
                     Add(element);
                 }
+            }
+            foreach (var element in list)
+            {
+                Remove(element);
             }
         }
 
@@ -422,7 +437,7 @@ namespace _8._2
         /// <summary>
         /// Traverses the tree
         /// </summary>
-        public IEnumerator<T> Traverse()
+        private IEnumerator<T> Traverse()
         {
             if (head == null)
             {
