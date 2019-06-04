@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Input = new System.Windows.Forms.Button();
             this.One = new System.Windows.Forms.Button();
             this.Two = new System.Windows.Forms.Button();
             this.Three = new System.Windows.Forms.Button();
@@ -49,19 +48,9 @@
             this.Equality = new System.Windows.Forms.Button();
             this.PlusMinus = new System.Windows.Forms.Button();
             this.Dot = new System.Windows.Forms.Button();
-            this.WholeInput = new System.Windows.Forms.TextBox();
+            this.Input = new System.Windows.Forms.Label();
+            this.WholeInput = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // Input
-            // 
-            this.Input.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Input.Location = new System.Drawing.Point(12, 25);
-            this.Input.Name = "Input";
-            this.Input.Size = new System.Drawing.Size(269, 113);
-            this.Input.TabIndex = 13;
-            this.Input.Text = "0";
-            this.Input.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Input.UseVisualStyleBackColor = true;
             // 
             // One
             // 
@@ -284,7 +273,7 @@
             // Equality
             // 
             this.Equality.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Equality.Location = new System.Drawing.Point(219, 391);
+            this.Equality.Location = new System.Drawing.Point(219, 390);
             this.Equality.Name = "Equality";
             this.Equality.Size = new System.Drawing.Size(63, 50);
             this.Equality.TabIndex = 11;
@@ -308,7 +297,7 @@
             // Dot
             // 
             this.Dot.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Dot.Location = new System.Drawing.Point(150, 391);
+            this.Dot.Location = new System.Drawing.Point(150, 390);
             this.Dot.Name = "Dot";
             this.Dot.Size = new System.Drawing.Size(63, 50);
             this.Dot.TabIndex = 15;
@@ -317,15 +306,29 @@
             this.Dot.Click += new System.EventHandler(this.Dot_Click);
             this.Dot.Click += new System.EventHandler(this.InputAndWholeInputRefresh);
             // 
+            // Input
+            // 
+            this.Input.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.Input.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Input.Location = new System.Drawing.Point(12, 41);
+            this.Input.MaximumSize = new System.Drawing.Size(270, 90);
+            this.Input.MinimumSize = new System.Drawing.Size(270, 90);
+            this.Input.Name = "Input";
+            this.Input.Size = new System.Drawing.Size(270, 90);
+            this.Input.TabIndex = 18;
+            this.Input.Text = "0";
+            this.Input.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // WholeInput
             // 
             this.WholeInput.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.WholeInput.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.WholeInput.Location = new System.Drawing.Point(12, 25);
+            this.WholeInput.Location = new System.Drawing.Point(12, 19);
+            this.WholeInput.MaximumSize = new System.Drawing.Size(270, 22);
+            this.WholeInput.MinimumSize = new System.Drawing.Size(270, 22);
             this.WholeInput.Name = "WholeInput";
-            this.WholeInput.Size = new System.Drawing.Size(269, 22);
-            this.WholeInput.TabIndex = 16;
-            this.WholeInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.WholeInput.Size = new System.Drawing.Size(270, 22);
+            this.WholeInput.TabIndex = 19;
+            this.WholeInput.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CalculatorForm
             // 
@@ -333,6 +336,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(294, 450);
             this.Controls.Add(this.WholeInput);
+            this.Controls.Add(this.Input);
             this.Controls.Add(this.Dot);
             this.Controls.Add(this.PlusMinus);
             this.Controls.Add(this.Equality);
@@ -353,21 +357,18 @@
             this.Controls.Add(this.Three);
             this.Controls.Add(this.Two);
             this.Controls.Add(this.One);
-            this.Controls.Add(this.Input);
             this.MaximumSize = new System.Drawing.Size(312, 497);
             this.MinimumSize = new System.Drawing.Size(312, 497);
             this.Name = "CalculatorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
             this.Load += new System.EventHandler(this.Calculator_Load);
+            this.Click += new System.EventHandler(this.Number_Click);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button Input;
         private System.Windows.Forms.Button One;
         private System.Windows.Forms.Button Two;
         private System.Windows.Forms.Button Three;
@@ -378,17 +379,18 @@
         private System.Windows.Forms.Button Eight;
         private System.Windows.Forms.Button Nine;
         private System.Windows.Forms.Button Zero;
+        private System.Windows.Forms.Button Addition;
+        private System.Windows.Forms.Button Subtraction;
+        private System.Windows.Forms.Button Multiplication;
+        private System.Windows.Forms.Button Division;
         private System.Windows.Forms.Button CE;
         private System.Windows.Forms.Button C;
         private System.Windows.Forms.Button Backspace;
-        private System.Windows.Forms.Button Division;
-        private System.Windows.Forms.Button Multiplication;
-        private System.Windows.Forms.Button Subtraction;
-        private System.Windows.Forms.Button Addition;
         private System.Windows.Forms.Button Equality;
         private System.Windows.Forms.Button PlusMinus;
         private System.Windows.Forms.Button Dot;
-        private System.Windows.Forms.TextBox WholeInput;
+        private System.Windows.Forms.Label Input;
+        private System.Windows.Forms.Label WholeInput;
     }
 }
 
