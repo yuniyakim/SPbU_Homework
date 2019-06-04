@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _7._1
 {
@@ -11,161 +7,185 @@ namespace _7._1
     /// </summary>
     public class Calculator
     {
-        private string firstNumber = "";
-        private bool minusBeforeFirst = false;
-        private string secondNumber = "";
-        private bool minusBeforeSecond = false;
-        private string operation = "";
+        public string WholeInput { get; private set; } = "";
+        public string Input { get; private set; } = "0";
+        private bool isEqualityPressed = false;
+        private bool isOperationPressed = false;
+        private string[] expression = new string[3];
 
-        public string InputString { get; set; } = "";
-
-        public string Input() => (secondNumber == "" && operation == "") ? (minusBeforeFirst ? "-" + firstNumber : firstNumber) 
-            : (minusBeforeSecond ? "-" + secondNumber : secondNumber);
-
+        /// <summary>
+        /// Calculates the result of expression
+        /// </summary>
         private void Calculate()
         {
-            var result = 0.0;
-            var first = (firstNumber == "" ? 0 : Convert.ToDouble(firstNumber));
-            if (minusBeforeFirst)
+            if (!double.TryParse(WholeInput, out double input))
             {
-                first = -first;
-            }
-            var second = (secondNumber == "" ? 0 : Convert.ToDouble(secondNumber));
-            if (minusBeforeSecond)
-            {
-                second = -second;
-            }
-            switch (operation)
-            {
-                case "+":
-                    {
-                        result = first + second;
-                        break;
-                    }
-                case "-":
-                    {
-                        result = first - second;
-                        break;
-                    }
-                case "*":
-                    {
-                        result = first * second;
-                        break;
-                    }
-                case "/":
-                    {
-                        if (second == 0)
+                if (expression[0] == null)
+                {
+                    expression = WholeInput.Split(' ');
+                }
+                else
+                {
+                    var newWholeInput = WholeInput.Substring(WholeInput.LastIndexOfAny(new char[] { '+', '-', '*', '/' }));
+                    newWholeInput.Split(' ').CopyTo(expression, 1);
+                }
+                var result = 0.0;
+                var first = Convert.ToDouble(expression[0]);
+                var second = Convert.ToDouble(expression[2]);
+                switch (expression[1])
+                {
+                    case "+":
                         {
-                            throw new DivideByZeroException();
+                            result = first + second;
+                            break;
                         }
+                    case "-":
+                        {
+                            result = first - second;
+                            break;
+                        }
+                    case "*":
+                        {
+                            result = first * second;
+                            break;
+                        }
+                    case "/":
+                        {
+                            if (second == 0)
+                            {
+                                throw new DivideByZeroException();
+                            }
 
-                        result = first / second;
-                        break;
-                    }
+                            result = first / second;
+                            break;
+                        }
+                }
+                Input = result.ToString();
+                expression[0] = result.ToString();
+                expression[1] = null;
+                expression[2] = null;
             }
-            firstNumber = Convert.ToString(result);
-            minusBeforeFirst = false;
-            secondNumber = "";
-            minusBeforeSecond = false;
-            operation = "";
         }
 
+        /// <summary>
+        /// Processes the pressed number
+        /// </summary>
+        /// <param name="number">Pressed number</param>
         public void Number(string number)
         {
-            if (operation != "" && firstNumber != "") // maybe debug
+            if ((Input.Length == 1 && Input[0] == '0') || isEqualityPressed || isOperationPressed)
             {
-                secondNumber = (secondNumber.Count() == 1 && secondNumber == "0") ? number : secondNumber + number;
+                Input = number;
+                isEqualityPressed = false;
+                isOperationPressed = false;
             }
             else
             {
-                firstNumber = (firstNumber.Count() == 1 && firstNumber == "0") ? number : firstNumber + number;
+                Input = Input + number;
             }
         }
 
+        /// <summary>
+        /// Processes the pressed operation
+        /// </summary>
+        /// <param name="operation">Pressed operation</param>
         public void Operation(string operation)
         {
-            this.operation = operation;
-            if (secondNumber == "")
+            if (!WholeInput.Contains("+") && !WholeInput.Contains("-") && !WholeInput.Contains("*") && !WholeInput.Contains("/"))
             {
-                InputString = (minusBeforeFirst ? InputString + " " + "-" + firstNumber + " " + operation : InputString + " " + firstNumber + " " + operation);
+                WholeInput = Input + " " + operation;
+                isEqualityPressed = false;
+            }
+            else if (isOperationPressed && (WholeInput[WholeInput.Length - 1] == '+' || WholeInput[WholeInput.Length - 1] == '-' 
+                || WholeInput[WholeInput.Length - 1] == '*' || WholeInput[WholeInput.Length - 1] == '/'))
+            {
+                WholeInput = WholeInput.Remove(WholeInput.Length - 1).Insert(WholeInput.Length - 1, operation);
             }
             else
             {
-                InputString = (minusBeforeSecond ? InputString + " " + "-" + secondNumber + " " + operation : InputString + " " + secondNumber + " " + operation);
+                WholeInput = WholeInput + " " + Input;
                 Calculate();
+                WholeInput = WholeInput + " " + operation;
             }
+            isOperationPressed = true;
         }
 
+        /// <summary>
+        /// Clears everything
+        /// </summary>
         public void Clear()
         {
-            firstNumber = "";
-            secondNumber = "";
-            minusBeforeFirst = false;
-            minusBeforeSecond = false;
-            operation = "";
-            InputString = "0";
+            WholeInput = "";
+            Input = "0";
+            expression[0] = null;
+            expression[1] = null;
+            expression[2] = null;
         }
 
+        /// <summary>
+        /// Clears entry
+        /// </summary>
         public void ClearEntry()
         {
-            if (operation != "" && firstNumber != "")
-            {
-                secondNumber = "";
-                minusBeforeSecond = false;
-            }
-            else
-            {
-                firstNumber = "";
-                minusBeforeFirst = false;
-            }
+            Input = "0";
         }
 
+        /// <summary>
+        /// Deletes the last character of entry
+        /// </summary>
         public void Backspace()
         {
-            if (operation != "" && firstNumber != "") // maybe debug
+            if (Input.Length == 1)
             {
-                if (secondNumber != "")
-                {
-                    secondNumber = secondNumber.Remove(secondNumber.Length - 1);
-                }
+                Input = "0";
             }
             else
             {
-                if (firstNumber != "")
-                {
-                    firstNumber = firstNumber.Remove(firstNumber.Length - 1);
-                }
+                Input = Input.Remove(Input.Length - 1);
             }
         }
 
+        /// <summary>
+        /// Adds a dot to entry
+        /// </summary>
         public void Dot()
         {
-            if (operation != "" && firstNumber != "" && secondNumber != "" && !secondNumber.Contains("."))
+            if (Input[Input.Length - 1] != '.' && !Input.Contains("."))
             {
-                secondNumber += ".";
-            }
-            else if (firstNumber != "" && !firstNumber.Contains("."))
-            {
-                firstNumber += ".";
+                Input += ".";
+                isEqualityPressed = false;
+                isOperationPressed = false;
             }
         }
 
+        /// <summary>
+        /// Changes entry's sign
+        /// </summary>
         public void PlusMinus()
         {
-            if (operation != "" && firstNumber != "")
+            if (Input != "0")
             {
-                minusBeforeSecond = !minusBeforeSecond;
-            }
-            else
-            {
-                minusBeforeFirst = !minusBeforeFirst;
+                if (Input[0] != '-')
+                {
+                    Input = "-" + Input;
+                }
+                else
+                {
+                    Input = Input.Substring(1);
+                }
             }
         }
 
+        /// <summary>
+        /// Calculates the result and clears needed fields
+        /// </summary>
         public void Equality()
         {
+            WholeInput = WholeInput + ' ' + Input;
             Calculate();
-            InputString = "";
+            WholeInput = "";
+            isEqualityPressed = true;
+            expression[0] = null;
         }
     }
 }

@@ -1,153 +1,102 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _7._1
 {
+    /// <summary>
+    /// Calculator's form
+    /// </summary>
     public partial class CalculatorForm : Form
     {
         private Calculator calculator;
 
+        /// <summary>
+        /// Calculator's form's constructor
+        /// </summary>
         public CalculatorForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Calculator's loading
+        /// </summary>
         private void Calculator_Load(object sender, EventArgs e)
         {
             calculator = new Calculator();
         }
 
-        private void One_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Processes number's click
+        /// </summary>
+        private void Number_Click(object sender, EventArgs e)
         {
-            calculator.Number("1");
-            Input.Text = calculator.Input();
+            calculator.Number((string)((Button)sender).Tag);
         }
 
-        private void Two_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Processes operation's click
+        /// </summary>
+        private void Operation_Click(object sender, EventArgs e)
         {
-            calculator.Number("2");
-            Input.Text = calculator.Input();
+            calculator.Operation((string)((Button)sender).Tag);
         }
 
-        private void Three_Click(object sender, EventArgs e)
-        {
-            calculator.Number("3");
-            Input.Text = calculator.Input();
-        }
-
-        private void Four_Click(object sender, EventArgs e)
-        {
-            calculator.Number("4");
-            Input.Text = calculator.Input();
-        }
-
-        private void Five_Click(object sender, EventArgs e)
-        {
-            calculator.Number("5");
-            Input.Text = calculator.Input();
-        }
-
-        private void Six_Click(object sender, EventArgs e)
-        {
-            calculator.Number("6");
-            Input.Text = calculator.Input();
-        }
-
-        private void Seven_Click(object sender, EventArgs e)
-        {
-            calculator.Number("7");
-            Input.Text = calculator.Input();
-        }
-
-        private void Eight_Click(object sender, EventArgs e)
-        {
-            calculator.Number("8");
-            Input.Text = calculator.Input();
-        }
-
-        private void Nine_Click(object sender, EventArgs e)
-        {
-            calculator.Number("9");
-            Input.Text = calculator.Input();
-        }
-
-        private void Zero_Click(object sender, EventArgs e)
-        {
-            calculator.Number("0");
-            Input.Text = calculator.Input();
-        }
-
-        private void Addition_Click(object sender, EventArgs e)
-        {
-            calculator.Operation("+");
-            Input.Text = calculator.Input();
-            InputStringText.Text = calculator.InputString;
-        }
-
-        private void Subtraction_Click(object sender, EventArgs e)
-        {
-            calculator.Operation("-");
-            Input.Text = calculator.Input();
-            InputStringText.Text = calculator.InputString;
-        }
-
-        private void Multiplication_Click(object sender, EventArgs e)
-        {
-            calculator.Operation("*");
-            Input.Text = calculator.Input();
-            InputStringText.Text = calculator.InputString;
-        }
-
-        private void Division_Click(object sender, EventArgs e)
-        {
-            calculator.Operation("/");
-            Input.Text = calculator.Input();
-            InputStringText.Text = calculator.InputString;
-        }
-
+        /// <summary>
+        /// Processes backspace's click
+        /// </summary>
         private void Backspace_Click(object sender, EventArgs e)
         {
             calculator.Backspace();
-            Input.Text = calculator.Input();
         }
 
+        /// <summary>
+        /// Processes equality's click
+        /// </summary>
         private void Equality_Click(object sender, EventArgs e)
         {
             calculator.Equality();
-            Input.Text = calculator.Input();
-            InputStringText.Text = calculator.InputString;
         }
 
+        /// <summary>
+        /// Processes dot's click
+        /// </summary>
         private void Dot_Click(object sender, EventArgs e)
         {
             calculator.Dot();
-            Input.Text = calculator.Input();
         }
 
+        /// <summary>
+        /// Processes plusMinus's click
+        /// </summary>
         private void PlusMinus_Click(object sender, EventArgs e)
         {
             calculator.PlusMinus();
-            Input.Text = calculator.Input();
         }
 
+        /// <summary>
+        /// Processes C's click
+        /// </summary>
         private void C_Click(object sender, EventArgs e)
         {
             calculator.Clear();
-            Input.Text = calculator.Input();
-            InputStringText.Text = calculator.InputString;
         }
 
+        /// <summary>
+        /// Processes CE's click
+        /// </summary>
         private void CE_Click(object sender, EventArgs e)
         {
             calculator.ClearEntry();
-            Input.Text = calculator.Input();
+        }
+
+        /// <summary>
+        /// Refreshes Input's and WholeInput's texts
+        /// </summary>
+        private void InputAndWholeInputRefresh(object sender, EventArgs e)
+        {
+            Input.Text = calculator.Input;
+            WholeInput.Text = calculator.WholeInput;
         }
     }
 }
