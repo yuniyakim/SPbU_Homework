@@ -5,6 +5,8 @@ namespace _7._1
 {
     public class Tests
     {
+        private Calculator calculator = new Calculator();
+
         [SetUp]
         public void Setup()
         {

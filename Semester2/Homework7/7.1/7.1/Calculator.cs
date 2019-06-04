@@ -135,7 +135,7 @@ namespace _7._1
         /// </summary>
         public void Backspace()
         {
-            if (Input.Length == 1)
+            if (Input.Length == 1 || (Input.Length == 2 && Input[0] == '-'))
             {
                 Input = "0";
             }
@@ -173,6 +173,8 @@ namespace _7._1
                 {
                     Input = Input.Substring(1);
                 }
+                isEqualityPressed = false;
+                isOperationPressed = false;
             }
         }
 
