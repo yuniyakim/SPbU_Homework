@@ -38,13 +38,13 @@
             this.Eight = new System.Windows.Forms.Button();
             this.Nine = new System.Windows.Forms.Button();
             this.Zero = new System.Windows.Forms.Button();
+            this.Addition = new System.Windows.Forms.Button();
+            this.Subtraction = new System.Windows.Forms.Button();
+            this.Multiplication = new System.Windows.Forms.Button();
+            this.Division = new System.Windows.Forms.Button();
             this.CE = new System.Windows.Forms.Button();
             this.C = new System.Windows.Forms.Button();
             this.Backspace = new System.Windows.Forms.Button();
-            this.Division = new System.Windows.Forms.Button();
-            this.Multiplication = new System.Windows.Forms.Button();
-            this.Subtraction = new System.Windows.Forms.Button();
-            this.Addition = new System.Windows.Forms.Button();
             this.Equality = new System.Windows.Forms.Button();
             this.PlusMinus = new System.Windows.Forms.Button();
             this.Dot = new System.Windows.Forms.Button();
@@ -363,7 +363,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
             this.Load += new System.EventHandler(this.Calculator_Load);
-            this.Click += new System.EventHandler(this.Number_Click);
             this.ResumeLayout(false);
 
         }
