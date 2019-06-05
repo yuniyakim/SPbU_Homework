@@ -1,19 +1,20 @@
-using System;
-using NUnit.Framework;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace _7._1
 {
-    public class Tests
+    [TestClass]
+    public class CalculatorTests
     {
         private Calculator calculator;
 
-        [SetUp]
+        [TestInitialize]
         public void Setup()
         {
             calculator = new Calculator();
         }
 
-        [Test]
+        [TestMethod]
         public void NumberTest()
         {
             calculator.Number("2");
@@ -21,7 +22,7 @@ namespace _7._1
             Assert.AreEqual("", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void AnotherNumberTest()
         {
             calculator.Number("2");
@@ -30,7 +31,7 @@ namespace _7._1
             Assert.AreEqual("", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void ZeroNumberTest()
         {
             calculator.Number("0");
@@ -39,7 +40,7 @@ namespace _7._1
             Assert.AreEqual("", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void OperationTest()
         {
             calculator.Number("1");
@@ -48,7 +49,7 @@ namespace _7._1
             Assert.AreEqual("17 +", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void OperationTwiceTest()
         {
             calculator.Number("8");
@@ -58,7 +59,7 @@ namespace _7._1
             Assert.AreEqual("8 /", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void SimpleExpressionTest()
         {
             calculator.Number("6");
@@ -70,7 +71,7 @@ namespace _7._1
             Assert.AreEqual("27", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void EqualityTest()
         {
             calculator.Number("8");
@@ -82,17 +83,18 @@ namespace _7._1
             Assert.AreEqual("", calculator.WholeInput);
         }
 
-        [Test]
+        [ExpectedException(typeof(DivideByZeroException))]
+        [TestMethod]
         public void DivideByZeroTest()
         {
             calculator.Number("1");
             calculator.Number("7");
             calculator.Operation("/");
             calculator.Number("0");
-            Assert.Throws<DivideByZeroException>(() => calculator.Equality());
+            calculator.Equality();
         }
 
-        [Test]
+        [TestMethod]
         public void MultipleOperationsTest()
         {
             calculator.Number("1");
@@ -104,7 +106,7 @@ namespace _7._1
             Assert.AreEqual("42", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void NumberAfterEqualityTest()
         {
             calculator.Number("2");
@@ -117,7 +119,7 @@ namespace _7._1
             Assert.AreEqual("", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void OperationAfterEqualityTest()
         {
             calculator.Number("4");
@@ -131,7 +133,7 @@ namespace _7._1
             Assert.AreEqual("83 -", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void OperationWithoutSecondTest()
         {
             calculator.Number("3");
@@ -141,7 +143,7 @@ namespace _7._1
             Assert.AreEqual("64", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void EqualityTwiceTest()
         {
             calculator.Number("1");
@@ -155,7 +157,7 @@ namespace _7._1
             Assert.AreEqual("-13", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void ClearTest()
         {
             calculator.Number("1");
@@ -176,7 +178,7 @@ namespace _7._1
             Assert.AreEqual("0", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void ClearEntryTest()
         {
             calculator.Number("6");
@@ -195,7 +197,7 @@ namespace _7._1
             Assert.AreEqual("621 + 96 -", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void ClearEntryAfterOperationTest()
         {
             calculator.Number("2");
@@ -210,7 +212,7 @@ namespace _7._1
             Assert.AreEqual("2 - 69 *", calculator.WholeInput);
         }
 
-        [Test]
+        [TestMethod]
         public void BackspaceTest()
         {
             calculator.Number("2");
@@ -230,7 +232,7 @@ namespace _7._1
             Assert.AreEqual("175", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void BackspaceAfterOperationTest()
         {
             calculator.Number("7");
@@ -248,7 +250,7 @@ namespace _7._1
             Assert.AreEqual("387", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void BackspaceAfterEqualityTest()
         {
             calculator.Number("5");
@@ -262,7 +264,7 @@ namespace _7._1
             Assert.AreEqual("13", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void BackspaceToZeroTest()
         {
             calculator.Number("4");
@@ -275,7 +277,7 @@ namespace _7._1
             Assert.AreEqual("0", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void PlusMinusPositiveTest()
         {
             calculator.Number("9");
@@ -285,7 +287,7 @@ namespace _7._1
             Assert.AreEqual("-90", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void PlusMinusNegativeTest()
         {
             calculator.Number("1");
@@ -299,7 +301,7 @@ namespace _7._1
             Assert.AreEqual("51", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void PlusMinusTwiceTest()
         {
             calculator.Number("8");
@@ -310,7 +312,7 @@ namespace _7._1
             Assert.AreEqual("8", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void PlusMinusAfterEqualityTest()
         {
             calculator.Number("1");
@@ -323,7 +325,7 @@ namespace _7._1
             Assert.AreEqual("4", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void PlusMinusAfterOperationTest()
         {
             calculator.Number("2");
@@ -337,7 +339,7 @@ namespace _7._1
             Assert.AreEqual("8", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void DotTest()
         {
             calculator.Number("2");
@@ -352,7 +354,7 @@ namespace _7._1
             Assert.AreEqual("6.56", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void DotTwiceTest()
         {
             calculator.Number("3");
@@ -366,7 +368,7 @@ namespace _7._1
             Assert.AreEqual("34.61", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void DotAfterOperationTest()
         {
             calculator.Number("3");
@@ -380,7 +382,7 @@ namespace _7._1
             Assert.AreEqual("20.", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void DotAfterEqualityTest()
         {
             calculator.Number("1");
@@ -393,7 +395,7 @@ namespace _7._1
             Assert.AreEqual("96.3", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void NoNumbersAfterDotTest()
         {
             calculator.Number("5");
@@ -406,7 +408,7 @@ namespace _7._1
             Assert.AreEqual("7", calculator.Input);
         }
 
-        [Test]
+        [TestMethod]
         public void DecimalNumbersTest()
         {
             calculator.Number("5");
