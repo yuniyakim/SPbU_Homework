@@ -5,6 +5,9 @@ dotnet: 2.1
 before_build:
   - nuget restore Semester2/Homework7/7.1/7.1.sln 
 
+install:
+  - sudo apt-get install nunit-console
+
 build:
   - dotnet build Semester2/Homework7/7.1/7.1.sln 
 
