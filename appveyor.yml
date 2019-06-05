@@ -3,10 +3,10 @@ skip_tags: true
 configuration: Release
 
 before_build:
-  - nuget restore Semester2/Homework7/7.1/7.1.sln
+  - nuget restore Semester2\Homework7\7.1\7.1.sln
 
 build:
-  project: Semester2/Homework7/7.1/7.1.sln
+  project: Semester2\Homework7\7.1\7.1.sln
 
 test_script:
-  - nunit3-console.exe Semester2/Homework7/7.1/7.1.Tests/obj/Debug/netcoreapp2.1/7.1.Tests.dll --result=7.1.TestsResults.xml;format=AppVeyor
+  - nunit3-console.exe "C:\projects\spbu-homework\Semester2\Homework7\7.1\7.1.Tests\bin\Release\netcoreapp2.1\7.1.Tests.dll" --result=7.1.TestsResults.xml;format=AppVeyor
