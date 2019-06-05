@@ -4,7 +4,8 @@ before_build:
   - nuget restore Semester2/Homework7/7.1/7.1.sln
 
 build:
-  project: Semester2/Homework7/7.1/7.1.sln
+  - msbuild Semester2/Homework7/7.1/7.1.sln /p:Configuration=Release /t:Rebuild
 
-test_script:
-  - nunit3-console.exe "C:/projects/SPbU-Homework/Semester2/Homework7/7.1/7.1.Tests/7.1.Tests.csproj"
+test:
+  assemblies:
+    - '**\*7.1.Tests.dll'
