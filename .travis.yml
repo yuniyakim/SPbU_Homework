@@ -2,7 +2,7 @@ language: csharp
 solution: Semester2/Homework7/7.1/7.1.sln
 sudo: required
 mono: none
-dotnet: 2.2
+dotnet: 2.1
 
 before_build:
   - nuget restore Semester2/Homework7/7.1/7.1.sln 
@@ -12,3 +12,4 @@ build:
 
 script:
   - dotnet test Semester2/Homework7/7.1/7.1.sln
+  - mono ./testrunner/NUnit.Console.*/tools/nunit3-console.exe ./7.1.Tests/bin/Debug/7.1.Tests.dll
