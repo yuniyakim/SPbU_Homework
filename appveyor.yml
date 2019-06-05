@@ -7,4 +7,5 @@ build:
   project: Semester2/Homework7/7.1/7.1.sln
 
 test_script:
-  - mono nunit3-console.exe "C:/projects/SPbU-Homework/Semester2/Homework7/7.1/7.1.Tests/bin/Debug/netcoreapp2.1/7.1.Tests.dll"
+  - dotnet test --framework Semester2/Homework7/7.1/7.1.sln 
+  - nunit3-console.exe "C:/projects/SPbU-Homework/Semester2/Homework7/7.1/7.1.Tests/bin/Debug/netcoreapp2.1/7.1.Tests.dll"
