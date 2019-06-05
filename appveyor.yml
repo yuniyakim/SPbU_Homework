@@ -7,4 +7,4 @@ build:
   project: Semester2/Homework7/7.1/7.1.sln
 
 test_script:
-  - nunit3-console.exe Semester2/Homework7/7.1/7.1.Tests/7.1.Tests.csproj
+  - nunit3-console.exe Semester2/Homework7/7.1/7.1.Tests/bin/Debug/netcoreapp2.1/7.1.Tests.dll
