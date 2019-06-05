@@ -8,3 +8,7 @@ build:
 
 test_script:
   - dotnet test Semester2/Homework7/7.1/7.1.sln
+
+after_test:
+- ps: >-
+    $nunitrunner = (Resolve-Path "tools/NUnit.ConsoleRunner.*/tools/nunit3-console.exe").ToString();
