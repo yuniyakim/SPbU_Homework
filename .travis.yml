@@ -12,4 +12,4 @@ build:
   - dotnet build Semester2/Homework7/7.1/7.1.sln 
 
 script:
-  - nunit-console Semester2/Homework7/7.1/7.1.Tests/bin/Debug/7.1.Tests.dll
+  - nunit-console Semester2/Homework7/7.1/7.1.Tests/7.1.Tests.csproj
