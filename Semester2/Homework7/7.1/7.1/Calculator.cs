@@ -9,8 +9,8 @@ namespace _7._1
     {
         public string WholeInput { get; private set; } = "";
         public string Input { get; private set; } = "0";
-        private bool isEqualityPressed = false;
-        private bool isOperationPressed = false;
+        private bool isEqualityPressed;
+        private bool isOperationPressed;
         private string[] expression = new string[3];
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace _7._1
                     {
                         WholeInput = WholeInput.Replace("+ -", "- ");
                     }
-                    var newWholeInput = WholeInput.Substring(WholeInput.LastIndexOfAny(new char[] { '+', '-', '*', '/' }));
+                    var newWholeInput = WholeInput.Substring(WholeInput.LastIndexOfAny(new [] { '+', '-', '*', '/' }));
                     newWholeInput.Split(' ').CopyTo(expression, 1);
                 }
                 var result = 0.0;
@@ -66,6 +66,10 @@ namespace _7._1
 
                             result = first / second;
                             break;
+                        }
+                    default:
+                        {
+                            throw new InvalidOperationException();
                         }
                 }
                 Input = result.ToString();
@@ -133,25 +137,12 @@ namespace _7._1
         /// <summary>
         /// Clears entry
         /// </summary>
-        public void ClearEntry()
-        {
-            Input = "0";
-        }
+        public void ClearEntry() => Input = "0";
 
         /// <summary>
         /// Deletes the last character of entry
         /// </summary>
-        public void Backspace()
-        {
-            if (Input.Length == 1 || (Input.Length == 2 && Input[0] == '-'))
-            {
-                Input = "0";
-            }
-            else
-            {
-                Input = Input.Remove(Input.Length - 1);
-            }
-        }
+        public void Backspace() => Input = (Input.Length == 1 || (Input.Length == 2 && Input[0] == '-')) ? "0" : Input.Remove(Input.Length - 1);
 
         /// <summary>
         /// Adds a dot to entry
@@ -173,14 +164,7 @@ namespace _7._1
         {
             if (Input != "0")
             {
-                if (Input[0] != '-')
-                {
-                    Input = "-" + Input;
-                }
-                else
-                {
-                    Input = Input.Substring(1);
-                }
+                Input = (Input[0] != '-') ? "-" + Input : Input.Substring(1);
                 isEqualityPressed = false;
                 isOperationPressed = false;
             }
