@@ -26,6 +26,14 @@ namespace _7._1
                 }
                 else
                 {
+                    if (WholeInput.Contains("- -"))
+                    {
+                        WholeInput = WholeInput.Replace("- -", "+ ");
+                    }
+                    if (WholeInput.Contains("+ -"))
+                    {
+                        WholeInput = WholeInput.Replace("+ -", "- ");
+                    }
                     var newWholeInput = WholeInput.Substring(WholeInput.LastIndexOfAny(new char[] { '+', '-', '*', '/' }));
                     newWholeInput.Split(' ').CopyTo(expression, 1);
                 }
