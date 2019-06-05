@@ -59,7 +59,7 @@ namespace _7._1
                         }
                     case "/":
                         {
-                            if (second == 0)
+                            if (second < 0.00000001 && second > -0.00000001)
                             {
                                 throw new DivideByZeroException();
                             }
