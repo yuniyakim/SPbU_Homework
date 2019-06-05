@@ -9,4 +9,4 @@ build:
   - dotnet build Semester2/Homework7/7.1/7.1.sln 
 
 script:
-  - mono ./testrunner/NUnit.ConsoleRunner.3.2.0/tools/nunit3-console.exe C:/projects/SPbU-Homework/Semester2/Homework7/7.1/7.1.Tests/bin/Debug/netcoreapp2.2/7.1.Tests.dll
+  - mono ./testrunner/NUnit.ConsoleRunner.3.2.0/tools/nunit3-console.exe C:/projects/SPbU-Homework/Semester2/Homework7/7.1/7.1.Tests/bin/Debug/netcoreapp2.1/7.1.Tests.dll
