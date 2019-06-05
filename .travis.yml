@@ -1,7 +1,5 @@
 language: csharp
 solution: Semester2/Homework7/7.1/7.1.sln
-sudo: required
-mono: none
 dotnet: 2.1
 
 before_build:
