@@ -1,8 +1,14 @@
 language: csharp
-solution: Semester2/Homework7/7.1/7.1.sln
+solution: Semester2/Homework7/7.2/7.2.sln
+sudo: required
+mono: none
+dotnet: 2.1
 
 before_build:
-  - nuget restore Semester2/Homework7/7.1/7.1.sln 
+  - nuget restore Semester2/Homework7/7.2/7.2.sln 
+
+build:
+  - dotnet build Semester2/Homework7/7.2/7.2.sln
 
 script:
-  - msbuild Semester2/Homework7/7.1/7.1.sln /p:Configuration=Release /t:Rebuild
+  - dotnet test Semester2/Homework7/7.2/7.2.sln
