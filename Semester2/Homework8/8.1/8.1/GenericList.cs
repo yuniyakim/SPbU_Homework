@@ -154,7 +154,7 @@ namespace _8._1
         /// </summary>
         /// <param name="value">Specific value</param>
         /// <returns>True if contained, false otherwise</returns>
-        public bool Contains(T value) => (IndexOf(value) == -1) ? false : true;
+        public bool Contains(T value) => IndexOf(value) != -1;
 
         /// <summary>
         /// Removes the element on the specified position
