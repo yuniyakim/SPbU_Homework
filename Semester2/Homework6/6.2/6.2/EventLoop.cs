@@ -11,14 +11,17 @@ namespace _6._2
         /// Event handler for going up
         /// </summary>
         public event EventHandler<EventArgs> UpHandler;
+
         /// <summary>
         /// Event handler for going down
         /// </summary>
         public event EventHandler<EventArgs> DownHandler;
+
         /// <summary>
         /// Event handler for going right
         /// </summary>
         public event EventHandler<EventArgs> RightHandler;
+
         /// <summary>
         /// Event handler for going left
         /// </summary>
