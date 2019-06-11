@@ -1,8 +1,8 @@
 language: csharp
 solution: Semester2/Homework4/4.1/4.1.sln 
 sudo: required
-dist: xenial
-dotnet: 2.2
+mono: none
+dotnet: 2.1
 
 before_build:
   - nuget restore Semester2/Homework4/4.1/4.1.sln 
