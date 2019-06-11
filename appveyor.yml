@@ -1,10 +1,11 @@
 image: Visual Studio 2019 Preview
 
 before_build:
-  - nuget restore Semester2/Test2/2.2/2.2.sln 
+  - nuget restore Semester2/Homework7/7.1/7.1.sln
 
-build:
-  project: Semester2/Test2/2.2/2.2.sln 
+build_script:
+  - msbuild Semester2/Homework7/7.1/7.1.sln /p:Configuration=Release /t:Rebuild
 
-test_script:
-  - dotnet test Semester2/Test2/2.2/2.2.sln 
+test:
+  assemblies:
+    - '**\*7.1.Tests.dll'

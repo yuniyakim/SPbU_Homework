@@ -1,14 +1,8 @@
 language: csharp
-solution: Semester2/Test2/2.2/2.2.sln 
-sudo: required
-dist: xenial
-dotnet: 2.2
+solution: Semester2/Homework7/7.1/7.1.sln
 
 before_build:
-  - nuget restore Semester2/Test2/2.2/2.2.sln 
-
-build:
-  - dotnet build Semester2/Test2/2.2/2.2.sln 
+  - nuget restore Semester2/Homework7/7.1/7.1.sln 
 
 script:
-  - dotnet test Semester2/Test2/2.2/2.2.sln 
+  - msbuild Semester2/Homework7/7.1/7.1.sln /p:Configuration=Release /t:Rebuild
