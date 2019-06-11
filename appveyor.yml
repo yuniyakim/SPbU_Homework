@@ -1,10 +1,18 @@
 image: Visual Studio 2019 Preview
 
+init:
+  - git config --global core.autocrlf true
+
 before_build:
-  - nuget restore Semester2/Homework8/8.2/8.2.sln
+  - nuget restore Semester2/Homework6/6.2/6.2.sln
+  - choco install opencover.portable
+  - choco install codecov
 
 build:
-  project: Semester2/Homework8/8.2/8.2.sln
+  project: Semester2/Homework6/6.2/6.2.sln
+  verbosity: minimal
 
 test_script:
-  - dotnet test Semester2/Homework8/8.2/8.2.sln
+  - dotnet test Semester2/Homework6/6.2/6.2.sln
+  - OpenCover.Console.exe -register:administrator -target:"c:\Program Files\dotnet\dotnet.exe" -targetargs:"Semester2/Homework6/6.2/6.2.Tests/bin/Debug/netcoreapp2.2/6.2.Tests.dll" -output:6.2_coverage.xml -oldstyle
+  - codecov -f "6.2_coverage.xml" -t 790fed63-e3aa-4964-a215-c9baec799df1 
