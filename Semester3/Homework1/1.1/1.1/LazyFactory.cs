@@ -21,8 +21,7 @@ namespace _1._1
                 throw new FuncNullException();
             }
 
-            var lazy = new LazySingleThreaded<T>(func);
-            return lazy;
+            return new LazySingleThreaded<T>(func);
         }
 
         /// <summary>
@@ -37,8 +36,7 @@ namespace _1._1
                 throw new FuncNullException();
             }
 
-            var lazy = new LazyMultipleThreaded<T>(func);
-            return lazy;
+            return new LazyMultipleThreaded<T>(func);
         }
 
 

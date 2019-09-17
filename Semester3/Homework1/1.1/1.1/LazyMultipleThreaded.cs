@@ -9,7 +9,8 @@ namespace _1._1
     /// </summary>
     public class LazyMultipleThreaded<T> : ILazy<T>
     {
-        public T Value { get; set; }
+        private T value;
+        private bool isValueCreated;
         private Func<T> func;
 
         public LazyMultipleThreaded(Func<T> func)
@@ -21,6 +22,14 @@ namespace _1._1
         /// Returns value
         /// </summary>
         /// <returns>Value</returns>
-        public T Get() => Value;
+        public T Get()
+        {
+            if (!isValueCreated)
+            {
+                value = func();
+                isValueCreated = true;
+            }
+            return value;
+        }
     }
 }

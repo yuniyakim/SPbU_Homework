@@ -9,7 +9,8 @@ namespace _1._1
     /// </summary>
     public class LazySingleThreaded<T> : ILazy<T>
     {
-        public T Value { get; set; }
+        private T value;
+        private bool isValueCreated;
         private Func<T> func;
 
         /// <summary>
@@ -27,11 +28,12 @@ namespace _1._1
         /// <returns>Value</returns>
         public T Get()
         {
-            if (Value == null)
+            if (!isValueCreated)
             {
-                Value = func();
+                value = func();
+                isValueCreated = true;
             }
-            return Value;
+            return value;
         }
     }
 }
