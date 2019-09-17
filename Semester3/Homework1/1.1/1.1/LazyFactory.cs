@@ -9,20 +9,20 @@ namespace _1._1
     /// </summary>
     public class LazyFactory<T>
     {
-        private static T value;
-
         /// <summary>
         /// Creates single threaded lazy
         /// </summary>
         /// <param name="supplier">Incoming function</param>
         /// <returns>Created lazy</returns>
-        public static Lazy<T> CreateLazySingleThreaded<T>(Func<T> supplier)
+        public static LazySingleThreaded<T> CreateLazySingleThreaded<T>(Func<T> func)
         {
-            if (supplier == null)
+            if (func == null)
             {
                 throw new FuncNullException();
             }
 
+            var lazy = new LazySingleThreaded<T>(func);
+            return lazy;
         }
 
         /// <summary>
@@ -30,14 +30,16 @@ namespace _1._1
         /// </summary>
         /// <param name="supplier">Incoming function</param>
         /// <returns>Created lazy</returns>
-        public static Lazy<T> CreateLazyMultipleThreaded<T>(Func<T> supplier)
+        public static LazyMultipleThreaded<T> CreateLazyMultipleThreaded<T>(Func<T> func)
         {
-            if (supplier == null)
+            if (func == null)
             {
                 throw new FuncNullException();
             }
 
-    }
+            var lazy = new LazyMultipleThreaded<T>(func);
+            return lazy;
+        }
 
 
 }

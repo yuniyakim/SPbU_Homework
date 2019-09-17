@@ -10,6 +10,12 @@ namespace _1._1
     public class LazyMultipleThreaded<T> : ILazy<T>
     {
         public T Value { get; set; }
+        private Func<T> func;
+
+        public LazyMultipleThreaded(Func<T> func)
+        {
+            this.func = func;
+        }
 
         /// <summary>
         /// Returns value
