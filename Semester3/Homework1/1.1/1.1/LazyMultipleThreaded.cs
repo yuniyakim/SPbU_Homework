@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace _1._1
 {
@@ -12,6 +10,7 @@ namespace _1._1
         private T value;
         private bool isValueCreated;
         private Func<T> func;
+        private static Object lockObject = new Object();
 
         public LazyMultipleThreaded(Func<T> func)
         {
@@ -24,10 +23,21 @@ namespace _1._1
         /// <returns>Value</returns>
         public T Get()
         {
+            if (func == null)
+            {
+                throw new FuncNullException();
+            }
+
             if (!isValueCreated)
             {
-                value = func();
-                isValueCreated = true;
+                lock (lockObject)
+                {
+                    if (!isValueCreated)
+                    {
+                        value = func();
+                        isValueCreated = true;
+                    }
+                }
             }
             return value;
         }

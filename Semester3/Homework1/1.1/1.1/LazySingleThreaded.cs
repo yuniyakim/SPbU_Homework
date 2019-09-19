@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace _1._1
 {
@@ -28,6 +26,11 @@ namespace _1._1
         /// <returns>Value</returns>
         public T Get()
         {
+            if (func == null)
+            {
+                throw new FuncNullException();
+            }
+
             if (!isValueCreated)
             {
                 value = func();
