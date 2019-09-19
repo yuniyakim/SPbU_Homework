@@ -12,7 +12,7 @@ namespace _1._1
         /// </summary>
         /// <param name="supplier">Incoming function</param>
         /// <returns>Created lazy</returns>
-        public static LazySingleThreaded<T> CreateLazySingleThreaded<T>(Func<T> func)
+        public static LazySingleThreaded<T> CreateLazySingleThreaded(Func<T> func)
         {
             if (func == null)
             {
@@ -27,7 +27,7 @@ namespace _1._1
         /// </summary>
         /// <param name="supplier">Incoming function</param>
         /// <returns>Created lazy</returns>
-        public static LazyMultipleThreaded<T> CreateLazyMultipleThreaded<T>(Func<T> func)
+        public static LazyMultipleThreaded<T> CreateLazyMultipleThreaded(Func<T> func)
         {
             if (func == null)
             {
