@@ -12,6 +12,7 @@ namespace _1._1
         public void Setup()
         {
             func = () => 11 - 38;
+            lazy = LazyFactory<int>.CreateLazyMultipleThreaded(func);
         }
 
         [Test]

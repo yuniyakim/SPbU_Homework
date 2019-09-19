@@ -12,12 +12,34 @@ namespace _1._1
         public void Setup()
         {
             func = () => "test 123";
+            lazy = LazyFactory<string>.CreateLazySingleThreaded(func);
         }
 
         [Test]
         public void FuncNullExceptionTest()
         {
             Assert.Throws<FuncNullException>(() => lazy = LazyFactory<string>.CreateLazySingleThreaded(null));
+        }
+
+        [Test]
+        public void FirstGetTest()
+        {
+            Assert.AreEqual("test 123", lazy.Get());
+        }
+
+        [Test]
+        public void SecondGetTest()
+        {
+            lazy.Get();
+            Assert.AreEqual("test 123", lazy.Get());
+        }
+
+        [Test]
+        public void ThirdGetTest()
+        {
+            lazy.Get();
+            lazy.Get();
+            Assert.AreEqual("test 123", lazy.Get());
         }
     }
 }
