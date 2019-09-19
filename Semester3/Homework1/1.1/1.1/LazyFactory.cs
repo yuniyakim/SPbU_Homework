@@ -36,6 +36,5 @@ namespace _1._1
 
             return new LazyMultipleThreaded<T>(func);
         }
-
-
+    }
 }

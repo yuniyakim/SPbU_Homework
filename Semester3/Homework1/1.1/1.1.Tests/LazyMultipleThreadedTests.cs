@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace _1._1
@@ -12,12 +11,13 @@ namespace _1._1
         [SetUp]
         public void Setup()
         {
+            func = () => 11 - 38;
         }
 
         [Test]
-        public void Test1()
+        public void FuncNullExceptionTest()
         {
-            Assert.Pass();
+            Assert.Throws<FuncNullException>(() => lazy = LazyFactory<int>.CreateLazyMultipleThreaded(null));
         }
     }
 }

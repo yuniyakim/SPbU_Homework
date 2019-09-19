@@ -1,23 +1,23 @@
 using System;
-using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace _1._1
 {
     public class LazySingleThreadedTests
     {
-        private LazySingleThreaded<int> lazy;
-        private Func<int> func;
+        private LazySingleThreaded<string> lazy;
+        private Func<string> func;
 
         [SetUp]
         public void Setup()
         {
+            func = () => "test 123";
         }
 
         [Test]
         public void FuncNullExceptionTest()
         {
-            Assert.Throws<FuncNullException>(() => );
+            Assert.Throws<FuncNullException>(() => lazy = LazyFactory<string>.CreateLazySingleThreaded(null));
         }
     }
 }
