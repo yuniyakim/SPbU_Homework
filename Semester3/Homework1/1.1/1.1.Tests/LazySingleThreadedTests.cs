@@ -41,5 +41,14 @@ namespace _1._1
             lazy.Get();
             Assert.AreEqual("test 123", lazy.Get());
         }
+
+        [Test]
+        public void ManyGetTest()
+        {
+            for (int i = 0; i < 100500; ++i)
+            {
+                Assert.AreEqual("test 123", lazy.Get());
+            }
+        }
     }
 }
