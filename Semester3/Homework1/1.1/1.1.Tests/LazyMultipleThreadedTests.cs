@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using System.Threading;
 
 namespace _1._1
 {
@@ -22,32 +23,28 @@ namespace _1._1
         }
 
         [Test]
-        public void FirstSingleThreadedGetTest()
+        public void FirstGetTest()
         {
-            Assert.AreEqual(-27, lazy.Get());
-        }
-
-        [Test]
-        public void SecondSingleThreadedGetTest()
-        {
-            lazy.Get();
-            Assert.AreEqual("test 123", lazy.Get());
-        }
-
-        [Test]
-        public void ThirdSingleThreadedGetTest()
-        {
-            lazy.Get();
-            lazy.Get();
-            Assert.AreEqual("test 123", lazy.Get());
-        }
-
-        [Test]
-        public void ManySingleThreadedGetTest()
-        {
-            for (int i = 0; i < 100500; ++i)
+            var threads = new Thread[10];
+            var results = new int[10];
+            var localI = 0;
+            for (int i = 0; i < 10; ++i)
             {
-                Assert.AreEqual("test 123", lazy.Get());
+                threads[i] = new Thread(() =>
+                {
+                    results[localI] = lazy.Get();
+                    ++localI;
+                });
+            }
+
+            foreach (var thread in threads)
+            {
+                thread.Start();
+            }
+
+            for (int k = 0; k < 10; ++k)
+            {
+                Assert.AreEqual(-27, results[k]);
             }
         }
     }
