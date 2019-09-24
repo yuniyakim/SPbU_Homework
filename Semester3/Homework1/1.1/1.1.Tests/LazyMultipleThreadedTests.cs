@@ -6,25 +6,20 @@ namespace _1._1
 {
     public class LazyMultipleThreadedTests
     {
-        private LazyMultipleThreaded<int> lazy;
-        private Func<int> func;
-
-        [SetUp]
-        public void Setup()
-        {
-            func = () => 11 - 38;
-            lazy = LazyFactory<int>.CreateLazyMultipleThreaded(func);
-        }
-
         [Test]
         public void FuncNullExceptionTest()
         {
-            Assert.Throws<FuncNullException>(() => lazy = LazyFactory<int>.CreateLazyMultipleThreaded(null));
+            Assert.Throws<FuncNullException>(() =>
+            {
+                var lazy = LazyFactory<int>.CreateLazyMultipleThreaded(null);
+            });
         }
 
         [Test]
-        public void GetTest()
+        public void GetIntTest()
         {
+            Func<int> func = () => 11 - 38;
+            var lazy = LazyFactory<int>.CreateLazyMultipleThreaded(func);
             var threads = new Thread[10];
             var results = new int[10];
             for (int i = 0; i < 10; ++i)
@@ -41,9 +36,46 @@ namespace _1._1
                 thread.Start();
             }
 
-            for (int k = 0; k < 10; ++k)
+            foreach (var thread in threads)
             {
-                Assert.AreEqual(-27, results[k]);
+                thread.Join();
+            }
+
+            foreach (var result in results)
+            {
+                Assert.AreEqual(-27, result);
+            }
+        }
+
+        [Test]
+        public void GetStringTest()
+        {
+            Func<string> func = () => "Test string";
+            var lazy = LazyFactory<string>.CreateLazyMultipleThreaded(func);
+            var threads = new Thread[5];
+            var results = new string[5];
+            for (int i = 0; i < 5; ++i)
+            {
+                var localI = i;
+                threads[i] = new Thread(() =>
+                {
+                    results[localI] = lazy.Get();
+                });
+            }
+
+            foreach (var thread in threads)
+            {
+                thread.Start();
+            }
+
+            foreach (var thread in threads)
+            {
+                thread.Join();
+            }
+
+            foreach (var result in results)
+            {
+                Assert.AreEqual("Test string", result);
             }
         }
     }
