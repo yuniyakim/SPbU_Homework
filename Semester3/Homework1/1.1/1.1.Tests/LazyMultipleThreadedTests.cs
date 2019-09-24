@@ -23,17 +23,16 @@ namespace _1._1
         }
 
         [Test]
-        public void FirstGetTest()
+        public void GetTest()
         {
             var threads = new Thread[10];
             var results = new int[10];
-            var localI = 0;
             for (int i = 0; i < 10; ++i)
             {
+                var localI = i;
                 threads[i] = new Thread(() =>
                 {
                     results[localI] = lazy.Get();
-                    ++localI;
                 });
             }
 
