@@ -9,10 +9,7 @@ namespace _1._1
         [Test]
         public void FuncNullExceptionTest()
         {
-            Assert.Throws<FuncNullException>(() =>
-            {
-                var lazy = LazyFactory<int>.CreateLazyMultipleThreaded(null);
-            });
+            Assert.Throws<FuncNullException>(() => LazyFactory<int>.CreateLazyMultipleThreaded(null));
         }
 
         [Test]
