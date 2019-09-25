@@ -15,11 +15,12 @@ namespace _1._1
         [Test]
         public void GetIntTest()
         {
+            const int n = 10;
             Func<int> func = () => 11 - 38;
             var lazy = LazyFactory<int>.CreateLazyMultipleThreaded(func);
-            var threads = new Thread[10];
-            var results = new int[10];
-            for (int i = 0; i < 10; ++i)
+            var threads = new Thread[n];
+            var results = new int[n];
+            for (int i = 0; i < n; ++i)
             {
                 var localI = i;
                 threads[i] = new Thread(() =>
@@ -38,20 +39,22 @@ namespace _1._1
                 thread.Join();
             }
 
-            foreach (var result in results)
+            Assert.AreEqual(-27, results[0]);
+            for (int i = 0; i < n - 1; ++i)
             {
-                Assert.AreEqual(-27, result);
+                Assert.IsTrue(results[i].Equals(results[i + 1]));
             }
         }
 
         [Test]
         public void GetStringTest()
         {
+            const int n = 5;
             Func<string> func = () => "Test string";
             var lazy = LazyFactory<string>.CreateLazyMultipleThreaded(func);
-            var threads = new Thread[5];
-            var results = new string[5];
-            for (int i = 0; i < 5; ++i)
+            var threads = new Thread[n];
+            var results = new string[n];
+            for (int i = 0; i < n; ++i)
             {
                 var localI = i;
                 threads[i] = new Thread(() =>
@@ -70,9 +73,10 @@ namespace _1._1
                 thread.Join();
             }
 
-            foreach (var result in results)
+            Assert.AreEqual("Test string", results[0]);
+            for (int i = 0; i < n - 1; ++i)
             {
-                Assert.AreEqual("Test string", result);
+                Assert.IsTrue(results[i].Equals(results[i + 1]));
             }
         }
     }

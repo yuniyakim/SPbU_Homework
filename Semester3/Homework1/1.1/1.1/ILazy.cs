@@ -10,7 +10,6 @@ namespace _1._1
         /// <summary>
         /// Gets the result of calculation
         /// </summary>
-        /// <returns></returns>
         T Get();
     }
 }

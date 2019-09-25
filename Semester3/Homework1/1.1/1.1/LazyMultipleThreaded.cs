@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace _1._1
 {
@@ -28,14 +29,16 @@ namespace _1._1
                 throw new FuncNullException();
             }
 
+            
             if (!isValueCreated)
             {
                 lock (lockObject)
                 {
-                    if (!isValueCreated)
+                    if (!Volatile.Read(ref isValueCreated))
                     {
                         value = func();
                         isValueCreated = true;
+                        func = null;
                     }
                 }
             }

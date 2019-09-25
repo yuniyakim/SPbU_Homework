@@ -3,7 +3,7 @@
 namespace _1._1
 {
     /// <summary>
-    /// Exception for invalid position of element in the list
+    /// Exception for null func
     /// </summary>
     public class FuncNullException : Exception
     {
