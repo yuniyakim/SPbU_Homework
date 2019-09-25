@@ -24,7 +24,7 @@ namespace _1._1
         /// <returns>Value</returns>
         public T Get()
         {
-            if (func == null)
+            if (func == null && !isValueCreated)
             {
                 throw new FuncNullException();
             }
