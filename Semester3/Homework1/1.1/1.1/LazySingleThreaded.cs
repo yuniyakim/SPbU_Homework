@@ -14,7 +14,7 @@ namespace _1._1
         /// <summary>
         /// Single threaded lazy's constructor
         /// </summary>
-        /// <param name="func"></param>
+        /// <param name="func">Incoming function</param>
         public LazySingleThreaded(Func<T> func)
         {
             this.func = func;
@@ -26,7 +26,7 @@ namespace _1._1
         /// <returns>Value</returns>
         public T Get()
         {
-            if (func == null)
+            if (func == null && !isValueCreated)
             {
                 throw new FuncNullException();
             }
@@ -35,6 +35,7 @@ namespace _1._1
             {
                 value = func();
                 isValueCreated = true;
+                func = null;
             }
             return value;
         }

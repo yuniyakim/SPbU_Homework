@@ -13,6 +13,10 @@ namespace _1._1
         private Func<T> func;
         private static Object lockObject = new Object();
 
+        /// <summary>
+        /// Multiple threaded lazy's constructor
+        /// </summary>
+        /// <param name="func">Incoming function</param>
         public LazyMultipleThreaded(Func<T> func)
         {
             this.func = func;
@@ -37,7 +41,7 @@ namespace _1._1
                     if (!Volatile.Read(ref isValueCreated))
                     {
                         value = func();
-                        isValueCreated = true;
+                        Volatile.Write(ref isValueCreated, true);
                         func = null;
                     }
                 }
