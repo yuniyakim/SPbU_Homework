@@ -33,7 +33,6 @@ namespace _1._1
                 throw new FuncNullException();
             }
 
-            
             if (!isValueCreated)
             {
                 lock (lockObject)
