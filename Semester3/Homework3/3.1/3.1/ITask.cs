@@ -5,7 +5,7 @@ namespace _3._1
     /// <summary>
     /// Task interface
     /// </summary>
-    public interface IMyTask<TResult>
+    public interface ITask<TResult>
     {
         /// <summary>
         /// Defines whether or not task is completed
@@ -22,6 +22,6 @@ namespace _3._1
         /// </summary>
         /// <param name="func">Incoming function</param>
         /// <returns>New task</returns>
-        IMyTask<TNewResult> ContinueWith<TNewResult>(Func<TResult, TNewResult> func);
+        ITask<TNewResult> ContinueWith<TNewResult>(Func<TResult, TNewResult> func);
     }
 }
