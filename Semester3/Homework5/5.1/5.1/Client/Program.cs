@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _5._1
+namespace Client
 {
     public class Program
     {
