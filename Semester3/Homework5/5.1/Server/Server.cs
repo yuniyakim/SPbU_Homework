@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,16 +12,17 @@ namespace Server
     /// </summary>
     public class Server
     {
-        private TcpClient TcpClient;
+        private int port;
+        private TcpListener listener;
 
         /// <summary>
-        /// Client's constructor
+        /// Server's constructor
         /// </summary>
         /// <param name="hostname"></param>
         /// <param name="port"></param>
-        public Server(string hostname, int port)
+        public Server(int port)
         {
-            TcpClient = new TcpClient(hostname, port);
+            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), port);
         }
 
         /// <summary>
@@ -73,45 +75,48 @@ namespace Server
             }
         }
 
-        public void Process()
+        public async void Process()
         {
-            NetworkStream stream = null;
-            try
-            {
-                stream = TcpClient.GetStream();
-                byte[] data = new byte[64]; // буфер для получаемых данных
-                while (true)
-                {
-                    // получаем сообщение
-                    StringBuilder builder = new StringBuilder();
-                    int bytes = 0;
-                    do
-                    {
-                        bytes = stream.Read(data, 0, data.Length);
-                        builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
-                    }
-                    while (stream.DataAvailable);
+            //listener.Start();
 
-                    string message = builder.ToString();
 
-                    Console.WriteLine(message);
-                    // отправляем обратно сообщение в верхнем регистре
-                    message = message.Substring(message.IndexOf(':') + 1).Trim().ToUpper();
-                    data = Encoding.Unicode.GetBytes(message);
-                    stream.Write(data, 0, data.Length);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-                if (TcpClient != null)
-                    TcpClient.Close();
-            }
+            //NetworkStream stream = null;
+            //try
+            //{
+            //    stream = TcpClient.GetStream();
+            //    byte[] data = new byte[64]; // буфер для получаемых данных
+            //    while (true)
+            //    {
+            //        // получаем сообщение
+            //        StringBuilder builder = new StringBuilder();
+            //        int bytes = 0;
+            //        do
+            //        {
+            //            bytes = stream.Read(data, 0, data.Length);
+            //            builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
+            //        }
+            //        while (stream.DataAvailable);
+
+            //        string message = builder.ToString();
+
+            //        Console.WriteLine(message);
+            //        // отправляем обратно сообщение в верхнем регистре
+            //        message = message.Substring(message.IndexOf(':') + 1).Trim().ToUpper();
+            //        data = Encoding.Unicode.GetBytes(message);
+            //        stream.Write(data, 0, data.Length);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //finally
+            //{
+            //    if (stream != null)
+            //        stream.Close();
+            //    if (TcpClient != null)
+            //        TcpClient.Close();
+            //}
         }
     }
 }

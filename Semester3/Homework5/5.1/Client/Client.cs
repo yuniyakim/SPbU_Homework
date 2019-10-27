@@ -13,7 +13,7 @@ namespace Client
     public class Client
     {
         private int port;
-        private TcpClient TcpClient;
+        private string hostname;
 
         /// <summary>
         /// Client's constructor
@@ -22,8 +22,8 @@ namespace Client
         /// <param name="port"></param>
         public Client(string hostname, int port)
         {
+            this.hostname = "localHost";
             this.port = port;
-            TcpClient = new TcpClient(hostname, port);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Client
         {
             try
             {
-                var client = new TcpClient("localHost", port);
+                var client = new TcpClient(hostname:, port);
 
                 using (var stream = client.GetStream())
                 {
