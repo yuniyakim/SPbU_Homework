@@ -39,3 +39,5 @@ namespace Server
         }
     }
 }
+
+// var path = Directory.GetCurrentDirectory() + "../../../../4.1.txt";
