@@ -33,14 +33,13 @@ namespace Server
         {
             if (!Directory.Exists(path))
             {
-                await stream.WriteAsync("-1");
+                await stream.WriteLineAsync("-1");
                 return;
             }
 
             var directories = Directory.GetDirectories(path);
             var files = Directory.GetFiles(path);
-            var amount = directories.Length + files.Length;
-            await stream.WriteAsync(amount + " ");
+            await stream.WriteLineAsync(directories.Length + files.Length + " ");
             foreach (var directory in directories)
             {
                 await stream.WriteAsync(directory + " true ");
@@ -62,10 +61,16 @@ namespace Server
         {
             if (!Directory.Exists(path))
             {
-                await stream.WriteAsync("-1");
+                await stream.WriteLineAsync("-1");
                 return;
             }
-        }
+
+            await stream.WriteLineAsync("new FileInfo(path).Length" + " ");
+            using (FileStream fileStream = File.Open(path, FileMode.Open))
+            {
+                await fileStream.CopyToAsync(stream.BaseStream);
+            }
+        
 
         public void Process()
         {
