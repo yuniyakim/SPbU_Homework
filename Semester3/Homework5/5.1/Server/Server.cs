@@ -42,14 +42,15 @@ namespace Server
             await stream.WriteLineAsync(directories.Length + files.Length + " ");
             foreach (var directory in directories)
             {
-                await stream.WriteAsync(directory + " true ");
+                await stream.WriteLineAsync(directory);
+                await stream.WriteLineAsync("true");
             }
             foreach (var file in files)
             {
-                await stream.WriteAsync(file + " false ");
+                await stream.WriteLineAsync(file);
+                await stream.WriteLineAsync("false");
             }
         }
-    }
 
         /// <summary>
         /// Requests file downloading from the server
@@ -65,12 +66,12 @@ namespace Server
                 return;
             }
 
-            await stream.WriteLineAsync("new FileInfo(path).Length" + " ");
-            using (FileStream fileStream = File.Open(path, FileMode.Open))
+            await stream.WriteLineAsync($"{new FileInfo(path).Length}");
+            using (var fileStream = File.OpenRead(path))
             {
                 await fileStream.CopyToAsync(stream.BaseStream);
             }
-        
+        }
 
         public void Process()
         {
