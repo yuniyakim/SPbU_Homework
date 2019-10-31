@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace _3._1
 {
@@ -9,6 +10,9 @@ namespace _3._1
     {
         private TResult result;
         private Func<TResult> func;
+        private ManualResetEvent isResultCalculated;
+        private ThreadPool<TResult> threadPool;
+
         public bool IsCompleted { get; private set; }
 
         /// <summary>
@@ -24,10 +28,13 @@ namespace _3._1
         /// Returns result of task's completion
         /// </summary>
         /// <returns>Task's result</returns>
-        public TResult Result()
+        public TResult Result
         {
-            result = func();
-            return result;
+            get
+            {
+                isResultCalculated.WaitOne();
+                return result;
+            }
         }
 
         /// <summary>

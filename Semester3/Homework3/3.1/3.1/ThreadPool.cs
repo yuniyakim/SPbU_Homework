@@ -11,6 +11,7 @@ namespace _3._1
         private Queue<T> buffer = new Queue<T>();
         private Semaphore semaphore;
         private static Object lockObject = new Object();
+        private CancellationTokenSource cts;
 
         public ThreadPool(int amount)
         {
