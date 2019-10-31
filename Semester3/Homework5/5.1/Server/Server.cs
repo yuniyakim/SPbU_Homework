@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Server
@@ -14,6 +15,7 @@ namespace Server
     {
         private int port;
         private TcpListener listener;
+        private CancellationTokenSource cts = new CancellationTokenSource();
 
         /// <summary>
         /// Server's constructor
@@ -22,6 +24,7 @@ namespace Server
         /// <param name="port"></param>
         public Server(int port)
         {
+            this.port = port;
             listener = new TcpListener(IPAddress.Parse("127.0.0.1"), port);
         }
 
@@ -31,7 +34,7 @@ namespace Server
         /// <param name="path">Path to directory</param>
         /// <param name="stream">Stream for writing</param>
         /// <returns><size: Int> (<name: String> <isDir: Boolean>)</returns>
-        public async Task List(string path, StreamWriter stream)
+        private async Task List(string path, StreamWriter stream)
         {
             if (!Directory.Exists(path))
             {
@@ -60,7 +63,7 @@ namespace Server
         /// <param name="path">Path to the file</param>
         /// <param name="stream">Stream for writing</param>
         /// <returns><size: Long> <content: Bytes></returns>
-        public async Task Get(string path, StreamWriter stream)
+        private async Task Get(string path, StreamWriter stream)
         {
             if (!Directory.Exists(path))
             {
@@ -75,10 +78,18 @@ namespace Server
             }
         }
 
-        public async void Process()
+        public async Task Start()
         {
-            //listener.Start();
+            listener.Start();
+            while (!cts.Token.IsCancellationRequested)
+            {
+                await Process();
+            }
+        }
 
+        private async Task Process()
+        {
+            listener.Start();
 
             //NetworkStream stream = null;
             //try
