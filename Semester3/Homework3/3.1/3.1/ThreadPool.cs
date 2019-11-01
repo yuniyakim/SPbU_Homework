@@ -7,19 +7,32 @@ namespace _3._1
     public class ThreadPool<T>
     {
         private int amount;
+        private volatile int amountOfWorking;
         private Thread[] threads;
-        private Queue<T> buffer = new Queue<T>();
-        private Semaphore semaphore;
+        private Queue<Action> tasks = new Queue<Action>();
         private static Object lockObject = new Object();
-        private CancellationTokenSource cts;
+        private CancellationTokenSource cts = new CancellationTokenSource();
 
         public ThreadPool(int amount)
         {
             this.amount = amount;
-            semaphore = new Semaphore(0, amount);
             for (int i = 0; i < amount; ++i)
             {
-                threads[i] = new Thread(() => Work());
+                threads[i] = new Thread(() =>
+                {
+                    while (!cts.IsCancellationRequested)
+                    {
+                        if (tasks.TryDequeue(out Action action))
+                        {
+                            action();
+                            ++amountOfWorking;
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                });
                 threads[i].Start();
             }
         }
@@ -28,12 +41,12 @@ namespace _3._1
         {
             while (true)
             {
-                semaphore.WaitOne();
+
                 lock (lockObject)
                 {
                     //buffer.Enqueue(item);
                 }
-                semaphore.Release();
+
             }
         }
 
