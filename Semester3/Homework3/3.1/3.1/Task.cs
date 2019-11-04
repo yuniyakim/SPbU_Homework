@@ -46,5 +46,10 @@ namespace _3._1
         {
 
         }
+
+        public void Execute()
+        {
+
+        }
     }
 }

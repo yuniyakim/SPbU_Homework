@@ -15,7 +15,7 @@ namespace _3._1
         private Queue<Action> tasks = new Queue<Action>();
         private static Object lockObject = new Object();
         private CancellationTokenSource cts = new CancellationTokenSource();
-        private AutoResetEvent executeNewTask = new AutoResetEvent(false);
+        private AutoResetEvent waitForNewTask = new AutoResetEvent(false);
 
         /// <summary>
         /// Thread pool's constructor
@@ -43,7 +43,7 @@ namespace _3._1
                         }
                         else
                         {
-                            executeNewTask.WaitOne();
+                            waitForNewTask.WaitOne();
                         }
                     }
                     lock (lockObject)
@@ -70,7 +70,15 @@ namespace _3._1
 
         private ITask<T> AddTask(Func<T> func)
         {
+            if (cts.IsCancellationRequested)
+            {
+                return null;
+            }
 
+            var task = TaskFactory<T>.CreateTask(func);
+            tasks.Enqueue(task.Execute);
+            waitForNewTask.Set();
+            return task;
         }
 
         public void Shutdown()
