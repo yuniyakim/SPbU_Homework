@@ -68,6 +68,12 @@ namespace _3._1
             }
         }
 
+        /// <summary>
+        /// Adds a new task into the thread pool
+        /// </summary>
+        /// <typeparam name="TResult">Task result type</typeparam>
+        /// <param name="func">Incoming function</param>
+        /// <returns>Added task</returns>
         private ITask<TResult> AddTask<TResult>(Func<TResult> func)
         {
             if (cts.IsCancellationRequested)

@@ -12,6 +12,8 @@ namespace _3._1
         private Func<TResult> func;
         private AutoResetEvent waitForResult = new AutoResetEvent(false);
         private ThreadPool threadPool;
+        private AggregateException exception;
+        private static Object lockObject = new Object();
 
         public bool IsCompleted { get; private set; }
 
@@ -34,6 +36,10 @@ namespace _3._1
             get
             {
                 waitForResult.WaitOne();
+                if (exception != null)
+                {
+                    throw exception;
+                }
                 return result;
             }
         }
@@ -45,7 +51,14 @@ namespace _3._1
         /// <returns>New task</returns>
         public ITask<TNewResult> ContinueWith<TNewResult>(Func<TResult, TNewResult> func)
         {
-            var task = new Task<TNewResult>()
+            var task = new Task<TNewResult>(() => func(result), threadPool);
+            lock (lockObject)
+            {
+                if (!IsCompleted)
+                {
+
+                }
+            }
         }
 
         public void Execute()
