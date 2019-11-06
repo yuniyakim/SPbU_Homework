@@ -10,8 +10,8 @@ namespace _3._1
     {
         private TResult result;
         private Func<TResult> func;
-        private ManualResetEvent isResultCalculated;
-        private ThreadPool<TResult> threadPool;
+        private AutoResetEvent waitForResult = new AutoResetEvent(false);
+        private ThreadPool threadPool;
 
         public bool IsCompleted { get; private set; }
 
@@ -19,9 +19,10 @@ namespace _3._1
         /// Task's constructor
         /// </summary>
         /// <param name="func">Incoming function</param>
-        public Task(Func<TResult> func)
+        public Task(Func<TResult> func, ThreadPool threadPool)
         {
             this.func = func;
+            this.threadPool = threadPool;
         }
 
         /// <summary>
@@ -32,24 +33,24 @@ namespace _3._1
         {
             get
             {
-                isResultCalculated.WaitOne();
+                waitForResult.WaitOne();
                 return result;
             }
         }
 
         /// <summary>
-        /// Returns a new task which is going to me completed
+        /// Returns a new task which is going to be completed
         /// </summary>
         /// <param name="func">Incoming function</param>
         /// <returns>New task</returns>
         public ITask<TNewResult> ContinueWith<TNewResult>(Func<TResult, TNewResult> func)
         {
-
+            var task = new Task<TNewResult>()
         }
 
         public void Execute()
         {
-
+            
         }
     }
 }

@@ -7,7 +7,7 @@ namespace _3._1
     /// <summary>
     /// Thread pool
     /// </summary>
-    public class ThreadPool<T>
+    public class ThreadPool
     {
         private int amount;
         private volatile int amountOfWorking;
@@ -68,14 +68,14 @@ namespace _3._1
             }
         }
 
-        private ITask<T> AddTask(Func<T> func)
+        private ITask<TResult> AddTask<TResult>(Func<TResult> func)
         {
             if (cts.IsCancellationRequested)
             {
                 return null;
             }
 
-            var task = TaskFactory<T>.CreateTask(func);
+            var task = TaskFactory<TResult>.CreateTask(func);
             tasks.Enqueue(task.Execute);
             waitForNewTask.Set();
             return task;
@@ -83,6 +83,7 @@ namespace _3._1
 
         public void Shutdown()
         {
+            cts.Cancel();
 
         }
     }
