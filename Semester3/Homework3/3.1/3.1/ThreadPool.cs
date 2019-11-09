@@ -71,7 +71,7 @@ namespace _3._1
         {
             if (cts.IsCancellationRequested)
             {
-                return null;
+                throw new ThreadPoolShutdownException();
             }
 
             var task = TaskFactory<TResult>.CreateTask(func, this);
@@ -88,7 +88,7 @@ namespace _3._1
         {
             if (cts.IsCancellationRequested)
             {
-                return null;
+                throw new ThreadPoolShutdownException();
             }
 
             tasks.Enqueue(task.Execute);
