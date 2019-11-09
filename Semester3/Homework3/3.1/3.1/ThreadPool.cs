@@ -10,12 +10,13 @@ namespace _3._1
     public class ThreadPool
     {
         private int amount;
-        private volatile int amountOfWorking;
+        private int amountOfWorking;
         private Thread[] threads;
         private Queue<Action> tasks = new Queue<Action>();
         private static Object lockObject = new Object();
         private CancellationTokenSource cts = new CancellationTokenSource();
-        private AutoResetEvent waitForNewTask = new AutoResetEvent(false);
+        private AutoResetEvent newTaskSignal = new AutoResetEvent(false);
+        private AutoResetEvent shutdownSignal = new AutoResetEvent(false);
 
         /// <summary>
         /// Shows if the thread pool is closed
@@ -48,7 +49,7 @@ namespace _3._1
                         }
                         else
                         {
-                            waitForNewTask.WaitOne();
+                            newTaskSignal.WaitOne();
                         }
                     }
                     lock (lockObject)
@@ -91,14 +92,29 @@ namespace _3._1
             }
 
             tasks.Enqueue(task.Execute);
-            waitForNewTask.Set();
+            newTaskSignal.Set();
             return task;
         }
 
+        /// <summary>
+        /// Shutdowns everything
+        /// </summary>
         public void Shutdown()
         {
             cts.Cancel();
-
+            newTaskSignal.Set();
+            while (true)
+            {
+                shutdownSignal.WaitOne();
+                newTaskSignal.Set();
+                lock (lockObject)
+                {
+                    if (amountOfWorking == 0)
+                    {
+                        break;
+                    }
+                }
+            }
         }
     }
 }

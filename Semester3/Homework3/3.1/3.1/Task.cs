@@ -11,7 +11,7 @@ namespace _3._1
     {
         private TResult result;
         private Func<TResult> func;
-        private AutoResetEvent waitForResult = new AutoResetEvent(false);
+        private AutoResetEvent resultSignal = new AutoResetEvent(false);
         private ThreadPool threadPool;
         private AggregateException exception;
         private static Object lockObject = new Object();
@@ -41,7 +41,7 @@ namespace _3._1
         {
             get
             {
-                waitForResult.WaitOne();
+                resultSignal.WaitOne();
                 if (exception != null)
                 {
                     throw exception;
@@ -85,7 +85,7 @@ namespace _3._1
             finally
             {
                 IsCompleted = true;
-                waitForResult.Set();
+                resultSignal.Set();
                 if (tasksQueue.Count == 0)
                 {
                     if (exception != null)
