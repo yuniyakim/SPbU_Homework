@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace _3._1
@@ -14,13 +15,18 @@ namespace _3._1
         private ThreadPool threadPool;
         private AggregateException exception;
         private static Object lockObject = new Object();
+        private Queue<Action> tasksQueue = new Queue<Action>();
 
+        /// <summary>
+        /// Shows if the task is completed
+        /// </summary>
         public bool IsCompleted { get; private set; }
 
         /// <summary>
         /// Task's constructor
         /// </summary>
         /// <param name="func">Incoming function</param>
+        /// <param name="threadPool">Thread pool to which task belongs</param>
         public Task(Func<TResult> func, ThreadPool threadPool)
         {
             this.func = func;
@@ -56,14 +62,44 @@ namespace _3._1
             {
                 if (!IsCompleted)
                 {
-
+                    tasksQueue.Enqueue(() => threadPool.AddTaskIntoThreadPool(task));
+                    return task;
                 }
             }
+            return threadPool.AddTaskIntoThreadPool(task);
         }
 
+        /// <summary>
+        /// Executes the task
+        /// </summary>
         public void Execute()
         {
-            
+            try
+            {
+                result = func();
+            }
+            catch (Exception e)
+            {
+                exception = new AggregateException(e);
+            }
+            finally
+            {
+                if (tasksQueue.Count == 0)
+                {
+                    if (exception != null)
+                    {
+                        throw exception;
+                    }
+
+                    if (!threadPool.IsClosed)
+                    {
+                        foreach (var action in tasksQueue)
+                        {
+                            action();
+                        }
+                    }
+                }
+            }
         }
     }
 }

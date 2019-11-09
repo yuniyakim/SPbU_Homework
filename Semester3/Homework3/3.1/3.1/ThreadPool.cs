@@ -18,6 +18,11 @@ namespace _3._1
         private AutoResetEvent waitForNewTask = new AutoResetEvent(false);
 
         /// <summary>
+        /// Shows if the thread pool is closed
+        /// </summary>
+        public bool IsClosed { get => cts.IsCancellationRequested; }
+
+        /// <summary>
         /// Thread pool's constructor
         /// </summary>
         /// <param name="amount">Amount of threads</param>
@@ -55,33 +60,36 @@ namespace _3._1
             }
         }
 
-        private void Work()
-        {
-            while (true)
-            {
-
-                lock (lockObject)
-                {
-                    //buffer.Enqueue(item);
-                }
-
-            }
-        }
-
         /// <summary>
         /// Adds a new task into the thread pool
         /// </summary>
         /// <typeparam name="TResult">Task result type</typeparam>
         /// <param name="func">Incoming function</param>
         /// <returns>Added task</returns>
-        private ITask<TResult> AddTask<TResult>(Func<TResult> func)
+        public ITask<TResult> AddTask<TResult>(Func<TResult> func)
         {
             if (cts.IsCancellationRequested)
             {
                 return null;
             }
 
-            var task = TaskFactory<TResult>.CreateTask(func);
+            var task = TaskFactory<TResult>.CreateTask(func, this);
+            return AddTaskIntoThreadPool(task);
+        }
+
+        /// <summary>
+        /// Adds task into the thread pool
+        /// </summary>
+        /// <typeparam name="TResult">task result type</typeparam>
+        /// <param name="task">Incoming task to add</param>
+        /// <returns>Added task</returns>
+        protected internal ITask<TResult> AddTaskIntoThreadPool<TResult>(Task<TResult> task)
+        {
+            if (cts.IsCancellationRequested)
+            {
+                return null;
+            }
+
             tasks.Enqueue(task.Execute);
             waitForNewTask.Set();
             return task;

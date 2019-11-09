@@ -11,15 +11,16 @@ namespace _3._1
         /// Creates task
         /// </summary>
         /// <param name="func">Incoming function</param>
+        /// <param name="threadPool">Thread pool to which task belongs</param>
         /// <returns>Created task</returns>
-        public static Task<T> CreateTask(Func<T> func)
+        public static Task<T> CreateTask(Func<T> func, ThreadPool threadPool)
         {
-            if (func == null)
+            if (func == null || threadPool == null)
             {
-                throw new FuncNullException();
+                throw new ArgumentNullException();
             }
 
-            return new Task<T>(func);
+            return new Task<T>(func, threadPool);
         }
     }
 }
