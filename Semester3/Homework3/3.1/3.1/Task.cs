@@ -18,7 +18,7 @@ namespace _3._1
         private Queue<Action> tasksQueue = new Queue<Action>();
 
         /// <summary>
-        /// Shows if the task is completed
+        /// Defines whether or not task is completed
         /// </summary>
         public bool IsCompleted { get; private set; }
 
@@ -27,7 +27,7 @@ namespace _3._1
         /// </summary>
         /// <param name="func">Incoming function</param>
         /// <param name="threadPool">Thread pool to which task belongs</param>
-        public Task(Func<TResult> func, ThreadPool threadPool)
+        protected internal Task(Func<TResult> func, ThreadPool threadPool)
         {
             this.func = func;
             this.threadPool = threadPool;

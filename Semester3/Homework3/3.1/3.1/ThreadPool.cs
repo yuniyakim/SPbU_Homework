@@ -9,7 +9,6 @@ namespace _3._1
     /// </summary>
     public class ThreadPool
     {
-        private int amount;
         private int amountOfWorking;
         private Thread[] threads;
         private Queue<Action> tasks = new Queue<Action>();
@@ -19,7 +18,7 @@ namespace _3._1
         private AutoResetEvent shutdownSignal = new AutoResetEvent(false);
 
         /// <summary>
-        /// Shows if the thread pool is closed
+        /// Defines whether or not thread pool is closed
         /// </summary>
         public bool IsClosed { get => cts.IsCancellationRequested; }
 
@@ -34,7 +33,6 @@ namespace _3._1
                 throw new ArgumentOutOfRangeException("Invalid argument");
             }
 
-            this.amount = amount;
             amountOfWorking = amount;
             threads = new Thread[amount];
             for (int i = 0; i < amount; ++i)
