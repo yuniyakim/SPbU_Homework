@@ -84,6 +84,8 @@ namespace _3._1
             }
             finally
             {
+                IsCompleted = true;
+                waitForResult.Set();
                 if (tasksQueue.Count == 0)
                 {
                     if (exception != null)
