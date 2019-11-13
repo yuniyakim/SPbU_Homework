@@ -1,18 +1,53 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 
 namespace _3._1
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
+        //[Test]
+        //public void AmountOfThreadsTest()
+        //{
+        //    var threadPool = new ThreadPool(9);
+        //}
+
+        [Test]
+        public void ThreadPoolTest()
         {
+            var threadPoolAmount = 3;
+            var threadPool = new ThreadPool(threadPoolAmount);
+            var tasksAmount = 10;
+            var tasks = new ITask<int>[tasksAmount];
+
+            for (var i = 0; i < tasksAmount; ++i)
+            {
+                tasks[i] = threadPool.AddTask(new Func<int>(() => i));
+            }
+            threadPool.Shutdown();
+            for (var i = 0; i < tasksAmount; ++i)
+            {
+                Assert.AreEqual(i, tasks[i].Result);
+            }
         }
 
         [Test]
-        public void AmountOfThreadsTest()
+        public void ManyTasksOneThreadTest()
         {
+            var threadPool = new ThreadPool(1);
+            var amount = 20;
+            var tasks = new ITask<int>[amount];
+
+            for (var i = 0; i < amount; ++i)
+            {
+                tasks[i] = threadPool.AddTask(new Func<int>(() => i));
+            }
+            threadPool.Shutdown();
+            for (var i = 0; i < amount; ++i)
+            {
+                Assert.AreEqual(i, tasks[i].Result);
+            }
         }
     }
 }

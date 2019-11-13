@@ -43,7 +43,7 @@ namespace _3._1
                     {
                         if (tasks.TryDequeue(out Action action))
                         {
-                            action();
+                            action.Invoke();
                         }
                         else
                         {
