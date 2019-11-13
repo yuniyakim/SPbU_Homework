@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace _3._1
 {
-    public class TaskTests
+    public class TaskFactoryTests
     {
         [Test]
         public void FuncNullTest()
@@ -21,14 +21,6 @@ namespace _3._1
 
         [Test]
         public void CreateTaskTest()
-        {
-            Func<int> func = () => 11 - 38;
-            var threadPool = new ThreadPool(1);
-            Assert.IsNotNull(TaskFactory<int>.CreateTask(func, threadPool));
-        }
-
-        [Test]
-        public void Test()
         {
             Func<int> func = () => 11 - 38;
             var threadPool = new ThreadPool(1);
