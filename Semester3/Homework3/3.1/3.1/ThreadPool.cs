@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -11,7 +12,7 @@ namespace _3._1
     {
         private int amountOfWorking;
         private Thread[] threads;
-        private Queue<Action> tasks = new Queue<Action>();
+        private ConcurrentQueue<Action> tasks = new ConcurrentQueue<Action>();
         private static Object lockObject = new Object();
         private CancellationTokenSource cts = new CancellationTokenSource();
         private AutoResetEvent newTaskSignal = new AutoResetEvent(false);
@@ -50,10 +51,7 @@ namespace _3._1
                             newTaskSignal.WaitOne();
                         }
                     }
-                    lock (lockObject)
-                    {
-                        --amountOfWorking;
-                    }
+                    Interlocked.Decrement(ref amountOfWorking);
                 });
                 threads[i].Start();
             }
