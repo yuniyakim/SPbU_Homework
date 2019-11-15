@@ -86,7 +86,7 @@ namespace _3._1
             {
                 IsCompleted = true;
                 resultSignal.Set();
-                if (tasksQueue.Count == 0)
+                if (tasksQueue.Count != 0)
                 {
                     if (exception != null)
                     {

@@ -54,6 +54,7 @@ namespace _3._1
                     Interlocked.Decrement(ref amountOfWorking);
                 });
                 threads[i].Start();
+                shutdownSignal.Set();
             }
         }
 
@@ -82,14 +83,17 @@ namespace _3._1
         /// <returns>Added task</returns>
         protected internal ITask<TResult> AddTaskIntoThreadPool<TResult>(Task<TResult> task)
         {
-            if (cts.IsCancellationRequested)
+            lock (lockObject)
             {
-                throw new ThreadPoolShutdownException();
-            }
+                if (cts.IsCancellationRequested)
+                {
+                    throw new ThreadPoolShutdownException();
+                }
 
-            tasks.Enqueue(task.Execute);
-            newTaskSignal.Set();
-            return task;
+                tasks.Enqueue(task.Execute);
+                newTaskSignal.Set();
+                return task;
+            }
         }
 
         /// <summary>
@@ -98,17 +102,13 @@ namespace _3._1
         public void Shutdown()
         {
             cts.Cancel();
-            newTaskSignal.Set();
-            while (true)
+            lock (lockObject)
             {
-                shutdownSignal.WaitOne();
                 newTaskSignal.Set();
-                lock (lockObject)
+                while (amountOfWorking != 0)
                 {
-                    if (amountOfWorking == 0)
-                    {
-                        break;
-                    }
+                    shutdownSignal.WaitOne();
+                    newTaskSignal.Set();
                 }
             }
         }
