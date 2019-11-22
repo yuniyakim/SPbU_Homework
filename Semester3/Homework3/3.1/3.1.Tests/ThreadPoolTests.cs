@@ -25,29 +25,29 @@ namespace _3._1
             {
                 tasks[i] = threadPool.AddTask(new Func<int>(() => i));
             }
-            threadPool.Shutdown();
             for (var i = 0; i < tasksAmount; ++i)
             {
-                Assert.AreEqual(i, tasks[i].Result);
+                 Assert.AreEqual(i, tasks[i].Result);
             }
+            threadPool.Shutdown();
         }
 
         [Test]
         public void ManyTasksOneThreadTest()
         {
             var threadPool = new ThreadPool(1);
-            var amount = 20;
+            var amount = 10;
             var tasks = new ITask<int>[amount];
 
             for (var i = 0; i < amount; ++i)
             {
                 tasks[i] = threadPool.AddTask(new Func<int>(() => i));
             }
-            threadPool.Shutdown();
             for (var i = 0; i < amount; ++i)
             {
                 Assert.AreEqual(i, tasks[i].Result);
             }
+            threadPool.Shutdown();
         }
     }
 }

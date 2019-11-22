@@ -84,20 +84,23 @@ namespace _3._1
             }
             finally
             {
-                IsCompleted = true;
-                resultSignal.Set();
-                if (tasksQueue.Count != 0)
+                lock (lockObject)
                 {
-                    if (exception != null)
+                    IsCompleted = true;
+                    resultSignal.Set();
+                    if (tasksQueue.Count != 0)
                     {
-                        throw exception;
-                    }
-
-                    if (!threadPool.IsClosed)
-                    {
-                        foreach (var action in tasksQueue)
+                        if (exception != null)
                         {
-                            action();
+                            throw exception;
+                        }
+
+                        if (!threadPool.IsClosed)
+                        {
+                            foreach (var action in tasksQueue)
+                            {
+                                threadPool.AddTaskIntoThreadPool(action.Invoke()); // ??????????
+                            }
                         }
                     }
                 }
