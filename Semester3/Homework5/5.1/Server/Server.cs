@@ -22,10 +22,10 @@ namespace Server
         /// </summary>
         /// <param name="hostname"></param>
         /// <param name="port"></param>
-        public Server(int port)
+        public Server(int port, string hostname = "127.0.0.1")
         {
             this.port = port;
-            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), port);
+            listener = new TcpListener(IPAddress.Parse(hostname), port);
         }
 
         /// <summary>
@@ -81,53 +81,59 @@ namespace Server
         public async Task Start()
         {
             listener.Start();
+
             while (!cts.Token.IsCancellationRequested)
             {
-                await Process();
+                await Process(listener.AcceptTcpClient());
+            }
+
+            listener.Stop();
+        }
+
+        private async Task Process(TcpClient client)
+        {
+            try
+            {
+                using (var stream = client.GetStream())
+                {
+                    var reader = new StreamReader(stream);
+                    var writer = new StreamWriter(stream);
+
+                    var request = await reader.ReadLineAsync();
+                    var path = await reader.ReadLineAsync();
+
+                    switch (request)
+                    {
+                        case "1":
+                            {
+                                await List(path, writer); // ?????
+                                break;
+                            }
+                        case "2":
+                            {
+                                await Get(path, writer); // ?????
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Invalid input");
+                                break;
+                            }
+                    }
+
+                    client.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                client.Close();
             }
         }
 
-        private async Task Process()
+        public void Shutdown()
         {
-            listener.Start();
-
-            //NetworkStream stream = null;
-            //try
-            //{
-            //    stream = TcpClient.GetStream();
-            //    byte[] data = new byte[64]; // буфер для получаемых данных
-            //    while (true)
-            //    {
-            //        // получаем сообщение
-            //        StringBuilder builder = new StringBuilder();
-            //        int bytes = 0;
-            //        do
-            //        {
-            //            bytes = stream.Read(data, 0, data.Length);
-            //            builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
-            //        }
-            //        while (stream.DataAvailable);
-
-            //        string message = builder.ToString();
-
-            //        Console.WriteLine(message);
-            //        // отправляем обратно сообщение в верхнем регистре
-            //        message = message.Substring(message.IndexOf(':') + 1).Trim().ToUpper();
-            //        data = Encoding.Unicode.GetBytes(message);
-            //        stream.Write(data, 0, data.Length);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-            //finally
-            //{
-            //    if (stream != null)
-            //        stream.Close();
-            //    if (TcpClient != null)
-            //        TcpClient.Close();
-            //}
+            cts.Cancel();
         }
     }
 }
