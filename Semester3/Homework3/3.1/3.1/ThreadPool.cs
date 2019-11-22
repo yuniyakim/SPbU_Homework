@@ -72,7 +72,8 @@ namespace _3._1
             }
 
             var task = TaskFactory<TResult>.CreateTask(func, this);
-            return AddTaskIntoThreadPool(task);
+            AddAction(task.Execute);
+            return task;
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace _3._1
         /// <typeparam name="TResult">task result type</typeparam>
         /// <param name="task">Incoming task to add</param>
         /// <returns>Added task</returns>
-        protected internal ITask<TResult> AddTaskIntoThreadPool<TResult>(Task<TResult> task)
+        protected internal void AddAction(Action action)
         {
             lock (lockObject)
             {
@@ -90,9 +91,8 @@ namespace _3._1
                     throw new ThreadPoolShutdownException();
                 }
 
-                tasks.Enqueue(task.Execute);
+                tasks.Enqueue(action);
                 newTaskSignal.Set();
-                return task;
             }
         }
 

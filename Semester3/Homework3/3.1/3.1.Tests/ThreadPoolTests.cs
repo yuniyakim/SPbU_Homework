@@ -23,7 +23,8 @@ namespace _3._1
 
             for (var i = 0; i < tasksAmount; ++i)
             {
-                tasks[i] = threadPool.AddTask(new Func<int>(() => i));
+                var localI = i;
+                tasks[localI] = threadPool.AddTask(new Func<int>(() => localI));
             }
             for (var i = 0; i < tasksAmount; ++i)
             {
@@ -41,7 +42,8 @@ namespace _3._1
 
             for (var i = 0; i < amount; ++i)
             {
-                tasks[i] = threadPool.AddTask(new Func<int>(() => i));
+                var localI = i;
+                tasks[localI] = threadPool.AddTask(new Func<int>(() => localI));
             }
             for (var i = 0; i < amount; ++i)
             {

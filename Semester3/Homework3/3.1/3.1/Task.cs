@@ -62,17 +62,20 @@ namespace _3._1
             {
                 if (!IsCompleted)
                 {
-                    tasksQueue.Enqueue(() => threadPool.AddTaskIntoThreadPool(task));
-                    return task;
+                    tasksQueue.Enqueue(task.Execute);
                 }
+                else
+                {
+                    threadPool.AddAction(task.Execute);
+                }
+                return task;
             }
-            return threadPool.AddTaskIntoThreadPool(task);
         }
 
         /// <summary>
         /// Executes the task
         /// </summary>
-        public void Execute()
+        public Action Execute => () =>
         {
             try
             {
@@ -99,12 +102,12 @@ namespace _3._1
                         {
                             foreach (var action in tasksQueue)
                             {
-                                threadPool.AddTaskIntoThreadPool(action.Invoke()); // ??????????
+                                threadPool.AddAction(action);
                             }
                         }
                     }
                 }
             }
-        }
+        };
     }
 }
