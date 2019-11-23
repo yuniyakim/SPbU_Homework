@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
@@ -10,8 +11,20 @@ namespace _3._1
         [Test]
         public void AmountOfThreadsTest()
         {
-            var threadPool = new ThreadPool(9);
+            var amount = 8;
+            var threadPool = new ThreadPool(amount);
+            var bag = new ConcurrentBag<int>();
 
+            for (var i = 0; i < amount; ++i)
+            {
+                threadPool.AddTask(() =>
+                {
+                    bag.Add(Thread.CurrentThread.ManagedThreadId);
+                    return 1;
+                });
+            }
+            threadPool.Shutdown();
+            Assert.AreEqual(amount, bag.Count);
         }
 
         [Test]
@@ -25,7 +38,7 @@ namespace _3._1
             for (var i = 0; i < tasksAmount; ++i)
             {
                 var localI = i;
-                tasks[localI] = threadPool.AddTask(new Func<int>(() => localI));
+                tasks[localI] = threadPool.AddTask(() => localI);
             }
             for (var i = 0; i < tasksAmount; ++i)
             {
@@ -44,7 +57,7 @@ namespace _3._1
             for (var i = 0; i < amount; ++i)
             {
                 var localI = i;
-                tasks[localI] = threadPool.AddTask(new Func<int>(() => localI));
+                tasks[localI] = threadPool.AddTask(() => localI);
             }
             for (var i = 0; i < amount; ++i)
             {
@@ -63,7 +76,7 @@ namespace _3._1
             for (var i = 0; i < amount; ++i)
             {
                 var localI = i;
-                tasks[localI] = threadPool.AddTask(new Func<string>(() => $"number {localI}"));
+                tasks[localI] = threadPool.AddTask(() => $"number {localI}");
             }
 
             threadPool.Shutdown();
