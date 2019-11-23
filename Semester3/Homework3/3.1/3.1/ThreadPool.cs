@@ -52,9 +52,9 @@ namespace _3._1
                         }
                     }
                     Interlocked.Decrement(ref amountOfWorking);
+                    shutdownSignal.Set();
                 });
                 threads[i].Start();
-                shutdownSignal.Set();
             }
         }
 
