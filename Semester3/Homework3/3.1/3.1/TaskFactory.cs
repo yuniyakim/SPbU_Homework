@@ -5,7 +5,7 @@ namespace _3._1
     /// <summary>
     /// Task factory
     /// </summary>
-    public class TaskFactory<T>
+    public static class TaskFactory<T>
     {
         /// <summary>
         /// Creates task

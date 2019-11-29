@@ -10,12 +10,12 @@ namespace _3._1
     public class Task<TResult> : ITask<TResult>
     {
         private TResult result;
-        private Func<TResult> func;
-        private AutoResetEvent resultSignal = new AutoResetEvent(false);
-        private ThreadPool threadPool;
+        private readonly Func<TResult> func;
+        private readonly AutoResetEvent resultSignal = new AutoResetEvent(false);
+        private readonly ThreadPool threadPool;
         private AggregateException exception;
         private static Object lockObject = new Object();
-        private Queue<Action> tasksQueue = new Queue<Action>();
+        private readonly Queue<Action> tasksQueue = new Queue<Action>();
 
         /// <summary>
         /// Defines whether or not task is completed

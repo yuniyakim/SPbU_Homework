@@ -11,12 +11,12 @@ namespace _3._1
     public class ThreadPool
     {
         private int amountOfWorking;
-        private Thread[] threads;
-        private ConcurrentQueue<Action> tasks = new ConcurrentQueue<Action>();
+        private readonly Thread[] threads;
+        private readonly ConcurrentQueue<Action> tasks = new ConcurrentQueue<Action>();
         private static Object lockObject = new Object();
-        private CancellationTokenSource cts = new CancellationTokenSource();
-        private AutoResetEvent newTaskSignal = new AutoResetEvent(false);
-        private AutoResetEvent shutdownSignal = new AutoResetEvent(false);
+        private readonly CancellationTokenSource cts = new CancellationTokenSource();
+        private readonly AutoResetEvent newTaskSignal = new AutoResetEvent(false);
+        private readonly AutoResetEvent shutdownSignal = new AutoResetEvent(false);
 
         /// <summary>
         /// Defines whether or not thread pool is closed
