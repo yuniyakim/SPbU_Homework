@@ -57,6 +57,11 @@ namespace _3._1
         /// <returns>New task</returns>
         public ITask<TNewResult> ContinueWith<TNewResult>(Func<TResult, TNewResult> func)
         {
+            if (threadPool.IsClosed)
+            {
+                throw new ThreadPoolShutdownException();
+            }
+
             var task = new Task<TNewResult>(() => func(result), threadPool);
             lock (lockObject)
             {

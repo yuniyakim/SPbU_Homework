@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 
@@ -18,7 +18,7 @@ namespace _3._1
         [Test]
         public void AmountOfThreadsTest()
         {
-            var amount = 8;
+            var amount = 12;
             var threadPool = new ThreadPool(amount);
             var bag = new ConcurrentBag<int>();
 
@@ -31,7 +31,7 @@ namespace _3._1
                 });
             }
             threadPool.Shutdown();
-            Assert.AreEqual(amount, bag.Count);
+            Assert.AreEqual(bag.Count(), bag.Distinct().Count());
         }
 
         [Test]
@@ -49,6 +49,7 @@ namespace _3._1
                 tasks[localI] = threadPool.AddTask(() =>
                 {
                     taskExecute.WaitOne();
+                    Thread.Sleep(100);
                     return localI;
                 });
             }
@@ -94,6 +95,10 @@ namespace _3._1
 
             threadPool.Shutdown();
             Assert.Throws<ThreadPoolShutdownException>(() => threadPool.AddTask(new Func<string>(() => "string")));
+            for (var i = 0; i < amount; ++i)
+            {
+                Assert.Throws<ThreadPoolShutdownException>(() => tasks[i].ContinueWith((result) => result + "exeption"));
+            }
             Assert.IsTrue(threadPool.IsClosed);
         }
 
@@ -142,11 +147,26 @@ namespace _3._1
             {
                 var localI = i;
                 tasks[localI] = threadPool.AddTask(() => localI).ContinueWith((result) => result * 18);
+                Thread.Sleep(100);
             }
             for (var i = 0; i < tasksAmount; ++i)
             {
                 Assert.AreEqual(i * 18, tasks[i].Result);
             }
+            threadPool.Shutdown();
+        }
+
+        [Test]
+        public void ManyContinueWithTest()
+        {
+            var threadPoolAmount = 3;
+            var threadPool = new ThreadPool(threadPoolAmount);
+            var task1 = threadPool.AddTask(() => 9);
+            var task2 = task1.ContinueWith((result) => result > 0 ? false : true);
+            var task3 = task2.ContinueWith((result) => result ? 15 * 6 : 13 * 8);
+            var task4 = task3.ContinueWith((result) => result.ToString());
+            var task5 = task4.ContinueWith((result) => "hello" + result + "world");
+            Assert.AreEqual("hello104world", task5.Result);
             threadPool.Shutdown();
         }
 
