@@ -40,8 +40,8 @@ namespace _2._1
             cell.Mark = isFirstPlayer ? "X" : "O";
             isFirstPlayer = !isFirstPlayer;
 
-            var row = Grid.GetRow(sender as Button);
-            var column = Grid.GetColumn(sender as Button);
+            var row = Grid.GetRow(sender as Button); // Doesn't work here
+            var column = Grid.GetColumn(sender as Button);// And here
             var index = (row == 1 ? column : (row == 2 ? column + 3 : column + 6));
             board.GetCell(index).Mark = cell.Mark;
 

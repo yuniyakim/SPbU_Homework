@@ -24,10 +24,6 @@ namespace _2._1
             {
                 if (cells == null)
                 {
-                    //for (var i =0; i < Rows*Columns; ++i)
-                    //{
-
-                    //}
                     cells = new ObservableCollection<Cell>(Enumerable.Range(0, Rows * Columns).Select(i => new Cell(i)));
                 }
                 return cells;
