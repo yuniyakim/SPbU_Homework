@@ -150,6 +150,11 @@ namespace _3._1
             {
                 get
                 {
+                    if (threadPool.cts.IsCancellationRequested)
+                    {
+                        throw new ThreadPoolShutdownException();
+                    }
+
                     resultSignal.WaitOne();
                     if (exception != null)
                     {
