@@ -35,13 +35,13 @@ namespace Client
         {
             try
             {
-                var client = new TcpClient("localHost", port);
+                var client = new TcpClient(hostname, port);
 
                 using (var stream = client.GetStream())
                 {
-                    var writer = new StreamWriter(stream);
-                    await writer.WriteLineAsync("1 ");
-                    await writer.WriteAsync(path);
+                    var writer = new StreamWriter(stream) { AutoFlush = true };
+                    await writer.WriteLineAsync("1");
+                    await writer.WriteLineAsync(path);
                     var reader = new StreamReader(stream);
                     var amount = Convert.ToInt32(await reader.ReadLineAsync());
 
@@ -79,20 +79,20 @@ namespace Client
 
                 using (var stream = client.GetStream())
                 {
-                    var writer = new StreamWriter(stream);// { AutoFlush = true };
-                    await writer.WriteLineAsync("2 ");
-                    await writer.WriteAsync(path);
+                    var writer = new StreamWriter(stream) { AutoFlush = true };
+                    await writer.WriteLineAsync("2");
+                    await writer.WriteLineAsync(path);
                     var reader = new StreamReader(stream);
                     var size = Convert.ToInt32(await reader.ReadLineAsync());
 
                     if (size == -1)
                     {
-                        Console.WriteLine("Directory doesn't exist");
+                        Console.WriteLine("File doesn't exist");
                         return null;
                     }
 
                     var content = new byte[size];
-                    await reader.BaseStream.ReadAsync(content, size.ToString().Length, size);
+                    await reader.BaseStream.ReadAsync(content, 0, size);
                     return content;
                 }
             }

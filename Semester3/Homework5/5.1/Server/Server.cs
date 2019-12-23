@@ -16,6 +16,9 @@ namespace Server
         private int port;
         private TcpListener listener;
         private CancellationTokenSource cts = new CancellationTokenSource();
+        private int amountOfTasks = 0;
+        private static Object lockObject = new Object();
+        private AutoResetEvent stopListener = new AutoResetEvent(false);
 
         /// <summary>
         /// Server's constructor
@@ -44,7 +47,7 @@ namespace Server
 
             var directories = Directory.GetDirectories(path);
             var files = Directory.GetFiles(path);
-            await stream.WriteLineAsync(directories.Length + files.Length + " ");
+            await stream.WriteLineAsync($"{directories.Length + files.Length}");
             foreach (var directory in directories)
             {
                 await stream.WriteLineAsync(directory);
@@ -65,7 +68,7 @@ namespace Server
         /// <returns><size: Long> <content: Bytes></returns>
         private async Task Get(string path, StreamWriter stream)
         {
-            if (!Directory.Exists(path))
+            if (!File.Exists(path))
             {
                 await stream.WriteLineAsync("-1");
                 return;
@@ -78,6 +81,9 @@ namespace Server
             }
         }
 
+        /// <summary>
+        /// Starts the server
+        /// </summary>
         public async Task Start()
         {
             listener.Start();
@@ -90,14 +96,24 @@ namespace Server
             listener.Stop();
         }
 
+        /// <summary>
+        /// Executes process
+        /// </summary>
+        /// <param name="client">Incoming TCP client</param>
+        /// <returns></returns>
         private async Task Process(TcpClient client)
         {
             try
             {
+                lock (lockObject)
+                {
+                    ++amountOfTasks;
+                }
+
                 using (var stream = client.GetStream())
                 {
                     var reader = new StreamReader(stream);
-                    var writer = new StreamWriter(stream);
+                    var writer = new StreamWriter(stream) { AutoFlush = true };
 
                     var request = await reader.ReadLineAsync();
                     var path = await reader.ReadLineAsync();
@@ -106,12 +122,12 @@ namespace Server
                     {
                         case "1":
                             {
-                                await List(path, writer); // ?????
+                                await List(path, writer);
                                 break;
                             }
                         case "2":
                             {
-                                await Get(path, writer); // ?????
+                                await Get(path, writer);
                                 break;
                             }
                         default:
@@ -120,20 +136,46 @@ namespace Server
                                 break;
                             }
                     }
-
                     client.Close();
                 }
+
+                lock (lockObject)
+                {
+                    --amountOfTasks;
+                }
+                stopListener.Set();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 client.Close();
+
+                lock (lockObject)
+                {
+                    --amountOfTasks;
+                }
+                stopListener.Set();
             }
         }
 
+        /// <summary>
+        /// Shutdowns server
+        /// </summary>
         public void Shutdown()
         {
             cts.Cancel();
+
+            while (true)
+            {
+                lock (lockObject)
+                {
+                    if (amountOfTasks == 0)
+                    {
+                        break;
+                    }
+                }
+                stopListener.WaitOne();
+            }
         }
     }
 }
