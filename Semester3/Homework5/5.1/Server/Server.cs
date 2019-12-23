@@ -31,6 +31,11 @@ namespace FTP
         }
 
         /// <summary>
+        /// Shows if server is shutdown
+        /// </summary>
+        public ManualResetEvent IsShutdown = new ManualResetEvent(false);
+
+        /// <summary>
         /// Requests list of files in server's directory
         /// </summary>
         /// <param name="path">Path to directory</param>
@@ -93,6 +98,7 @@ namespace FTP
             }
 
             listener.Stop();
+            
         }
 
         /// <summary>
@@ -170,6 +176,7 @@ namespace FTP
                 {
                     if (amountOfTasks == 0)
                     {
+                        IsShutdown.Set();
                         break;
                     }
                 }
