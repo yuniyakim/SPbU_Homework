@@ -40,21 +40,11 @@ namespace FTP
         {
             Task.Run(async () => await server.Start());
             var list = client.List("../../../Test").Result;
-            Assert.AreEqual(5, list.Count);
-            Assert.AreEqual((@"../../../Test\EmptyFolder", true), list[0]);
-            Assert.AreEqual((@"../../../Test\NotEmptyFolder", true), list[1]);
-            Assert.AreEqual((@"../../../Test\code.cpp", false), list[2]);
-            Assert.AreEqual((@"../../../Test\picture.png", false), list[3]);
-            Assert.AreEqual((@"../../../Test\text.txt", false), list[4]);
-            server.Shutdown();
-        }
-
-        [Test]
-        public void ListEmptyFolderTest()
-        {
-            Task.Run(async () => await server.Start());
-            var list = client.List("../../../Test/EmptyFolder").Result;
-            Assert.AreEqual(0, list.Count);
+            Assert.AreEqual(4, list.Count);
+            Assert.AreEqual((@"../../../Test\NotEmptyFolder", true), list[0]);
+            Assert.AreEqual((@"../../../Test\code.cpp", false), list[1]);
+            Assert.AreEqual((@"../../../Test\picture.png", false), list[2]);
+            Assert.AreEqual((@"../../../Test\text.txt", false), list[3]);
             server.Shutdown();
         }
 
@@ -74,15 +64,5 @@ namespace FTP
             Assert.IsNull(localClient.List("../../../Test").Result);
             Assert.IsNull(localClient.Get("../../../Test/text/txt").Result);
         }
-
-        /*[Test]
-        public void ShutdownTest()
-        {
-            Task.Run(async () => await server.Start());
-            server.Shutdown();
-            server.IsShutdown.WaitOne();
-            Assert.IsNull(client.List("../../../Test").Result);
-            Assert.IsNull(client.Get("../../../Test/text.txt").Result);
-        }*/
     }
 }
