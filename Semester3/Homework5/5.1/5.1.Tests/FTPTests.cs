@@ -16,12 +16,12 @@ namespace FTP
         {
             client = new Client(port);
             server = new Server(port);
-            Task.Run(async () => await server.Start());
         }
 
         [Test]
         public void DirectoryDoesntExistTest()
         {
+            Task.Run(async () => await server.Start());
             Assert.IsNull(client.List("path").Result);
             server.Shutdown();
         }
@@ -29,6 +29,7 @@ namespace FTP
         [Test]
         public void FileDoesntExistTest()
         {
+            Task.Run(async () => await server.Start());
             Assert.IsNull(client.Get("path").Result);
             server.Shutdown();
         }
@@ -36,6 +37,7 @@ namespace FTP
         [Test]
         public void ListTest()
         {
+            Task.Run(async () => await server.Start());
             var list = client.List("../../../Test").Result;
             Assert.AreEqual(5, list.Count);
             Assert.AreEqual((@"../../../Test\EmptyFolder", true), list[0]);
@@ -49,9 +51,22 @@ namespace FTP
         [Test]
         public void GetTest()
         {
+            Task.Run(async () => await server.Start());
             var get = client.Get("../../../Test/text.txt").Result;
             Assert.AreEqual("Text file\r\nHello, world!\r\nI love programming :)", Encoding.Default.GetString(get));
             server.Shutdown();
+        }
+
+        [Test]
+        public void ServerNotStartedListTest()
+        {
+            Assert.IsNull(client.List("../../../Test").Result);
+        }
+
+        [Test]
+        public void ServerNotStartedGetTest()
+        {
+            Assert.IsNull(client.Get("../../../Test/text.txt").Result);
         }
     }
 }
