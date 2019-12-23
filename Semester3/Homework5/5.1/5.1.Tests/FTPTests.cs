@@ -49,6 +49,15 @@ namespace FTP
         }
 
         [Test]
+        public void ListEmptyFolderTest()
+        {
+            Task.Run(async () => await server.Start());
+            var list = client.List("../../../Test/EmptyFolder").Result;
+            Assert.AreEqual(0, list.Count);
+            server.Shutdown();
+        }
+
+        [Test]
         public void GetTest()
         {
             Task.Run(async () => await server.Start());
