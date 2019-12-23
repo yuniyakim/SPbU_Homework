@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Server
+namespace FTP
 {
     public class Program
     {

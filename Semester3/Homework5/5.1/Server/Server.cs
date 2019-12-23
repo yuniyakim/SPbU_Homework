@@ -2,11 +2,10 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Server
+namespace FTP
 {
     /// <summary>
     /// TCP server
@@ -179,36 +178,3 @@ namespace Server
         }
     }
 }
-/*List, формат запроса:
-
-<1: Int> <path: String>
-path — путь к директории относительно того места, где запущен сервер
-Например, "1 ./Test/Files".
-
-Формат ответа:
-
-<size: Int> (<name: String> <isDir: Boolean>)*,
-size — количество файлов и папок в директории
-name — название файла или папки
-isDir — флаг, принимающий значение True для директорий
-Например, "2 ./Test/files/file1.txt false ./Test/files/directory true"
-
-Если директории не существует, сервер посылает ответ с size = -1
-
-Get, формат запроса:
-
-<2: Int> <path: String>
-path — путь к файлу
-Формат ответа:
-
-<size: Long> <content: Bytes>,
-size — размер файла,
-content — его содержимое
-Если файла не существует, сервер посылает ответ с size = -1*/
-
-    
-
-            //var rootDirectory = Directory.GetCurrentDirectory();// + "/../../../";
-            //Console.WriteLine(rootDirectory);
-            //rootDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(rootDirectory)));
-            //Console.WriteLine(rootDirectory);

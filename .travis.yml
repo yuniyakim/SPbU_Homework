@@ -1,17 +1,17 @@
 language: csharp
-solution: Semester2/Homework8/8.1/8.1.sln 
+solution: Semester3/Homework5/5.1/5.1.sln
 sudo: required
 dist: xenial
-dotnet: 2.2
+dotnet: 3.0
 
 before_build:
-  - nuget restore Semester2/Homework8/8.1/8.1.sln
+  - nuget restore Semester3/Homework5/5.1/5.1.sln
 
 build:
-  - dotnet build Semester2/Homework8/8.1/8.1.sln 
+  - dotnet build Semester3/Homework5/5.1/5.1.sln
 
 script:
-  - dotnet test Semester2/Homework8/8.1/8.1.sln
+  - dotnet test Semester3/Homework5/5.1/5.1.sln
 
 global:
     - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true

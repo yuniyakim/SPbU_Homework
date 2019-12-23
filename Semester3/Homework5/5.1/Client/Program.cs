@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Client
+namespace FTP
 {
     public class Program
     {
@@ -9,6 +9,8 @@ namespace Client
         {
             const int port = 8888;
             var client = new Client(port);
+            Console.WriteLine("Enter 1 for List");
+            Console.WriteLine("Enter 2 for Get");
 
             while (true)
             {
@@ -20,7 +22,7 @@ namespace Client
                     if (list != null)
                     {
                         Console.WriteLine(list.Count);
-                        for (var i = 0; i < list.Count; i++)
+                        for (var i = 0; i < list.Count; ++i)
                         {
                             Console.WriteLine(list[i].Item1);
                             Console.WriteLine(list[i].Item2);
