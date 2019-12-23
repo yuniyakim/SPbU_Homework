@@ -67,15 +67,19 @@ namespace FTP
         }
 
         [Test]
-        public void ServerNotStartedListTest()
+        public void ServerNotStartedTest()
         {
             Assert.IsNull(client.List("../../../Test").Result);
+            Assert.IsNull(client.Get("../../../Test/text/txt").Result);
         }
 
         [Test]
-        public void ServerNotStartedGetTest()
+        public void ShutdownTest()
         {
+            Task.Run(async () => await server.Start());
+            server.Shutdown();
             Assert.IsNull(client.Get("../../../Test/text.txt").Result);
+            Assert.IsNull(client.List("../../../Test").Result);
         }
     }
 }
