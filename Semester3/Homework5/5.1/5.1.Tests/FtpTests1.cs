@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FTP
 {
-    public class FTPTests
+    public class FtpTests
     {
         private const int port = 8888;
         private Client client;
