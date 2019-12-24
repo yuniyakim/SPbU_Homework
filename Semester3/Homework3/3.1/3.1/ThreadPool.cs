@@ -71,7 +71,7 @@ namespace _3._1
                 throw new ThreadPoolShutdownException();
             }
 
-            var task = TaskFactory<TResult>.CreateTask(func, this);
+            var task = new Task<TResult>(func, this);
             AddAction(task.Execute);
             return task;
         }
@@ -116,7 +116,7 @@ namespace _3._1
         /// <summary>
         /// Task
         /// </summary>
-        private class Task<TResult> : ITask<TResult>
+        protected internal class Task<TResult> : ITask<TResult>
         {
             private TResult result;
             private Func<TResult> func;
@@ -138,6 +138,10 @@ namespace _3._1
             /// <param name="threadPool">Thread pool to which task belongs</param>
             protected internal Task(Func<TResult> func, ThreadPool threadPool)
             {
+                if (func == null || threadPool == null)
+                {
+                    throw new ArgumentNullException();
+                }
                 this.func = func;
                 this.threadPool = threadPool;
             }
@@ -229,28 +233,6 @@ namespace _3._1
                     }
                 }
             };
-        }
-
-        /// <summary>
-        /// Task factory
-        /// </summary>
-        private static class TaskFactory<T>
-        {
-            /// <summary>
-            /// Creates task
-            /// </summary>
-            /// <param name="func">Incoming function</param>
-            /// <param name="threadPool">Thread pool to which task belongs</param>
-            /// <returns>Created task</returns>
-            private static Task<T> CreateTask(Func<T> func, ThreadPool threadPool)
-            {
-                if (func == null || threadPool == null)
-                {
-                    throw new ArgumentNullException();
-                }
-
-                return new Task<T>(func, threadPool);
-            }
         }
     }
 }
