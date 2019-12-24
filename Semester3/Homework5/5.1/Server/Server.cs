@@ -12,12 +12,12 @@ namespace FTP
     /// </summary>
     public class Server
     {
-        private int port;
-        private TcpListener listener;
-        private CancellationTokenSource cts = new CancellationTokenSource();
-        private int amountOfTasks = 0;
+        private readonly int port;
+        private readonly TcpListener listener;
+        private readonly CancellationTokenSource cts = new CancellationTokenSource();
+        private int amountOfTasks;
         private static Object lockObject = new Object();
-        private AutoResetEvent stopListener = new AutoResetEvent(false);
+        private readonly AutoResetEvent stopListener = new AutoResetEvent(false);
 
         /// <summary>
         /// Server's constructor
@@ -29,11 +29,6 @@ namespace FTP
             this.port = port;
             listener = new TcpListener(IPAddress.Parse(hostname), port);
         }
-
-        /// <summary>
-        /// Shows if server is shutdown
-        /// </summary>
-        public ManualResetEvent IsShutdown = new ManualResetEvent(false);
 
         /// <summary>
         /// Requests list of files in server's directory
@@ -176,7 +171,6 @@ namespace FTP
                 {
                     if (amountOfTasks == 0)
                     {
-                        IsShutdown.Set();
                         break;
                     }
                 }

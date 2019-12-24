@@ -41,7 +41,7 @@ namespace FTP
             Task.Run(async () => await server.Start());
             var list = client.List("../../../Test").Result;
             Assert.AreEqual(4, list.Count);
-            Assert.AreEqual((@"../../../Test\NotEmptyFolder", true), list[0]);
+            Assert.AreEqual((@"../../../Test\Folder", true), list[0]);
             Assert.AreEqual((@"../../../Test\code.cpp", false), list[1]);
             Assert.AreEqual((@"../../../Test\picture.png", false), list[2]);
             Assert.AreEqual((@"../../../Test\text.txt", false), list[3]);

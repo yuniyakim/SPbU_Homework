@@ -11,8 +11,8 @@ namespace FTP
     /// </summary>
     public class Client
     {
-        private int port;
-        private string hostname;
+        private readonly int port;
+        private readonly string hostname;
 
         /// <summary>
         /// Client's constructor
