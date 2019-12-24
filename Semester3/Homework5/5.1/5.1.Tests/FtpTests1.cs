@@ -43,7 +43,7 @@ namespace FTP
             Assert.AreEqual(4, list.Count);
             Assert.IsTrue(list[0].Item1 == @"../../../Test\Folder" || list[0].Item1 == "../../../Test/Folder");
             Assert.IsTrue(list[0].Item2);
-            Assert.IsTrue(list[1].Item1 ==  @"../../../Test\text.txt" || list[1].Item1 == "../../../Test/text.txt");
+            Assert.IsTrue(list[1].Item1 ==  @"../../../Test\code.cpp" || list[1].Item1 == "../../../Test/code.cpp");
             Assert.IsFalse(list[1].Item2);
             Assert.IsTrue(list[2].Item1 == @"../../../Test\picture.png"|| list[2].Item1 == "../../../Test/picture.png");
             Assert.IsFalse(list[2].Item2);
