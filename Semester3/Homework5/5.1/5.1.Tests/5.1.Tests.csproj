@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Test\EmptyFolder\**" />
+    <EmbeddedResource Remove="Test\EmptyFolder\**" />
+    <None Remove="Test\EmptyFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -16,10 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\Client.csproj" />
     <ProjectReference Include="..\Server\Server.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Test\EmptyFolder\" />
   </ItemGroup>
 
 </Project>

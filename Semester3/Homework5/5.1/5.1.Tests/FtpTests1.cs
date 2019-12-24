@@ -41,10 +41,14 @@ namespace FTP
             Task.Run(async () => await server.Start());
             var list = client.List("../../../Test").Result;
             Assert.AreEqual(4, list.Count);
-            Assert.AreEqual((@"../../../Test\Folder", true), list[0]);
-            Assert.AreEqual((@"../../../Test\code.cpp", false), list[1]);
-            Assert.AreEqual((@"../../../Test\picture.png", false), list[2]);
-            Assert.AreEqual((@"../../../Test\text.txt", false), list[3]);
+            Assert.IsTrue(list[0].Item1 == @"../../../Test\Folder" || list[0].Item1 == "../../../Test/Folder");
+            Assert.IsTrue(list[0].Item2);
+            Assert.IsTrue(list[1].Item1 ==  @"../../../Test\text.txt" || list[1].Item1 == "../../../Test/text.txt");
+            Assert.IsFalse(list[1].Item2);
+            Assert.IsTrue(list[2].Item1 == @"../../../Test\picture.png"|| list[2].Item1 == "../../../Test/picture.png");
+            Assert.IsFalse(list[2].Item2);
+            Assert.IsTrue(list[3].Item1 == @"../../../Test\text.txt" || list[3].Item1 == "../../../Test/text.txt");
+            Assert.IsFalse(list[3].Item2);
             server.Shutdown();
         }
 
@@ -52,6 +56,7 @@ namespace FTP
         public void GetTest()
         {
             Task.Run(async () => await server.Start());
+            Thread.Sleep(1000);
             var get = client.Get("../../../Test/text.txt").Result;
             Assert.AreEqual("Text file\r\nHello, world!\r\nI love programming :)", Encoding.Default.GetString(get));
             server.Shutdown();
