@@ -5,6 +5,9 @@ namespace FTP
 {
     public class Program
     {
+        /// <summary>
+        /// Starts the server and shutdowns it when user presses some key
+        /// </summary>
         public static void Main()
         {
             const int port = 8888;

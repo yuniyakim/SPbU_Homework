@@ -5,6 +5,9 @@ namespace FTP
 {
     public class Program
     {
+        /// <summary>
+        /// Starts the client, reads user's input and executes needed methods
+        /// </summary>
         public static void Main()
         {
             const int port = 8888;

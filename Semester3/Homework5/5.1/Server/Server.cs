@@ -12,11 +12,9 @@ namespace FTP
     /// </summary>
     public class Server
     {
-        private readonly int port;
         private readonly TcpListener listener;
         private readonly CancellationTokenSource cts = new CancellationTokenSource();
         private int amountOfTasks;
-        private static Object lockObject = new Object();
         private readonly AutoResetEvent stopListener = new AutoResetEvent(false);
 
         /// <summary>
@@ -26,7 +24,6 @@ namespace FTP
         /// <param name="port"></param>
         public Server(int port, string hostname = "127.0.0.1")
         {
-            this.port = port;
             listener = new TcpListener(IPAddress.Parse(hostname), port);
         }
 
@@ -105,10 +102,7 @@ namespace FTP
         {
             try
             {
-                lock (lockObject)
-                {
-                    ++amountOfTasks;
-                }
+                Interlocked.Increment(ref amountOfTasks);
 
                 using (var stream = client.GetStream())
                 {
@@ -139,10 +133,7 @@ namespace FTP
                     client.Close();
                 }
 
-                lock (lockObject)
-                {
-                    --amountOfTasks;
-                }
+                Interlocked.Decrement(ref amountOfTasks);
                 stopListener.Set();
             }
             catch (Exception e)
@@ -150,10 +141,7 @@ namespace FTP
                 Console.WriteLine(e.Message);
                 client.Close();
 
-                lock (lockObject)
-                {
-                    --amountOfTasks;
-                }
+                Interlocked.Decrement(ref amountOfTasks);
                 stopListener.Set();
             }
         }
@@ -167,12 +155,9 @@ namespace FTP
 
             while (true)
             {
-                lock (lockObject)
+                if (amountOfTasks == 0)
                 {
-                    if (amountOfTasks == 0)
-                    {
-                        break;
-                    }
+                    break;
                 }
                 stopListener.WaitOne();
             }
