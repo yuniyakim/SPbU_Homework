@@ -2,7 +2,7 @@ language: csharp
 solution: Semester3/Test4/4.1/4.1.sln
 sudo: required
 dist: xenial
-dotnet: 2.2
+dotnet: 3.0
 
 before_build:
   - nuget restore Semester3/Test4/4.1/4.1.sln
