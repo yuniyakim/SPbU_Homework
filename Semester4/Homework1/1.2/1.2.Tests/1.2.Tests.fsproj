@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Fibonacci.Tests.fs" />
+    <Compile Include="FibonacciTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
