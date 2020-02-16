@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Factorial.Tests.fs" />
+    <Compile Include="FactorialTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
