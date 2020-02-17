@@ -11,8 +11,6 @@ let fibonacci n =
         else if n = i then
             Some(acc2)
         else
-            fib
-                (acc2)
-                (acc1 + acc2)
-                (i + 1)
+            fib (acc2) (acc1 + acc2) (i + 1)
+
     fib 0 1 1
