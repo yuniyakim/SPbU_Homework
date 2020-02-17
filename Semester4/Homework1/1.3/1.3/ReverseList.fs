@@ -7,7 +7,6 @@ let reverseList ls =
         if ls = [] then
             acc
         else 
-            reverse 
-                (List.tail ls)
-                (List.head ls :: acc)
+            reverse (List.tail ls) (List.head ls :: acc)
+
     reverse ls []
