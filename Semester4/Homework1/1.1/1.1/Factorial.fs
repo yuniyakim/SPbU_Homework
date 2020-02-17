@@ -11,7 +11,6 @@ let factorial n =
         else if i = n then
             Some(acc * i)
         else
-            fact
-                (acc * i)
-                (i + 1)
+            fact (acc * i) (i + 1)
+
     fact 1 1
