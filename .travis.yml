@@ -1,17 +1,17 @@
 language: fsharp
-solution: Semester4/Homework1/1.1/1.1.sln
+solution: Semester4/Homework1/1.2/1.2.sln
 sudo: required
 dist: xenial
 dotnet: 3.0
 
 before_build:
-  - nuget restore Semester4/Homework1/1.1/1.1.sln
+  - nuget restore Semester4/Homework1/1.2/1.2.sln
 
 build:
-  - dotnet build Semester4/Homework1/1.1/1.1.sln
+  - dotnet build Semester4/Homework1/1.2/1.2.sln
 
 script:
-  - dotnet test Semester4/Homework1/1.1/1.1.sln
+  - dotnet test Semester4/Homework1/1.2/1.2.sln
 
 global:
     - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
