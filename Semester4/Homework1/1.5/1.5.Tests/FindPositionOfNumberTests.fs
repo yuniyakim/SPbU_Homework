@@ -15,5 +15,5 @@ let NoNumberFindPositionOfNumberTest () =
 [<Test>]
 let FindPositionOfNumberTest () =
     Assert.AreEqual(Some(1), findPositionOfNumber [-144; 18; -144; 0; -2; 34] -144)
-    Assert.AreEqual(None, findPositionOfNumber [18; -84; 0; 199; 10; 10; 93; 0] 5)
-    Assert.AreEqual(None, findPositionOfNumber [15; 0; 15; 0; 15; 0; 15; 15; 98] 9)
+    Assert.AreEqual(Some(5), findPositionOfNumber [18; -84; 0; 199; 10; 10; 10; 0] 10)
+    Assert.AreEqual(Some(9), findPositionOfNumber [15; 0; 15; 0; 15; 0; 15; 15; 98] 98)
