@@ -16,7 +16,6 @@ before_build:
   - nuget restore %solution%
 
 build:
-  verbosity: normal
   project: $(solution)
 
 test_script:
