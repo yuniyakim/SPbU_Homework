@@ -24,3 +24,8 @@ let AmountOfEvenNumbersFilterTest ls res =
 [<TestCaseSource("testCases")>]
 let AmountOfEvenNumbersFoldTest ls res =
     amountOfEvenNumbersFold(ls) |> should equal res
+
+[<Test>]
+[<TestCaseSource("testCases")>]
+let AmountOfEvenNumbersMapTest ls res =
+    amountOfEvenNumbersMap(ls) |> should equal res
