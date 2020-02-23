@@ -3,6 +3,8 @@ module _2._1.Tests
 open NUnit.Framework
 open FsUnit
 open AmountOfEvenNumbersFilter
+open AmountOfEvenNumbersFold
+open AmountOfEvenNumbersMap
 
 let testCases = 
     [
@@ -17,3 +19,8 @@ let testCases =
 [<TestCaseSource("testCases")>]
 let AmountOfEvenNumbersFilterTest ls res =
     amountOfEvenNumbersFilter(ls) |> should equal res
+
+[<Test>]
+[<TestCaseSource("testCases")>]
+let AmountOfEvenNumbersFoldTest ls res =
+    amountOfEvenNumbersFold(ls) |> should equal res
