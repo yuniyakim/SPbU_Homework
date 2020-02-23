@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>_2._1</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="AmountOfEvenNumbersFold.fs" />
+    <Compile Include="AmountOfEvenNumbersFilter.fs" />
+    <Compile Include="AmountOfEvenNumbersMap.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>
