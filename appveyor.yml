@@ -5,18 +5,18 @@ init:
 
 environment:
   matrix:
-  - solution_path: Semester4/Homework1/1.1/1.1.sln
-  - solution_path: Semester4/Homework1/1.2/1.2.sln
-  - solution_path: Semester4/Homework1/1.3/1.3.sln
-  - solution_path: Semester4/Homework1/1.4/1.4.sln
-  - solution_path: Semester4/Homework1/1.5/1.5.sln
-  - solution_path: Semester4/Homework1/2.1/2.1.sln
+  - solution: Semester4/Homework1/1.1/1.1.sln
+  - solution: Semester4/Homework1/1.2/1.2.sln
+  - solution: Semester4/Homework1/1.3/1.3.sln
+  - solution: Semester4/Homework1/1.4/1.4.sln
+  - solution: Semester4/Homework1/1.5/1.5.sln
+  - solution: Semester4/Homework1/2.1/2.1.sln
 
 before_build:
-  - nuget restore %solution_path%
+  - nuget restore %solution%
 
 build:
-  project: %solution_path%
+  project: %(solution)
 
 test_script:
-  - dotnet test %solution_path%
+  - dotnet test %solution%
