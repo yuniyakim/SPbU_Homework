@@ -17,4 +17,4 @@ let rec calculate tree =
     | Multiplication(left, right) -> (calculate left) * (calculate right)
     | Division(left, right) -> let rightNumber = calculate right
                                if rightNumber = 0 then raise (System.DivideByZeroException())
-                               else (calculate left) / rightNumber
+                               (calculate left) / rightNumber
