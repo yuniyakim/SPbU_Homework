@@ -10,7 +10,6 @@
     <Compile Include="AmountOfEvenNumbersFold.fs" />
     <Compile Include="AmountOfEvenNumbersFilter.fs" />
     <Compile Include="AmountOfEvenNumbersMap.fs" />
-    <Compile Include="Program.fs" />
   </ItemGroup>
 
 </Project>
