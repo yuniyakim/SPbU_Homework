@@ -2,6 +2,7 @@ module _2._1.Tests
 
 open NUnit.Framework
 open FsUnit
+open FsCheck
 open AmountOfEvenNumbersFilter
 open AmountOfEvenNumbersFold
 open AmountOfEvenNumbersMap
@@ -29,3 +30,11 @@ let AmountOfEvenNumbersFoldTest ls res =
 [<TestCaseSource("testCases")>]
 let AmountOfEvenNumbersMapTest ls res =
     amountOfEvenNumbersMap(ls) |> should equal res
+
+[<Test>]
+let AmountOfEvenNumbersFilterAndFoldTest () =
+    Check.Quick (fun (ls: List<int>) -> (amountOfEvenNumbersFilter ls) = (amountOfEvenNumbersFold ls))
+
+[<Test>]
+let AmountOfEvenNumbersFoldAndMapTest () =
+    Check.Quick (fun (ls: List<int>) -> (amountOfEvenNumbersFold ls) = (amountOfEvenNumbersMap ls))

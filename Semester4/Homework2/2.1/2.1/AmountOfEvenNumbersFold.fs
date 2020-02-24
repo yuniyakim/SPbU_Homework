@@ -2,4 +2,4 @@
 
 /// Defines an amount of even numbers in list using fold
 let amountOfEvenNumbersFold ls =
-    ls |> List.fold (fun acc x -> if x % 2 = 0 then acc + 1 else acc) 0
+    ls |> List.fold (fun acc x -> abs((x + 1) % 2) + acc) 0
