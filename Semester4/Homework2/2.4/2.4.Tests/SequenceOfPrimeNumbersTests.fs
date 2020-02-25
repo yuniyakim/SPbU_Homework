@@ -1,6 +1,8 @@
 module SequenceOfPrimeNumbersTests
 
 open NUnit.Framework
+open FsUnit
+open SequenceOfPrimeNumbers
 
 [<SetUp>]
 let Setup () =
