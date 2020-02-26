@@ -8,5 +8,5 @@ let isPrime n =
         [2 .. sqrt] |> List.forall (fun x -> n % x <> 0)
 
 /// Generates an infinite sequence of prime numbers
-let sequenceOfPrimeNumbers =
+let sequenceOfPrimeNumbers () =
     Seq.initInfinite (fun x -> x) |> Seq.filter isPrime

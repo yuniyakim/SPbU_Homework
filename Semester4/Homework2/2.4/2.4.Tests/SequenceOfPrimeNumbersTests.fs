@@ -4,7 +4,7 @@ open NUnit.Framework
 open FsUnit
 open SequenceOfPrimeNumbers
 
-let testCases = 
+let testCasesIsPrime =
     [
         -19383, false
         -4, false
@@ -23,11 +23,24 @@ let testCases =
     ] |> List.map (fun (n, res) -> TestCaseData(n, res))
 
 [<Test>]
-[<TestCaseSource("testCases")>]
+[<TestCaseSource("testCasesIsPrime")>]
 let IsPrimeTest n res =
     isPrime(n) |> should equal res
 
+let testCasesSequenceOfPrimeNumbers =
+    [
+        0, 2
+        1, 3
+        2, 5
+        3, 7
+        9, 29
+        15, 53
+        24, 97
+        30, 127
+        49, 229
+    ] |> List.map (fun (n, res) -> TestCaseData(n, res))
+
 [<Test>]
-[<TestCaseSource("testCases")>]
+[<TestCaseSource("testCasesSequenceOfPrimeNumbers")>]
 let SequenceOfPrimeNumbersTest n res =
-    sequenceOfPrimeNumbers |> Seq.contains n |> should equal res
+    sequenceOfPrimeNumbers () |> Seq.item n |> should equal res
