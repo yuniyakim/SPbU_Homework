@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _8._1
+namespace Attributes
 {
     /// <summary>
     /// Attribute for methods which must be executed after every test
