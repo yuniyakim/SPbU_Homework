@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace _8._1
 {
@@ -32,14 +33,32 @@ namespace _8._1
                 {
                     var lists = CreateAndFillLists(type);
 
-                    var ignoreReason = RunNonTestMethods(lists.BeforeClass);
-                    if (ignoreReason != "")
+                    var ignoreReasonBeforeClass = RunNonTestMethods(lists.BeforeClass);
+                    if (ignoreReasonBeforeClass != "")
                     {
                         foreach (var test in lists.Tests)
                         {
-                            queue.Enqueue(new Info(test.Name, "Failed", 0, ignoreReason));
+                            queue.Enqueue(new Info(test.Name, "Failed", 0, ignoreReasonBeforeClass));
                         }
                         continue;
+                    }
+
+                    var infoQueue = new ConcurrentQueue<Info>();
+                    Parallel.ForEach(lists.Tests, test => RunTesMethods(test, type, lists, infoQueue));
+
+                    var ignoreReasonAfterClass = RunNonTestMethods(lists.AfterClass);
+
+                    while (!infoQueue.IsEmpty)
+                    {
+                        infoQueue.TryDequeue(out var info);
+                        if (ignoreReasonAfterClass != "" && info.Result == "Passed")
+                        {
+                            queue.Enqueue(new Info(info.Name, "Failed", info.Time, ignoreReasonAfterClass));
+                        }
+                        else
+                        {
+                            queue.Enqueue(info);
+                        }
                     }
                 }
             }
@@ -92,7 +111,7 @@ namespace _8._1
                 return;
             }
 
-
+            infoQueue.Enqueue(RunTest(methodInfo, type, instance));
 
             var ignoreReasonAfter = RunNonTestMethods(lists.After);
             if (ignoreReasonAfter != "")
@@ -119,7 +138,7 @@ namespace _8._1
 
             var watch = new Stopwatch();
             string ignoreReason = null;
-            var result = "";
+            var result = "Passed";
             try
             {
                 lock (lockObject)
@@ -142,9 +161,10 @@ namespace _8._1
 
             if (properties.Expected != null)
             {
-                return new Info(method.Name, "Failed", watch.ElapsedMilliseconds, $"Test hasn't thrown {properties.Expected.ToString()}");
+                result = "Failed";
+                ignoreReason = $"Test hasn't thrown {properties.Expected.ToString()}";
             }
-            return new Info(method.Name, "Succeeded", watch.ElapsedMilliseconds, ignoreReason);
+            return new Info(method.Name, result, watch.ElapsedMilliseconds, ignoreReason);
         }
 
         /// <summary>
