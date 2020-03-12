@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace _8._1
 {
@@ -30,6 +31,16 @@ namespace _8._1
                 foreach (var type in types)
                 {
                     var lists = CreateAndFillLists(type);
+
+                    var ignoreReason = RunNonTestMethods(lists.BeforeClass);
+                    if (ignoreReason != "")
+                    {
+                        foreach (var test in lists.Tests)
+                        {
+                            queue.Enqueue(new Info(test.Name, "Failed", 0, ignoreReason));
+                        }
+                        continue;
+                    }
                 }
             }
         }
@@ -61,6 +72,79 @@ namespace _8._1
                 }
             }
             return "";
+        }
+
+        /// <summary>
+        /// Runs all Before methods, test and all After methods
+        /// </summary>
+        /// <param name="methodInfo">Given method</param>
+        /// <param name="type">Method's type</param>
+        /// <param name="lists">Methods' list</param>
+        /// <param name="infoQueue">Queue with info</param>
+        private void RunTesMethods(MethodInfo methodInfo, Type type, Lists lists, ConcurrentQueue<Info> infoQueue)
+        {
+            var instance = Activator.CreateInstance(type);
+
+            var ignoreReasonBefore = RunNonTestMethods(lists.Before);
+            if (ignoreReasonBefore != "")
+            {
+                infoQueue.Enqueue(new Info(methodInfo.Name, "Failed", 0, ignoreReasonBefore));
+                return;
+            }
+
+
+
+            var ignoreReasonAfter = RunNonTestMethods(lists.After);
+            if (ignoreReasonAfter != "")
+            {
+                infoQueue.Enqueue(new Info(methodInfo.Name, "Failed", 0, ignoreReasonAfter));
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Runs test method
+        /// </summary>
+        /// <param name="method">Given method</param>
+        /// <param name="type">Method's type</param>
+        /// <param name="instance">Instance of type</param>
+        /// <returns>Test's info</returns>
+        private Info RunTest(MethodInfo method, Type type, object instance)
+        {
+            var properties = (Test)Attribute.GetCustomAttribute(method, typeof(Test));
+            if (properties.Ignore == null)
+            {
+                return new Info(method.Name, "Ignored", 0, properties.Ignore);
+            }
+
+            var watch = new Stopwatch();
+            string ignoreReason = null;
+            var result = "";
+            try
+            {
+                lock (lockObject)
+                {
+                    watch.Start();
+                    method.Invoke(instance, null);
+                    watch.Stop();
+                }
+            }
+            catch (Exception e)
+            {
+                watch.Stop();
+                if (e.InnerException.GetType() != properties.Expected)
+                {
+                    ignoreReason = $"{e.Message}";
+                    result = "Failed";
+                }
+                return new Info(method.Name, result, watch.ElapsedMilliseconds, ignoreReason);
+            }
+
+            if (properties.Expected != null)
+            {
+                return new Info(method.Name, "Failed", watch.ElapsedMilliseconds, $"Test hasn't thrown {properties.Expected.ToString()}");
+            }
+            return new Info(method.Name, "Succeeded", watch.ElapsedMilliseconds, ignoreReason);
         }
 
         /// <summary>
