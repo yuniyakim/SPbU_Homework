@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace _8._1
 {
@@ -28,9 +29,38 @@ namespace _8._1
                 var types = Assembly.LoadFrom(file).GetTypes();
                 foreach (var type in types)
                 {
-
+                    var lists = CreateAndFillLists(type);
                 }
             }
+        }
+
+        /// <summary>
+        /// Runs non-test methods
+        /// </summary>
+        /// <param name="list">Methods' list</param>
+        /// <param name="instance">Instance of type</param>
+        /// <returns>Empty string, exception description if exception was thrown</returns>
+        private string RunNonTestMethods(List<MethodInfo> list, object instance = null)
+        {
+            foreach (var method in list)
+            {
+                if (!method.IsStatic && instance == null)
+                {
+                    return $"Method {method.Name} must be static";
+                }
+                try
+                {
+                    lock (lockObject)
+                    {
+                        method.Invoke(instance, null);
+                    }
+                }
+                catch (Exception e)
+                {
+                    return $"{e.Message}";
+                }
+            }
+            return "";
         }
 
         /// <summary>
