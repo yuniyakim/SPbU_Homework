@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IgnoreTests", "Tests\Ignore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSuccessfulTests", "SimpleTests\SimpleSuccessfulTests.csproj", "{00B7701D-C375-477E-970D-604C9AB27814}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleFailedTests", "SimpleFailedTests\SimpleFailedTests.csproj", "{F8FDDEB5-FA55-489F-A62A-3C40BE6ECC67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{00B7701D-C375-477E-970D-604C9AB27814}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00B7701D-C375-477E-970D-604C9AB27814}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00B7701D-C375-477E-970D-604C9AB27814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8FDDEB5-FA55-489F-A62A-3C40BE6ECC67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8FDDEB5-FA55-489F-A62A-3C40BE6ECC67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8FDDEB5-FA55-489F-A62A-3C40BE6ECC67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8FDDEB5-FA55-489F-A62A-3C40BE6ECC67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

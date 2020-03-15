@@ -5,16 +5,42 @@ namespace SimpleSuccessfulTests
 {
     public class SimpleSuccessfulTests
     {
-        [Test]
-        public void SumTest()
+        public int Number1 = 0;
+        public int Number2 = 0;
+
+        [BeforeClass]
+        public void BeforeClass()
         {
-            var sum = 10 + 8;
+            Number1 += 4;
+            Number2 -= 7;
+        }
+
+        [Before]
+        public void Before()
+        {
+            Number1 /= 2;
+            Number2 *= 4;
+        }
+
+        [AfterClass]
+        public void AfterClass()
+        {
+            Number1 -= 0;
+            Number2 -= 1;
+        }
+
+        [After]
+        public void After()
+        {
+            Number1 *= 2;
+            Number2 += 4;
         }
 
         [Test]
-        public void SubTest()
+        public void Test()
         {
-            var sub = 239 - 107;
+            Number1 += 10;
+            Number2 += 5;
         }
     }
 }
