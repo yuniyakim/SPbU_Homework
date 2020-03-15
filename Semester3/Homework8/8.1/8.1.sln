@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionTests", "Tests\Exc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IgnoreTests", "Tests\IgnoreTests\IgnoreTests.csproj", "{1BBA2505-2667-450C-B180-16E1CB78CC6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSuccessfulTests", "SimpleTests\SimpleSuccessfulTests.csproj", "{00B7701D-C375-477E-970D-604C9AB27814}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSucceededTests", "SimpleTests\SimpleSucceededTests.csproj", "{00B7701D-C375-477E-970D-604C9AB27814}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleFailedTests", "SimpleFailedTests\SimpleFailedTests.csproj", "{F8FDDEB5-FA55-489F-A62A-3C40BE6ECC67}"
 EndProject

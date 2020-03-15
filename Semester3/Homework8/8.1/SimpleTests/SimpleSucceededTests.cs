@@ -1,9 +1,9 @@
 ﻿using System;
 using Attributes;
 
-namespace SimpleSuccessfulTests
+namespace SimpleSucceededlTests
 {
-    public class SimpleSuccessfulTests
+    public class SimpleSucceededTests
     {
         public int Number1 = 0;
         public int Number2 = 0;
