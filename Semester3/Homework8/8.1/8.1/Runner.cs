@@ -19,10 +19,12 @@ namespace _8._1
         private Object lockObject = new Object();
 
         /// <summary>
+        /// /// <summary>
         /// Runs all the tests in given directory
         /// </summary>
         /// <param name="path">Given directory</param>
-        public void Run(string path)
+        /// <returns>Array with info</returns>
+        public Info[] Run(string path)
         {
             var files = Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories)
                 .Where(x => x.Substring(x.LastIndexOf('\\') + 1) != "Attributes.dll");
@@ -62,6 +64,7 @@ namespace _8._1
                     }
                 }
             }
+            return queue.ToArray();
         }
 
         /// <summary>
