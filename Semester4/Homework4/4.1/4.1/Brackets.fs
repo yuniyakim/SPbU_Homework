@@ -2,6 +2,7 @@
 
 open System
 
+/// Checks if bracket sequence is correct
 let checkBrackets (str: string) =
     let rec check (str: List<char>) (stack: List<char>) =
         if str = [] then
