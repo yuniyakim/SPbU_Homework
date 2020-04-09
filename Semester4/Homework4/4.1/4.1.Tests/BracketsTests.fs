@@ -22,9 +22,9 @@ let testCases =
         "(", false
         "1", false
         "(2)", false
-    ] |> List.map (fun (ls, res) -> TestCaseData(ls, res))
+    ] |> List.map (fun (str, res) -> TestCaseData(str, res))
 
 [<Test>]
 [<TestCaseSource("testCases")>]
-let bracketsTest ls res =
-    checkBrackets ls |> should equal res
+let bracketsTest str res =
+    checkBrackets str |> should equal res
