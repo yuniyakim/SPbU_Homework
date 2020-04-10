@@ -43,3 +43,5 @@ let parallelStackTests () =
     Thread.Sleep(500)
     Async.Start (async { while n < 10 do n <- n + 1})
     stack.TryPop() |> should not' (equal None)
+    stack.TryPop() |> should not' (equal None)
+    stack.TryPop() |> should not' (equal None)
