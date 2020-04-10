@@ -6,4 +6,8 @@
     <RootNamespace>_1._3</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="ConcurrentStack.fs" />
+  </ItemGroup>
+
 </Project>
