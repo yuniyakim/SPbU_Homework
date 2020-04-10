@@ -6,8 +6,4 @@
     <RootNamespace>_1._2</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="Program.fs" />
-  </ItemGroup>
-
 </Project>
