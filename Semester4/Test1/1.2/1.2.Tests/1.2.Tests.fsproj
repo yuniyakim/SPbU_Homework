@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="StarsSquareTests.fs" />
+    <Compile Include="SquareOfStarsTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

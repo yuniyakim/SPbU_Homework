@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="StarsSquare.fs" />
+    <Compile Include="SquareOfStars.fs" />
   </ItemGroup>
 
 </Project>
