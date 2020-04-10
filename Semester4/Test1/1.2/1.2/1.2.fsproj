@@ -6,4 +6,8 @@
     <RootNamespace>_1._2</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="StarsSquare.fs" />
+  </ItemGroup>
+
 </Project>
