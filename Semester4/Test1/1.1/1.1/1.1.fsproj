@@ -6,4 +6,8 @@
     <RootNamespace>_1._1</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="ListMin.fs" />
+  </ItemGroup>
+
 </Project>
