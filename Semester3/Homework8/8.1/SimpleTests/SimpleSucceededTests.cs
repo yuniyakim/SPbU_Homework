@@ -37,10 +37,17 @@ namespace SimpleSucceededlTests
         }
 
         [Test]
-        public void Test()
+        public void FirstTest()
         {
             Number1 += 10;
             Number2 += 5;
+        }
+
+        [Test]
+        public void SecondTest()
+        {
+            Number1 -= 1;
+            Number2 *= 0;
         }
     }
 }

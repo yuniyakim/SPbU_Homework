@@ -20,9 +20,15 @@ namespace SimpleFailedTests
         }
 
         [Test]
-        public void Test()
+        public void FirstTest()
         {
             Number /= 2;
+            throw new Exception();
+        }
+
+        [Test]
+        public void SecondTest()
+        {
             throw new Exception();
         }
     }
