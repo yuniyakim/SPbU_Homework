@@ -9,10 +9,8 @@ namespace SimpleSucceededlTests
         public int Number2 = 0;
 
         [BeforeClass]
-        public void BeforeClass()
+        public static void BeforeClass()
         {
-            Number1 += 4;
-            Number2 -= 7;
         }
 
         [Before]
@@ -23,10 +21,8 @@ namespace SimpleSucceededlTests
         }
 
         [AfterClass]
-        public void AfterClass()
+        public static void AfterClass()
         {
-            Number1 -= 0;
-            Number2 -= 1;
         }
 
         [After]

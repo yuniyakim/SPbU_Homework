@@ -14,9 +14,8 @@ namespace SimpleFailedTests
         }
 
         [AfterClass]
-        public void AfterClass()
+        public static void AfterClass()
         {
-            Number -= 0;
         }
 
         [Test]

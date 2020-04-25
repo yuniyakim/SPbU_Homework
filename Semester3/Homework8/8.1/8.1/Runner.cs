@@ -46,7 +46,7 @@ namespace _8._1
                     }
 
                     var infoQueue = new ConcurrentQueue<Info>();
-                    Parallel.ForEach(lists.Tests, test => RunTesMethods(test, type, lists, infoQueue));
+                    Parallel.ForEach(lists.Tests, test => RunTestMethods(test, type, lists, infoQueue));
 
                     var ignoreReasonAfterClass = RunNonTestMethods(lists.AfterClass);
 
@@ -103,11 +103,11 @@ namespace _8._1
         /// <param name="type">Method's type</param>
         /// <param name="lists">Methods' list</param>
         /// <param name="infoQueue">Queue with info</param>
-        private void RunTesMethods(MethodInfo methodInfo, Type type, Lists lists, ConcurrentQueue<Info> infoQueue)
+        private void RunTestMethods(MethodInfo methodInfo, Type type, Lists lists, ConcurrentQueue<Info> infoQueue)
         {
             var instance = Activator.CreateInstance(type);
 
-            var ignoreReasonBefore = RunNonTestMethods(lists.Before);
+            var ignoreReasonBefore = RunNonTestMethods(lists.Before, instance);
             if (ignoreReasonBefore != "")
             {
                 infoQueue.Enqueue(new Info(methodInfo.Name, "Failed", 0, ignoreReasonBefore));
@@ -182,23 +182,23 @@ namespace _8._1
             {
                 foreach (var attribute in Attribute.GetCustomAttributes(method))
                 {
-                    if (attribute.GetType() == typeof(BeforeClass))
+                    if (attribute.GetType().Name == typeof(BeforeClass).Name)
                     {
                         lists.BeforeClass.Add(method);
                     }
-                    if (attribute.GetType() == typeof(Before))
+                    if (attribute.GetType().Name == typeof(Before).Name)
                     {
                         lists.Before.Add(method);
                     }
-                    if (attribute.GetType() == typeof(Test))
+                    if (attribute.GetType().Name == typeof(Test).Name)
                     {
                         lists.Tests.Add(method);
                     }
-                    if (attribute.GetType() == typeof(After))
+                    if (attribute.GetType().Name == typeof(After).Name)
                     {
                         lists.After.Add(method);
                     }
-                    if (attribute.GetType() == typeof(AfterClass))
+                    if (attribute.GetType().Name == typeof(AfterClass).Name)
                     {
                         lists.AfterClass.Add(method);
                     }
