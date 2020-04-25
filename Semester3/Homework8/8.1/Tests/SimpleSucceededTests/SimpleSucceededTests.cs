@@ -49,5 +49,12 @@ namespace SimpleSucceededlTests
             Number1 -= 1;
             Number2 *= 0;
         }
+
+        [Test]
+        public void ThirdTest()
+        {
+            Number1 += -9;
+            Number2 /= 2;
+        }
     }
 }

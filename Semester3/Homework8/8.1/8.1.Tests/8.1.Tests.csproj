@@ -21,6 +21,9 @@
     <ProjectReference Include="..\SimpleTests\SimpleSucceededTests.csproj" />
     <ProjectReference Include="..\Tests\ExceptionTests\ExceptionTests.csproj" />
     <ProjectReference Include="..\Tests\IgnoreTests\IgnoreTests.csproj" />
+    <ProjectReference Include="..\Tests\ParametersTests\ParametersTests.csproj" />
+    <ProjectReference Include="..\Tests\SimpleFailedTests\SimpleFailedTests.csproj" />
+    <ProjectReference Include="..\Tests\SimpleSucceededTests\SimpleSucceededTests.csproj" />
   </ItemGroup>
 
 </Project>
