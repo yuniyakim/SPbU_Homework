@@ -16,9 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\8.1\8.1.csproj" />
     <ProjectReference Include="..\8.1\Attributes\Attributes.csproj" />
-    <ProjectReference Include="..\ComplexTests\ParametersTests.csproj" />
-    <ProjectReference Include="..\SimpleFailedTests\SimpleFailedTests.csproj" />
-    <ProjectReference Include="..\SimpleTests\SimpleSucceededTests.csproj" />
     <ProjectReference Include="..\Tests\ExceptionTests\ExceptionTests.csproj" />
     <ProjectReference Include="..\Tests\IgnoreTests\IgnoreTests.csproj" />
     <ProjectReference Include="..\Tests\ParametersTests\ParametersTests.csproj" />
