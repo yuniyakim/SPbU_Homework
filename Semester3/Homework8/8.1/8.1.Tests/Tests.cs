@@ -6,7 +6,7 @@ namespace _8._1.Tests
     [TestFixture]
     public class Tests
     {
-        private string path = new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).DirectoryName + "../../../../../8.1/Tests";
+        private string path = new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).DirectoryName + "../../../../../Tests";
         private Runner runner;
 
         private void CheckInfo()
