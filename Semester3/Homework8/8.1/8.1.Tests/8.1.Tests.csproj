@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -15,6 +15,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\8.1\8.1.csproj" />
+    <ProjectReference Include="..\8.1\Attributes\Attributes.csproj" />
+    <ProjectReference Include="..\ComplexTests\ParametersTests.csproj" />
+    <ProjectReference Include="..\SimpleFailedTests\SimpleFailedTests.csproj" />
+    <ProjectReference Include="..\SimpleTests\SimpleSucceededTests.csproj" />
+    <ProjectReference Include="..\Tests\ExceptionTests\ExceptionTests.csproj" />
+    <ProjectReference Include="..\Tests\IgnoreTests\IgnoreTests.csproj" />
   </ItemGroup>
 
 </Project>
