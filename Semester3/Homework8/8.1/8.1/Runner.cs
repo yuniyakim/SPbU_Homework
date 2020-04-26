@@ -121,7 +121,7 @@ namespace _8._1
 
             infoQueue.Enqueue(RunTest(methodInfo, type, instance));
 
-            var ignoreReasonAfter = RunNonTestMethods(lists.After);
+            var ignoreReasonAfter = RunNonTestMethods(lists.After, instance);
             if (ignoreReasonAfter != "")
             {
                 infoQueue.Enqueue(new Info(methodInfo.Name, "Failed", 0, ignoreReasonAfter));

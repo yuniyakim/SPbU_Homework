@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IgnoreTests", "Tests\Ignore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8.1.Tests", "8.1.Tests\8.1.Tests.csproj", "{DDB7C65E-F6B6-4335-8B4C-6E422A8CC63E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParametersTests", "Tests\ParametersTests\ParametersTests.csproj", "{747D87D9-7790-48D2-8753-6BA6133480A2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleFailedTests", "Tests\SimpleFailedTests\SimpleFailedTests.csproj", "{8A607B4B-5843-4AEE-874B-91D2F922FF3C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleSucceededTests", "Tests\SimpleSucceededTests\SimpleSucceededTests.csproj", "{EDC87920-A6B2-4F9F-A54C-89CD2A42BA03}"
@@ -41,10 +39,6 @@ Global
 		{DDB7C65E-F6B6-4335-8B4C-6E422A8CC63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDB7C65E-F6B6-4335-8B4C-6E422A8CC63E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDB7C65E-F6B6-4335-8B4C-6E422A8CC63E}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{747D87D9-7790-48D2-8753-6BA6133480A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{747D87D9-7790-48D2-8753-6BA6133480A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{747D87D9-7790-48D2-8753-6BA6133480A2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{747D87D9-7790-48D2-8753-6BA6133480A2}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{8A607B4B-5843-4AEE-874B-91D2F922FF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A607B4B-5843-4AEE-874B-91D2F922FF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A607B4B-5843-4AEE-874B-91D2F922FF3C}.Release|Any CPU.ActiveCfg = Debug|Any CPU

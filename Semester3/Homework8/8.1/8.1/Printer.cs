@@ -20,7 +20,7 @@ namespace _8._1
                     Console.Write($" | Ignore reason: {testInfo.IgnoreReason}");
                 }
 
-                Console.WriteLine($" | time: {testInfo.Time}");
+                Console.WriteLine($" | Time: {testInfo.Time}");
             }
         }
     }

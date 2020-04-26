@@ -70,24 +70,6 @@ namespace _8._1.Tests
         }
 
         [Test]
-        public void ParametersTestsTest()
-        {
-            var info = runner.Run(path + "/ParametersTests");
-            Assert.AreEqual(10, info.Length);
-            Array.Sort(info, Compare);
-            CheckInfo(info[0], "OneIntParameterTest", "Passed", null);
-            CheckInfo(info[1], "OneIntParameterTest", "Passed", null);
-            CheckInfo(info[2], "OneStringParameterTest", "Passed", null);
-            CheckInfo(info[3], "OneStringParameterTest", "Passed", null);
-            CheckInfo(info[4], "TwoDifferentParametersTest", "Passed", null);
-            CheckInfo(info[5], "TwoDifferentParametersTest", "Passed", null);
-            CheckInfo(info[6], "TwoIntParametersTest", "Passed", null);
-            CheckInfo(info[7], "TwoIntParametersTest", "Passed", null);
-            CheckInfo(info[8], "TwoStringParametersTest", "Passed", null);
-            CheckInfo(info[9], "TwoStringParametersTest", "Passed", null);
-        }
-
-        [Test]
         public void IgnoreTestsTest()
         {
             var info = runner.Run(path + "/IgnoreTests");

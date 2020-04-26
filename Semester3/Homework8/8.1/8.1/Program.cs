@@ -8,7 +8,8 @@ namespace _8._1
         {
             Console.WriteLine("Enter path to directory:");
             var path = Console.ReadLine();
-            var info = new Runner().Run("path");
+            var info = new Runner().Run($"{path}");
+            Printer.PrintResults(info);
         }
     }
 }
