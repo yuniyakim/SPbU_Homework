@@ -33,6 +33,11 @@ namespace _8._1
                 var types = Assembly.LoadFrom(file).GetTypes();
                 foreach (var type in types)
                 {
+                    if (type.GetConstructor(new Type[] { }) == null)
+                    {
+                        continue;
+                    }
+
                     var lists = CreateAndFillLists(type);
 
                     var ignoreReasonBeforeClass = RunNonTestMethods(lists.BeforeClass);
@@ -134,7 +139,7 @@ namespace _8._1
         private Info RunTest(MethodInfo method, Type type, object instance)
         {
             var properties = (Test)Attribute.GetCustomAttribute(method, typeof(Test));
-            if (properties.Ignore == null)
+            if (properties.Ignore != null)
             {
                 return new Info(method.Name, "Ignored", 0, properties.Ignore);
             }
@@ -154,9 +159,10 @@ namespace _8._1
             catch (Exception e)
             {
                 watch.Stop();
-                if (e.InnerException.GetType() != properties.Expected)
+                var eType = e.InnerException.GetType();
+                if (eType != properties.Expected)
                 {
-                    ignoreReason = $"{e.Message}";
+                    ignoreReason = $"Test has thrown {eType.ToString()}. {e.Message}";
                     result = "Failed";
                 }
                 return new Info(method.Name, result, watch.ElapsedMilliseconds, ignoreReason);

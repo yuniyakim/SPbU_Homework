@@ -33,31 +33,40 @@ namespace _8._1.Tests
         public void SimpleSucceededTestsTest()
         {
             var info = runner.Run(path + "/SimpleSucceededTests");
-            Assert.AreEqual(3, info.Length);
+            Assert.AreEqual(6, info.Length);
             Array.Sort(info, Compare);
             CheckInfo(info[0], "FirstTest", "Passed", null);
-            CheckInfo(info[1], "SecondTest", "Passed", null);
-            CheckInfo(info[2], "ThirdTest", "Passed", null);
+            CheckInfo(info[1], "FirstTest", "Passed", null);
+            CheckInfo(info[2], "SecondTest", "Passed", null);
+            CheckInfo(info[3], "SecondTest", "Passed", null);
+            CheckInfo(info[4], "ThirdTest", "Passed", null);
+            CheckInfo(info[5], "ThirdTest", "Passed", null);
         }
 
         [Test]
         public void SimpleFailedTestsTest()
         {
             var info = runner.Run(path + "/SimpleFailedTests");
-            Assert.AreEqual(2, info.Length);
+            Assert.AreEqual(4, info.Length);
             Array.Sort(info, Compare);
-            CheckInfo(info[0], "FirstTest", "Failed", "The test has thrown the System.Exception.");
-            CheckInfo(info[1], "SecondTest", "Failed", "The test has thrown the System.Exception.");
+            CheckInfo(info[0], "FirstTest", "Failed", "Test has thrown System.Exception. Exception has been thrown by the target of an invocation.");
+            CheckInfo(info[1], "FirstTest", "Failed", "Test has thrown System.Exception. Exception has been thrown by the target of an invocation.");
+            CheckInfo(info[2], "SecondTest", "Failed", "Test has thrown System.Exception. Exception has been thrown by the target of an invocation.");
+            CheckInfo(info[3], "SecondTest", "Failed", "Test has thrown System.Exception. Exception has been thrown by the target of an invocation.");
         }
 
         [Test]
         public void ExceptionTestsTest()
         {
             var info = runner.Run(path + "/ExceptionTests");
-            Assert.AreEqual(2, info.Length);
+            Assert.AreEqual(6, info.Length);
             Array.Sort(info, Compare);
-            CheckInfo(info[0], "DivideByZeroExceptionTest", "Passed", null);
-            CheckInfo(info[1], "IndexOutOfRangeExceptionTest", "Passed", null);
+            CheckInfo(info[0], "DivideByZeroExceptionFailedTest", "Failed", "Test has thrown System.DivideByZeroException. Exception has been thrown by the target of an invocation.");
+            CheckInfo(info[1], "DivideByZeroExceptionFailedTest", "Failed", "Test has thrown System.DivideByZeroException. Exception has been thrown by the target of an invocation.");
+            CheckInfo(info[2], "DivideByZeroExceptionPassedTest", "Passed", null);
+            CheckInfo(info[3], "DivideByZeroExceptionPassedTest", "Passed", null);
+            CheckInfo(info[4], "IndexOutOfRangeExceptionTest", "Passed", null);
+            CheckInfo(info[5], "IndexOutOfRangeExceptionTest", "Passed", null);
         }
 
         [Test]
