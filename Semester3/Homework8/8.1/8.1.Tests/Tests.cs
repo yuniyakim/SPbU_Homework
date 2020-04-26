@@ -73,23 +73,30 @@ namespace _8._1.Tests
         public void ParametersTestsTest()
         {
             var info = runner.Run(path + "/ParametersTests");
-            Assert.AreEqual(5, info.Length);
+            Assert.AreEqual(10, info.Length);
             Array.Sort(info, Compare);
             CheckInfo(info[0], "OneIntParameterTest", "Passed", null);
-            CheckInfo(info[1], "OneStringParameterTest", "Passed", null);
-            CheckInfo(info[2], "TwoDifferentParametersTest", "Passed", null);
-            CheckInfo(info[3], "TwoIntParametersTest", "Passed", null);
-            CheckInfo(info[4], "TwoStringParametersTest", "Passed", null);
+            CheckInfo(info[1], "OneIntParameterTest", "Passed", null);
+            CheckInfo(info[2], "OneStringParameterTest", "Passed", null);
+            CheckInfo(info[3], "OneStringParameterTest", "Passed", null);
+            CheckInfo(info[4], "TwoDifferentParametersTest", "Passed", null);
+            CheckInfo(info[5], "TwoDifferentParametersTest", "Passed", null);
+            CheckInfo(info[6], "TwoIntParametersTest", "Passed", null);
+            CheckInfo(info[7], "TwoIntParametersTest", "Passed", null);
+            CheckInfo(info[8], "TwoStringParametersTest", "Passed", null);
+            CheckInfo(info[9], "TwoStringParametersTest", "Passed", null);
         }
 
         [Test]
         public void IgnoreTestsTest()
         {
             var info = runner.Run(path + "/IgnoreTests");
-            Assert.AreEqual(2, info.Length);
+            Assert.AreEqual(4, info.Length);
             Array.Sort(info, Compare);
             CheckInfo(info[0], "FirstIgnoreTest", "Ignored", "First ignore test");
-            CheckInfo(info[0], "SecondIgnoreTest", "Ignored", "Second ignore test");
+            CheckInfo(info[1], "FirstIgnoreTest", "Ignored", "First ignore test");
+            CheckInfo(info[2], "SecondIgnoreTest", "Ignored", "Second ignore test");
+            CheckInfo(info[3], "SecondIgnoreTest", "Ignored", "Second ignore test");
         }
     }
 }
