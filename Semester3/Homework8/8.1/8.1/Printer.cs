@@ -2,12 +2,15 @@
 
 namespace _8._1
 {
+    /// <summary>
+    /// Printer for info
+    /// </summary>
     public class Printer
     {
         /// <summary>
-        /// Print the results of tests
-        /// <param name="info"/>Info about tests</param>
+        /// Prints the results of tests
         /// </summary>
+        /// <param name="info"/>Info about tests</param>
         public static void PrintResults(Info[] info)
         {
             foreach (var testInfo in info)

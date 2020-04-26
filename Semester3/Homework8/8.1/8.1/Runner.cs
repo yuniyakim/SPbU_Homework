@@ -16,10 +16,8 @@ namespace _8._1
     public class Runner
     {
         private ConcurrentQueue<Info> queue = new ConcurrentQueue<Info>();
-        private Object lockObject = new Object();
 
         /// <summary>
-        /// /// <summary>
         /// Runs all the tests in given directory
         /// </summary>
         /// <param name="path">Given directory</param>
@@ -89,10 +87,7 @@ namespace _8._1
                 }
                 try
                 {
-                    lock (lockObject)
-                    {
-                        method.Invoke(instance, null);
-                    }
+                    method.Invoke(instance, null);
                 }
                 catch (Exception e)
                 {
@@ -150,12 +145,9 @@ namespace _8._1
             var result = "Passed";
             try
             {
-                lock (lockObject)
-                {
-                    watch.Start();
-                    method.Invoke(instance, null);
-                    watch.Stop();
-                }
+                watch.Start();
+                method.Invoke(instance, null);
+                watch.Stop();
             }
             catch (Exception e)
             {
