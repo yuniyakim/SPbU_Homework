@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleSucceededTests", "Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attributes", "Attributes\Attributes.csproj", "{648A854F-E152-4372-A33B-3FC968E295E3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmptyTests", "Tests\EmptyTests\EmptyTests.csproj", "{30CA7AF2-2C7D-4597-8627-653D6BA79E55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{648A854F-E152-4372-A33B-3FC968E295E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{648A854F-E152-4372-A33B-3FC968E295E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{648A854F-E152-4372-A33B-3FC968E295E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30CA7AF2-2C7D-4597-8627-653D6BA79E55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30CA7AF2-2C7D-4597-8627-653D6BA79E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30CA7AF2-2C7D-4597-8627-653D6BA79E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30CA7AF2-2C7D-4597-8627-653D6BA79E55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

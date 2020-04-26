@@ -80,5 +80,17 @@ namespace _8._1.Tests
             CheckInfo(info[2], "SecondIgnoreTest", "Ignored", "Second ignore test");
             CheckInfo(info[3], "SecondIgnoreTest", "Ignored", "Second ignore test");
         }
+
+        [Test]
+        public void EmptyTestsTest()
+        {
+            var info = runner.Run(path + "/EmptyTests");
+            Assert.AreEqual(4, info.Length);
+            Array.Sort(info, Compare);
+            CheckInfo(info[0], "FirstEmptyTest", "Passed", null);
+            CheckInfo(info[1], "FirstEmptyTest", "Passed", null);
+            CheckInfo(info[2], "SecondEmptyTest", "Passed", null);
+            CheckInfo(info[3], "SecondEmptyTest", "Passed", null);
+        }
     }
 }
