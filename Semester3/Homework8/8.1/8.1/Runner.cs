@@ -27,7 +27,7 @@ namespace _8._1
             var files = Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories)
                 .AsParallel()
                 .Where(x => x.Substring(x.LastIndexOf('\\') + 1) != "Attributes.dll");
-            foreach (var file in files)
+            Parallel.ForEach(files, file =>
             {
                 var types = Assembly.LoadFrom(file).GetTypes();
                 foreach (var type in types)
@@ -67,7 +67,7 @@ namespace _8._1
                         }
                     }
                 }
-            }
+            });
             return queue.ToArray();
         }
 
@@ -81,10 +81,6 @@ namespace _8._1
         {
             foreach (var method in list)
             {
-                if (!method.IsStatic && instance == null)
-                {
-                    return $"Method {method.Name} must be static";
-                }
                 try
                 {
                     method.Invoke(instance, null);
@@ -181,29 +177,45 @@ namespace _8._1
             {
                 foreach (var attribute in Attribute.GetCustomAttributes(method))
                 {
-                    if (attribute.GetType().Name == typeof(BeforeClass).Name)
+                    CheckMethods(method, attribute);
+
+                    var attributeType = attribute.GetType().Name;
+                    if (attributeType == typeof(BeforeClass).Name)
                     {
                         lists.BeforeClass.Add(method);
                     }
-                    if (attribute.GetType().Name == typeof(Before).Name)
+                    else if (attributeType == typeof(Before).Name)
                     {
                         lists.Before.Add(method);
                     }
-                    if (attribute.GetType().Name == typeof(Test).Name)
+                    else if (attributeType == typeof(Test).Name)
                     {
                         lists.Tests.Add(method);
                     }
-                    if (attribute.GetType().Name == typeof(After).Name)
+                    else if (attributeType == typeof(After).Name)
                     {
                         lists.After.Add(method);
                     }
-                    if (attribute.GetType().Name == typeof(AfterClass).Name)
+                    else if (attributeType == typeof(AfterClass).Name)
                     {
                         lists.AfterClass.Add(method);
                     }
                 }
             }
             return lists;
+        }
+
+        /// <summary>
+        /// Checks if BeforeClass and AfterClass methods are static
+        /// </summary>
+        /// <param name="method">Given method</param>
+        /// <param name="attribute">Method's attribute</param>
+        private void CheckMethods(MethodInfo method, Attribute attribute)
+        {
+            if ((attribute.GetType().Name == typeof(BeforeClass).Name || attribute.GetType().Name == typeof(AfterClass).Name) && !method.IsStatic)
+            {
+                throw new InvalidOperationException("BeforeClass and AfterClass methods must be static.");
+            }
         }
     }
 }
