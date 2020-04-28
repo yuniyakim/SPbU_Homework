@@ -111,7 +111,7 @@ namespace _8._1
                 return;
             }
 
-            infoQueue.Enqueue(RunTest(methodInfo, type, instance));
+            infoQueue.Enqueue(RunTest(methodInfo, instance));
 
             var ignoreReasonAfter = RunNonTestMethods(lists.After, instance);
             if (ignoreReasonAfter != "")
@@ -125,10 +125,9 @@ namespace _8._1
         /// Runs test method
         /// </summary>
         /// <param name="method">Given method</param>
-        /// <param name="type">Method's type</param>
         /// <param name="instance">Instance of type</param>
         /// <returns>Test's info</returns>
-        private Info RunTest(MethodInfo method, Type type, object instance)
+        private Info RunTest(MethodInfo method, object instance)
         {
             var properties = (Test)Attribute.GetCustomAttribute(method, typeof(Test));
             if (properties.Ignore != null)
@@ -206,15 +205,36 @@ namespace _8._1
         }
 
         /// <summary>
-        /// Checks if BeforeClass and AfterClass methods are static
+        /// Checks methods for given conditions
         /// </summary>
         /// <param name="method">Given method</param>
         /// <param name="attribute">Method's attribute</param>
         private void CheckMethods(MethodInfo method, Attribute attribute)
         {
-            if ((attribute.GetType().Name == typeof(BeforeClass).Name || attribute.GetType().Name == typeof(AfterClass).Name) && !method.IsStatic)
+            var type = attribute.GetType().Name;
+            if (type == typeof(BeforeClass).Name || type == typeof(AfterClass).Name)
             {
-                throw new InvalidOperationException("BeforeClass and AfterClass methods must be static.");
+                if (!method.IsStatic)
+                {
+                    throw new InvalidOperationException("BeforeClass and AfterClass methods must be static.");
+                }
+            }
+            else if (type == typeof(Before).Name || type == typeof(After).Name || type == typeof(Test).Name)
+            {
+                if (method.IsStatic)
+                {
+                    throw new InvalidOperationException("Before, After and Test methods mustn't be static.");
+                }
+
+                if (method.GetParameters().Length != 0)
+                {
+                    throw new InvalidOperationException("Before, After and Test methods mustn't have parameters.");
+                }
+
+                if (method.ReturnType.Name != "Void")
+                {
+                    throw new InvalidOperationException($"Before, After and Test methods mustn't have return type.");
+                }
             }
         }
     }
