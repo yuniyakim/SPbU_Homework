@@ -20,6 +20,7 @@ namespace _12._1.Controllers
         private IWebHostEnvironment environment;
         private CompletedTestsInfo tests = new CompletedTestsInfo();
         private string path;
+        private List<string> uploadedFiles;
 
         /// <summary>
         /// Controller's constructor
@@ -30,6 +31,15 @@ namespace _12._1.Controllers
         {
             this.environment = environment;
             path = environment.WebRootPath + "/files/";
+            uploadedFiles = new List<string>();
+            if (!IsDirectoryEmpty(path))
+            {
+                var directory = new DirectoryInfo(path);
+                foreach (var file in directory.GetFiles())
+                {
+                    uploadedFiles.Add(file.Name);
+                }
+            }
         }
 
         /// <summary>
@@ -37,6 +47,7 @@ namespace _12._1.Controllers
         /// </summary>
         public IActionResult Index()
         {
+            ViewBag.Files = uploadedFiles;
             return View("TestRunner", tests);
         }
 
@@ -53,6 +64,8 @@ namespace _12._1.Controllers
                 {
                     file.CopyTo(fileStream);
                 }
+                uploadedFiles.Add(file.Name);
+                ViewBag.Files = uploadedFiles;
             }
 
             return RedirectToAction("Index");
@@ -116,15 +129,13 @@ namespace _12._1.Controllers
                 }
             }
 
+            ViewBag.Files = uploadedFiles;
             return View("TestRunner", tests);
         }
 
         /// <summary>
         /// Loads tests history page
         /// </summary>
-        public IActionResult History()
-        {
-            return View(history.Assemblies.Include("Tests").ToList());
-        }
+        public IActionResult History() => View(history.Assemblies.Include("Tests").ToList());
     }
 }

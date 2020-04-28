@@ -25,6 +25,17 @@
         </form>
     </div>
     <br>
+    <div class="files">
+        @if (ViewBag.Files.Count > 0)
+        {
+            <h5>Uploaded files:</h5>
+            @foreach (var file in ViewBag.Files)
+            {
+                <li>@file</li>
+            }
+        }
+    </div>
+    <br>
     <div class="delete-files">
         <form asp-action="DeleteUploadedFiles" asp-controller="Home">
             <input type="submit" value="Delete uploaded files" />
