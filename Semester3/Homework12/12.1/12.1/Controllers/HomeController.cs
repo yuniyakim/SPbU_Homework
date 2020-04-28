@@ -56,7 +56,7 @@ namespace _12._1.Controllers
         /// </summary>
         /// <param name="file">Added file</param>
         [HttpPost]
-        public IActionResult UploadFIle(IFormFile file)
+        public IActionResult UploadFile(IFormFile file)
         {
             if (file != null)
             {
