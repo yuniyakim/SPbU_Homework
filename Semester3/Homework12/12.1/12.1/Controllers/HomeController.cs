@@ -18,6 +18,7 @@ namespace _12._1.Controllers
         private History history;
         private IWebHostEnvironment environment;
         private CompletedTestsInfo tests;
+        private string path;
 
         /// <summary>
         /// Controller's constructor
@@ -29,6 +30,7 @@ namespace _12._1.Controllers
         {
             //this.history = history;
             this.environment = environment;
+            path = environment.WebRootPath + "/files";
         }
 
         /// <summary>
@@ -58,12 +60,18 @@ namespace _12._1.Controllers
         }
 
         /// <summary>
+        /// Checks if directory is empty
+        /// </summary>
+        /// <param name="path">Directory to check</param>
+        /// <returns>True if directory is empty, false otherwise</returns>
+        private bool IsDirectoryEmpty(string path) => !Directory.EnumerateFileSystemEntries(path).Any();
+
+        /// <summary>
         /// Deletes all uploaded files
         /// </summary>
         public IActionResult DeleteUploadedFiles()
         {
-            var path = environment.WebRootPath + "/files";
-            if (Directory.Exists(path))
+            if (Directory.EnumerateFileSystemEntries(path).Any())
             {
                 var directory = new DirectoryInfo(path);
                 foreach (var file in directory.GetFiles())
@@ -81,37 +89,9 @@ namespace _12._1.Controllers
         [HttpPost]
         public IActionResult RunTests()
         {
+            foreach (var assembly in )
 
             return View("Index");
         }
-
-        //[HttpGet]
-        //public IActionResult Register()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public IActionResult Register(Participant participant)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        using (var repository = new History())
-        //        {
-        //            repository.Assemblies.Add(participant);
-        //            repository.SaveChanges();
-        //        }
-        //        return View("Thanks", participant);
-        //    }
-        //    return View();
-        //}
-
-        //public IActionResult ListParticipants()
-        //{
-        //    using (var repository = new History())
-        //    {
-        //        return View(repository.Assemblies.ToList());
-        //    }
-        //}
     }
 }

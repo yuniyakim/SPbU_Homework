@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Test runner</title>
@@ -51,19 +50,19 @@
                     <tr>
                         <th>Name</th>
                         <th>Result</th>
-                        <th>Ignore reason</th>
                         <th>Time</th>
+                        <th>Ignore reason</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var test in Model.Tests)
                     {
-                    <tr>
-                        <td>@test.Name</td>
-                        <td>@test.Result</td>
-                        <td>@test.IgnoreReason</td>
-                        <td>@test.Time</td>
-                    </tr>
+                        <tr>
+                            <td>@test.Name</td>
+                            <td>@test.Result</td>
+                            <td>@test.Time</td>
+                            <td>@test.IgnoreReason</td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -71,5 +70,4 @@
         }
     </div>
 </body>
-
 </html>
