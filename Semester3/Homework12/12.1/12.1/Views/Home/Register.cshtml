@@ -1,0 +1,49 @@
+﻿@model ConferenceRegistration.Models.Participant
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+
+<body>
+    <div class="panel panel-success">
+        <div class="panel-heading text-center"><h4>Registration form</h4></div>
+        <div class="panel-body">
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label asp-for="Name">Your name:</label>
+                    <input asp-for="Name" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email">Your email:</label>
+                    <input asp-for="Email" />
+                </div>
+                <div class="form-group">
+                    <label>Are you a speaker?</label>
+                    <select class="form-control" asp-for="Speaker">
+                        <option value="">Choose an option</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button class="btn bg-primary" type="submit">Register!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

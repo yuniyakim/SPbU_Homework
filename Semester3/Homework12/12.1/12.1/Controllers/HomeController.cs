@@ -1,37 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ConferenceRegistration.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using _12._1.Models;
+using System;
+using System.Linq;
 
-namespace _12._1.Controllers
+namespace ConferenceRegistration.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            return View();
+            ViewBag.Time = DateTime.Now;
+            return View("MyView");
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public IActionResult Register()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult Register(Participant participant)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (ModelState.IsValid)
+            {
+                using (var repository = new Repository())
+                {
+                    repository.Participants.Add(participant);
+                    repository.SaveChanges();
+                }
+                return View("Thanks", participant);
+            }
+            return View();
+        }
+
+        public IActionResult ListParticipants()
+        {
+            using (var repository = new Repository())
+            {
+                return View(repository.Participants.ToList());
+            }
         }
     }
 }
