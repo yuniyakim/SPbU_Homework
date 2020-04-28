@@ -17,7 +17,7 @@ namespace _12._1.Controllers
     {
         private History history;
         private IWebHostEnvironment environment;
-        private List<TestInfo> completedTests;
+        private CompletedTestsInfo tests;
 
         /// <summary>
         /// Controller's constructor

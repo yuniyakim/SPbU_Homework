@@ -1,4 +1,5 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@model _12._1.Models.CompletedTestsInfo
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     Layout = null;
@@ -37,6 +38,37 @@
         <form asp-action="RunTests" asp-controller="Home">
             <input type="submit" value="Run tests" />
         </form>
+    </div>
+    <br>
+    <br>
+    <div class="results">
+        <h4>List of completed testss:</h4>
+        @foreach (var assembly in Model.Assemblies)
+        {
+            <table class="completed-tests">
+                Assembly @assembly
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Result</th>
+                        <th>Ignore reason</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var test in Model.Tests)
+                    {
+                    <tr>
+                        <td>@test.Name</td>
+                        <td>@test.Result</td>
+                        <td>@test.IgnoreReason</td>
+                        <td>@test.Time</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <br>
+        }
     </div>
 </body>
 
