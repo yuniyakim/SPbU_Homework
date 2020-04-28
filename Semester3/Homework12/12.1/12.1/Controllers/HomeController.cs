@@ -16,7 +16,7 @@ namespace _12._1.Controllers
     /// </summary>
     public class HomeController : Controller
     {
-        private History history;
+        private History history = new History();
         private IWebHostEnvironment environment;
         private CompletedTestsInfo tests = new CompletedTestsInfo();
         private string path;
@@ -26,12 +26,10 @@ namespace _12._1.Controllers
         /// </summary>
         /// <param name="history">History of assemblies and tests</param>
         /// <param name="environment">Web environment</param>
-        //public HomeController(History history, IWebHostEnvironment environment)
         public HomeController(IWebHostEnvironment environment)
         {
-            //this.history = history;
             this.environment = environment;
-            path = environment.WebRootPath + "/files";
+            path = environment.WebRootPath + "/files/";
         }
 
         /// <summary>
@@ -101,7 +99,7 @@ namespace _12._1.Controllers
                         history.SaveChanges();
 
                         var runner = new Runner();
-                        var results = runner.Run(path + file.Name);
+                        var results = runner.Run(path);
                         foreach (var result in results)
                         {
                             var test = new TestInfo(result.Name, result.Result, result.Time, result.IgnoreReason);
@@ -118,7 +116,7 @@ namespace _12._1.Controllers
                 }
             }
 
-            return View("Index", tests);
+            return View("TestRunner", tests);
         }
     }
 }

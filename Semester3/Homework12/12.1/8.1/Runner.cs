@@ -25,7 +25,7 @@ namespace _8._1
         public Info[] Run(string path)
         {
             var files = Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories)
-                .AsParallel()
+                //.AsParallel()
                 .Where(x => x.Substring(x.LastIndexOf('\\') + 1) != "Attributes.dll");
             Parallel.ForEach(files, file =>
             {

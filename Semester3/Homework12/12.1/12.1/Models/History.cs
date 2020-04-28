@@ -12,7 +12,7 @@ namespace _12._1.Models
 
         protected internal virtual void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestHistory;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=History;Trusted_Connection=True;");
         }
     }
 }
