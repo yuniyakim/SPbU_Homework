@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace _12._1.Controllers
     {
         private History history;
         private IWebHostEnvironment environment;
+        private List<TestInfo> completedTests;
 
         /// <summary>
         /// Controller's constructor
@@ -74,7 +76,7 @@ namespace _12._1.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Launches test runner
         /// </summary>
         [HttpPost]
         public IActionResult RunTests()
