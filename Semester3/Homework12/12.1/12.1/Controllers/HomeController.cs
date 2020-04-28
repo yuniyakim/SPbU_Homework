@@ -104,27 +104,32 @@ namespace _12._1.Controllers
             if (!IsDirectoryEmpty(path))
             {
                 var directory = new DirectoryInfo(path);
+                Info[] results;
+
+                try
+                {
+                    var runner = new Runner();
+                    results = runner.Run(path);
+                }
+                catch (Exception e)
+                {
+                    ViewBag.ErrorMessage = e.Message;
+                    return View("Error");
+                }
+
                 foreach (var file in directory.EnumerateFiles())
                 {
-                    try
-                    {
-                        var assembly = history.Assemblies.Add(new AssemblyInfo { Name = file.Name });
-                        history.SaveChanges();
+                    var assembly = history.Assemblies.Add(new AssemblyInfo { Name = file.Name });
+                    history.SaveChanges();
 
-                        var runner = new Runner();
-                        var results = runner.Run(path);
-                        foreach (var result in results)
-                        {
-                            var test = new TestInfo { Name = result.Name, Result = result.Result, Time = result.Time, IgnoreReason = result.IgnoreReason };
-                            tests.Tests.Add(test);
-                            assembly.Tests.Add(test);
-                            history.SaveChanges();
-                        }
-                    }
-                    catch (Exception e)
+                    tests.Assemblies.Add(assembly);
+
+                    foreach (var result in results)
                     {
-                        ViewBag.ErrorMessage = e.Message;
-                        return View("Error");
+                        var test = new TestInfo { Name = result.Name, Result = result.Result, Time = result.Time, IgnoreReason = result.IgnoreReason };
+                        tests.Tests.Add(test);
+                        assembly.Tests.Add(test);
+                        history.SaveChanges();
                     }
                 }
             }
