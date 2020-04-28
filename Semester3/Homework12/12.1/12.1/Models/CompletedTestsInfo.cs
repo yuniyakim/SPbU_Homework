@@ -7,7 +7,7 @@ namespace _12._1.Models
     /// </summary>
     public class CompletedTestsInfo
     {
-        public List<AssembyInfo> Assemblies { get; set; }
-        public List<TestInfo> Tests { get; set; }
+        public List<AssemblyInfo> Assemblies { get; set; } = new List<AssemblyInfo>();
+        public List<TestInfo> Tests { get; set; } = new List<TestInfo>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using _12._1.Models;
+using _8._1;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace _12._1.Controllers
     {
         private History history;
         private IWebHostEnvironment environment;
-        private CompletedTestsInfo tests;
+        private CompletedTestsInfo tests = new CompletedTestsInfo();
         private string path;
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace _12._1.Controllers
         /// </summary>
         public IActionResult Index()
         {
-            return View("TestRunner");
+            return View("TestRunner", tests);
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace _12._1.Controllers
         /// </summary>
         public IActionResult DeleteUploadedFiles()
         {
-            if (Directory.EnumerateFileSystemEntries(path).Any())
+            if (!IsDirectoryEmpty(path))
             {
                 var directory = new DirectoryInfo(path);
                 foreach (var file in directory.GetFiles())
@@ -89,9 +90,35 @@ namespace _12._1.Controllers
         [HttpPost]
         public IActionResult RunTests()
         {
-            foreach (var assembly in )
+            if (!IsDirectoryEmpty(path))
+            {
+                var directory = new DirectoryInfo(path);
+                foreach (var file in directory.EnumerateFiles())
+                {
+                    try
+                    {
+                        var assembly = history.Assemblies.Add(new AssemblyInfo(file.Name));
+                        history.SaveChanges();
 
-            return View("Index");
+                        var runner = new Runner();
+                        var results = runner.Run(path + file.Name);
+                        foreach (var result in results)
+                        {
+                            var test = new TestInfo(result.Name, result.Result, result.Time, result.IgnoreReason);
+                            tests.Tests.Add(test);
+                            assembly.Tests.Add(test);
+                            history.SaveChanges();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        ViewBag.ErrorMessage = e.Message;
+                        return View("Error");
+                    }
+                }
+            }
+
+            return View("Index", tests);
         }
     }
 }
