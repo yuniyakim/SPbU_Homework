@@ -18,11 +18,22 @@
 </head>
 
 <body>
-    <h3>Select file to upload</h3>
+    <h4>Select file to upload</h4>
     <div class="upload-form">
         <form asp-action="UploadFile" asp-controller="Home" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" /><br>
+            <input type="file" name="file" accept=".dll" />
+            <br>
             <input type="submit" value="Upload" />
+        </form>
+    </div>
+    <div class="delete-files">
+        <form asp-action="DeleteUploadedFiles" asp-controller="Home">
+            <input type="submit" value="Delete uploaded files" />
+        </form>
+    </div>
+    <div class="run-tests">
+        <form asp-action="UploadFile" asp-controller="Home">
+            <input type="submit" value="Run tests" />
         </form>
     </div>
 
