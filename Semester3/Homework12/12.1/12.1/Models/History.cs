@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace _12._1.Models
 {
-    public class TestHistory : System.Data.Entity.DbContext
+    /// <summary>
+    /// History of assemblies and tests
+    /// </summary>
+    public class History : System.Data.Entity.DbContext
     {
-        public System.Data.Entity.DbSet<Participant> Participants { get; set; }
+        public System.Data.Entity.DbSet<AssembyInfo> Assemblies { get; set; }
+        public System.Data.Entity.DbSet<TestInfo> Tests { get; set; }
 
         protected internal virtual void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

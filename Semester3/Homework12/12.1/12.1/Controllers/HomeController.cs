@@ -24,9 +24,9 @@ namespace _12._1.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var repository = new TestHistory())
+                using (var repository = new History())
                 {
-                    repository.Participants.Add(participant);
+                    repository.Assemblies.Add(participant);
                     repository.SaveChanges();
                 }
                 return View("Thanks", participant);
@@ -36,9 +36,9 @@ namespace _12._1.Controllers
 
         public IActionResult ListParticipants()
         {
-            using (var repository = new TestHistory())
+            using (var repository = new History())
             {
-                return View(repository.Participants.ToList());
+                return View(repository.Assemblies.ToList());
             }
         }
     }
