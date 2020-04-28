@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferenceRegistration.Models
+namespace _12._1.Models
 {
-    public class Repository : System.Data.Entity.DbContext
+    public class TestHistory : System.Data.Entity.DbContext
     {
         public System.Data.Entity.DbSet<Participant> Participants { get; set; }
 
         protected internal virtual void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ConferenceRegistration;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestHistory;Trusted_Connection=True;");
         }
     }
 }

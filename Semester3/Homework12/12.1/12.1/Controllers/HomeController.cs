@@ -1,9 +1,9 @@
-﻿using ConferenceRegistration.Models;
+﻿using _12._1.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 
-namespace ConferenceRegistration.Controllers
+namespace _12._1.Controllers
 {
     public class HomeController : Controller
     {
@@ -24,7 +24,7 @@ namespace ConferenceRegistration.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var repository = new Repository())
+                using (var repository = new TestHistory())
                 {
                     repository.Participants.Add(participant);
                     repository.SaveChanges();
@@ -36,7 +36,7 @@ namespace ConferenceRegistration.Controllers
 
         public IActionResult ListParticipants()
         {
-            using (var repository = new Repository())
+            using (var repository = new TestHistory())
             {
                 return View(repository.Participants.ToList());
             }

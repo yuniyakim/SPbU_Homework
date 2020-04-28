@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferenceRegistration.Models
+namespace _12._1.Models
 {
     public class Participant
     {
