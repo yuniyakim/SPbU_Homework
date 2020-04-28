@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <h4>Select file to upload</h4>
+    <h4>Select assemblies</h4>
     <div class="upload-form">
         <form asp-action="UploadFile" asp-controller="Home" method="post" enctype="multipart/form-data">
             <input type="file" name="file" accept=".dll" />
@@ -26,43 +26,19 @@
             <input type="submit" value="Upload" />
         </form>
     </div>
+    <br>
     <div class="delete-files">
         <form asp-action="DeleteUploadedFiles" asp-controller="Home">
             <input type="submit" value="Delete uploaded files" />
         </form>
     </div>
+    <br>
+    <br>
+    <h4>Start testing</h4>
     <div class="run-tests">
-        <form asp-action="UploadFile" asp-controller="Home">
+        <form asp-action="RunTests" asp-controller="Home">
             <input type="submit" value="Run tests" />
         </form>
-    </div>
-
-    <div class="panel panel-success">
-        <div class="panel-heading text-center"><h4>Registration form</h4></div>
-        <div class="panel-body">
-            <form asp-action="Register" method="post">
-                <div asp-validation-summary="All"></div>
-                <div class="form-group">
-                    <label asp-for="Name">Your name:</label>
-                    <input asp-for="Name" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Email">Your email:</label>
-                    <input asp-for="Email" />
-                </div>
-                <div class="form-group">
-                    <label>Are you a speaker?</label>
-                    <select class="form-control" asp-for="Speaker">
-                        <option value="">Choose an option</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                </div>
-                <div class="text-center">
-                    <button class="btn bg-primary" type="submit">Run tests</button>
-                </div>
-            </form>
-        </div>
     </div>
 </body>
 

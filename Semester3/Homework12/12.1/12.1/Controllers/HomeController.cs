@@ -17,16 +17,17 @@ namespace _12._1.Controllers
         private History history;
         private IWebHostEnvironment environment;
 
-        ///// <summary>
-        ///// Controller's constructor
-        ///// </summary>
-        ///// <param name="history">History of assemblies and tests</param>
-        ///// <param name="environment">Web environment</param>
+        /// <summary>
+        /// Controller's constructor
+        /// </summary>
+        /// <param name="history">History of assemblies and tests</param>
+        /// <param name="environment">Web environment</param>
         //public HomeController(History history, IWebHostEnvironment environment)
-        //{
-        //    this.history = history;
-        //    this.environment = environment;
-        //}
+        public HomeController(IWebHostEnvironment environment)
+        {
+            //this.history = history;
+            this.environment = environment;
+        }
 
         /// <summary>
         /// Loads start page
@@ -45,7 +46,7 @@ namespace _12._1.Controllers
         {
             if (file != null)
             {
-                using (var fileStream = new FileStream(environment.WebRootPath + "/Files", FileMode.Create))
+                using (var fileStream = new FileStream(environment.WebRootPath + "/files/" + file.FileName, FileMode.Create))
                 {
                     file.CopyTo(fileStream);
                 }
@@ -59,20 +60,34 @@ namespace _12._1.Controllers
         /// </summary>
         public IActionResult DeleteUploadedFiles()
         {
-            var directory = new DirectoryInfo(environment.WebRootPath + "/Files");
-            foreach (var file in directory.GetFiles())
+            var path = environment.WebRootPath + "/files";
+            if (Directory.Exists(path))
             {
-                file.Delete();
+                var directory = new DirectoryInfo(path);
+                foreach (var file in directory.GetFiles())
+                {
+                    file.Delete();
+                }
             }
 
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public IActionResult Register()
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpPost]
+        public IActionResult RunTests()
         {
-            return View();
+
+            return View("Index");
         }
+
+        //[HttpGet]
+        //public IActionResult Register()
+        //{
+        //    return View();
+        //}
 
         //[HttpPost]
         //public IActionResult Register(Participant participant)
