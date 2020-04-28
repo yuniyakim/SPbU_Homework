@@ -19,11 +19,13 @@
     <div class="results">
         @for (var i = 0; i < Model.Count(); ++i)
         {
+            <text>
             @Model.ElementAt(i).Name:
-            @: (@Model.ElementAt(i).Tests.Where(test => test.Result == "Passed").Count()) passed.
-            @: (@Model.ElementAt(i).Tests.Where(test => test.Result == "Failed").Count()) failed.
-            @: (@Model.ElementAt(i).Tests.Where(test => test.Result == "Ignored").Count()) ignored.
-
+            @Model.ElementAt(i).Tests.Where(test => test.Result == "Passed").Count() passed.
+            @Model.ElementAt(i).Tests.Where(test => test.Result == "Failed").Count() failed.
+            @Model.ElementAt(i).Tests.Where(test => test.Result == "Ignored").Count() ignored.
+            </text>
+            <br>
             <table class="tests">
                 Assembly @Model.ElementAt(i).Name
                 <thead>

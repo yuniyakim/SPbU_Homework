@@ -95,14 +95,14 @@ namespace _12._1.Controllers
                 {
                     try
                     {
-                        var assembly = history.Assemblies.Add(new AssemblyInfo(file.Name));
+                        var assembly = history.Assemblies.Add(new AssemblyInfo { Name = file.Name });
                         history.SaveChanges();
 
                         var runner = new Runner();
                         var results = runner.Run(path);
                         foreach (var result in results)
                         {
-                            var test = new TestInfo(result.Name, result.Result, result.Time, result.IgnoreReason);
+                            var test = new TestInfo { Name = result.Name, Result = result.Result, Time = result.Time, IgnoreReason = result.IgnoreReason };
                             tests.Tests.Add(test);
                             assembly.Tests.Add(test);
                             history.SaveChanges();
@@ -117,6 +117,14 @@ namespace _12._1.Controllers
             }
 
             return View("TestRunner", tests);
+        }
+
+        /// <summary>
+        /// Loads tests history page
+        /// </summary>
+        public IActionResult History()
+        {
+            return View(history.Assemblies.Include("Tests").ToList());
         }
     }
 }
