@@ -1,4 +1,5 @@
-﻿@model IEnumerable<_12._1.Models.History>
+﻿@model IEnumerable<_12._1.Models.AssemblyInfo>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     Layout = null;
@@ -14,27 +15,39 @@
 </head>
 
 <body>
-    <div class="panel-body">
-        <h2>List of conference participants:</h2>
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Is speaker</th>
-                </tr>
-            </thead>
-            <tbody>
-                @*@foreach (_12._1.Models.History p in Model)
-                {
+    <h3>Tests history</h3>
+    <div class="results">
+        @for (var i = 0; i < Model.Count(); ++i)
+        {
+            @Model.ElementAt(i).Name:
+            @: (@Model.ElementAt(i).Tests.Where(test => test.Result == "Passed").Count()) passed.
+            @: (@Model.ElementAt(i).Tests.Where(test => test.Result == "Failed").Count()) failed.
+            @: (@Model.ElementAt(i).Tests.Where(test => test.Result == "Ignored").Count()) ignored.
+
+            <table class="tests">
+                Assembly @Model.ElementAt(i).Name
+                <thead>
                     <tr>
-                        <td>@p.Name</td>
-                        <td>@p.Email</td>
-                        <td>@(p.Speaker == true ? "Yes" : "No")</td>
+                        <th>Name</th>
+                        <th>Result</th>
+                        <th>Time</th>
+                        <th>Ignore reason</th>
                     </tr>
-                }*@
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var test in Model.ElementAt(i).Tests)
+                    {
+                        <tr>
+                            <td>@test.Name</td>
+                            <td>@test.Result</td>
+                            <td>@test.Time</td>
+                            <td>@(test.IgnoreReason == null ? "" : test.IgnoreReason)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br>
+        }
     </div>
 </body>
 </html>
