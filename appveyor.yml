@@ -4,10 +4,10 @@ init:
   - git config --global core.autocrlf true
 
 before_build:
-  - nuget restore Semester3/Homework8/8.1/8.1.sln
+  - nuget restore Semester3/Homework12/12.1/12.1.sln
 
 build:
-  project: Semester3/Homework8/8.1/8.1.sln
+  project: Semester3/Homework12/12.1/12.1.sln
 
 test_script:
-  - dotnet test Semester3/Homework8/8.1/8.1.sln
+  - dotnet test Semester3/Homework12/12.1/12.1.sln
