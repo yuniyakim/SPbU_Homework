@@ -8,8 +8,8 @@
 $
 S\ K\ K \equiv
 (\lambda x\ y\ z.x\ z\ (y\ z))\ (\lambda x\ y.x)\ (\lambda x\ y.x) \rightarrow_\beta \\
-\rightarrow_\beta (\lambda z.[\lambda x\ y.x]\ z\ \{[\lambda x\ y.x]\ z\}) \rightarrow_\beta \\
-\rightarrow_\beta (\lambda z.[\lambda x\ y.x]\ z\ \{\lambda y.z\}) \rightarrow_\beta (\lambda z.[\lambda x\ y.x]\ z\ z) \rightarrow_\beta \\
+\rightarrow_\beta (\lambda y\ z.[\lambda x\ y.x]\ z\ (y\ z))\ (\lambda x\ y.x) \rightarrow_\beta \\
+\rightarrow_\beta (\lambda y\ z.[\lambda y.z]\ (y\ z))\ (\lambda x\ y.x) \rightarrow_\beta (\lambda y\ z.z)\ (\lambda x\ y.x) \rightarrow_\beta \\
 \rightarrow_\beta (\lambda z. z) \equiv I
 $
 
