@@ -35,9 +35,16 @@ let rec checkNumberExists (number: string) (list: List<string * string>) =
 let addContact (list: List<string * string>) =
     printf "Enter name"
     let name = Console.ReadLine()
-    printf "Enter number"
-    let number = Console.ReadLine()
-    list @ [(name, number)]
+    if (checkNameExists name list) then 
+        printf "Contact with name %s already exists" name
+        list
+    else 
+        printf "Enter number"
+        let number = Console.ReadLine()
+        if (checkNumberExists number list) then 
+            printf "Contact with number %s already exists" number
+            list
+        else list @ [(name, number)]
 
 /// Looks for number by given name recursively
 let rec findByNameRec (name: string) (list: List<string * string>) =
