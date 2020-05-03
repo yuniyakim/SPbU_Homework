@@ -17,6 +17,20 @@ let printMenu () =
 let printAllContacts (list: List<string * string>) =
     List.map (fun (name, number) -> printf "Name: %s, number: %s" name number) list
 
+/// Checks if contact with given name exists
+let rec checkNameExists (name: string) (list: List<string * string>) =
+    match list with
+    | [] -> false
+    | (headName, headNumber) :: _ when headName = name -> true
+    | _ -> checkNameExists name (List.tail list)
+
+/// Checks if contact with given number exists
+let rec checkNumberExists (number: string) (list: List<string * string>) =
+    match list with
+    | [] -> false
+    | (headName, headNumber) :: _ when headNumber = number -> true
+    | _ -> checkNumberExists number (List.tail list)
+
 /// Adds a new contact with entered name and number
 let addContact (list: List<string * string>) =
     printf "Enter name"
