@@ -25,6 +25,22 @@ let addContact (list: List<string * string>) =
     let number = Console.ReadLine()
     list @ [(name, number)]
 
+/// Looks for number by given name recursively
+let rec findByNameRec (name: string) (list: List<string * string>) =
+    match list with
+    | [] -> ""
+    | (headName, headNumber) :: _ when headName = name -> headNumber
+    | _ -> findByNameRec name (List.tail list)
+
+/// Looks for number by entered name
+let findByName (list: List<string * string>) = 
+    printf "Enter name"
+    let name = Console.ReadLine()
+    let number = findByNameRec name list
+    match number with
+    | "" -> printf "There's no contact with name %s" name
+    | _ -> printf "The number of %s is %s" name number
+
 //Написать программу - телефонный справочник. Она должна уметь хранить имена и номера телефонов, в интерактивном режиме осуществлять следующие операции:
 //1. выйти
 //2. добавить запись (имя и телефон)
