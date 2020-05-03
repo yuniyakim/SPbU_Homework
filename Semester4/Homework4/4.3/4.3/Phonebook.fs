@@ -38,8 +38,24 @@ let findByName (list: List<string * string>) =
     let name = Console.ReadLine()
     let number = findByNameRec name list
     match number with
-    | "" -> printf "There's no contact with name %s" name
+    | "" -> printf "There's no contacts with name %s" name
     | _ -> printf "The number of %s is %s" name number
+
+/// Looks for name by given number recursively
+let rec findByNumberRec (number: string) (list: List<string * string>) =
+    match list with
+    | [] -> ""
+    | (headName, headNumber) :: _ when headNumber = number -> headName
+    | _ -> findByNameRec number (List.tail list)
+
+/// Looks for name by entered number
+let findByNumber (list: List<string * string>) = 
+    printf "Enter number"
+    let number = Console.ReadLine()
+    let name = findByNumberRec number list
+    match name with
+    | "" -> printf "There's no contacts with number %s" number
+    | _ -> printf "Number %s belongs to %s" number name
 
 //Написать программу - телефонный справочник. Она должна уметь хранить имена и номера телефонов, в интерактивном режиме осуществлять следующие операции:
 //1. выйти
