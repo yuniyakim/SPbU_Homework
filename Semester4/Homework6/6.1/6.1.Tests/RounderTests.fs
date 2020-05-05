@@ -5,7 +5,7 @@ open FsUnit
 open Rounder
 
 [<Test>]
-let SimpleRounderTest () =
+let simpleRounderTest () =
     let rounder = new Rounder(3)
     rounder {
         let! a = 2.0 / 12.0
@@ -14,7 +14,7 @@ let SimpleRounderTest () =
     } |> should (equalWithin 0.0001) 0.048
 
 [<Test>]
-let AnotherSimpleRounderTest () =
+let anotherSimpleRounderTest () =
     let rounder = new Rounder(2)
     rounder {
         let! a = 3.0 / 11.0
@@ -23,7 +23,7 @@ let AnotherSimpleRounderTest () =
     } |> should (equalWithin 0.001) 0.05
 
 [<Test>]
-let ComplexRounderTest () =
+let complexRounderTest () =
     let rounder = new Rounder(4)
     rounder {
         let! a = 2.0 / 13.0
@@ -34,7 +34,7 @@ let ComplexRounderTest () =
     } |> should (equalWithin 0.00001) 0.1999
 
 [<Test>]
-let AnotherComplexRounderTest () =
+let anotherComplexRounderTest () =
     let rounder = new Rounder(3)
     rounder {
         let! a = 2.0 / 19.0
