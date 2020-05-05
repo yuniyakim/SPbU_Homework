@@ -9,4 +9,4 @@ let multiplicationMap2 (x: int): int list -> int list = List.map (fun y -> (*) x
 
 let multiplicationMap3 (x: int): int list -> int list = List.map ((*) x)
 
-let multiplicationMap4: int -> int list -> int list = List.map << (*)
+let multiplicationMap4 (): int -> int list -> int list = List.map << (*)

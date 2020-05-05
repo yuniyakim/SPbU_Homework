@@ -7,7 +7,7 @@ open MultiplicationMap
 let test1 (x: int) (l: int list) = multiplicationMap x l = multiplicationMap1 x l
 let test2 (x: int) (l: int list) = multiplicationMap x l = multiplicationMap2 x l
 let test3 (x: int) (l: int list) = multiplicationMap x l = multiplicationMap3 x l
-let test4 (x: int) (l: int list) = multiplicationMap x l = multiplicationMap4 x l
+let test4 (x: int) (l: int list) = multiplicationMap x l = (multiplicationMap4 ()) x l
 
 [<Test>]
 let multiplicationMapTest1 () =
