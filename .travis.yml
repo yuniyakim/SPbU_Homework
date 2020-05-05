@@ -1,18 +1,21 @@
-language: csharp
-solution: Semester3/Homework12/12.1/12.1.sln
+language: fsharp
 sudo: required
 dist: xenial
 dotnet: 3.0
 
+env:
+  - solution: Semester4/Homework1/1.1/1.1.sln
+  - solution: Semester4/Homework1/1.2/1.2.sln
+  - solution: Semester4/Homework1/1.3/1.3.sln
+  - solution: Semester4/Homework1/1.4/1.4.sln
+  - solution: Semester4/Homework1/1.5/1.5.sln
+  - solution: Semester4/Homework6/6.1/6.1.sln
+
 before_build:
-  - nuget restore Semester3/Homework12/12.1/12.1.sln
+  - nuget restore $solution
 
 build:
-  - dotnet build Semester3/Homework12/12.1/12.1.sln
+  - dotnet build $solution
 
 script:
-  - dotnet test Semester3/Homework12/12.1/12.1.sln
-
-global:
-    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-    - DOTNET_CLI_TELEMETRY_OPTOUT=1 
+  - dotnet test $solution 
