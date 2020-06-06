@@ -15,6 +15,7 @@ let testCases =
         "{}", true
         "([{[]}])", true
         "[}", false
+        "[{]}", false
         "[())]", false
         "[[{((", false
         "[}", false
