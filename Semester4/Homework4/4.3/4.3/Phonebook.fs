@@ -34,13 +34,13 @@ let rec checkNumberExists (number: string) (list: List<string * string>) =
 
 /// Adds a new contact with entered name and number
 let addContact (list: List<string * string>) =
-    printfn "Enter name"
+    printf "Enter name: "
     let name = Console.ReadLine()
     if (checkNameExists name list) then 
         printfn "Contact with name %s already exists" name
         list
     else 
-        printfn "Enter number"
+        printf "Enter number: "
         let number = Console.ReadLine()
         if (checkNumberExists number list) then 
             printfn "Contact with number %s already exists" number
@@ -56,7 +56,7 @@ let rec findByNameRec (name: string) (list: List<string * string>) =
 
 /// Looks for number by entered name
 let findByName (list: List<string * string>) =
-    printfn "Enter name"
+    printf "Enter name: "
     let name = Console.ReadLine()
     let number = findByNameRec name list
     match number with
@@ -72,7 +72,7 @@ let rec findByNumberRec (number: string) (list: List<string * string>) =
 
 /// Looks for name by entered number
 let findByNumber (list: List<string * string>) =
-    printfn "Enter number"
+    printf "Enter number: "
     let number = Console.ReadLine()
     let name = findByNumberRec number list
     match name with
@@ -87,7 +87,7 @@ let readFromFile (path: string) (list: List<string * string>) =
 
 /// Reads data from entered path
 let readData (list: List<string * string>) =
-    printfn "Enter path to read data from"
+    printf "Enter path to read data from: "
     let path = Console.ReadLine()
     readFromFile path list
 
@@ -99,7 +99,7 @@ let saveToFile (path: string) (list: List<string * string>) =
 
 /// Saves data to entered path
 let saveData (list: List<string * string>) =
-    printfn "Enter path to save data to"
+    printf "Enter path to save data to: "
     let path = Console.ReadLine()
     saveToFile path list
 
@@ -107,22 +107,22 @@ let saveData (list: List<string * string>) =
 let start () =
     /// Starts phonebook
     let rec startPhonebook (list: List<string * string>) =
-        printfn "Choose command"
+        printf "Choose command: "
         match Console.ReadLine() with
         | "1" -> printfn "Phonebook was closed"
-        | "2" -> addContact list |> ignore
-                 startPhonebook list
+        | "2" -> startPhonebook (addContact list)
         | "3" -> findByName list
                  startPhonebook list
         | "4" -> findByNumber list
                  startPhonebook list
-        | "5" -> printAllContacts list |> ignore
+        | "5" -> if list = [] then printfn "Phonebook is empty" 
+                 else printAllContacts list |> ignore
                  startPhonebook list
         | "6" -> saveData list
                  startPhonebook list
-        | "7" -> readData list |> ignore
-                 startPhonebook list
+        | "7" -> startPhonebook (readData list)
         | _ -> printfn "Wrong command"
+               startPhonebook list
 
     printMenu
     startPhonebook []
