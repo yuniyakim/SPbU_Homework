@@ -4,19 +4,19 @@ open System
 open System.IO
 
 /// Prints menu
-let printMenu () =
-    printf "Menu:"
-    printf "1 – exit"
-    printf "2 – add contact"
-    printf "3 – find number by name"
-    printf "4 – find name by number"
-    printf "5 – print all contacts"
-    printf "6 – save data to file"
-    printf "7 – read data from file"
+let printMenu =
+    printfn "Menu:"
+    printfn "1 – exit"
+    printfn "2 – add contact"
+    printfn "3 – find number by name"
+    printfn "4 – find name by number"
+    printfn "5 – print all contacts"
+    printfn "6 – save data to file"
+    printfn "7 – read data from file"
 
 /// Prints all the contacts
 let printAllContacts (list: List<string * string>) =
-    List.map (fun (name, number) -> printf "Name: %s, number: %s" name number) list
+    List.map (fun (name, number) -> printfn "Name: %s, number: %s" name number) list
 
 /// Checks if contact with given name exists
 let rec checkNameExists (name: string) (list: List<string * string>) =
@@ -34,16 +34,16 @@ let rec checkNumberExists (number: string) (list: List<string * string>) =
 
 /// Adds a new contact with entered name and number
 let addContact (list: List<string * string>) =
-    printf "Enter name"
+    printfn "Enter name"
     let name = Console.ReadLine()
     if (checkNameExists name list) then 
-        printf "Contact with name %s already exists" name
+        printfn "Contact with name %s already exists" name
         list
     else 
-        printf "Enter number"
+        printfn "Enter number"
         let number = Console.ReadLine()
         if (checkNumberExists number list) then 
-            printf "Contact with number %s already exists" number
+            printfn "Contact with number %s already exists" number
             list
         else list @ [(name, number)]
 
@@ -56,12 +56,12 @@ let rec findByNameRec (name: string) (list: List<string * string>) =
 
 /// Looks for number by entered name
 let findByName (list: List<string * string>) =
-    printf "Enter name"
+    printfn "Enter name"
     let name = Console.ReadLine()
     let number = findByNameRec name list
     match number with
-    | "" -> printf "There's no contacts with name %s" name
-    | _ -> printf "The number of %s is %s" name number
+    | "" -> printfn "There's no contacts with name %s" name
+    | _ -> printfn "The number of %s is %s" name number
 
 /// Looks for name by given number recursively
 let rec findByNumberRec (number: string) (list: List<string * string>) =
@@ -72,12 +72,12 @@ let rec findByNumberRec (number: string) (list: List<string * string>) =
 
 /// Looks for name by entered number
 let findByNumber (list: List<string * string>) =
-    printf "Enter number"
+    printfn "Enter number"
     let number = Console.ReadLine()
     let name = findByNumberRec number list
     match name with
-    | "" -> printf "There's no contacts with number %s" number
-    | _ -> printf "Number %s belongs to %s" number name
+    | "" -> printfn "There's no contacts with number %s" number
+    | _ -> printfn "Number %s belongs to %s" number name
 
 /// Reads data from file
 let readFromFile (path: string) (list: List<string * string>) =
@@ -87,7 +87,7 @@ let readFromFile (path: string) (list: List<string * string>) =
 
 /// Reads data from entered path
 let readData (list: List<string * string>) =
-    printf "Enter path to read data from"
+    printfn "Enter path to read data from"
     let path = Console.ReadLine()
     readFromFile path list
 
@@ -99,9 +99,33 @@ let saveToFile (path: string) (list: List<string * string>) =
 
 /// Saves data to entered path
 let saveData (list: List<string * string>) =
-    printf "Enter path to save data to"
+    printfn "Enter path to save data to"
     let path = Console.ReadLine()
     saveToFile path list
+
+/// Starts program
+let start () =
+    /// Starts phonebook
+    let rec startPhonebook (list: List<string * string>) =
+        printfn "Choose command"
+        match Console.ReadLine() with
+        | "1" -> printfn "Phonebook was closed"
+        | "2" -> addContact list |> ignore
+                 startPhonebook list
+        | "3" -> findByName list
+                 startPhonebook list
+        | "4" -> findByNumber list
+                 startPhonebook list
+        | "5" -> printAllContacts list |> ignore
+                 startPhonebook list
+        | "6" -> saveData list
+                 startPhonebook list
+        | "7" -> readData list |> ignore
+                 startPhonebook list
+        | _ -> printfn "Wrong command"
+
+    printMenu
+    startPhonebook []
 
 //Написать программу - телефонный справочник. Она должна уметь хранить имена и номера телефонов, в интерактивном режиме осуществлять следующие операции:
 //1. выйти
