@@ -4,7 +4,7 @@ open NUnit.Framework
 open Phonebook
 open FsUnit
 
-let path = "..\..\..\4.3.txt"
+let path = "../../../4.3.txt"
 let list = readFromFile path []
 
 [<Test>]
