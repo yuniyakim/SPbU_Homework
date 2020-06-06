@@ -68,7 +68,7 @@ let rec findByNumberRec (number: string) (list: List<string * string>) =
     match list with
     | [] -> ""
     | (headName, headNumber) :: _ when headNumber = number -> headName
-    | _ -> findByNameRec number (List.tail list)
+    | _ -> findByNumberRec number (List.tail list)
 
 /// Looks for name by entered number
 let findByNumber (list: List<string * string>) =
