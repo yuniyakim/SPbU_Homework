@@ -26,9 +26,11 @@ type Net(computers: List<Computer>, matrix: List<List<bool>>) =
             let computer = computers.Item i
             printfn "Name: %s, OS: %s, is infected: %b" computer.Name computer.OS computer.Infected
 
+    /// Net's computers
+    member this.Computers = computers
+
     /// Starts infection
     member this.Start (stepAmount: int, frequency: int, random: Random) =
         for i in 1 .. stepAmount do
             step(random)
             if frequency <> 0 && i % frequency = 0 then state
-        state
