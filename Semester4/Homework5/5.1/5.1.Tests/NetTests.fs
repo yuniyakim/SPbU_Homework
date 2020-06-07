@@ -134,7 +134,6 @@ let ``Check different possibilities after 1 step`` () =
     (net.Computers.Item 3).Infected |> should be True
     (net.Computers.Item 4).Infected |> should be True
 
-
 [<Test>]
 let ``Check different possibilities after 2 steps`` () =
     let net = new Net(computers3, matrix3)
@@ -144,7 +143,6 @@ let ``Check different possibilities after 2 steps`` () =
     (net.Computers.Item 2).Infected |> should be False
     (net.Computers.Item 3).Infected |> should be True
     (net.Computers.Item 4).Infected |> should be True
-
 
 [<Test>]
 let ``Check different possibilities after 100 steps`` () =
