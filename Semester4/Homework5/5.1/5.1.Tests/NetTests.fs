@@ -6,11 +6,6 @@ open Computer
 open Net
 open FsUnit
 
-let compare (computer1: Computer) (computer2: Computer) =
-    if computer1.Name = computer2.Name && computer1.OS = computer2.OS && computer1.Infected = computer2.Infected
-    then 1
-    else 0
-
 let computers1 =
     [
         new Computer("first", "Windows", false)
