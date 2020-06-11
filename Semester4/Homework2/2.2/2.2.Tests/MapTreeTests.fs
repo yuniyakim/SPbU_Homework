@@ -5,7 +5,7 @@ open FsUnit
 open MapTree
 
 [<Test>]
-let MapEmptyTreeTest () =
+let mapEmptyTreeTest () =
     let res = 
         match mapTree (fun x -> x * 12648) Empty with
         | Empty -> true
@@ -13,13 +13,13 @@ let MapEmptyTreeTest () =
     res |> should equal true
 
 [<Test>]
-let MapSimpleTreeTest () =
+let mapSimpleTreeTest () =
     mapTree (fun x -> x * x) (Node(5, Empty, Empty)) |> should equal (Node(25, Empty, Empty))
     mapTree (fun x -> x * -10) (Node(-3, Node(6, Empty, Empty), Empty)) |> should equal (Node(30, Node(-60, Empty, Empty), Empty))
     mapTree (fun x -> x * 2) (Node(0, Empty, Node(33, Empty, Empty))) |> should equal (Node(0, Empty, Node(66, Empty, Empty)))
 
 [<Test>]
-let MapHugeTreeTest () =
+let mapHugeTreeTest () =
     mapTree (fun x -> x * x * x) (Node(1, 
                                         Node(-11, 
                                             Node(-3, 
