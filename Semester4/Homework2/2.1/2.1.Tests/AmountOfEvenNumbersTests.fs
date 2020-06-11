@@ -33,8 +33,8 @@ let AmountOfEvenNumbersMapTest ls res =
 
 [<Test>]
 let AmountOfEvenNumbersFilterAndFoldTest () =
-    Check.Quick (fun (ls: List<int>) -> (amountOfEvenNumbersFilter ls) = (amountOfEvenNumbersFold ls))
+    Check.QuickThrowOnFailure (fun (ls: List<int>) -> (amountOfEvenNumbersFilter ls) = (amountOfEvenNumbersFold ls))
 
 [<Test>]
 let AmountOfEvenNumbersFoldAndMapTest () =
-    Check.Quick (fun (ls: List<int>) -> (amountOfEvenNumbersFold ls) = (amountOfEvenNumbersMap ls))
+    Check.QuickThrowOnFailure (fun (ls: List<int>) -> (amountOfEvenNumbersFold ls) = (amountOfEvenNumbersMap ls))
