@@ -1,0 +1,55 @@
+﻿@model IEnumerable<_12._1.Models.AssemblyInfo>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>History</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+
+<body>
+    <h3>Tests history</h3>
+    <div class="results">
+        @for (var i = 0; i < Model.Count(); ++i)
+        {
+            <text>
+            @Model.ElementAt(i).Name:
+            @Model.ElementAt(i).Tests.Where(test => test.Result == "Passed").Count() passed.
+            @Model.ElementAt(i).Tests.Where(test => test.Result == "Failed").Count() failed.
+            @Model.ElementAt(i).Tests.Where(test => test.Result == "Ignored").Count() ignored.
+            </text>
+            <br>
+            <table class="tests">
+                Assembly @Model.ElementAt(i).Name
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Result</th>
+                        <th>Time</th>
+                        <th>Ignore reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var test in Model.ElementAt(i).Tests)
+                    {
+                        <tr>
+                            <td>@test.Name</td>
+                            <td>@test.Result</td>
+                            <td>@test.Time</td>
+                            <td>@(test.IgnoreReason == null ? "" : test.IgnoreReason)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br>
+        }
+    </div>
+</body>
+</html>
