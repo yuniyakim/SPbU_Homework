@@ -1,12 +1,12 @@
 ﻿module ArithmeticExpressionTree
 
 /// Arithmetic expression tree structure
-type AritmeticExpressionTree =
+type ArithmeticExpressionTree =
     | Number of int
-    | Addition of AritmeticExpressionTree * AritmeticExpressionTree
-    | Subtraction of AritmeticExpressionTree * AritmeticExpressionTree
-    | Multiplication of AritmeticExpressionTree * AritmeticExpressionTree
-    | Division of AritmeticExpressionTree * AritmeticExpressionTree
+    | Addition of ArithmeticExpressionTree * ArithmeticExpressionTree
+    | Subtraction of ArithmeticExpressionTree * ArithmeticExpressionTree
+    | Multiplication of ArithmeticExpressionTree * ArithmeticExpressionTree
+    | Division of ArithmeticExpressionTree * ArithmeticExpressionTree
 
 /// Calculates the result of arithmetic expression tree
 let rec calculate tree =
