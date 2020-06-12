@@ -9,7 +9,6 @@
   <ItemGroup>
     <Compile Include="Computer.fs" />
     <Compile Include="Net.fs" />
-    <Compile Include="Program.fs" />
   </ItemGroup>
 
 </Project>
