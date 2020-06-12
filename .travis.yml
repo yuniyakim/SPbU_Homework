@@ -1,7 +1,7 @@
 language: fsharp
 sudo: required
 dist: xenial
-dotnet: 3.0
+dotnet: 3.1
 
 env:
   - solution: Semester4/Homework1/1.1/1.1.sln
