@@ -24,7 +24,7 @@ let testCasesIsPrime =
 
 [<Test>]
 [<TestCaseSource("testCasesIsPrime")>]
-let IsPrimeTest n res =
+let ssPrimeTest n res =
     isPrime(n) |> should equal res
 
 let testCasesSequenceOfPrimeNumbers =
@@ -42,5 +42,5 @@ let testCasesSequenceOfPrimeNumbers =
 
 [<Test>]
 [<TestCaseSource("testCasesSequenceOfPrimeNumbers")>]
-let SequenceOfPrimeNumbersTest n res =
+let sequenceOfPrimeNumbersTest n res =
     sequenceOfPrimeNumbers () |> Seq.item n |> should equal res

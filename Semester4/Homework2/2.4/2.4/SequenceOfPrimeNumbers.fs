@@ -9,4 +9,4 @@ let isPrime n =
 
 /// Generates an infinite sequence of prime numbers
 let sequenceOfPrimeNumbers () =
-    Seq.initInfinite (fun x -> x) |> Seq.filter isPrime
+    Seq.initInfinite id |> Seq.filter isPrime
