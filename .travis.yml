@@ -13,6 +13,7 @@ env:
   - solution: Semester4/Homework2/2.2/2.2.sln
   - solution: Semester4/Homework2/2.3/2.3.sln
   - solution: Semester4/Homework2/2.4/2.4.sln
+  - solution: Semester4/Homework4/4.1/4.1.sln
 
 before_build:
   - nuget restore $solution
@@ -22,3 +23,4 @@ build:
 
 script:
   - dotnet test $solution
+  
