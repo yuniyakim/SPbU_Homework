@@ -13,6 +13,7 @@ env:
   - solution: Semester4/Homework2/2.2/2.2.sln
   - solution: Semester4/Homework2/2.3/2.3.sln
   - solution: Semester4/Homework2/2.4/2.4.sln
+  - solution: Semester4/Homework3/3.3/3.3.sln
   - solution: Semester4/Homework4/4.1/4.1.sln
   - solution: Semester4/Homework4/4.2/4.2.sln
   - solution: Semester4/Homework6/6.1/6.1.sln
@@ -28,4 +29,4 @@ build:
   - dotnet build $solution
 
 script:
-  - dotnet test $solution 
+  - dotnet test $solution
