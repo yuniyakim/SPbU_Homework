@@ -11,6 +11,7 @@ env:
   - solution: Semester4/Homework1/1.5/1.5.sln  
   - solution: Semester4/Homework2/2.1/2.1.sln
   - solution: Semester4/Homework2/2.2/2.2.sln
+  - solution: Semester4/Homework2/2.3/2.3.sln
 
 before_build:
   - nuget restore $solution
