@@ -17,6 +17,7 @@ environment:
   - solution: Semester4/Homework3/3.3/3.3.sln
   - solution: Semester4/Homework4/4.1/4.1.sln
   - solution: Semester4/Homework4/4.2/4.2.sln
+  - solution: Semester4/Homework5/5.1/5.1.sln
   - solution: Semester4/Homework6/6.1/6.1.sln
   - solution: Semester4/Homework6/6.2/6.2.sln
   - solution: Semester4/Test1/1.1/1.1.sln
