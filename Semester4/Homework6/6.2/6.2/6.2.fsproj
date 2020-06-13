@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>_6._2</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="StringNumbers.fs" />
+  </ItemGroup>
+
+</Project>
