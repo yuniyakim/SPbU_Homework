@@ -5,6 +5,6 @@ Programming homework and tests.
 
 [![Travis Badge](https://travis-ci.org/yuniyakim/Programming.svg?branch=master)](https://travis-ci.org/yuniyakim/Programming)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/46357a8c9f1a46c4b46c40323766d12f)](https://www.codacy.com/app/yuniyakim/Programming?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yuniyakim/Programming&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/47ab0ebfa8a946809a89ae92712b6a82)](https://www.codacy.com/app/yuniyakim/Programming?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yuniyakim/Programming&amp;utm_campaign=Badge_Grade)
 
 [![Codecov Badge](https://codecov.io/gh/yuniyakim/Programming/branch/master/graph/badge.svg)](https://codecov.io/gh/yuniyakim/Programming)
